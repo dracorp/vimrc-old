@@ -1,0 +1,29 @@
+# <+$BASENAME$+>
+<IfModule mod_ssl.c>
+<VirtualHost <+$BASENAME$+>:443>
+	#DATE: <+$DATE$+>
+	ServerAdmin <+#ServerAdmin#+>
+	ServerName <+$BASENAME$+>
+	ServerAlias <+#ServerAlias#+>
+	Include	common_ssl.conf
+	DocumentRoot <+#DocumentRoot#+>
+
+	RewriteEngine On
+	RewriteOptions Inherit
+	
+	SSLCertificateFile /etc/ssl/wildcard.domain.tld.cert.pem
+	SSLCertificateKeyFile /etc/ssl/private/domain.tld.pem
+	SSLCACertificateFile /etc/ssl/ca.cert.pem
+
+	ErrorLog /var/log/apache2/<+$BASENAME$+>/error.log
+	CustomLog /var/log/apache2/<+$BASENAME$+>/access.log combined
+	<Directory <+#DocumentRoot#+>>
+		Options Indexes -FollowSymLinks MultiViews 
+		AllowOverride all 
+		Order allow,deny 
+		allow from all 
+	</Directory>
+</VirtualHost>
+</IfModule>
+
+# vim:ft=apache

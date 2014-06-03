@@ -1,0 +1,152 @@
+"===================================================================================
+"         FILE:  vimrc.keys.vim
+"  DESCRIPTION:  Plik z mapowaniem klawiszy
+"       AUTHOR:  Piotr Rogoża
+"===================================================================================
+"
+" !         robi przełącznik z przycisku
+" <CR>      to enter
+" <c-o>     umożliwia w trybie Insert wprowadzenie komendy
+" <silent>  mapowanie nie zostanie wyświetlone w showmode
+" %         aktualny plik, :he expand
+"-------------------------------------------------------------------------------
+"     F1  -  pomoc, man.vim file.ext | file | filetype
+"     F2  -  write file without confirmation
+"     F3  -  call file explorer Ex
+"     F4  -  show tag under curser in the preview window (tagfile must exist!)
+"     F6  -  list all errors           
+"     F7  -  display previous error
+"     F8  -  display next error   
+"     F9  -  display number of line
+"     F12 -  list buffers and edit n-th buffer
+"-------------------------------------------------------------------------------
+"Polski język sprawdzania pisowni
+"noremap    <silent>    <F1>    :help usr_toc.txt@pl<CR>
+noremap     <silent>    <F1>    :call DisplayManpage()<CR>
+"noremap    <silent>    <F2>    :write<CR>
+noremap     <silent>    <F3>    :Explore<CR>
+noremap     <silent>    <F4>    :execute ":ptag ".expand("<cword>")<CR>
+noremap     <silent>    <F5>    :copen<CR>
+"noremap     <silent>    <F6>    :cclose<CR>
+noremap     <silent>    <F7>    :cprevious<CR>
+"map        <silent><F7>            :setlocal spell!<CR>
+"imap        <silent><F7>            <ESC>:setlocal spell!<CR>i<right>
+map zp :setlocal spell!<CR>			
+imap zP <ESC>:setlocal spell!<CR>i<right>
+
+noremap     <silent>    <F8>    :cnext<CR>
+"noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
+noremap     <silent>    <F9>    :set nonumber!<CR>
+noremap                 <F12>   :ls<CR>:edit #
+"noremap <silent> <F12> :cal VimCommanderToggle()<CR>
+"
+inoremap    <silent>    <F1>    <C-C>:call DisplayManpage()<CR>
+"inoremap  <silent> <F2>    <C-C>:write<CR>
+inoremap    <silent>    <F3>    <C-C>:Explore<CR>
+inoremap    <silent>    <F4>    <C-C>:execute ":ptag ".expand("<cword>")<CR>
+inoremap    <silent>    <F5>    <C-C>:copen<CR>
+"inoremap    <silent>    <F6>    <C-C>:cclose<CR>
+inoremap    <silent>    <F7>    <C-C>:cprevious<CR>
+inoremap    <silent>    <F8>    <C-C>:cnext<CR>
+inoremap    <silent>    <F9>    <C-O>:set nonumber!<CR>
+inoremap                <F12>   <C-C>:ls<CR>:edit #
+"
+" wklejanie
+vnoremap <C-Insert> "+y
+"
+" search for visually highlighted text
+"vmap // y/<C-R>"<CR>
+"with spec chars
+vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+"
+"przelaczanie podswietlania wynikow szukania ctrl+n
+noremap <silent> <C-n> <Esc>:call ToggleHLSearch()<CR>
+"
+"-------------------------------------------------------------------------------
+" comma always followed by a space
+"-------------------------------------------------------------------------------
+"inoremap  ,  ,<Space>
+"
+"-------------------------------------------------------------------------------
+" autocomplete parenthesis, (brackets) and braces
+"-------------------------------------------------------------------------------
+"inoremap  (  ()<Left>
+"inoremap  [  []<Left>
+"inoremap  {  {}<Left>
+"
+"vnoremap  (  s()<Esc>P<Right>%
+"vnoremap  [  s[]<Esc>P<Right>%
+"vnoremap  {  s{}<Esc>P<Right>%
+"
+" surround content with additional spaces
+"
+"vnoremap  )  s(  )<Esc><Left>P<Right><Right>%
+"vnoremap  ]  s[  ]<Esc><Left>P<Right><Right>%
+"vnoremap  }  s{  }<Esc><Left>P<Right><Right>%
+"
+"-------------------------------------------------------------------------------
+" autocomplete quotes (visual and select mode)
+"-------------------------------------------------------------------------------
+"xnoremap  '  s''<Esc>P<Right>
+"xnoremap  "  s""<Esc>P<Right>
+"xnoremap  `  s``<Esc>P<Right>
+"
+"inoremap	'  '<Esc>:call QuoteInsertionWrapper("'")<CR>a
+"inoremap	"  "<Esc>:call QuoteInsertionWrapper('"')<CR>a
+"inoremap	`  `<Esc>:call QuoteInsertionWrapper('`')<CR>a
+"
+"-------------------------------------------------------------------------------
+" Moving cursor to other windows:
+" shift down   : change window focus to lower one (cyclic)
+" shift up     : change window focus to upper one (cyclic)
+" shift left   : change window focus to one on left
+" shift right  : change window focus to one on right
+"-------------------------------------------------------------------------------
+nnoremap <s-down>   <c-w>w
+nnoremap <s-up>     <c-w>W
+nnoremap <s-left>   <c-w>h
+nnoremap <s-right>  <c-w>l
+"
+"backspace in VisualMode deletes selection
+"vnoremap <BS> d
+"
+"-------------------------------------------------------------------------------
+"Nawigowanie po złamaniej lini jak po zwykłej
+"-------------------------------------------------------------------------------
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Up> <C-o>gk
+inoremap <Up> <C-o>gk
+"
+"Edycja wielu plików: vim -o ....
+"map <F2> <C-W><C-W>
+"imap <F2> <C-O><C-W><C-W>
+"Edycja wielu plików: vim plik1 plik2 plik3
+"map <F3> :np!<CR>
+"imap <F3> <ESC>:np!<CR>
+"
+"map :W :w
+"obsługa zakładek w vimie, CTRL-I robi to co TAB, domyślnie CTRL-I skacze do przodu
+"nnoremap <TAB> :tabnext<CR>
+"nnoremap <S-TAB> :tabp<CR>
+"nnoremap <C-]> :call <SID>Tag()<CR>\|:echo ""<CR>
+"inoremap <Tab> <C-R>=InsertTabWrapper("backward")<cr>
+"inoremap <S-Tab> <C-R>=InsertTabWrapper("forward")<cr>
+nnoremap <c-tab> :tabnext<cr>
+nnoremap <c-s-tab> :tabprev<cr>
+
+"highlight search
+"nnoremap <s-3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+"vim-toggle
+imap <C-T>:call Toggle()<CR>
+nmap <C-T>:call Toggle()<CR>
+vmap <C-T> <ESC>:call Toggle()<CR>
+
+

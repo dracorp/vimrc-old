@@ -1,0 +1,44 @@
+server {
+    listen   <#$PORT$#>;
+    server_name  <+$BASENAME$+>
+
+    access_log  /var/log/nginx/<+$BASENAME$+>/access.log;
+    error_log  /var/log/nginx/<+$BASENAME$+>/error.log;
+
+    location / { 
+        root   <+#DocumentRoot#+>;
+        index  index.php;
+    }   
+
+
+    error_page  404  /index.php;
+
+    # redirect server error pages to the static page /50x.html
+    #   
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /var/www/nginx-default;
+    }   
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #   
+    #location ~ \.php$ {
+    #   proxy_pass   http://127.0.0.1;
+    #}  
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #   
+    location ~ .php$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  <+#BASENAME#+>$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }   
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #   
+    location ~ /\.ht {
+        deny  all;
+    }   
+# vi: ft=nginx

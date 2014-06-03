@@ -1,0 +1,22 @@
+# <+$BASENAME$+>
+<VirtualHost *>
+	#DATE: <+$DATE$+>
+	ServerAdmin <+#ServerAdmin#+>
+	ServerName <+$BASENAME$+>
+	ServerAlias <+#ServerAlias#+>
+	DocumentRoot <+#DocumentRoot#+>
+
+	RewriteEngine On
+	RewriteOptions Inherit
+
+	ErrorLog /var/log/apache2/<+$BASENAME$+>/error.log
+	CustomLog /var/log/apache2/<+$BASENAME$+>/access.log combined
+	<Directory <+#DocumentRoot#+>>
+		Options Indexes -FollowSymLinks MultiViews 
+		AllowOverride all 
+		Order allow,deny 
+		allow from all 
+	</Directory>
+</VirtualHost>
+
+# vim:ft=apache

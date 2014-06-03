@@ -1,0 +1,44 @@
+"-------------------------------------------------------------------------------
+" TIPS & TRICKS
+"-------------------------------------------------------------------------------
+" ! w mapowaniu robi przełącznik z przycisku
+" ! za nazwą funkcji (w jej definicji) podczas ładowania zastępuje już
+" istniejącą
+" ZAKŁADKI m mark, ustawia zakładkę, do dyspozycji jest 26 zakładek a-z, można do nich
+"skoczyć poprzez '(początek lini) lub `(pozycja kursora w chwili robienia
+"zakładki), duże litery - globalne zakładki, zapamiętuje nawet po wyjściu,
+"polecenie marks pokazuje wszystkie zakładki
+"specjalne zakładki: " ostatnia pozycja kursora , . pozycja kursora ostatniej zmiany
+
+" "* to bierzący wybór zastępujący wybieranie myszką, możliwy do przenoszenia pomiędzy programami poprzez wciśnięcie środkowe przyciska myszy "*p "*yy
+" natomiast "+ to prawdziwy schowek np ctrl+v w OOo lub shift+Insert, jeśli
+" zostanie wybrany jako drugi skasuje schowek bierzący
+" po za tym istnieją jeszcze lokalne rejestry a-z, "rej
+
+" kombinacja klawiszy cas lub cis zmienia całe zdanie,
+" kombinacja klawiszy das lub dis usuwa całe zdanie,
+" kombinacja klawiszy daw usuwa cały wyraz, nie trzeba przeskakiwać na
+" początek wyrazu
+" kombinacja klawiszy yaw, yas yankuje cały wyraz lub sentencję
+" kombinacja klawiszy xp poprawia czeski błąd
+
+" ctrl+V visual blokowy pionowy, V całe linie poziomo
+
+" klawisze ga na danym znaku wyświetlają jego kod
+
+"znaki specjalne można wpisać dzięki ctrl-V kod
+
+"vimdiff skakanie pomiędzy różnicami [c ]c, diffupdate uaktualnia, dp do
+"przenoszą poszczególne różnice
+
+" qx zaczyna nagrywać polecenie, gdzie x=a-z, potem dowolne polecenie
+" modyfikujące i kończymy przez q bez żadnego znaku. Makro wykonujemy
+" poprzez wywołanie @x
+" dodawanie do rejestru qXpolecenieq (działa to do yankowania i
+" usuwania-sumuje rejestr)
+
+"subsitute zasięg: %cały plik, x,y wierszy x do y, . bierząca linia,
+"'zakładka,'zakładka lub przed : wcisnąć liczbę inf. ile wierszy zmienić
+
+"komenda global :[zasięg]gloal|g/wzorzec/polecenie
+
