@@ -1,0 +1,8 @@
+doc/tags
+spell/
+.backup/
+.netrwhist
+passwords.vim
+cache/
+sessions/
+misc/notes/
