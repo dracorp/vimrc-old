@@ -9,6 +9,7 @@
 " <c-o>     umożliwia w trybie Insert wprowadzenie komendy
 " <silent>  mapowanie nie zostanie wyświetlone w showmode
 " %         aktualny plik, :he expand
+" <leader>  domyślnie \
 "-------------------------------------------------------------------------------
 "     F1  -  pomoc, man.vim file.ext | file | filetype
 "     F2  -  write file without confirmation
@@ -20,17 +21,44 @@
 "     F9  -  display number of line
 "     F12 -  list buffers and edit n-th buffer
 "-------------------------------------------------------------------------------
-"Polski język sprawdzania pisowni
-"noremap    <silent>    <F1>    :help usr_toc.txt@pl<CR>
-noremap     <silent>    <F1>    :call DisplayManpage()<CR>
-"noremap    <silent>    <F2>    :write<CR>
-noremap     <silent>    <F3>    :Explore<CR>
-noremap     <silent>    <F4>    :execute ":ptag ".expand("<cword>")<CR>
-noremap     <silent>    <F5>    :copen<CR>
-"noremap     <silent>    <F6>    :cclose<CR>
-noremap     <silent>    <F7>    :cprevious<CR>
-"map        <silent><F7>            :setlocal spell!<CR>
-"imap        <silent><F7>            <ESC>:setlocal spell!<CR>i<right>
+if has("linux")
+    "noremap    <silent>    <F1>    :help usr_toc.txt@pl<CR>
+    noremap     <silent>    <F1>    :call DisplayManpage()<CR>
+endif
+" Toggle show/hide invisible chars
+nnoremap <leader>i :set list!<cr>
+
+" Toggle line numbers
+nnoremap <leader>N :setlocal number!<cr>
+
+" podświetlaj linię pod kursorem
+nnoremap <Leader>c :set cursorline!<CR>
+
+" Speed up scrolling of the viewport slightly
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y>
+
+" Shortcut mappings {{{
+" Since I never use the ; key anyway, this is a real optimization for almost
+" all Vim commands, as I don't have to press the Shift key to form chords to
+" enter ex mode.
+nnoremap ; :
+nnoremap <leader>; ;
+
+" Avoid accidental hits of <F1> while aiming for <Esc>
+noremap! <F1> <Esc>
+
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+
+" Use Q for formatting the current paragraph (or visual selection)
+vnoremap Q gq
+nnoremap Q gqap
+
+" Sort paragraphs
+vnoremap <leader>s !sort -f<CR>gv
+nnoremap <leader>s vip!sort -f<CR><Esc>
+
 map zp :setlocal spell!<CR>			
 imap zP <ESC>:setlocal spell!<CR>i<right>
 
