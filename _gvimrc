@@ -7,7 +7,6 @@
 "===============================================================================
 "
 " GENERAL SETTINGS
-set cmdheight=2                                 " Make command line two lines high
 set mousehide                                   " Hide the mouse when typing text
 set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
                                                 " help(h) - all previous + help files

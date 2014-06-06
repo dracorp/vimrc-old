@@ -12,6 +12,7 @@
 "
 " To test timing startup
 "   vim --startuptime start.log
+"set runtimepath+=/etc/vim
 
 " default file type
 set ft=txt
@@ -27,105 +28,103 @@ set nocompatible
 " the ~/.vim/bundle directory
 filetype off                    " force reloading *after* pathogen loaded
 call pathogen#infect()
-"call pathogen#helptags()
+"call pathogen#helptags()       " slow start
 
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on       " enable detection, plugins and indenting in one step
-"Podświetlanie składni (tylko gdy kolory są dostępne)
 if &t_Co > 2 || has("gui_running")
     syntax on
-    set hlsearch
+    set hlsearch                " highlight search
 endif
 
 " Change the mapleader from \ to ,
 let mapleader=","
 let maplocalleader="\\"
 
-" opcja behave informuje jak ma się zachowywać mysz przy zaznaczaniu, wpływa
-" na selectmode mousemodel keymodel selection
+"Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
 "if has("win32")
 "    behave mswin
 "else
     behave xterm
 "endif
+"set mousemodel=extend           "szybkie wyszuiwanie za pomocą myszki
 
 " Include other configuration files
 
-if has("win32")
-    if filereadable("$HOME/vimfiles/vimrc.keys.vim")
-        source $HOME/vimfiles/vimrc.keys.vim
-    endif
-
-    if filereadable("$HOME/vimfiles/vimrc.functions.vim")
-        source $HOME/vimfiles/vimrc.functions.vim
-    endif
-endif
-if has("unix")
-    if filereadable("$HOME/.vim/vimrc.keys.vim")
-        source $HOME/.vim/vimrc.keys.vim
-    endif
-    "
-    if filereadable("$HOME/.vim/vimrc.functions.vim")
-        source $HOME/.vim/vimrc.functions.vim
-    endif
+if filereadable(vimrc_dir . "vimrc.keys.vim")
+    execute ":source" vimrc_dir . "vimrc.keys.vim"
 endif
 
-" - central backup directory (has to be created), nie może występić spacja po znaku równości(=)
-" Using a backupdir under UNIX/Linux: you may want to include a line similar to
-"   find  $HOME/.vim.backupdir -name "*" -type f -mtime +60 -exec rm -f {} \;
-" in one of your shell startup files (e.g. $HOME/.profile)
-"
-"set runtimepath+=/etc/vim "dodanie do ścieżki z plikami konfiguracyjnymi /etc/vim/
+if filereadable(vimrc_dir . "vimrc.functions.vim")
+    execute ":source" vimrc_dir . "vimrc.functions.vim"
+endif
 
-" Various settings {{{
+" Editing behaviour {{{
+set showmode                    " always show what mode we're currently editing in
+set wrap                        " wrap lines
+set tabstop=4                   " a tab is four spaces
+set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set expandtab                   " expand tabs by default (overloadable per file type later)
+set shiftwidth=4                " number of spaces to use for autoindenting
+set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+set autoindent                  " always set autoindenting on
+set copyindent                  " copy the previous indentation on autoindenting
+set number                      " show line numbers
+set showmatch                   " set show matching parenthesis
+set ignorecase                  " ignore case when searching
+set smartcase                   " ignore case if search pattern is all lowercase,
+                                "    case-sensitive otherwise
+set smarttab                    " insert tabs on the start of a line according to
+                                "    shiftwidth, not tabstop
+set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
+set virtualedit=all             " allow the cursor to go in to "invalid" places
+set incsearch                   " show search matches as you type
+"set gdefault                    " search/replace "globally" (on a line) by default
 " Wyświetlanie końca lini, TAB, ciągłych spacji na końcu lini, przed i po złamaniu wiersza
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 set listchars=tab:>-,eol:$,trail:-,nbsp:%
+
 set nolist                      " don't show invisible characters by default,
-set linebreak
-set autoindent                  " always set autoindenting on
-set copyindent                  " copy the previous indentation on autoindenting
-set smartindent                 " smart autoindenting when starting a new line
-set nonumber 						" Numerowanie wierszy/łamanie wierszy
-set showmatch                   " set show matching parenthesis
-set wrapscan 					" przy wyszukiwaniu będzie zaczynał od początku pliku, przy no tylko do końca
-"set autoread                   " read open files again when changed outside Vim
-set autowrite                   " write a modified buffer on each :next , ...
-set backspace=indent,eol,start  " backspacing over everything in insert mode
-" definiuje które klawisze przenoszą kursor do nowej linii gdy jest na końcu/początku lini
-" backspace, space, <left>, <right> w Normal, i w Insert
-set whichwrap=b,s,<,>,[,],h,l
-"set patchmode=.orig            " rób pierwszą kopię pliku przy edycji
-set browsedir=current           " which directory to use for the file browser
-set complete+=k                 " scan the files given with the 'dictionary' option
-set history=50                  " keep 50 lines of command line history
-set hlsearch                    " highlight the last used search pattern
-"set gdefault                    " search/replace "globally" (on a line) by default
-set incsearch                   " do incremental searching
-set mouse=a                     " enable the use of the mouse
-set mousehide                   " Hide the mouse when typing text
-"set mousemodel=extend           "szybkie wyszuiwanie za pomocą myszki
-set wrap                        " wrap lines
-set popt=left:8pc,right:3pc     " print options
-set ruler                       " show the cursor position all the time
-set showmode 					" Pokaż tryb w lewym-dolnym rogu
-set display+=lastline           " Pokazuje na dole ostatnią linię?
-set so=3                        " przy przewijaniu trzymaj się n lini od końca/początku ekranu
-" Formatowanie
-set textwidth=0                 " domyślna wartość: czasem wato ustawić szerokość ekranu na 78 kolumn
+                                " but it is enabled for some file types (see later)
+set pastetoggle=<F6>             " when in insert mode, press <F2> to go to
+                                "    paste mode, where you can paste mass data
+                                "    that won't be autoindented
+set mouse=a                     " enable using the mouse if terminal emulator
+                                "    supports it (xterm does)
 " automatyczne formatowanie, gq je wywołuje, domyślne wartości: formatoptions=croql :help fo-table
 set formatoptions+=1            " 1 przenosi ostatni, pojedynczy znak, taki jak i a z w, do następnej linii.
 set formatoptions+=t            " t automatyczne zwijanie do textwidth
 set formatoptions-=c            " c automatyczne zwijanie do textwidth komentarzy
-set shortmess+=I                " hide the launch screen
-set showbreak=+\               " załamanie/wrap lini oznacza przez
-set tabstop=4                   " Ile 'spacji' na tabulację, przy opcji expandtab
-set softtabstop=4               "ile spacji przy TAB i BACKSPACE
 
-set expandtab                   " Zamieniaj tabulacje na spacje
-set shiftwidth=4                " ilość spacji dla każdego wcięcia (auto)indent; Wcinanie i usuwanie wcięć o 4 kolumny
-set shiftround                  " Wcinanie i usuwanie wcięć do najbliższego przystanku tabulatora
+set nrformats=                  " make <C-a> and <C-x> play well with
+                                "    zero-padded numbers (i.e. don't consider
+                                "    them octal or hex)
+
+set shortmess+=I                " hide the launch screen
+set clipboard=unnamed           " normal OS clipboard interaction
+" }}}
+
+" Various settings {{{
+set linebreak
+set smartindent                 " smart autoindenting when starting a new line
+set wrapscan 					" przy wyszukiwaniu będzie zaczynał od początku pliku, przy no tylko do końca
+"set autoread                   " read open files again when changed outside Vim
+set autowrite                   " write a modified buffer on each :next , ...
+" definiuje które klawisze przenoszą kursor do nowej linii gdy jest na końcu/początku lini
+" backspace, space, <left>, <right> w Normal, i w Insert
+set whichwrap=b,s,<,>,[,],h,l
+set browsedir=current           " which directory to use for the file browser
+set complete+=k                 " scan the files given with the 'dictionary' option
+set mousehide                   " Hide the mouse when typing text
+set popt=left:8pc,right:3pc     " print options
+set ruler                       " show the cursor position all the time
+set display+=lastline           " Pokazuje na dole ostatnią linię?
+set so=3                        " przy przewijaniu trzymaj się n lini od końca/początku ekranu
+set textwidth=0                 " domyślna wartość: czasem wato ustawić szerokość ekranu na 78 kolumn
+set showbreak=+\               " załamanie/wrap lini oznacza przez
+
 set modeline                    " modeline to komendy dla vima w komentarzach innych plików 
 "żeby vim nie przycinał na dużych plikach gdy jest kolorowanie składni
 syntax sync minlines=30
@@ -133,22 +132,13 @@ syntax sync maxlines=40
 set synmaxcol=500
 set splitbelow                  " polecenie :sp umieszcza nowe okno pod aktywnym
 set splitright                  " polecenie :vs umieszcza nowe po prawej stronie aktywnego
-set ignorecase                  " Ignorowanie wielkości liter podczas wyszukiwania
-set smartcase                   " ignore case if search pattern is all lowercase,
-                                "    case-sensitive otherwise
-set smarttab                    " insert tabs on the start of a line according to
-                                "    shiftwidth, not tabstop
-set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
-set virtualedit=all             " allow the cursor to go in to "invalid" places
-set incsearch
 set infercase
 set tildeop                     " Tylda(~) robi za operator, można teraz używać jej np. tak: ~w ~~
 set iskeyword+=-                " jakie znaki należą do słowa, np. dla klawisza w
-set pastetoggle=<F6>            " Przełączanie trybu paste. Wygodne przy wklejaniu
-"}}}
+" }}}
 
 " Folding rules {{{
-set foldenable
+set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
 "set foldmarek={{{,}}}
@@ -179,7 +169,7 @@ nnoremap z2 :set foldlevel=2<cr>
 nnoremap z3 :set foldlevel=3<cr>
 nnoremap z4 :set foldlevel=4<cr>
 nnoremap z5 :set foldlevel=5<cr>
-"}}}
+" }}}
 
 " Editor layout {{{
 scriptencoding utf-8
@@ -187,6 +177,10 @@ set fenc=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set encoding=utf-8
+set lazyredraw                  " don't update the display while executing macros
+set laststatus=2                " tell VIM to always put a status line in, even
+                                "    if there is only one window
+set cmdheight=2                 " use a status bar that is 2 rows high
 set fileencodings=utf-8,iso8859-2,cp1250,usc-bom,iso8859-1,utf-16,default
 "'termencoding' jest zestawem znaków dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
 "'printencoding' jest zestawem znaków dla drukarki, jeśli oba +printer i +postscript są wkompilowane.
@@ -199,9 +193,7 @@ set fileencodings=utf-8,iso8859-2,cp1250,usc-bom,iso8859-1,utf-16,default
 "	Użycie ":w ++enc=XXX" nie zmienia zachowania domyślnego (ang. ulterior?) zapisu.
 "	Użycie 'fileencoding' (które lepiej zmieniać przez ":setlocal" niż ":set") zmienia zachowanie zapisu.
 "	fileencodings różni się od fileencoding tym, że ustawia domyślny zapis dla wszystkich plików.
-set laststatus=2 				" Linia statusu na dole
-set cmdheight=1                 " Make command line two lines high
-"}}}
+" }}}
 
 " Vim behaviour {{{
 set hidden                      " hide buffers instead of closing them this
@@ -219,14 +211,18 @@ if v:version >= 730
 endif
 set nobackup                    " do not keep backup files, it's 70's style cluttering
 set noswapfile                  " do not write annoying intermediate swap files,
-"set writebackup                " Bez backup'ów(~) ale rób kopie bezpieczeństwa. W razie udanego zapisu kasuje ją
-set directory=~/.vim/.tmp
-"set backupdir=~/.vim.backupdir
-set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
-set wildmenu                    " command-line completion in an enhanced mode
-set wildmode=longest,list       " Uzupełnianie po <TAB> w lini poleceń wszystkich możliwości a nie jedną wartość
-set title                       " ustawienie tytułu okna xterm
-set showcmd                     " display incomplete commands
+                                "    who did ever restore from swap files anyway?
+set directory=~/.vim/.tmp,~/tmp,/tmp
+                                " store swap files in one of these directories
+                                "    (in case swapfile is ever turned on)
+set viminfo='20,\"80            " read/write a .viminfo file, don't store more
+                                "    than 80 lines of registers
+set wildmenu                    " make tab completion for files/buffers act like bash
+set wildmode=longest,list       " show a list when pressing tab and complete
+set wildignore=*.bak,*.o,*.e,*~,*.swp,*.bak,*.pyc,*.class
+set title                       " change the terminal's title
+set showcmd                     " show (partial) command in the last line of the screen
+                                "    this also shows visual selection info
 
 " Permanent 'very magic' mode, see :he pattern
 " search
@@ -239,7 +235,7 @@ cnoremap \>s/ \>smagic/
 " global
 nnoremap :g/ :g/\v
 nnoremap :g// :g//
-"}}}
+" }}}
 
 " Toggle the quickfix window {{{
 " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
