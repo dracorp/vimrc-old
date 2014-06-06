@@ -1,4 +1,3 @@
-" vim: textwidth=0 
 "===================================================================================
 "         FILE:  .vimrc
 "  DESCRIPTION:  suggestion for a personal configuration file ~/.vimrc
@@ -71,6 +70,7 @@ if has("unix")
         source $HOME/.vim/vimrc.functions.vim
     endif
 endif
+
 " - central backup directory (has to be created), nie może występić spacja po znaku równości(=)
 " Using a backupdir under UNIX/Linux: you may want to include a line similar to
 "   find  $HOME/.vim.backupdir -name "*" -type f -mtime +60 -exec rm -f {} \;
@@ -113,7 +113,7 @@ set showmode 					" Pokaż tryb w lewym-dolnym rogu
 set display+=lastline           " Pokazuje na dole ostatnią linię?
 set so=3                        " przy przewijaniu trzymaj się n lini od końca/początku ekranu
 " Formatowanie
-"set textwidth=72               " domyślna wartość: czasem wato ustawić szerokość ekranu na 78 kolumn
+set textwidth=0                 " domyślna wartość: czasem wato ustawić szerokość ekranu na 78 kolumn
 " automatyczne formatowanie, gq je wywołuje, domyślne wartości: formatoptions=croql :help fo-table
 set formatoptions+=1            " 1 przenosi ostatni, pojedynczy znak, taki jak i a z w, do następnej linii.
 set formatoptions+=t            " t automatyczne zwijanie do textwidth
@@ -221,6 +221,7 @@ set nobackup                    " do not keep backup files, it's 70's style clut
 set noswapfile                  " do not write annoying intermediate swap files,
 "set writebackup                " Bez backup'ów(~) ale rób kopie bezpieczeństwa. W razie udanego zapisu kasuje ją
 set directory=~/.vim/.tmp
+"set backupdir=~/.vim.backupdir
 set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
 set wildmode=longest,list       " Uzupełnianie po <TAB> w lini poleceń wszystkich możliwości a nie jedną wartość
@@ -390,8 +391,8 @@ let g:VIMFILESDIR = "$HOME/.vim/"
 inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
 "
 let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
-" manpageview
-"-------------------------------------------------------------------------------
+
+"## manpageview
 "runtime! ftplugin/man.vim
 "runtime! plugin/genutils.vim
 
