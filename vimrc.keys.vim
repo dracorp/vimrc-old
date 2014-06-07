@@ -21,7 +21,7 @@
 "     F9  -  display number of line
 "     F12 -  list buffers and edit n-th buffer
 "-------------------------------------------------------------------------------
-if has("linux")
+if has("unix")
     "noremap    <silent>    <F1>    :help usr_toc.txt@pl<CR>
     noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 endif
@@ -37,6 +37,147 @@ nnoremap <Leader>c :set cursorline!<CR>
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
+
+" Shortcut mappings {{{
+" Since I never use the ; key anyway, this is a real optimization for almost
+" all Vim commands, as I don't have to press the Shift key to form chords to
+" enter ex mode.
+nnoremap ; :
+nnoremap <leader>; ;
+
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+
+" Use Q for formatting the current paragraph (or visual selection)
+vnoremap Q gq
+nnoremap Q gqap
+
+" Sort paragraphs
+vnoremap <leader>s !sort -f<CR>gv
+nnoremap <leader>s vip!sort -f<CR><Esc>
+
+" make p in Visual mode replace the selected text with the yank register
+vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+
+" Shortcut to make
+nnoremap mk :make<CR>
+
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+"nnoremap ' `
+"nnoremap ` '
+
+" Use the damn hjkl keys
+" noremap <up> <nop>
+" noremap <down> <nop>
+" noremap <left> <nop>
+" noremap <right> <nop>
+
+" Remap j and k to act as expected when used on long, wrapped, lines
+nnoremap j gj
+nnoremap k gk
+
+" Easy window navigation
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Complete whole filenames/lines with a quicker shortcut key in insert mode
+inoremap <C-f> <C-x><C-f>
+inoremap <C-l> <C-x><C-l>
+
+" Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
+" yanked stack (also, in visual mode)
+nnoremap <silent> <leader>d "_d
+vnoremap <silent> <leader>d "_d
+
+" Quick yanking to the end of the line
+nnoremap Y y$
+
+" YankRing stuff
+let g:yankring_history_dir = '$HOME/.vim/.tmp'
+nnoremap <leader>r :YRShow<CR>
+
+" Edit the vimrc file
+nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Clears the search register
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+
+" Pull word under cursor into LHS of a substitute (for quick search and
+" replace)
+nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" Keep search matches in the middle of the window and pulse the line when moving
+" to them.
+nnoremap n n:call PulseCursorLine()<cr>
+nnoremap N N:call PulseCursorLine()<cr>
+
+" Quickly get out of insert mode without your fingers having to leave the
+" home row (either use 'jj' or 'jk')
+inoremap jj <Esc>
+
+" Quick alignment of text
+" nnoremap <leader>al :left<CR>
+" nnoremap <leader>ar :right<CR>
+" nnoremap <leader>ac :center<CR>
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
+" Ctrl+W to redraw
+nnoremap <C-w> :redraw!<cr>
+
+" Jump to matching pairs easily, with Tab
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" Folding
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Strip all trailing whitespace from a file, using ,W
+nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+
+" Use The Silver Searcher over grep, iff possible
+if executable('ag')
+   " Use ag over grep
+   set grepprg=ag\ --nogroup\ --nocolor
+
+   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+   " ag is fast enough that CtrlP doesn't need to cache
+   let g:ctrlp_use_caching = 0
+endif
+
+" grep/Ack/Ag for the word under cursor
+vnoremap <leader>a y:grep! "\b<c-r>"\b"<cr>:cw<cr>
+nnoremap <leader>a :grep! "\b<c-r><c-w>\b"
+nnoremap K *N:grep! "\b<c-r><c-w>\b"<cr>:cw<cr>
+
+" Allow quick additions to the spelling dict
+nnoremap <leader>g :spellgood <c-r><c-w>
+
+" Define "Ag" command
+command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
+
+" bind \ (backward slash) to grep shortcut
+nnoremap \ :Ag<SPACE>
+
+" Creating folds for tags in HTML
+"nnoremap <leader>ft Vatzf
+
+" Reselect text that was just pasted with ,v
+nnoremap <leader>v V`]
+
+" Gundo.vim
+nnoremap <F5> :GundoToggle<CR>
+" }}}
 
 " Shortcut mappings {{{
 " Since I never use the ; key anyway, this is a real optimization for almost

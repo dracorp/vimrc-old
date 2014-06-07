@@ -15,7 +15,7 @@
 "set runtimepath+=/etc/vim
 
 " default file type
-set ft=txt
+"set ft=txt
 
 " quantity of colors
 set t_Co=8
@@ -48,17 +48,25 @@ let maplocalleader="\\"
 "else
     behave xterm
 "endif
-"set mousemodel=extend           "szybkie wyszuiwanie za pomocą myszki
+"set mousemodel=extend           "fast search by mouse
 
-" Include other configuration files
-
+" Key mapping {{{
 if filereadable(vimrc_dir . "vimrc.keys.vim")
     execute ":source" vimrc_dir . "vimrc.keys.vim"
 endif
+" }}}
 
+" Some functions {{{
 if filereadable(vimrc_dir . "vimrc.functions.vim")
     execute ":source" vimrc_dir . "vimrc.functions.vim"
 endif
+" }}}
+
+" Common abbreviations / misspellings {{{
+if filereadable(vimrc_dir . "autocorrect.vim")
+    execute ":source" vimrc_dir . "autocorrect.vim"
+endif
+" }}}
 
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in
@@ -126,6 +134,8 @@ set textwidth=0                 " domyślna wartość: czasem wato ustawić szer
 set showbreak=+\               " załamanie/wrap lini oznacza przez
 
 set modeline                    " modeline to komendy dla vima w komentarzach innych plików 
+"set ttyfast                     " always use a fast terminal
+set cursorline                  " underline the current line, for quick orientation
 "żeby vim nie przycinał na dużych plikach gdy jest kolorowanie składni
 syntax sync minlines=30
 syntax sync maxlines=40
@@ -221,13 +231,14 @@ set wildmenu                    " make tab completion for files/buffers act like
 set wildmode=longest,list       " show a list when pressing tab and complete
 set wildignore=*.bak,*.o,*.e,*~,*.swp,*.bak,*.pyc,*.class
 set title                       " change the terminal's title
+set noerrorbells                " don't beep
 set showcmd                     " show (partial) command in the last line of the screen
                                 "    this also shows visual selection info
 
 " Permanent 'very magic' mode, see :he pattern
 " search
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 " substitute
 cnoremap %s/ %smagic/
 " substitute in visual mode
@@ -271,26 +282,50 @@ function! FoldColumnToggle()
 endfunction
 " }}}
 
-"#  autocommand
+" autocommand {{{
 if has("autocmd")
     " Zaczynaj nowy plik w trybie Insert
-    "autocmd BufNewFile * startinsert
+    autocmd BufNewFile * startinsert
     
     " Automatyczna zmiana katalogu do tego, w ktorym jest aktualnie edytowany plik.
     " Przydatne gdy chcemy otworzyc inny z tego samego katalogu
     " http://vim.sourceforge.net/tip_view.php?tip_id=101
     " mozna tez uzyc set acd, ale ta opcja nie dziala z pewnymi wtyczkami, zobacz :he acd
-    au BufEnter * :cd %:p:h
+    autocmd BufEnter * :cd %:p:h
+
     " Zablokuj pliki tylko do odczytu
     "au BufReadPost * :call CheckReadonly()
+
+    " The current directory is the directory of the file in the current window.
+    autocmd BufEnter * :lchdir %:p:h
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+
+    " Faster service a big files
+    let g:DuzyPlik = 10 "MB
+    let g:DuzyPlik = g:DuzyPlik * 1024 * 1024
+    augroup BigFile
+    autocmd BufReadPre * let f=expand("<afile>") |
+        \ if getfsize(f) > g:DuzyPlik | set eventignore+=FileType |
+        \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+        \ else | set eventignore-=FileType | endif
+    augroup BigFile
  endif " has("autocmd")
+" }}}
 
-"#  SPELL
+" SPELL {{{
 set spelllang=pl,en
-
-"# HIGHLIGHT & COLORSCHEME
+" }}}
+" HIGHLIGHT & COLORSCHEME {{{
 let c_comment_strings=1                         " highlight strings inside C comments
-colorscheme torte
+colorscheme grb4
+" colorscheme moria, desert, xterm16, murphy, redstring, grb4
 "set background=dark
 "highlight MatchParen ctermbg=blue guibg=lightyellow " highlight paired brackets
 "-------------------------------------------------------------------------------
@@ -314,86 +349,253 @@ colorscheme torte
 "highlight Folded         term=standout cterm=bold ctermfg=6 ctermbg=0 guifg=Cyan guibg=black
 "highlight PreProc        term=underline cterm=bold ctermfg=Blue guifg=#7A90FF
 "highlight Todo           term=standout ctermfg=0 ctermbg=3 guifg=black guibg=#CF7520
+" }}}
 
-"# BUFFERS, WINDOWS
-" The current directory is the directory of the file in the current window.
-if has("autocmd")
-  autocmd BufEnter * :lchdir %:p:h
-endif
-"
-"-------------------------------------------------------------------------------
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-"-------------------------------------------------------------------------------
-if has("autocmd")
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-endif 
-
-"# Szybsza obsługa dużych plików
-let g:DuzyPlik = 10 "MB
-let g:DuzyPlik = g:DuzyPlik * 1024 * 1024
-augroup DuzyPlik
-   autocmd BufReadPre * let f=expand("<afile>") |
-      \ if getfsize(f) > g:DuzyPlik | set eventignore+=FileType |
-      \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
-      \ else | set eventignore-=FileType | endif
-augroup END
-
-"# VARIOUS VARIABLES
-" Przy eksportowaniu pliku jako html używaj css
+" use css while export to html
 let g:html_use_css = "1"
 let g:use_xhtml = 1000
+" Filetype specific handling {{{
+" only do this part when compiled with support for autocommands
+if has("autocmd")
+    augroup invisible_chars "{{{
+        au!
 
-"# VARIOUS PLUGIN CONFIGURATIONS
+        " Show invisible characters in all of these files
+        autocmd filetype vim setlocal list
+        autocmd filetype python,rst setlocal list
+        autocmd filetype ruby setlocal list
+        autocmd filetype javascript,css setlocal list
+    augroup end "}}}
 
-"## perl-support.vim
+    augroup vim_files "{{{
+        au!
+
+        " Bind <F1> to show the keyword under cursor
+        " general help can still be entered manually, with :h
+        autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+        autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+    augroup end "}}}
+
+    augroup html_files "{{{
+        au!
+
+        " This function detects, based on HTML content, whether this is a
+        " Django template, or a plain HTML file, and sets filetype accordingly
+        fun! s:DetectHTMLVariant()
+            let n = 1
+            while n < 50 && n < line("$")
+                " check for django
+                if getline(n) =~ '{%\s*\(extends\|load\|block\|if\|for\|include\|trans\)\>'
+                    set ft=htmldjango.html
+                    return
+                endif
+                let n = n + 1
+            endwhile
+            " go with html
+            set ft=html
+        endfun
+
+        " Auto-tidy selection
+        vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
+
+        autocmd BufNewFile,BufRead *.html,*.htm,*.j2 call s:DetectHTMLVariant()
+
+        " Auto-closing of HTML/XML tags
+        let g:closetag_default_xml=1
+        autocmd filetype html,htmldjango let b:closetag_html_style=1
+        autocmd filetype html,xhtml,xml source ~/.vim/scripts/closetag.vim
+    augroup end " }}}
+
+    augroup python_files "{{{
+        au!
+
+        " This function detects, based on Python content, whether this is a
+        " Django file, which may enabling snippet completion for it
+        fun! s:DetectPythonVariant()
+            let n = 1
+            while n < 50 && n < line("$")
+                " check for django
+                if getline(n) =~ 'import\s\+\<django\>' || getline(n) =~ 'from\s\+\<django\>\s\+import'
+                    set ft=python.django
+                    "set syntax=python
+                    return
+                endif
+                let n = n + 1
+            endwhile
+            " go with html
+            set ft=python
+        endfun
+        autocmd BufNewFile,BufRead *.py call s:DetectPythonVariant()
+
+        " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
+        " earlier, as it is important)
+        autocmd filetype python setlocal textwidth=78
+        autocmd filetype python match ErrorMsg '\%>120v.\+'
+
+        " But disable autowrapping as it is super annoying
+        autocmd filetype python setlocal formatoptions-=t
+
+        " Folding for Python (uses syntax/python.vim for fold definitions)
+        "autocmd filetype python,rst setlocal nofoldenable
+        "autocmd filetype python setlocal foldmethod=expr
+
+        " Python runners
+        autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
+        autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
+        autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
+        autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+
+        " Toggling True/False
+        autocmd filetype python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+
+        " Run a quick static syntax check every time we save a Python file
+        autocmd BufWritePost *.py call Flake8()
+
+        " Defer to isort for sorting headers (instead of using Unix sort)
+        autocmd filetype python nnoremap <leader>s :Isort<cr>
+    augroup end " }}}
+
+    augroup supervisord_files "{{{
+        au!
+
+        autocmd BufNewFile,BufRead supervisord.conf set ft=dosini
+    augroup end " }}}
+
+    augroup markdown_files "{{{
+        au!
+
+        autocmd filetype markdown noremap <buffer> <leader>p :w<CR>:!open -a Marked %<CR><CR>
+    augroup end " }}}
+
+    augroup ruby_files "{{{
+        au!
+
+    augroup end " }}}
+
+    augroup rst_files "{{{
+        au!
+
+        " Auto-wrap text around 74 chars
+        autocmd filetype rst setlocal textwidth=74
+        autocmd filetype rst setlocal formatoptions+=nqt
+        autocmd filetype rst match ErrorMsg '\%>74v.\+'
+    augroup end " }}}
+
+    augroup css_files "{{{
+        au!
+
+        autocmd filetype css,less setlocal foldmethod=marker foldmarker={,}
+    augroup end "}}}
+
+    augroup javascript_files "{{{
+        au!
+
+        autocmd filetype javascript setlocal expandtab
+        autocmd filetype javascript setlocal listchars=trail:·,extends:#,nbsp:·
+        autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
+
+        " Toggling True/False
+        autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+    augroup end "}}}
+
+    augroup textile_files "{{{
+        au!
+
+        autocmd filetype textile set tw=78 wrap
+
+        " Render YAML front matter inside Textile documents as comments
+        autocmd filetype textile syntax region frontmatter start=/\%^---$/ end=/^---$/
+        autocmd filetype textile highlight link frontmatter Comment
+    augroup end "}}}
+endif
+" }}}
+
+" perl-support {{{
 "let g:Perl_TemplateOverwrittenMsg= 'no'
 let g:Perl_PerlcriticSeverity = 5
 let g:Perl_PerlcriticVerbosity = 9
 " sprawdzanie składni pod
 let g:Perl_PodcheckerWarnings = 'yes'
+" }}}
 
-"## bash-support
+" bash-support {{{
 "let g:BASH_TemplateOverwrittenMsg = 'no'
+" }}}
 
-"## c-support
+" c-support {{{
 "let g:C_TemplateOverwrittenMsg= 'no'
+" }}}
 
-"## lattex-support
+" lattex-support {{{
 let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
 let tlist_make_settings  = 'make;m:makros;t:targets'
 let tlist_tex_settings   = 'latex;s:Contents;g:Graphics;i:Listings;l:\label;r:\ref;p:\pageref;b:\bibitem'
 if has("unix")
     let s:LATEX_pdf_viewer         = "evince"
 endif
-"## supertab
+" }}}
+
+" supertab {{{
 "let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingForward  = '<tab>'
 "let g:SuperTabMappingBackward = '<s-tab>'
+" }}}
 
-"## file_templates
+" file_templates {{{
 let g:file_template_default = "def/PKGBUILD"
 let g:VIMFILESDIR = "$HOME/.vim/"
+" }}}
 
-"## plugin taglist.vim : toggle the taglist window
-" plugin taglist.vim : define the tag file entry for Perl
-"otwiera drugie okienko (split) z funkcjami z pliku
+" plugin taglist.vim : toggle the taglist window {{{
+" }}}
+
+" vbookmark {{{
+let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
+" }}}
+
+" vim-session {{{
+let g:session_autosave = 'no'
+" }}}
+
+" TagList settings {{{
  noremap <silent> <F11>       :TlistToggle<CR>
 inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
-"
+
 let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
+nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
+nnoremap <leader>L :TlistClose<CR>
 
-"## manpageview
-"runtime! ftplugin/man.vim
-"runtime! plugin/genutils.vim
+" quit Vim when the TagList window is the last open window
+let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
+let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
+"let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
+"let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
+let Tlist_WinWidth=40               " set the width
+let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
 
-"## vbookmark
-let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
+" shorten the time it takes to highlight the current tag (default is 4 secs)
+" note that this setting influences Vim's behaviour when saving swap files,
+" but we have already turned off swap files (earlier)
+"set updatetime=1000
 
-"## vim-session
-let g:session_autosave = 'no'
+" the default ctags in /usr/bin on the Mac is GNU ctags, so change it to the
+" exuberant ctags version in /usr/local/bin
+"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+
+" show function/method prototypes in the list
+let Tlist_Display_Prototype=1
+
+" don't show scope info
+let Tlist_Display_Tag_Scope=0
+
+" show TagList window on the right
+let Tlist_Use_Right_Window=1
+" }}}
+
+" Extra user or machine specific settings {{{
+if filereadable(vimrc_dir . "user.vim")
+    execute ":source" . vimrc_dir . "user.vim"
+endif
+" }}}
+
