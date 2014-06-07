@@ -14,15 +14,10 @@
 "   vim --startuptime start.log
 "set runtimepath+=/etc/vim
 
-" default file type
-"set ft=txt
-
-" quantity of colors
-set t_Co=8
-
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+autocmd!
 
 " Use pathogen to easily modify the runtime path to include all plugins under
 " the ~/.vim/bundle directory
@@ -324,6 +319,10 @@ set spelllang=pl,en
 " }}}
 
 " HIGHLIGHT & COLORSCHEME {{{
+
+" quantity of colors
+set t_Co=8
+
 let c_comment_strings=1                         " highlight strings inside C comments
 colorscheme grb4
 " colorscheme moria, desert, xterm16, murphy, redstring, grb4
@@ -376,6 +375,7 @@ if has("autocmd")
         " general help can still be entered manually, with :h
         autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
         autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+        autocmd filetype vim nnoremap <buffer> <F12> :source %<CR>
     augroup end "}}}
 
     augroup html_files "{{{
