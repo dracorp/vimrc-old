@@ -10,7 +10,7 @@ like it.  To do so, please do the following:
 
 1. Clone this repo:
 
-    `git clone git://github.com/dracorp/vimrc.git`
+    `git clone http://github.com/dracorp/vimrc.git`
 
     or download the plain source only::
 
