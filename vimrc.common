@@ -322,6 +322,7 @@ if has("autocmd")
 " SPELL {{{
 set spelllang=pl,en
 " }}}
+
 " HIGHLIGHT & COLORSCHEME {{{
 let c_comment_strings=1                         " highlight strings inside C comments
 colorscheme grb4
@@ -354,6 +355,7 @@ colorscheme grb4
 " use css while export to html
 let g:html_use_css = "1"
 let g:use_xhtml = 1000
+
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -544,10 +546,7 @@ let g:SuperTabMappingForward  = '<tab>'
 
 " file_templates {{{
 let g:file_template_default = "def/PKGBUILD"
-let g:VIMFILESDIR = "$HOME/.vim/"
-" }}}
-
-" plugin taglist.vim : toggle the taglist window {{{
+let g:VIMFILESDIR = vimrc_dir
 " }}}
 
 " vbookmark {{{
@@ -599,3 +598,36 @@ if filereadable(vimrc_dir . "user.vim")
 endif
 " }}}
 
+" gui/gvim {{{
+if has("gui_running")
+    set mousehide                                   " Hide the mouse when typing text
+    set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
+                                                    " help(h) - all previous + help files
+                                                    " a - all previous
+
+    set guioptions+=mgtT                            " Uktywnia na 'twardo' elementy GUI: pasek menu i odrywanie menu
+    "set noguipty                                   " Make external commands work through a pipe instead of a pseudo-tty
+    "set columns=80 lines=30                        " don't inherit geometry from parent term
+    "set mousemodel=popup                           " right mouse button pops up a menu in the GUI
+
+    "  Some additional hot keys:
+    "    S-F3  -  call gvim file browser,  nie działa
+    noremap  <silent> <s-F3>       :silent browse confirm e<CR>
+    inoremap  <silent> <s-F3>  <Esc>:silent browse confirm e<CR>
+
+    " toggle insert mode <--> 'normal mode with the <RightMouse>-key
+    "nnoremap  <RightMouse> <Insert>
+    "inoremap  <RightMouse> <ESC>
+
+    if has("win32")
+        set guifont=DejaVu_Sans_Mono:h11:cANSI
+    elseif has("unix")
+        set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+    endif
+endif
+" }}}
+
+" Switch from block-cursor to vertical-line-cursor when going into/out of
+" insert mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
