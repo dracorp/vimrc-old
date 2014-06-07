@@ -326,7 +326,7 @@ set spelllang=pl,en
 set t_Co=8
 
 let c_comment_strings=1                         " highlight strings inside C comments
-colorscheme grb4
+colorscheme redstring
 " colorscheme moria, desert, xterm16, murphy, redstring, grb4
 "set background=dark
 "highlight MatchParen ctermbg=blue guibg=lightyellow " highlight paired brackets
@@ -641,6 +641,8 @@ if has("gui_running")
     elseif has("unix")
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
     endif
+
+    colorscheme grb4
 endif
 " }}}
 
