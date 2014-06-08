@@ -84,7 +84,7 @@ set smartcase                   " ignore case if search pattern is all lowercase
 set smarttab                    " insert tabs on the start of a line according to
                                 "    shiftwidth, not tabstop
 set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
-set virtualedit=all             " allow the cursor to go in to "invalid" places
+"set virtualedit=all             " allow the cursor to go in to "invalid" places
 set incsearch                   " show search matches as you type
 "set gdefault                    " search/replace "globally" (on a line) by default
 " Wyświetlanie końca lini, TAB, ciągłych spacji na końcu lini, przed i po złamaniu wiersza
@@ -407,7 +407,6 @@ if has("autocmd")
         " Auto-closing of HTML/XML tags
         let g:closetag_default_xml=1
         autocmd filetype html,htmldjango let b:closetag_html_style=1
-        autocmd filetype html,xhtml,xml source ~/.vim/scripts/closetag.vim
     augroup end " }}}
 
     augroup awk_files " {{{
@@ -642,7 +641,7 @@ if has("gui_running")
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
     endif
 
-    colorscheme grb4
+    colorscheme Black
 endif
 " }}}
 
