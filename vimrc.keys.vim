@@ -25,6 +25,10 @@ if has("unix")
     "noremap    <silent>    <F1>    :help usr_toc.txt@pl<CR>
     noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 endif
+
+" open file under cursors in a new window (a vertical split)
+map <c-w>F :vertical wincmd f<CR>
+
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
 
@@ -195,6 +199,6 @@ nnoremap L $
 
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
-nnoremap n n:call PulseCursorLine()<cr>
-nnoremap N N:call PulseCursorLine()<cr>
+"nnoremap n n:call PulseCursorLine()<cr>
+"nnoremap N N:call PulseCursorLine()<cr>
 
