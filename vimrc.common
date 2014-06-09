@@ -406,6 +406,7 @@ if has("autocmd")
 
         " Auto-closing of HTML/XML tags
         let g:closetag_default_xml=1
+        autocmd filetype html,xml,xsl execute ":source" bundle_dir . "closetag.vim/plugin/closetag.vim"
         autocmd filetype html,htmldjango let b:closetag_html_style=1
     augroup end " }}}
 
