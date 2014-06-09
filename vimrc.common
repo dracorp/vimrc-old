@@ -132,7 +132,7 @@ set showbreak=+\               " załamanie/wrap lini oznacza przez
 
 set modeline                    " modeline to komendy dla vima w komentarzach innych plików 
 "set ttyfast                     " always use a fast terminal
-set cursorline                  " underline the current line, for quick orientation
+set nocursorline                  " underline the current line, for quick orientation
 "żeby vim nie przycinał na dużych plikach gdy jest kolorowanie składni
 syntax sync minlines=30
 syntax sync maxlines=40
@@ -152,22 +152,44 @@ set foldmethod=marker           " detect triple-{ style fold markers
 "set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
-function! MyFoldText()
-    let line = getline(v:foldstart)
-
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
-    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+function! MyFoldText_wikia()
+  let line = getline(v:foldstart)
+  if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
+    let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
+    let linenum = v:foldstart + 1
+    while linenum < v:foldend
+      let line = getline( linenum )
+      let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
+      if comment_content != ''
+        break
+      endif
+      let linenum = linenum + 1
+    endwhile
+    let sub = initial . ' ' . comment_content
+  else
+    let sub = line
+    let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
+    if startbrace == '{'
+      let line = getline(v:foldend)
+      let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
+      if endbrace == '}'
+        let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
+      endif
+    endif
+  endif
+  let n = v:foldend - v:foldstart + 1
+  let info = " " . n . " lines"
+  let sub = sub . "                                                                                                                  "
+  let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
+  let fold_w = getwinvar( 0, '&foldcolumn' )
+  let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
+  return sub . info
 endfunction
-set foldtext=MyFoldText()
+set foldtext=MyFoldText_wikia()
+
+highlight FoldColumn  gui=bold    guifg=grey65     guibg=Grey90
+highlight Folded      gui=italic  guifg=Black      guibg=Grey90
+highlight LineNr      gui=NONE    guifg=grey60     guibg=Grey90
 
 " Mappings to easily toggle fold levels
 nnoremap z0 :set foldlevel=0<cr>
@@ -364,10 +386,10 @@ if has("autocmd")
         au!
 
         " Show invisible characters in all of these files
-        autocmd filetype vim setlocal list
-        autocmd filetype python,rst setlocal list
-        autocmd filetype ruby setlocal list
-        autocmd filetype javascript,css setlocal list
+        "autocmd filetype vim setlocal list
+        "autocmd filetype python,rst setlocal list
+        "autocmd filetype ruby setlocal list
+        "autocmd filetype javascript,css setlocal list
     augroup end "}}}
 
     augroup vim_files "{{{
@@ -406,8 +428,9 @@ if has("autocmd")
 
         " Auto-closing of HTML/XML tags
         let g:closetag_default_xml=1
-        autocmd filetype html,xml,xsl execute ":source" bundle_dir . "closetag.vim/plugin/closetag.vim"
-        autocmd filetype html,htmldjango let b:closetag_html_style=1
+        autocmd filetype xml,xsd,xsl,html,htmldjango let b:closetag_html_style=1
+        let g:xml_syntax_folding=1
+        au FileType xml,xsxml,xsd,xsl,d,xsl setlocal foldmethod=syntax
     augroup end " }}}
 
     augroup awk_files " {{{
@@ -611,7 +634,7 @@ let Tlist_Use_Right_Window=1
 
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
-    execute ":source" . vimrc_dir . "user.vim"
+    execute ":source " . vimrc_dir . "user.vim"
 endif
 " }}}
 
@@ -637,7 +660,7 @@ if has("gui_running")
     "inoremap  <RightMouse> <ESC>
 
     if has("win32")
-        set guifont=DejaVu_Sans_Mono:h11:cANSI
+        set guifont=DejaVu_Sans_Mono:h10:cANSI
     elseif has("unix")
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
     endif
