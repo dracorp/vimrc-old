@@ -113,6 +113,9 @@ function! CopyAll()
     exec 'normal "+y'
 endf
 
+function ReloadVimrc()
+    execute ":source " . vimrc_dir . "vimrc"
+endf
 " Pulse ------------------------------------------------------------------- {{{
 
 function! PulseCursorLine()
