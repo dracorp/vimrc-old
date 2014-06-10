@@ -202,3 +202,23 @@ nnoremap L $
 "nnoremap n n:call PulseCursorLine()<cr>
 "nnoremap N N:call PulseCursorLine()<cr>
 
+" xslt: http://vim.wikia.com/wiki/Speed_up_developing_XSLT_files
+imap <Leader>pi <?xml version="1.0" ?>
+imap <Leader>ap <xsl:apply-templates/>
+imap <Leader>ap`s <xsl:apply-templates select=""/>^[F"i
+imap <Leader>ap`sm <xsl:apply-templates select="" mode=""/>^[3F"i
+imap <Leader>at <xsl:attribute name="">^[F"i
+imap <Leader>el <xsl:element name="">^[F"i
+imap <Leader>if <xsl:if test="">>^[kf"a
+imap <Leader>im <xsl:import href=""/>^[F"i
+imap <Leader>in <xsl:include href=""/>^[F"i
+imap <Leader>ou <xsl:output method=""/>^[F"i
+imap <Leader>pa <xsl:param name=""/>^[F"i
+imap <Leader>pa`ns <xsl:param name="" select=""/>^[3F"i
+imap <Leader>st <xsl:stylesheet version="1.0" xmlns:xsl="[http://www.w3.org/1999/XSL/Transform">> http://www.w3.org/1999/XSL/Transform">>];
+imap <Leader>te <xsl:template match="">>^[kf"a
+imap <Leader>te`n <xsl:template name="">>^[kf"a
+imap <Leader>te`mm <xsl:template match="" mode="">>^[kf"a
+imap <Leader>va <xsl:value-of select=""/>^[F"i
+imap <Leader>wi <xsl:with-param name=""/>^[F"i
+imap <Leader>wi`ns <xsl:with-param name="" select=""/>^[3F"

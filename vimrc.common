@@ -149,7 +149,7 @@ set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
 "set foldmarek={{{,}}}
-"set foldlevelstart=99           " start out with everything unfolded
+set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 function! MyFoldText_wikia()
@@ -426,11 +426,14 @@ if has("autocmd")
 
         autocmd BufNewFile,BufRead *.html,*.htm,*.j2 call s:DetectHTMLVariant()
 
-        " Auto-closing of HTML/XML tags
         let g:closetag_default_xml=1
-        autocmd filetype xml,xsd,xsl,xslt,html,htmldjango let b:closetag_html_style=1
         let g:xml_syntax_folding=1
-        au FileType xml,xsd,xsl,xslt,html,htmldjango setlocal foldmethod=syntax
+        autocmd filetype xml,xsd,xslt,xsl,html,htmldjango call SetHtmlOptions()
+        function SetHtmlOptions()
+            " Auto-closing of HTML/XML tags
+            let b:closetag_html_style=1
+            setlocal foldmethod=syntax
+        endfun
     augroup end " }}}
 
     augroup awk_files " {{{
