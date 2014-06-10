@@ -141,7 +141,7 @@ set splitbelow                  " polecenie :sp umieszcza nowe okno pod aktywnym
 set splitright                  " polecenie :vs umieszcza nowe po prawej stronie aktywnego
 set infercase
 set tildeop                     " Tylda(~) robi za operator, można teraz używać jej np. tak: ~w ~~
-set iskeyword+=-                " jakie znaki należą do słowa, np. dla klawisza w
+set iskeyword+=-,,                " jakie znaki należą do słowa, np. dla klawisza w
 " }}}
 
 " Folding rules {{{
@@ -428,9 +428,9 @@ if has("autocmd")
 
         " Auto-closing of HTML/XML tags
         let g:closetag_default_xml=1
-        autocmd filetype xml,xsd,xsl,html,htmldjango let b:closetag_html_style=1
+        autocmd filetype xml,xsd,xsl,xslt,html,htmldjango let b:closetag_html_style=1
         let g:xml_syntax_folding=1
-        au FileType xml,xsxml,xsd,xsl,d,xsl setlocal foldmethod=syntax
+        au FileType xml,xsd,xsl,xslt,html,htmldjango setlocal foldmethod=syntax
     augroup end " }}}
 
     augroup awk_files " {{{
