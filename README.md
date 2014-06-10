@@ -22,10 +22,8 @@ like it.  To do so, please do the following:
 
     `git submodule update`
 
-3. Copy the repository to the directory:
+3. Move the repository to the directory:
     * *vimfiles* under Windows
-    * *.vim* under Linux
+    * *.vim* under Linux 
+    * see :version under vim
 
-4. Do symlink in your $HOME to:
-    * *.vimrc* under Linux
-    * *_vimrc* under Windows
