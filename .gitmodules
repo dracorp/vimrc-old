@@ -61,3 +61,6 @@
 [submodule "bundle/vim-flake8"]
 	path = bundle/vim-flake8
 	url = https://github.com/nvie/vim-flake8.git
+[submodule "bundle/xslt"]
+	path = bundle/xslt
+	url = https://github.com/vim-scripts/xslt.git

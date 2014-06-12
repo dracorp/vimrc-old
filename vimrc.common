@@ -433,6 +433,10 @@ if has("autocmd")
             " Auto-closing of HTML/XML tags
             let b:closetag_html_style=1
             setlocal foldmethod=syntax
+            " keymap
+            let l:filename = expand("%:r")
+            exe "nnoremap <F12> :!xmllint --noout --schema " . filename . ".xsd %<CR>"
+            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
         endfun
     augroup end " }}}
 
