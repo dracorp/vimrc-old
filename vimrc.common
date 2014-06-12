@@ -304,7 +304,7 @@ endfunction
 " autocommand {{{
 if has("autocmd")
     " Zaczynaj nowy plik w trybie Insert
-    autocmd BufNewFile * startinsert
+    "autocmd BufNewFile * startinsert
     
     " Automatyczna zmiana katalogu do tego, w ktorym jest aktualnie edytowany plik.
     " Przydatne gdy chcemy otworzyc inny z tego samego katalogu
@@ -435,7 +435,7 @@ if has("autocmd")
             setlocal foldmethod=syntax
             " keymap
             let l:filename = expand("%:r")
-            exe "nnoremap <F12> :!xmllint --noout --schema " . filename . ".xsd %<CR>"
+            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
             nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
         endfun
     augroup end " }}}
