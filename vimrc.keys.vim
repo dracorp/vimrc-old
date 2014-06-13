@@ -202,6 +202,8 @@ nnoremap L $
 "nnoremap n n:call PulseCursorLine()<cr>
 "nnoremap N N:call PulseCursorLine()<cr>
 
+nnoremap <Leader>h :set hlsearch!<CR>
+
 " xslt: http://vim.wikia.com/wiki/Speed_up_developing_XSLT_files
 imap <Leader>pi <?xml version="1.0" ?>
 imap <Leader>ap <xsl:apply-templates/>

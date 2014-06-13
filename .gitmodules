@@ -64,3 +64,6 @@
 [submodule "bundle/xslt"]
 	path = bundle/xslt
 	url = https://github.com/vim-scripts/xslt.git
+[submodule "bundle/restore_view.vim"]
+	path = bundle/restore_view.vim
+	url = https://github.com/vim-scripts/restore_view.vim.git
