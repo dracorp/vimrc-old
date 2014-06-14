@@ -2,14 +2,13 @@
 " :help write-local-help
 " :e $VIMRUNTIME/syntax/help.vim
 
-*vimrc.tips.txt* Tips and tricks for vim
+*vimrc.tips.txt*                                          Tips and tricks for vim
 ===============================================================================
 TIPS & TRICKS ~
 
-! w mapowaniu robi przełącznik z przycisku
-
-! za nazwą funkcji (w jej definicji) podczas ładowania zastępuje już
-istniejącą
+- ! w mapowaniu robi przełącznik z przycisku
+- ! za nazwą funkcji (w jej definicji) podczas ładowania zastępuje już
+  istniejącą
 
 ===============================================================================
 ZAKŁADKI/MARK ~
@@ -43,7 +42,7 @@ Kombinacje klawiszy~
 UNICODE~
 - znaki specjalne można wpisać dzięki ctrl-V kod
 - klawisze ga na danym znaku wyświetlają jego kod
- >
+>
     :he digraph
 
 vimdiff~
@@ -74,3 +73,9 @@ Zliczanie~
 - :%s/.//gn - wszystkie znaki
 - :%s/\S//gn - nie spacje
 - :%s/\s//gn - spacje, tab itp
+
+Vimball~
+
+- pliki instalujemy poleceniem :source % lub :UseVimball [ścieżka]
+- usuwanie pluginu :RmVimball nazwa_pluginu
+- lista plików :VimballList

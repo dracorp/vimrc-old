@@ -305,8 +305,8 @@ endfunction
 " autocommand {{{
 if has("autocmd")
     " *save/restore view*
-    autocmd BufWinLeave *.* mkview!
-    autocmd BufWinEnter *.* silent loadview
+    "autocmd BufWinLeave *.* mkview!
+    "autocmd BufWinEnter *.* silent loadview
     
     " Zaczynaj nowy plik w trybie Insert
     "autocmd BufNewFile * startinsert
@@ -393,6 +393,19 @@ if has("autocmd")
 
         " Show invisible characters in all of these files
         "autocmd filetype vim setlocal list
+        autocmd filetype help nnoremap <S-F12> :call ReadHelp()<CR>
+        function! ReadHelp()
+            if !exists("b:help")
+                let b:help=1
+            endif
+            if (b:help)
+                setlocal ft=txt
+                let b:help=0
+            else
+                setlocal ft=help
+                let b:help=1
+            endif
+        endfun
         "autocmd filetype python,rst setlocal list
         "autocmd filetype ruby setlocal list
         "autocmd filetype javascript,css setlocal list
