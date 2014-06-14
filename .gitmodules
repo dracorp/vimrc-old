@@ -67,3 +67,6 @@
 [submodule "bundle/restore_view.vim"]
 	path = bundle/restore_view.vim
 	url = https://github.com/vim-scripts/restore_view.vim.git
+[submodule "bundle/Tabmerge"]
+	path = bundle/Tabmerge
+	url = https://github.com/vim-scripts/Tabmerge.git
