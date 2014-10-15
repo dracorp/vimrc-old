@@ -50,7 +50,7 @@ let maplocalleader="\\"
 
 " Key mapping {{{
 if filereadable(vimrc_dir . "vimrc.keys.vim")
-    execute ":source" vimrc_dir . "vimrc.keys.vim"
+    execute ":source" g:vimrc_dir."vimrc.keys.vim"
 endif
 " }}}
 
@@ -211,7 +211,11 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=2                 " use a status bar that is 2 rows high
-set fileencodings=utf-8,iso8859-2,cp1250,usc-bom,iso8859-1,utf-16,default
+set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
+" bomb (BOM)
+" UTF-8: EF BB BF
+" UTF-16be: FE FF
+" UTF-16le: FF FE 
 "'termencoding' jest zestawem znaków dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
 "'printencoding' jest zestawem znaków dla drukarki, jeśli oba +printer i +postscript są wkompilowane.
 "Konwersja przebiega następująco, jeśli zestawy znaków różnią się a metoda konwersji jest znana:
@@ -449,7 +453,7 @@ if has("autocmd")
         let g:closetag_default_xml=1
         let g:xml_syntax_folding=1
         autocmd filetype xml,xsd,xslt,xsl,html,htmldjango call SetHtmlOptions()
-        function SetHtmlOptions()
+        function! SetHtmlOptions()
             let b:closetag_html_style=1
             setlocal foldmethod=syntax
             " keymap
@@ -565,7 +569,11 @@ if has("autocmd")
         " Toggling True/False
         autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     augroup end "}}}
-
+    augroup jquery "{{{
+        au!
+        au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+        au BufRead,BufNewFile *.user.js set ft=javascript syntax=jquery
+    augroup end "}}}
     augroup textile_files "{{{
         au!
 
@@ -611,7 +619,7 @@ if has("gui_running")
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
     endif
 
-    colorscheme Black
+    colorscheme solarized
 endif
 " }}}
 
@@ -619,6 +627,9 @@ endif
 " insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" yaifa
+let yaifa_max_lines = 512
 
 " bundle/* {{{
 
@@ -714,6 +725,11 @@ let g:switch_custom_definitions =
     \ ]
 " }}}
 
-" restore_view, @see also save/restore for au
+" restore_view, @see also save/restore for au {{{
 set viewoptions=cursor,folds,slash,unix
 "let g:skipview_files = ['*\vim'] 
+" }}}
+
+" mru {{{
+let MRU_File = g:vimrc_dir.'vim_mru_files'
+" }}}
