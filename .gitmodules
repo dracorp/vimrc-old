@@ -55,9 +55,6 @@
 [submodule "bundle/xmledit"]
 	path = bundle/xmledit
 	url = https://github.com/vim-scripts/xmledit.git
-[submodule "bundle/xml.vim"]
-	path = bundle/xml.vim
-	url = https://github.com/vim-scripts/xml.vim.git
 [submodule "bundle/vim-flake8"]
 	path = bundle/vim-flake8
 	url = https://github.com/nvie/vim-flake8.git
@@ -79,3 +76,6 @@
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/xml.vim"]
+	path = bundle/xml.vim
+	url = https://github.com/vim-scripts/xml.vim.git
