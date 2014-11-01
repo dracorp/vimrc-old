@@ -70,12 +70,21 @@
 [submodule "bundle/mru"]
 	path = bundle/mru
 	url = https://github.com/yegappan/mru.git
-[submodule "bundle/jshint2.vim"]
-	path = bundle/jshint2.vim
-	url = https://github.com/Shutnik/jshint2.vim.git
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/xml.vim"]
 	path = bundle/xml.vim
 	url = https://github.com/vim-scripts/xml.vim.git
+[submodule "bundle/whitespace-syntax-highlight"]
+	path = bundle/whitespace-syntax-highlight
+	url = https://github.com/vim-scripts/whitespace-syntax-highlight.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/lint.vim"]
+	path = bundle/lint.vim
+	url = https://github.com/joestelmach/lint.vim.git
+[submodule "bundle/jshint2.vim"]
+	path = bundle/jshint2.vim
+	url = https://github.com/Shutnik/jshint2.vim.git
