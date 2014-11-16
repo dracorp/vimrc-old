@@ -22,9 +22,6 @@
 [submodule "bundle/vim-support"]
 	path = bundle/vim-support
 	url = https://github.com/vim-scripts/Vim-Support.git
-[submodule "bundle/taglist"]
-	path = bundle/taglist
-	url = https://github.com/vim-scripts/taglist.vim.git
 [submodule "bundle/sensible"]
 	path = bundle/sensible
 	url = https://github.com/vim-scripts/sensible.vim.git

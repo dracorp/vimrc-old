@@ -134,7 +134,7 @@ set so=3                        " przy przewijaniu trzymaj się n lini od końca
 set textwidth=0                 " domyślna wartość: czasem wato ustawić szerokość ekranu na 78 kolumn
 set showbreak=+\               " załamanie/wrap lini oznacza przez
 
-set modeline                    " modeline to komendy dla vima w komentarzach innych plików 
+set modeline                    " modeline to komendy dla vima w komentarzach innych plików
 "set ttyfast                     " always use a fast terminal
 set nocursorline                  " underline the current line, for quick orientation
 "żeby vim nie przycinał na dużych plikach gdy jest kolorowanie składni
@@ -213,12 +213,12 @@ set encoding=utf-8
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
-set cmdheight=2                 " use a status bar that is 2 rows high
+set cmdheight=1                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
 " bomb (BOM)
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
-" UTF-16le: FF FE 
+" UTF-16le: FF FE
 "'termencoding' jest zestawem znaków dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
 "'printencoding' jest zestawem znaków dla drukarki, jeśli oba +printer i +postscript są wkompilowane.
 "Konwersja przebiega następująco, jeśli zestawy znaków różnią się a metoda konwersji jest znana:
@@ -227,13 +227,13 @@ set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
 "    * (tylko w konsolowym Vimie): 'encoding' na 'termencoding' podczas wyświetlania
 "    * 'encoding' na 'printencoding' podczas drukowania przez PostScript
 "    * 'encoding' na 'fileencoding' podczas zapisu na dysk
-"	Użycie ":w ++enc=XXX" nie zmienia zachowania domyślnego (ang. ulterior?) zapisu.
-"	Użycie 'fileencoding' (które lepiej zmieniać przez ":setlocal" niż ":set") zmienia zachowanie zapisu.
-"	fileencodings różni się od fileencoding tym, że ustawia domyślny zapis dla wszystkich plików.
+" Użycie ":w ++enc=XXX" nie zmienia zachowania domyślnego (ang. ulterior?) zapisu.
+" Użycie 'fileencoding' (które lepiej zmieniać przez ":setlocal" niż ":set") zmienia zachowanie zapisu.
+" fileencodings różni się od fileencoding tym, że ustawia domyślny zapis dla wszystkich plików.
 " }}}
 
 " Vim behaviour {{{
-set hidden                      " hide buffers instead of closing them this
+"set hidden                      " hide buffers instead of closing them this
                                 "    means that the current buffer can be put
                                 "    to background without being written; and
                                 "    that marks and undo history are preserved
@@ -242,9 +242,10 @@ set switchbuf=useopen           " reveal already opened files from the
                                 " buffers
 set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
+set undoreload=10000            "maximum number lines to save for undo on a buffer reload
 if v:version >= 730
     set undofile                " keep a persistent backup file
-    set undodir=~/.vim/.undo,~/tmp,/tmp
+    set undodir=~/.vim.undodir
 endif
 set nobackup                    " do not keep backup files, it's 70's style cluttering
 set backupdir=~/.vim.backupdir
@@ -315,10 +316,10 @@ if has("autocmd")
     " *save/restore view*
     "autocmd BufWinLeave *.* mkview!
     "autocmd BufWinEnter *.* silent loadview
-    
+
     " Zaczynaj nowy plik w trybie Insert
     "autocmd BufNewFile * startinsert
-    
+
     " Automatyczna zmiana katalogu do tego, w ktorym jest aktualnie edytowany plik.
     " Przydatne gdy chcemy otworzyc inny z tego samego katalogu
     " http://vim.sourceforge.net/tip_view.php?tip_id=101
@@ -650,14 +651,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 "}}}
 
-" undotree
-if has("persistent_undo")
-    set undodir='~/.undodir/'
-    "set undofile
-    set undolevels=1000 "maximum number of changes that can be undone
-    set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-endif
-
 " ctrlp
 set wildignore+=*.7z
 
@@ -722,8 +715,8 @@ let g:session_autosave = 'no'
 inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
 
 let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
-nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
-nnoremap <leader>L :TlistClose<CR>
+"nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
+"nnoremap <leader>L :TlistClose<CR>
 
 " quit Vim when the TagList window is the last open window
 let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
@@ -766,7 +759,7 @@ let g:switch_custom_definitions =
 
 " restore_view, @see also save/restore for au {{{
 set viewoptions=cursor,folds,slash,unix
-"let g:skipview_files = ['*\vim'] 
+"let g:skipview_files = ['*\vim']
 " }}}
 
 " mru {{{

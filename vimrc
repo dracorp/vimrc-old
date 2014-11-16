@@ -5,7 +5,7 @@ elseif has('win32')
     let  g:vimrc_dir = $HOME . "/vimfiles/"
 endif
 
-let g:vimrc = g:vimrc_dir."vimrc.common"
+let g:vimrc = g:vimrc_dir."vimrc.common.vim"
 let g:bundle_dir = g:vimrc_dir."bundle/"
 
 if filereadable(vimrc)
