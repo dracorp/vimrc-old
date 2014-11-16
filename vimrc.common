@@ -145,7 +145,7 @@ set splitbelow                  " polecenie :sp umieszcza nowe okno pod aktywnym
 set splitright                  " polecenie :vs umieszcza nowe po prawej stronie aktywnego
 set infercase
 set tildeop                     " Tylda(~) robi za operator, można teraz używać jej np. tak: ~w ~~
-set iskeyword+=-,,                " jakie znaki należą do słowa, np. dla klawisza w
+"set iskeyword+=-,,                " jakie znaki należą do słowa, np. dla klawisza w
 " }}}
 
 " Folding rules {{{
@@ -247,6 +247,7 @@ if v:version >= 730
     set undodir=~/.vim/.undo,~/tmp,/tmp
 endif
 set nobackup                    " do not keep backup files, it's 70's style cluttering
+set backupdir=~/.vim.backupdir
 "set noswapfile                  " do not write annoying intermediate swap files,
                                 "    who did ever restore from swap files anyway?
 set directory=~/.vim/.tmp,~/tmp,/tmp
@@ -637,8 +638,31 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " yaifa
 let yaifa_max_lines = 512
 
-
 " bundle/* {{{
+
+" tagbar
+nmap <F7> :TagbarToggle<CR>
+
+" vim-airline {{{
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_powerline_fonts = 1
+"}}}
+
+" undotree
+if has("persistent_undo")
+    set undodir='~/.undodir/'
+    "set undofile
+    set undolevels=1000 "maximum number of changes that can be undone
+    set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+endif
+
+" ctrlp
+set wildignore+=*.7z
+
+" syntastic
+let g:syntastic_enable_perl_checker = 1
 
 " perl-support {{{
 "let g:Perl_TemplateOverwrittenMsg= 'no'
@@ -658,6 +682,10 @@ let g:Perl_PodcheckerWarnings = 'yes'
 
 " jshint {{{
 let jshint2_command = '/usr/bin/jshint'
+"}}}
+
+"{{{ manpageview
+let $PAGER=''
 "}}}
 
 " lattex-support {{{

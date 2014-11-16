@@ -96,7 +96,10 @@ function! pathogen#is_disabled(path) abort
     return 1
   endif
   let sep = pathogen#slash()
-  let blacklist = get(g:, 'pathogen_blacklist', get(g:, 'pathogen_disabled', [])) + pathogen#split($VIMBLACKLIST)
+  let blacklist = map(
+        \ get(g:, 'pathogen_blacklist', get(g:, 'pathogen_disabled', [])) +
+        \ pathogen#split($VIMBLACKLIST),
+        \ 'substitute(v:val, "[\\/]$", "", "")')
   return index(blacklist, fnamemodify(a:path, ':t')) != -1 || index(blacklist, a:path) != -1
 endfunction "}}}1
 
@@ -331,6 +334,7 @@ function! s:Findcomplete(A,L,P)
   endfor
   return sort(keys(found))
 endfunction
+
 command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Ve       :execute s:find(<count>,'edit<bang>',<q-args>,0)
 command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vedit    :execute s:find(<count>,'edit<bang>',<q-args>,0)
 command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vopen    :execute s:find(<count>,'edit<bang>',<q-args>,1)
