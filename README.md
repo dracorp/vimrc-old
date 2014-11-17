@@ -12,7 +12,7 @@ like it.  To do so, please do the following:
 
     `git clone http://github.com/dracorp/vimrc.git`
 
-or download the plain source only (but you can't use git submodule):
+    or download the plain source only (but you can't use git submodule):
 
     `wget -qO - http://github.com/dracorp/vimrc/tarball/master | tar -xzvf -`
 
