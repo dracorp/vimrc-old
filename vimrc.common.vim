@@ -1,7 +1,6 @@
 "===================================================================================
 "         FILE:  .vimrc
 "  DESCRIPTION:  suggestion for a personal configuration file ~/.vimrc
-"       AUTHOR:  Piotr Rogoża
 "===================================================================================
 "
 " To start vim without using this .vimrc file, use:
@@ -13,8 +12,6 @@
 " To test timing startup
 "   vim --startuptime start.log
 
-"set runtimepath+=/etc/vim
-
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -24,36 +21,30 @@ autocmd!
 
 " Use pathogen to easily modify the runtime path to include all plugins under
 " the ~/.vim/bundle directory
-filetype off                    " force reloading *after* pathogen loaded
+filetype off                                    " force reloading *after* pathogen loaded
 call pathogen#infect()
-"call pathogen#helptags()       " slow start
+call pathogen#helptags()                        " slow start
 
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on       " enable detection, plugins and indenting in one step
+filetype plugin indent on                       " enable detection, plugins and indenting in one step
 if &t_Co > 2 || has("gui_running")
     syntax on
-    set hlsearch                " highlight search
+    set hlsearch                                " highlight search
 endif
 
-" Change the mapleader from \ to ,
-let mapleader=","
-let maplocalleader="\\"
-
-"Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
-"if has("win32")
-"    behave mswin
-"else
+" Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
+" if has("win32")
+"     behave mswin
+" else
     behave xterm
-"endif
-"set mousemodel=extend           "fast search by mouse
+" endif
 
-" default file format for all OS
-set fileformat=unix
+" set mousemodel=extend           "fast search by mouse
 
 " Key mapping {{{
 if filereadable(vimrc_dir . "vimrc.keys.vim")
-    execute ":source" g:vimrc_dir."vimrc.keys.vim"
+    execute ":source" vimrc_dir . "vimrc.keys.vim"
 endif
 " }}}
 
@@ -70,38 +61,40 @@ endif
 " }}}
 
 " Editing behaviour {{{
-set showmode                    " always show what mode we're currently editing in
-set wrap                        " wrap lines
-set tabstop=4                   " a tab is four spaces
-set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
-set expandtab                   " expand tabs by default (overloadable per file type later)
-set shiftwidth=4                " number of spaces to use for autoindenting
-set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
-set backspace=indent,eol,start  " allow backspacing over everything in insert mode
-set autoindent                  " always set autoindenting on
-set copyindent                  " copy the previous indentation on autoindenting
-set number                      " show line numbers
-set showmatch                   " set show matching parenthesis
-set ignorecase                  " ignore case when searching
-set smartcase                   " ignore case if search pattern is all lowercase,
-                                "    case-sensitive otherwise
-set smarttab                    " insert tabs on the start of a line according to
-                                "    shiftwidth, not tabstop
-set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
-"set virtualedit=all             " allow the cursor to go in to "invalid" places
-set incsearch                   " show search matches as you type
-"set gdefault                    " search/replace "globally" (on a line) by default
-" Wyświetlanie końca lini, TAB, ciągłych spacji na końcu lini, przed i po złamaniu wiersza
+set showmode                                    " always show what mode we're currently editing in
+set wrap                                        " wrap lines
+set tabstop=4                                   " a tab is four spaces
+set softtabstop=4                               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set expandtab                                   " expand tabs by default (overloadable per file type later)
+set shiftwidth=4                                " number of spaces to use for autoindenting
+set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
+set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
+set autoindent                                  " always set autoindenting on
+set copyindent                                  " copy the previous indentation on autoindenting
+set number                                      " show line numbers
+set showmatch                                   " set show matching parenthesis
+set ignorecase                                  " ignore case when searching
+set smartcase                                   " ignore case if search pattern is all lowercase,
+                                                " case-sensitive otherwise
+set smarttab                                    " insert tabs on the start of a line according to
+                                                " shiftwidth, not tabstop
+set scrolloff=4                                 " keep 4 lines off the edges of the screen when scrolling
+" set virtualedit=all                             " allow the cursor to go in to 'invalid' places
+set incsearch                                   " show search matches as you type
+" set gdefault                                     " search/replace 'globally' (on a line) by default
+
+" display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 set listchars=tab:>-,eol:$,trail:-,nbsp:%
 
-set nolist                      " don't show invisible characters by default,
-                                " but it is enabled for some file types (see later)
-set pastetoggle=<F6>             " when in insert mode, press <F2> to go to
-                                "    paste mode, where you can paste mass data
-                                "    that won't be autoindented
-set mouse=a                     " enable using the mouse if terminal emulator
-                                "    supports it (xterm does)
+set nolist                                      " don't show invisible characters by default,
+                                                " but it is enabled for some file types (see later)
+set pastetoggle=<F6>                            " when in insert mode, press <F2> to go to
+                                                " paste mode, where you can paste mass data
+                                                " that won't be autoindented
+set mouse=a                                     " enable using the mouse if terminal emulator
+                                                "    supports it (xterm does)
+
 " automatyczne formatowanie, gq je wywołuje, domyślne wartości: formatoptions=croql :help fo-table
 set formatoptions+=1            " 1 przenosi ostatni, pojedynczy znak, taki jak i a z w, do następnej linii.
 set formatoptions+=t            " t automatyczne zwijanie do textwidth
@@ -119,7 +112,7 @@ set clipboard=unnamed           " normal OS clipboard interaction
 set linebreak
 set smartindent                 " smart autoindenting when starting a new line
 set wrapscan 					" przy wyszukiwaniu będzie zaczynał od początku pliku, przy no tylko do końca
-"set autoread                   " read open files again when changed outside Vim
+" set autoread                   " read open files again when changed outside Vim
 set autowrite                   " write a modified buffer on each :next , ...
 " definiuje które klawisze przenoszą kursor do nowej linii gdy jest na końcu/początku lini
 " backspace, space, <left>, <right> w Normal, i w Insert
@@ -135,7 +128,7 @@ set textwidth=0                 " domyślna wartość: czasem wato ustawić szer
 set showbreak=+\               " załamanie/wrap lini oznacza przez
 
 set modeline                    " modeline to komendy dla vima w komentarzach innych plików
-"set ttyfast                     " always use a fast terminal
+" set ttyfast                     " always use a fast terminal
 set nocursorline                  " underline the current line, for quick orientation
 "żeby vim nie przycinał na dużych plikach gdy jest kolorowanie składni
 syntax sync minlines=30
@@ -145,14 +138,14 @@ set splitbelow                  " polecenie :sp umieszcza nowe okno pod aktywnym
 set splitright                  " polecenie :vs umieszcza nowe po prawej stronie aktywnego
 set infercase
 set tildeop                     " Tylda(~) robi za operator, można teraz używać jej np. tak: ~w ~~
-"set iskeyword+=-,,                " jakie znaki należą do słowa, np. dla klawisza w
+" set iskeyword+=-,,              " which char make a word
 " }}}
 
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
-"set foldmarek={{{,}}}
+" set foldmarek={{{,}}}
 set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
@@ -219,9 +212,9 @@ set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
 " UTF-16le: FF FE
-"'termencoding' jest zestawem znaków dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
-"'printencoding' jest zestawem znaków dla drukarki, jeśli oba +printer i +postscript są wkompilowane.
-"Konwersja przebiega następująco, jeśli zestawy znaków różnią się a metoda konwersji jest znana:
+" 'termencoding' jest zestawem znaków dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
+" 'printencoding' jest zestawem znaków dla drukarki, jeśli oba +printer i +postscript są wkompilowane.
+" Konwersja przebiega następująco, jeśli zestawy znaków różnią się a metoda konwersji jest znana:
 "    * 'fileencoding' na 'encoding' podczas czytania z dysku
 "    * 'termencoding' na 'encoding' podczas wpisywania z klawiatury
 "    * (tylko w konsolowym Vimie): 'encoding' na 'termencoding' podczas wyświetlania
@@ -233,7 +226,7 @@ set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
 " }}}
 
 " Vim behaviour {{{
-"set hidden                      " hide buffers instead of closing them this
+" set hidden                      " hide buffers instead of closing them this
                                 "    means that the current buffer can be put
                                 "    to background without being written; and
                                 "    that marks and undo history are preserved
@@ -241,15 +234,16 @@ set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
 set history=1000                " remember more commands and search history
+
 set undolevels=1000             " use many muchos levels of undo
 set undoreload=10000            "maximum number lines to save for undo on a buffer reload
-if v:version >= 730
+if has('persistent_undo')
     set undofile                " keep a persistent backup file
-    set undodir=~/.vim.undodir
+    set undodir=vimrc_dir . '.undodir'
 endif
 set nobackup                    " do not keep backup files, it's 70's style cluttering
-set backupdir=~/.vim.backupdir
-"set noswapfile                  " do not write annoying intermediate swap files,
+set backupdir=vimrc_dir . '.backupdir'
+" set noswapfile                  " do not write annoying intermediate swap files,
                                 "    who did ever restore from swap files anyway?
 set directory=~/.vim/.tmp,~/tmp,/tmp
                                 " store swap files in one of these directories
@@ -266,8 +260,8 @@ set showcmd                     " show (partial) command in the last line of the
 
 " Permanent 'very magic' mode, see :he pattern
 " search
-"nnoremap / /\v
-"vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 " substitute
 cnoremap %s/ %smagic/
 " substitute in visual mode
@@ -340,15 +334,6 @@ if has("autocmd")
         \   exe "normal! g`\"" |
         \ endif
 
-    " Faster service a big files
-    let g:BigFile = 10 "MB
-    let g:BigFile = g:BigFile * 1024 * 1024
-    augroup BigFile
-    autocmd BufReadPre * let f=expand("<afile>") |
-        \ if getfsize(f) > g:BigFile | set eventignore+=FileType |
-        \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
-        \ else | set eventignore-=FileType | endif
-    augroup BigFile
  endif " has("autocmd")
 " }}}
 
@@ -359,35 +344,35 @@ set spelllang=pl,en
 " Highlight & Colorscheme {{{
 
 " quantity of colors
-"set t_Co=8
+" set t_Co=8
 
 let c_comment_strings=1                         " highlight strings inside C comments
 colorscheme redstring
 " Black, c, Dark, darkzen, desert, elflord, grb, grb-light, grb2, grb256,
 " grb4, moria, redstring, xterm16
-"set background=dark
-"highlight MatchParen ctermbg=blue guibg=lightyellow " highlight paired brackets
+" set background=dark
+" highlight MatchParen ctermbg=blue guibg=lightyellow " highlight paired brackets
 "-------------------------------------------------------------------------------
 ""highlight SpellErrors ctermfg=Red ctermbg=White guifg=Red guibg=White cterm=underline gui=underline term=reverse
-"highlight Normal         ctermfg=LightGrey guibg=black guifg=#AFABAF
-"highlight Search         ctermfg=Yellow ctermbg=Red cterm=bold guifg=Yellow guibg=Red
-"highlight IncSearch      ctermbg=red ctermfg=black cterm=NONE guifg=red guibg=black
-"highlight Visual         cterm=reverse guifg=#303030 guibg=LightGray
-"highlight Cursor         ctermfg=Black ctermbg=Green cterm=bold guifg=black guibg=#61FFCF
-"highlight Special        ctermfg=Brown guifg=#CF7520
-"highlight Comment        ctermfg=LightGray guifg=#7A90FF guibg=black gui=NONE
-"highlight StatusLine     cterm=bold gui=NONE ctermfg=green ctermbg=blue guifg=green guibg=#0000AF
-"highlight StatusLineNC   ctermfg=black ctermbg=white cterm=NONE
-"highlight User1          ctermfg=grey ctermbg=blue cterm=bold
-"highlight VertSplit      ctermfg=gray ctermbg=blue cterm=bold
-"highlight Statement      ctermfg=Yellow cterm=bold gui=none guifg=Yellow
-"highlight vimCommand     ctermfg=Yellow ctermbg=black cterm=NONE guifg=#CF7520
-"highlight Type           cterm=NONE gui=NONE guifg=#00AB00
-"highlight Identifier     cterm=NONE ctermfg=blue
-"highlight NonText        guifg=#7A90FF
-"highlight Folded         term=standout cterm=bold ctermfg=6 ctermbg=0 guifg=Cyan guibg=black
-"highlight PreProc        term=underline cterm=bold ctermfg=Blue guifg=#7A90FF
-"highlight Todo           term=standout ctermfg=0 ctermbg=3 guifg=black guibg=#CF7520
+" highlight Normal         ctermfg=LightGrey guibg=black guifg=#AFABAF
+" highlight Search         ctermfg=Yellow ctermbg=Red cterm=bold guifg=Yellow guibg=Red
+" highlight IncSearch      ctermbg=red ctermfg=black cterm=NONE guifg=red guibg=black
+" highlight Visual         cterm=reverse guifg=#303030 guibg=LightGray
+" highlight Cursor         ctermfg=Black ctermbg=Green cterm=bold guifg=black guibg=#61FFCF
+" highlight Special        ctermfg=Brown guifg=#CF7520
+" highlight Comment        ctermfg=LightGray guifg=#7A90FF guibg=black gui=NONE
+" highlight StatusLine     cterm=bold gui=NONE ctermfg=green ctermbg=blue guifg=green guibg=#0000AF
+" highlight StatusLineNC   ctermfg=black ctermbg=white cterm=NONE
+" highlight User1          ctermfg=grey ctermbg=blue cterm=bold
+" highlight VertSplit      ctermfg=gray ctermbg=blue cterm=bold
+" highlight Statement      ctermfg=Yellow cterm=bold gui=none guifg=Yellow
+" highlight vimCommand     ctermfg=Yellow ctermbg=black cterm=NONE guifg=#CF7520
+" highlight Type           cterm=NONE gui=NONE guifg=#00AB00
+" highlight Identifier     cterm=NONE ctermfg=blue
+" highlight NonText        guifg=#7A90FF
+" highlight Folded         term=standout cterm=bold ctermfg=6 ctermbg=0 guifg=Cyan guibg=black
+" highlight PreProc        term=underline cterm=bold ctermfg=Blue guifg=#7A90FF
+" highlight Todo           term=standout ctermfg=0 ctermbg=3 guifg=black guibg=#CF7520
 " }}}
 
 " use css while export to html {{{
@@ -658,7 +643,7 @@ set wildignore+=*.7z
 let g:syntastic_enable_perl_checker = 1
 
 " perl-support {{{
-"let g:Perl_TemplateOverwrittenMsg= 'no'
+" let g:Perl_TemplateOverwrittenMsg= 'no'
 let g:Perl_PerlcriticSeverity = 5
 let g:Perl_PerlcriticVerbosity = 9
 " sprawdzanie składni pod
@@ -666,11 +651,11 @@ let g:Perl_PodcheckerWarnings = 'yes'
 " }}}
 
 " bash-support {{{
-"let g:BASH_TemplateOverwrittenMsg = 'no'
+" let g:BASH_TemplateOverwrittenMsg = 'no'
 " }}}
 
 " c-support {{{
-"let g:C_TemplateOverwrittenMsg= 'no'
+" let g:C_TemplateOverwrittenMsg= 'no'
 " }}}
 
 " jshint {{{
@@ -691,10 +676,10 @@ endif
 " }}}
 
 " supertab {{{
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabDefaultCompletionType = "<c-p>"
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingForward  = '<tab>'
-"let g:SuperTabMappingBackward = '<s-tab>'
+" let g:SuperTabMappingBackward = '<s-tab>'
 " }}}
 
 " file_templates {{{
@@ -715,25 +700,25 @@ let g:session_autosave = 'no'
 inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
 
 let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
-"nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
-"nnoremap <leader>L :TlistClose<CR>
+" nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
+" nnoremap <leader>L :TlistClose<CR>
 
 " quit Vim when the TagList window is the last open window
 let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
 let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
-"let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
-"let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
+" let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
+" let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
 let Tlist_WinWidth=40               " set the width
 let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
 
 " shorten the time it takes to highlight the current tag (default is 4 secs)
 " note that this setting influences Vim's behaviour when saving swap files,
 " but we have already turned off swap files (earlier)
-"set updatetime=1000
+" set updatetime=1000
 
 " the default ctags in /usr/bin on the Mac is GNU ctags, so change it to the
 " exuberant ctags version in /usr/local/bin
-"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+" let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 
 " show function/method prototypes in the list
 let Tlist_Display_Prototype=1
@@ -759,9 +744,9 @@ let g:switch_custom_definitions =
 
 " restore_view, @see also save/restore for au {{{
 set viewoptions=cursor,folds,slash,unix
-"let g:skipview_files = ['*\vim']
+" let g:skipview_files = ['*\vim']
 " }}}
 
 " mru {{{
-let MRU_File = g:vimrc_dir.'vim_mru_files'
+let MRU_File = vimrc_dir . 'vim_mru_files'
 " }}}

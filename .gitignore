@@ -2,9 +2,12 @@ doc/tags
 spell/
 .backup/
 .netrwhist
+.backupdir/
+.undodir/
 passwords.vim
 cache/
 sessions/
 misc/notes/
 view/
 vim_mru_files
+*.swp
