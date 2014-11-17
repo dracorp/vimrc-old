@@ -6,7 +6,6 @@ sessions/
 misc/notes/
 view/
 doc/tags
-**/tags
 .netrwhist
 passwords.vim
 vim_mru_files

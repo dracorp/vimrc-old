@@ -23,7 +23,7 @@ autocmd!
 " the ~/.vim/bundle directory
 filetype off                                    " force reloading *after* pathogen loaded
 call pathogen#infect()
-call pathogen#helptags()                        " slow start
+"call pathogen#helptags()                        " slow start and generate tags
 
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
