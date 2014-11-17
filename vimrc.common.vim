@@ -239,10 +239,11 @@ set undolevels=1000             " use many muchos levels of undo
 set undoreload=10000            "maximum number lines to save for undo on a buffer reload
 if has('persistent_undo')
     set undofile                " keep a persistent backup file
-    set undodir=vimrc_dir . '.undodir'
+    let &undodir=vimrc_dir . '.undodir'
 endif
+let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
+
 set nobackup                    " do not keep backup files, it's 70's style cluttering
-set backupdir=vimrc_dir . '.backupdir'
 " set noswapfile                  " do not write annoying intermediate swap files,
                                 "    who did ever restore from swap files anyway?
 set directory=~/.vim/.tmp,~/tmp,/tmp

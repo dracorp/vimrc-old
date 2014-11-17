@@ -88,3 +88,11 @@ Zakładki/Okna~
 - minimalizacja okna: <Ctrl-w> _
 - minimalizacja okna w pionie: <ctrl-w> |
 - wyrównanie okien: <Ctrl-w> =
+
+set/let~
+:set is for setting options, :let for assigning a value to a variable
+eg.
+:set  tw=40
+:let &tw=40
+:verbose set
+:verbose let

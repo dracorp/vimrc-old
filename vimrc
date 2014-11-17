@@ -18,6 +18,6 @@ endif
 let vimrc = vimrc_dir.'vimrc.common.vim'
 "let bundle_dir = vimrc_dir.'bundle/'
 
-"if filereadable(vimrc)
-"    execute ':source' vimrc
-"endif
+if filereadable(vimrc)
+    execute ':source' vimrc
+endif

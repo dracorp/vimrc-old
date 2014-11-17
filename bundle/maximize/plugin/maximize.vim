@@ -14,15 +14,16 @@ if exists("g:loaded_maximize")
 endif
 let g:loaded_maximize=1
 " }}}
-" Set the default compatibility options {{{
-" (don't know if they do any difference, in such a small script...)
-let s:save_cpoptions=&cpoptions
-set cpoptions&vim
-" }}}
-let s:dllfile=expand('<sfile>:p:h').'/maximize.dll'
-autocmd GUIEnter * call libcallnr(s:dllfile, 'Maximize', 1)
-" Restore the saved compatibility options {{{
-let &cpoptions=s:save_cpoptions
-" }}}
-
+if has('win32')
+	" Set the default compatibility options {{{
+	" (don't know if they do any difference, in such a small script...)
+	let s:save_cpoptions=&cpoptions
+	set cpoptions&vim
+	" }}}
+	let s:dllfile=expand('<sfile>:p:h').'/maximize.dll'
+	autocmd GUIEnter * call libcallnr(s:dllfile, 'Maximize', 1)
+	" Restore the saved compatibility options {{{
+	let &cpoptions=s:save_cpoptions
+	" }}}
+endif
 " vim:fdm=marker:fmr={{{,}}}
