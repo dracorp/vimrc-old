@@ -580,12 +580,6 @@ if has("autocmd")
 endif
 " }}}
 
-" Extra user or machine specific settings {{{
-if filereadable(vimrc_dir . "user.vim")
-    execute ":source " . vimrc_dir . "user.vim"
-endif
-" }}}
-
 " gui/gvim {{{
 if has("gui_running")
     " Black, Dark, desert, grb256, moria, ron, solarized, torte
@@ -751,3 +745,12 @@ set viewoptions=cursor,folds,slash,unix
 " mru {{{
 let MRU_File = vimrc_dir . 'vim_mru_files'
 " }}}
+
+" undotree
+nnoremap <F5> :UndotreeToggle<cr>
+" Extra user or machine specific settings {{{
+if filereadable(vimrc_dir . "user.vim")
+    execute ":source " . vimrc_dir . "user.vim"
+endif
+" }}}
+

@@ -8,7 +8,7 @@ elseif has('win32')
     "let  vimrc_dir = $HOME . '/vimfiles/'
 
     " configuration held in vim's installation directory
-    let vimrc_dir = $VIM . '/vimfiles/'
+    let vimrc_dir = $VIM . '\vimfiles\'
     set runtimepath-=~/vimfiles
 
     " default file format for all OS
