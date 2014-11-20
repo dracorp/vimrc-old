@@ -69,7 +69,7 @@
 	url = https://github.com/yegappan/mru.git
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/xml.vim"]
 	path = bundle/xml.vim
 	url = https://github.com/vim-scripts/xml.vim.git
