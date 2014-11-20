@@ -654,7 +654,7 @@ let g:Perl_PodcheckerWarnings = 'yes'
 " }}}
 
 " jshint {{{
-let jshint2_command = '/usr/bin/jshint'
+let jshint2_command = '/home/piecia/opt/npm/jshint'
 "}}}
 
 "{{{ manpageview
