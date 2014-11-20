@@ -1,0 +1,1 @@
+drcstubs.vba: call delete('/home/piecia/.vim/bundle/drcstubs/ftplugin/c/drcstubs.vim')|call delete('/home/piecia/.vim/bundle/drcstubs/ftplugin/sh/drcstubs.vim')|call delete('/home/piecia/.vim/bundle/drcstubs/ftplugin/tex/drcstubs.vim')|call delete('/home/piecia/.vim/bundle/drcstubs/ftplugin/vim/drcstubs.vim')|call delete('/home/piecia/.vim/bundle/drcstubs/doc/drcstubs.txt')

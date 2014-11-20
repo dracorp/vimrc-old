@@ -1,0 +1,1 @@
+Rainbow.vba: call delete('/home/piecia/.vim/bundle/Rainbow/plugin/RainbowPlugin.vim')|call delete('/home/piecia/.vim/bundle/Rainbow/autoload/Rainbow.vim')|call delete('/home/piecia/.vim/bundle/Rainbow/after/syntax/c/rainbow.vvim')
