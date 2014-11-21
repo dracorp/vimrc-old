@@ -1,0 +1,1 @@
+Highlight.vba: call delete('/home/piecia/.vim/bundle/Highlight/plugin/HighlightPlugin.vim')|call delete('/home/piecia/.vim/bundle/Highlight/doc/Highlight.txt')|call delete('/home/piecia/.vim/bundle/Highlight/autoload/Highlight.vim')
