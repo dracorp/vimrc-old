@@ -24,7 +24,7 @@
 	url = https://github.com/vim-scripts/Vim-Support.git
 [submodule "bundle/sensible"]
 	path = bundle/sensible
-	url = https://github.com/vim-scripts/sensible.vim.git
+	url = https://github.com/tpope/vim-sensible.git
 [submodule "bundle/extradite"]
 	path = bundle/extradite
 	url = https://github.com/vim-scripts/extradite.vim.git
@@ -106,9 +106,6 @@
 [submodule "bundle/promptline.vim"]
 	path = bundle/promptline.vim
 	url = https://github.com/edkolev/promptline.vim.git
-[submodule "bundle/vim-signify"]
-	path = bundle/vim-signify
-	url = https://github.com/mhinz/vim-signify.git
 [submodule "bundle/vim-gitgutter"]
 	path = bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
