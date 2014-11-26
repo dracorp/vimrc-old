@@ -246,7 +246,7 @@ let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
 set nobackup                    " do not keep backup files, it's 70's style cluttering
 " set noswapfile                  " do not write annoying intermediate swap files,
                                 "    who did ever restore from swap files anyway?
-set directory=~/.vim/.tmp,~/tmp,/tmp
+"set directory=~/tmp,/tmp
                                 " store swap files in one of these directories
                                 "    (in case swapfile is ever turned on)
 set viminfo='20,\"80            " read/write a .viminfo file, don't store more
@@ -344,8 +344,30 @@ set spelllang=pl,en
 
 " Highlight & Colorscheme {{{
 
-" quantity of colors
-" set t_Co=8
+"if has("terminfo")
+"  let &t_Co=16
+"  let &t_AB="\<Esc>[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm"
+"  let &t_AF="\<Esc>[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm"
+"else
+"  let &t_Co=16
+"  let &t_Sf="\<Esc>[3%dm"
+"  let &t_Sb="\<Esc>[4%dm"
+"endif
+
+if &term =~ "xterm"
+  " 256 colors
+  let &t_Co = 256
+  " restore screen after quitting
+  let &t_ti = "\<Esc>7\<Esc>[r\<Esc>[?47h"
+  let &t_te = "\<Esc>[?47l\<Esc>8"
+  if has("terminfo")
+    let &t_Sf = "\<Esc>[3%p1%dm"
+    let &t_Sb = "\<Esc>[4%p1%dm"
+  else
+    let &t_Sf = "\<Esc>[3%dm"
+    let &t_Sb = "\<Esc>[4%dm"
+  endif
+endif
 
 let c_comment_strings=1                         " highlight strings inside C comments
 colorscheme redstring
