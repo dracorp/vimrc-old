@@ -146,7 +146,7 @@ set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
 " set foldmarek={{{,}}}
-set foldlevelstart=99           " start out with everything unfolded
+"set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 function! MyFoldText_wikia()
@@ -202,7 +202,11 @@ scriptencoding utf-8
 set fenc=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
-set encoding=utf-8
+if has("win32")
+    set encoding=cp1250
+else
+    set encoding=utf-8
+endif
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
@@ -671,6 +675,9 @@ let g:Perl_PodcheckerWarnings = 'yes'
 " let g:BASH_TemplateOverwrittenMsg = 'no'
 " }}}
 
+" vim-support
+let g:Vim_CreateMapsForHelp = 'yes'
+
 " c-support {{{
 " let g:C_TemplateOverwrittenMsg= 'no'
 " }}}
@@ -775,4 +782,3 @@ if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
 endif
 " }}}
-
