@@ -47,19 +47,16 @@ if filereadable(vimrc_dir . "vimrc.keys.vim")
     execute ":source" vimrc_dir . "vimrc.keys.vim"
 endif
 " }}}
-
 " Some functions {{{
 if filereadable(vimrc_dir . "vimrc.functions.vim")
     execute ":source" vimrc_dir . "vimrc.functions.vim"
 endif
 " }}}
-
 " Common abbreviations / misspellings {{{
 if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
 endif
 " }}}
-
 " Editing behaviour {{{
 set showmode                                    " always show what mode we're currently editing in
 set wrap                                        " wrap lines
@@ -107,7 +104,6 @@ set nrformats=                  " make <C-a> and <C-x> play well with
 set shortmess+=I                " hide the launch screen
 set clipboard=unnamed           " normal OS clipboard interaction
 " }}}
-
 " Various settings {{{
 set linebreak
 set smartindent                 " smart autoindenting when starting a new line
@@ -140,7 +136,6 @@ set infercase
 set tildeop                     " Tylda(~) robi za operator, można teraz używać jej np. tak: ~w ~~
 " set iskeyword+=-,,              " which char make a word
 " }}}
-
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
@@ -149,41 +144,6 @@ set foldmethod=marker           " detect triple-{ style fold markers
 "set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
-function! MyFoldText_wikia()
-  let line = getline(v:foldstart)
-  if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
-    let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
-    let linenum = v:foldstart + 1
-    while linenum < v:foldend
-      let line = getline( linenum )
-      let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
-      if comment_content != ''
-        break
-      endif
-      let linenum = linenum + 1
-    endwhile
-    let sub = initial . ' ' . comment_content
-  else
-    let sub = line
-    let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
-    if startbrace == '{'
-      let line = getline(v:foldend)
-      let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
-      if endbrace == '}'
-        let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
-      endif
-    endif
-  endif
-  let n = v:foldend - v:foldstart + 1
-  let info = " " . n . " lines"
-  let sub = sub . "                                                                                                                  "
-  let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
-  let fold_w = getwinvar( 0, '&foldcolumn' )
-  let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
-  return sub . info
-endfunction
-set foldtext=MyFoldText_wikia()
-
 highlight FoldColumn  gui=bold    guifg=grey65     guibg=Grey90
 highlight Folded      gui=italic  guifg=Black      guibg=Grey90
 highlight LineNr      gui=NONE    guifg=grey60     guibg=Grey90
@@ -642,9 +602,6 @@ endif
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-" yaifa
-let yaifa_max_lines = 512
-
 " bundle/* {{{
 
 " tagbar
@@ -675,8 +632,9 @@ let g:Perl_PodcheckerWarnings = 'yes'
 " let g:BASH_TemplateOverwrittenMsg = 'no'
 " }}}
 
-" vim-support
+" vim-support {{{
 let g:Vim_CreateMapsForHelp = 'yes'
+"}}}
 
 " c-support {{{
 " let g:C_TemplateOverwrittenMsg= 'no'
@@ -753,30 +711,33 @@ let Tlist_Display_Tag_Scope=0
 " show TagList window on the right
 let Tlist_Use_Right_Window=1
 " }}}
-
 " xml_completion {{{
 let g:xmlSubelements = "yes"
 " }}}
-
 " switch {{{
 nnoremap <c-t> :Switch<cr>
 let g:switch_custom_definitions =
     \ [
-    \   ['yes', 'no']
+    \   ['yes', 'no'],
+    \   ['1', '0'],
+    \   ['on', 'off'],
+    \   ['enable', 'disable']
     \ ]
 " }}}
-
 " restore_view, @see also save/restore for au {{{
 set viewoptions=cursor,folds,slash,unix
 " let g:skipview_files = ['*\vim']
 " }}}
-
 " mru {{{
 let MRU_File = vimrc_dir . 'vim_mru_files'
 " }}}
-
-" undotree
+" undotree {{{
 nnoremap <F5> :UndotreeToggle<cr>
+"}}}
+" yaifa {{{
+let yaifa_max_lines = 512
+"}}}
+
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"

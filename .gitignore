@@ -11,3 +11,4 @@ passwords.vim
 vim_mru_files
 *.swp
 user.vim
+bundle/lido
