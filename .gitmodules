@@ -115,3 +115,24 @@
 [submodule "bundle/jQuery"]
 	path = bundle/jQuery
 	url = https://github.com/vim-scripts/jQuery.git
+[submodule "bundle/vim-repeat"]
+	path = bundle/vim-repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "bundle/vimproc.vim"]
+	path = bundle/vimproc.vim
+	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "bundle/vim-easymotion"]
+	path = bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion
+[submodule "bundle/TWiki-Syntax"]
+	path = bundle/TWiki-Syntax
+	url = https://github.com/vim-scripts/TWiki-Syntax.git
+[submodule "bundle/Toggle"]
+	path = bundle/Toggle
+	url = https://github.com/vim-scripts/Toggle.git
+[submodule "bundle/vimwiki"]
+	path = bundle/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
+[submodule "bundle/switch.vim"]
+	path = bundle/switch.vim
+	url = https://github.com/AndrewRadev/switch.vim.git
