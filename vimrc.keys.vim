@@ -4,20 +4,20 @@
 "       AUTHOR:  Piotr Rogoża
 "===================================================================================
 "
-" !         robi przełącznik z przycisku
-" <CR>      to enter
-" <c-o>     umożliwia w trybie Insert wprowadzenie komendy
-" <silent>  mapowanie nie zostanie wyświetlone w showmode
-" %         aktualny plik, :he expand
-" <leader>  domyślnie \
+" !         make a switch from a key
+" <CR>      it's enter
+" <c-o>     allows in 'insert' mode insert a command
+" <silent>  a mapping will not be echoed on the command line
+" %         actual file, :he expand
+" <leader>  default \
 "-------------------------------------------------------------------------------
 "     F1  -  pomoc, man.vim file.ext | file | filetype
 "     F2  -  write file without confirmation
 "     F3  -  call file explorer Ex
 "     F4  -  show tag under curser in the preview window (tagfile must exist!)
-"     F6  -  list all errors           
+"     F6  -  list all errors
 "     F7  -  display previous error
-"     F8  -  display next error   
+"     F8  -  display next error
 "     F9  -  display number of line
 "     F12 -  list buffers and edit n-th buffer
 "-------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ nnoremap Q gqap
 vnoremap <leader>s !sort -f<CR>gv
 nnoremap <leader>s vip!sort -f<CR><Esc>
 
-map zp :setlocal spell!<CR>			
+map zp :setlocal spell!<CR>
 imap zP <ESC>:setlocal spell!<CR>i<right>
 
 noremap     <silent>    <F8>    :cnext<CR>

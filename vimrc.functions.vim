@@ -1,27 +1,20 @@
 "===================================================================================
 "         FILE:  vimrc.functions.vim
-"  DESCRIPTION:  Plik z funkcjami,  mapowanie klawiszy do funkcji odbywa się
-"  przez plik vimrc.keys.vim
-"       AUTHOR:  Piotr Rogoża
+"  DESCRIPTION:  User vim functions without mappings, see vimrc.keys
 "===================================================================================
-"
-" Wkrzyknik(!) przy funkcji powoduje, że przy wczytywaniu zastąpi już
-" istniejącą funkcję
-"-------------------------------------------------------------------------------
+" exclamation mark(!) means that function replace previous
+
+function! QuoteInsertionWrapper (quote) "{{{
 " Add a second quote only if the left and the right character are not keyword
 " characters.
-"-------------------------------------------------------------------------------
-function! QuoteInsertionWrapper (quote)
 	let	col	= col('.')
 	if getline('.')[col-2] !~ '\k' && getline('.')[col] !~ '\k'
 		normal ax
 		exe "normal r".a:quote."h"
 	end
-endfunction    " ----------  end of function QuoteInsertionWrapper  ----------
-"-------------------------------------------------------------------------------
+endfunction    " QuoteInsertionWrapper }}}
+function! s:Tag() "{{{
 " Tworzenie pliku znaczników
-"-------------------------------------------------------------------------------
-function! s:Tag()
    try
       exe "norm! \<c-]>"
    catch /^Vim([^)]\+):E433/
@@ -32,13 +25,11 @@ function! s:Tag()
       exe "!cd " . l:kat . " ; ctags " . l:opt . " ."
       exe "norm! \<c-]>"
    endtry
-endfun
-"-------------------------------------------------------------------------------
+endfun "}}}
+function! InsertTabWrapper(direction) "{{{
 " Benoit Cerrina tab completion + A. addittion tip#102
 " Bardzo fajna funkcja umożliwiająca uzupełnianie wyrazów przez <Tab>
 " Jest wtyczka supertab realizująca to samo
-"-------------------------------------------------------------------------------
-function! InsertTabWrapper(direction)
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
         return "\<tab>"
@@ -48,31 +39,26 @@ function! InsertTabWrapper(direction)
         return "\<c-n>"
     endif
 endfunction
-"-------------------------------------------------------------------------------
+"}}}
+function! ToggleHLSearch() "{{{
 " On/Off highlight search
-"-------------------------------------------------------------------------------
-function! ToggleHLSearch()
       if &hls
            set nohls
       else
            set hls
       endif
 endfunction
-"-------------------------------------------------------------------------------
+"}}}
+function! CheckReadonly() "{{{
 " Nie pozwalaj na żadne modyfikacje plików tylko do odczytu.
-"-------------------------------------------------------------------------------
-function! CheckReadonly()
     if version >= 600
         if &readonly
             setlocal nomodifiable
         endif
     endif
 endfunction
-"-------------------------------------------------------------------------------
-" funkcja wykrywająca kodowanie pliku i ustawiająca na właściwe,
-" domyślnie brane jest kod
-"-------------------------------------------------------------------------------
-function! ChangeFileencoding()
+"}}}
+function! ChangeFileencoding() "{{{
     let encodings = ['cp1250', 'utf-8', 'iso8859-2']
     let prompt_encs = []
     let index = 0
@@ -83,12 +69,11 @@ function! ChangeFileencoding()
     let choice = inputlist(prompt_encs)
     if choice >= 0 && choice < len(encodings)
         execute 'e ++enc='.encodings[choice].' %:p'
-    endif 
+    endif
 endf
-"-------------------------------------------------------------------------------
-" Wyświetla stronę man dla danego pliku
-"-------------------------------------------------------------------------------
-function! DisplayManpage()
+"}}}
+function! DisplayManpage() "{{{
+" Display man page for the file
     let filename = expand("%")
     let short_filename = expand("%:r")
     let filetype = &filetype
@@ -100,25 +85,19 @@ function! DisplayManpage()
         endif
     endif
 endf
-" Otwarcie linka w przeglądarce
-if exists("loaded_mozilla")
-  finish
-endif
-let loaded_mozilla=1
-
-function! CopyAll()
+"}}}
+function! CopyAll() "{{{
     " zaznacz wszystko
     exec 'normal ggVG'
     " kopiuj wszystko
     exec 'normal "+y'
 endf
-
-function ReloadVimrc()
+"}}}
+function! ReloadVimrc() "{{{
     execute ":source " . vimrc_dir . "vimrc"
 endf
-" Pulse ------------------------------------------------------------------- {{{
-
-function! PulseCursorLine()
+"}}}
+function! PulseCursorLine() "{{{
     let current_window = winnr()
 
     windo set nocursorline
@@ -153,5 +132,39 @@ function! PulseCursorLine()
     windo set cursorline
     execute current_window . 'wincmd w'
 endfunction
-
 " }}}
+function! MyFoldText_wikia() "{{{
+  let line = getline(v:foldstart)
+  if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
+    let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
+    let linenum = v:foldstart + 1
+    while linenum < v:foldend
+      let line = getline( linenum )
+      let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
+      if comment_content != ''
+        break
+      endif
+      let linenum = linenum + 1
+    endwhile
+    let sub = initial . ' ' . comment_content
+  else
+    let sub = line
+    let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
+    if startbrace == '{'
+      let line = getline(v:foldend)
+      let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
+      if endbrace == '}'
+        let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
+      endif
+    endif
+  endif
+  let n = v:foldend - v:foldstart + 1
+  let info = " " . n . " lines"
+  let sub = sub . "                                                                                                                  "
+  let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
+  let fold_w = getwinvar( 0, '&foldcolumn' )
+  let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
+  return sub . info
+endfunction
+set foldtext=MyFoldText_wikia()
+"}}}
