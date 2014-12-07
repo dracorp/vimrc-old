@@ -23,7 +23,7 @@ autocmd!
 " the ~/.vim/bundle directory
 filetype off                                    " force reloading *after* pathogen loaded
 call pathogen#infect()
-"call pathogen#helptags()                        " slow start and generate tags
+call pathogen#helptags()                        " slow start and generate tags
 
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
@@ -170,7 +170,8 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=1                 " use a status bar that is 1 rows high
-set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
+"set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
+set fileencodings=utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
