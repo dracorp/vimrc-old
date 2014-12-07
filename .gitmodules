@@ -136,6 +136,3 @@
 [submodule "bundle/switch.vim"]
 	path = bundle/switch.vim
 	url = https://github.com/AndrewRadev/switch.vim.git
-[submodule "bundle/vim-pkgbuild"]
-	path = bundle/vim-pkgbuild
-	url = https://github.com/dracorp/vim-pkgbuild.git
