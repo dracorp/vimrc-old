@@ -168,3 +168,4 @@ function! MyFoldText_wikia() "{{{
 endfunction
 set foldtext=MyFoldText_wikia()
 "}}}
+command! -nargs=0 Trim :%s/\s\+$//
