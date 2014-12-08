@@ -23,7 +23,7 @@ autocmd!
 " the ~/.vim/bundle directory
 filetype off                                    " force reloading *after* pathogen loaded
 call pathogen#infect()
-"call pathogen#helptags()                        " slow start and generate tags
+call pathogen#helptags()                        " slow start and generate tags
 
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
@@ -156,7 +156,6 @@ nnoremap z3 :set foldlevel=3<cr>
 nnoremap z4 :set foldlevel=4<cr>
 nnoremap z5 :set foldlevel=5<cr>
 " }}}
-
 " Editor layout {{{
 scriptencoding utf-8
 set fenc=utf-8
@@ -171,7 +170,8 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=1                 " use a status bar that is 1 rows high
-set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
+"set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
+set fileencodings=utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
@@ -188,7 +188,6 @@ set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
 " Użycie 'fileencoding' (które lepiej zmieniać przez ":setlocal" niż ":set") zmienia zachowanie zapisu.
 " fileencodings różni się od fileencoding tym, że ustawia domyślny zapis dla wszystkich plików.
 " }}}
-
 " Vim behaviour {{{
 " set hidden                      " hide buffers instead of closing them this
                                 "    means that the current buffer can be put
@@ -235,7 +234,6 @@ cnoremap \>s/ \>smagic/
 nnoremap :g/ :g/\v
 nnoremap :g// :g//
 " }}}
-
 " Toggle the quickfix window {{{
 " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
 nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
@@ -254,7 +252,6 @@ function! s:QuickfixToggle()
     endif
 endfunction
 " }}}
-
 " Toggle the foldcolumn {{{
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 
@@ -269,7 +266,6 @@ function! FoldColumnToggle()
     endif
 endfunction
 " }}}
-
 " autocommand {{{
 if has("autocmd")
     " *save/restore view*
@@ -301,11 +297,9 @@ if has("autocmd")
 
  endif " has("autocmd")
 " }}}
-
 " Spell {{{
 set spelllang=pl,en
 " }}}
-
 " Highlight & Colorscheme {{{
 
 "if has("terminfo")
@@ -361,12 +355,10 @@ colorscheme redstring
 " highlight PreProc        term=underline cterm=bold ctermfg=Blue guifg=#7A90FF
 " highlight Todo           term=standout ctermfg=0 ctermbg=3 guifg=black guibg=#CF7520
 " }}}
-
 " use css while export to html {{{
 let g:html_use_css = "1"
 let g:use_xhtml = 1000
 " }}}
-
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -565,7 +557,6 @@ if has("autocmd")
     augroup end "}}}
 endif
 " }}}
-
 " gui/gvim {{{
 if has("gui_running")
     " Black, Dark, desert, grb256, moria, ron, solarized, torte
@@ -604,22 +595,21 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " bundle/* {{{
 
-" tagbar
+" tagbar {{{
 nmap <F7> :TagbarToggle<CR>
-
+"}}}
 " vim-airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 "}}}
-
-" ctrlp
+" ctrlp {{{
 set wildignore+=*.7z
-
-" syntastic
+" }}}
+" syntastic {{{
 let g:syntastic_enable_perl_checker = 1
-
+"}}}
 " perl-support {{{
 " let g:Perl_TemplateOverwrittenMsg= 'no'
 let g:Perl_PerlcriticSeverity = 5
@@ -627,27 +617,21 @@ let g:Perl_PerlcriticVerbosity = 9
 " sprawdzanie składni pod
 let g:Perl_PodcheckerWarnings = 'yes'
 " }}}
-
 " bash-support {{{
 " let g:BASH_TemplateOverwrittenMsg = 'no'
 " }}}
-
 " vim-support {{{
 let g:Vim_CreateMapsForHelp = 'yes'
 "}}}
-
 " c-support {{{
 " let g:C_TemplateOverwrittenMsg= 'no'
 " }}}
-
 " jshint {{{
 let jshint2_command = '/home/piecia/opt/npm/jshint'
 "}}}
-
 "{{{ manpageview
 let $PAGER=''
 "}}}
-
 " lattex-support {{{
 let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
 let tlist_make_settings  = 'make;m:makros;t:targets'
@@ -656,27 +640,22 @@ if has("unix")
     let s:LATEX_pdf_viewer         = "evince"
 endif
 " }}}
-
 " supertab {{{
 " let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingForward  = '<tab>'
 " let g:SuperTabMappingBackward = '<s-tab>'
 " }}}
-
 " file_templates {{{
 let g:file_template_default = "def/PKGBUILD"
 let g:VIMFILESDIR = vimrc_dir
 " }}}
-
 " vbookmark {{{
 let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
 " }}}
-
 " vim-session {{{
 let g:session_autosave = 'no'
 " }}}
-
 " TagList settings {{{
  noremap <silent> <F11>       :TlistToggle<CR>
 inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
@@ -737,7 +716,6 @@ nnoremap <F5> :UndotreeToggle<cr>
 " yaifa {{{
 let yaifa_max_lines = 512
 "}}}
-
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
