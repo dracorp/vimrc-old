@@ -93,10 +93,6 @@ function! CopyAll() "{{{
     exec 'normal "+y'
 endf
 "}}}
-function! ReloadVimrc() "{{{
-    execute ":source " . vimrc_dir . "vimrc"
-endf
-"}}}
 function! PulseCursorLine() "{{{
     let current_window = winnr()
 
