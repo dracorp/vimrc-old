@@ -1,7 +1,6 @@
 "===================================================================================
 "         FILE:  vimrc.keys.vim
 "  DESCRIPTION:  Plik z mapowaniem klawiszy
-"       AUTHOR:  Piotr Rogoża
 "===================================================================================
 "
 " !         make a switch from a key
