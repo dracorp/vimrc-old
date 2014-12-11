@@ -161,17 +161,18 @@ scriptencoding utf-8
 set fenc=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
-if has("win32")
-    set encoding=cp1250
-else
+"if has("win32")
+"    Problem with function and command which operates on diacriticals!
+"    set encoding=cp1250
+"else
     set encoding=utf-8
-endif
+"endif
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=1                 " use a status bar that is 1 rows high
 "set fileencodings=ucs-bom,utf-8,default,utf-16le,iso8859-2,cp1250,iso8859-1
-set fileencodings=utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-16le
+set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
@@ -697,6 +698,7 @@ let g:xmlSubelements = "yes"
 nnoremap <c-t> :Switch<cr>
 let g:switch_custom_definitions =
     \ [
+    \   ['Y', 'N'],
     \   ['yes', 'no'],
     \   ['1', '0'],
     \   ['on', 'off'],
