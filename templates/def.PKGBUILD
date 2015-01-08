@@ -1,6 +1,5 @@
-# vim:set ts=2 sw=2 et ft=sh tw=100: expandtab
-# Maintainer: Piotr Rogoża <piotr dot r dot public at gmail dot com>
-# Contributor: Piotr Rogoża <piotr dot r dot public at gmail dot com>
+# Maintainer: Piotr Rogoza <piotr dot r dot public at gmail dot com>
+# Contributor: Piotr Rogoza <piotr dot r dot public at gmail dot com>
 
 pkgname=<+$BASENAME$+>
 pkgver=<+#VERSION#+>

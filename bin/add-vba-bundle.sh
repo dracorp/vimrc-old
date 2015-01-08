@@ -10,6 +10,8 @@
 #  REQUIREMENTS: vim
 #===============================================================================
 
+set -e
+
 if [[ ! "$1" =~ \.vba$ || ! -d "bundle" ]]; then
     echo "Usage: $0 vimball.file.vba"
     echo "You must inside directory vim of user"
