@@ -12,7 +12,7 @@ like it.  To do so, please do the following:</p>
 
 <p><code>git clone http://github.com/dracorp/vimrc.git</code></p>
 
-<p>or download the plain source only (but you can't use git submodule):</p>
+<p>or download the plain source only (but then you will not be able to use git submodule):</p>
 
 <p><code>wget -qO - http://github.com/dracorp/vimrc/tarball/master | tar -xzvf -</code></p></li>
 <li><p>Change directory:</p>
@@ -28,13 +28,17 @@ like it.  To do so, please do the following:</p>
 <ul>
 <li><em>vimfiles</em> under Windows (under user's home directory or vim's installation directory)</li>
 <li><em>.vim</em> under Linux</li>
-<li>see :version under vim</li>
+<li>see output command <code>:version</code> in vim</li>
 </ul></li>
 <li><p>Check vimrc file and variable 'vimrc_dir'. I don't use path ~/vimfiles in runtimepath under Windows OS</p></li>
 <li><p>In future you'll be able to upgrade submodules:</p>
 
-<p><code>git submodule foreach git pull origin master</code></p></li>
-<li><p>If you have a problem with a plugin add line to the  problematic submodules in .gitmodules:</p>
+<p><code>git submodule foreach git pull origin master</code></p>
+
+<p>or</p>
+
+<p><code>git submodule update --init</code> when a new module arrives</p></li>
+<li><p>If you have a problem with a plugin then add line to the problematic submodules in <em>.gitmodules</em>:</p>
 
 <p><code>ignore = dirty</code></p></li>
 </ol>
@@ -50,7 +54,7 @@ like it.  To do so, please do the following:</p>
 <li><a href="https://github.com/vim-scripts/vim-lesscss">vim-lesscss</a></li>
 <li><a href="https://github.com/vim-scripts/vim-misc.git">vim-misc</a></li>
 <li><a href="https://github.com/vim-scripts/Vim-Support.git">vim-support</a></li>
-<li><a href="https://github.com/vim-scripts/sensible.vim.git">sensible</a></li>
+<li><a href="https://github.com/tpope/vim-sensible.git">sensible</a></li>
 <li><a href="https://github.com/vim-scripts/extradite.vim.git">extradite</a></li>
 <li><a href="https://github.com/xolox/vim-colorscheme-switcher.git">vim-colorscheme-switcher</a></li>
 <li><a href="https://github.com/tpope/vim-speeddating.git">vim-speeddating</a></li>
@@ -78,8 +82,15 @@ like it.  To do so, please do the following:</p>
 <li><a href="https://github.com/tpope/vim-fugitive.git">vim-fugitive</a></li>
 <li><a href="https://github.com/mbbill/undotree.git">undotree</a></li>
 <li><a href="https://github.com/edkolev/promptline.vim.git">promptline.vim</a></li>
-<li><a href="https://github.com/mhinz/vim-signify.git">vim-signify</a></li>
 <li><a href="https://github.com/airblade/vim-gitgutter.git">vim-gitgutter</a></li>
 <li><a href="https://github.com/vim-scripts/DrawIt.git">DrawIt</a></li>
 <li><a href="https://github.com/vim-scripts/jQuery.git">jQuery</a></li>
+<li><a href="git://github.com/tpope/vim-repeat.git">vim-repeat</a></li>
+<li><a href="https://github.com/Shougo/vimproc.vim.git">vimproc.vim</a></li>
+<li><a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a></li>
+<li><a href="https://github.com/vim-scripts/TWiki-Syntax.git">TWiki-Syntax</a></li>
+<li><a href="https://github.com/vim-scripts/Toggle.git">Toggle</a></li>
+<li><a href="https://github.com/vimwiki/vimwiki.git">vimwiki</a></li>
+<li><a href="https://github.com/AndrewRadev/switch.vim.git">switch.vim</a></li>
+<li><a href="https://github.com/vim-scripts/permut.vim.git">permut.vim</a></li>
 </ul>

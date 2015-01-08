@@ -5,9 +5,8 @@
 #
 #         USAGE: ./rm-vba-bundle.sh [directory with submodule]
 #
-#   DESCRIPTION:
+#   DESCRIPTION: Remove plugin installed from vba file
 #
-#       OPTIONS: ---
 #  REQUIREMENTS: vim
 #===============================================================================
 

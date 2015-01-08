@@ -1,5 +1,19 @@
-#!/bin/sh
+#!/usr/bin/env bash
+#===============================================================================
+#
+#          FILE: rm-bundle.sh
+#
+#         USAGE: ./rm-bundle.sh directory
+#
+#   DESCRIPTION: Generate markdown for submodules
+#
+#===============================================================================
 set -e
+
+if [[ ! -d "bundle" ]]; then
+    echo "You must inside directory vim of user"
+    exit 1
+fi
 
 if [ $# -lt 1 ]; then
     echo "Choices are:"
