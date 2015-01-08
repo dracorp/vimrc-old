@@ -12,7 +12,7 @@ like it.  To do so, please do the following:
 
     `git clone http://github.com/dracorp/vimrc.git`
 
-    or download the plain source only (but you can't use git submodule):
+    or download the plain source only (but then you will not be able to use git submodule):
 
     `wget -qO - http://github.com/dracorp/vimrc/tarball/master | tar -xzvf -`
 
@@ -30,7 +30,7 @@ like it.  To do so, please do the following:
 
     * *vimfiles* under Windows (under user's home directory or vim's installation directory)
     * *.vim* under Linux
-    * see :version under vim
+    * see output command `:version` in vim
 
 6. Check vimrc file and variable 'vimrc_dir'. I don't use path ~/vimfiles in runtimepath under Windows OS
 
@@ -38,7 +38,11 @@ like it.  To do so, please do the following:
 
     `git submodule foreach git pull origin master`
 
-8. If you have a problem with a plugin add line to the  problematic submodules in .gitmodules:
+    or
+
+    `git submodule update --init` when a new module arrives
+
+8. If you have a problem with a plugin then add line to the problematic submodules in _.gitmodules_:
 
     `ignore = dirty`
 
@@ -90,4 +94,4 @@ like it.  To do so, please do the following:
 * [Toggle](https://github.com/vim-scripts/Toggle.git)
 * [vimwiki](https://github.com/vimwiki/vimwiki.git)
 * [switch.vim](https://github.com/AndrewRadev/switch.vim.git)
-
+* [permut.vim](https://github.com/vim-scripts/permut.vim.git)
