@@ -1,12 +1,12 @@
-# Maintainer: Piotr Rogoża <piotr dot r dot public at gmail dot com>
-# Contributor: Piotr Rogoża <piotr dot r dot public at gmail dot com>
-# vim:set ts=2 sw=2 et ft=sh tw=100: expandtab
+# Maintainer: Piotr Rogoza <piotr dot r dot public at gmail dot com>
+# Contributor: Piotr Rogoza <piotr dot r dot public at gmail dot com>
 
 pkgname=<+$BASENAME$+>
 pkgver=<+#VERSION#+>
 pkgrel=1
 pkgdesc='<+#DESCRIPTION#+>'
 arch=('i686' 'x86_64')
+#arch=(any)
 url='<+#URL#+>'
 license=('GPL')
 groups=()
@@ -54,4 +54,3 @@ package(){
 
   find "$pkgdir" -type d -name ".svn" -exec rm -rf '{}' +;
 }
-
