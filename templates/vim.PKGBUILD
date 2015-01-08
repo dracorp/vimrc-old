@@ -1,4 +1,3 @@
-# vim:set ts=2 sw=2 et ft=sh tw=100: expandtab
 # Maintainer: Piotr Rogoża <piotr dot r dot public at gmail dot com>
 # Contributor: Piotr Rogoża <piotr dot r dot public at gmail dot com>
 
@@ -22,7 +21,7 @@ options=()
 install='vimdoc.install'
 source=("${pkgname}-${pkgver}.zip::http://www.vim.org/scripts/download_script.php?src_id=${_scriptid}")
 
-build() {
+package() {
 	cd "$srcdir"
 	_vim_dir='usr/share/vim/vimfiles'
   vim -c "set nomore" -c "UseVimball $srcdir" -c "q" $pkgname.vba
@@ -31,5 +30,3 @@ build() {
 
   tar -c ./  --exclude ${pkgname}-${pkgver}.zip | tar -x -C ${pkgdir}/${_vim_dir} || return 1
 }
-
-md5sums=() #generate with 'makepkg -g'
