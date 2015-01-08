@@ -136,3 +136,6 @@
 [submodule "bundle/switch.vim"]
 	path = bundle/switch.vim
 	url = https://github.com/AndrewRadev/switch.vim.git
+[submodule "bundle/permut.vim"]
+	path = bundle/permut.vim
+	url = https://github.com/vim-scripts/permut.vim.git
