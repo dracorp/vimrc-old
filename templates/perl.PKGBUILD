@@ -1,6 +1,5 @@
-# vim:set ts=2 sw=2 et ft=sh tw=100: expandtab
-# Maintainer: Piotr Rogoża <piotr dot r dot public at gmail dot com>
-# Contributor: Piotr Rogoża <piotr dot r dot public at gmail dot com>
+# Maintainer: Piotr Rogoza <piotr dot r dot public at gmail dot com>
+# Contributor: Piotr Rogoza <piotr dot r dot public at gmail dot com>
 
 pkgname=perl-<+$LBASENAME$+>
 pkgver=<+#VERSION#+>
@@ -11,9 +10,9 @@ pkgdesc="<+$BASENAME$+> - <+#DESCRIPTION#+>"
 arch=('any')
 url="http://search.cpan.org/dist/<+$BASENAME$+>/"
 license=('GPL' 'PerlArtistic')
-depends=(perl )
-checkdepends=( )
-makedepends=( )
+depends=(perl)
+checkdepends=()
+makedepends=()
 provides=()
 conflicts=()
 replaces=()
@@ -25,7 +24,7 @@ source=("http://search.cpan.org/CPAN/authors/id/$_author/$_perlmod-$pkgver.tar.g
 
 build(){
   cd "$srcdir"/$_perlmod-$pkgver
-  
+
   # Setting these env variables overwrites any command-line-options we don't want...
   export PERL_MM_USE_DEFAULT=1 PERL_AUTOINSTALL=--skipdeps \
     PERL_MM_OPT="INSTALLDIRS=vendor DESTDIR='$pkgdir'" \
@@ -55,7 +54,7 @@ check(){
 }
 package(){
   cd "$srcdir"/$_perlmod-$pkgver
-  
+
   # If using Makefile.PL
   if [ -r Makefile.PL ]; then
     make install
