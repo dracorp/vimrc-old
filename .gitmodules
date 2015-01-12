@@ -142,3 +142,6 @@
 [submodule "bundle/darcula"]
 	path = bundle/darcula
 	url = https://github.com/blueshirts/darcula.git
+[submodule "bundle/yowish"]
+	path = bundle/yowish
+	url = https://github.com/vim-scripts/yowish.git
