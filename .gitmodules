@@ -139,3 +139,6 @@
 [submodule "bundle/permut.vim"]
 	path = bundle/permut.vim
 	url = https://github.com/vim-scripts/permut.vim.git
+[submodule "bundle/darcula"]
+	path = bundle/darcula
+	url = https://github.com/blueshirts/darcula.git
