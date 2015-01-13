@@ -139,3 +139,12 @@
 [submodule "bundle/permut.vim"]
 	path = bundle/permut.vim
 	url = https://github.com/vim-scripts/permut.vim.git
+[submodule "bundle/darcula"]
+	path = bundle/darcula
+	url = https://github.com/blueshirts/darcula.git
+[submodule "bundle/yowish"]
+	path = bundle/yowish
+	url = https://github.com/vim-scripts/yowish.git
+[submodule "bundle/vcscommand.vim"]
+	path = bundle/vcscommand.vim
+	url = https://github.com/vim-scripts/vcscommand.vim.git
