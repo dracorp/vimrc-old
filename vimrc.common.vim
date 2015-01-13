@@ -330,6 +330,9 @@ endif
 
 let c_comment_strings=1                         " highlight strings inside C comments
 colorscheme redstring
+if &diff
+    colorscheme xterm16
+endif
 " Black, c, Dark, darkzen, desert, elflord, grb, grb-light, grb2, grb256,
 " grb4, moria, redstring, xterm16
 " set background=dark
@@ -721,5 +724,14 @@ let yaifa_max_lines = 512
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
+endif
+" }}}
+" silver search|ag {{{
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 " }}}
