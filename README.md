@@ -95,3 +95,7 @@ like it.  To do so, please do the following:
 * [vimwiki](https://github.com/vimwiki/vimwiki.git)
 * [switch.vim](https://github.com/AndrewRadev/switch.vim.git)
 * [permut.vim](https://github.com/vim-scripts/permut.vim.git)
+* [darcula](https://github.com/blueshirts/darcula.git)
+* [yowish](https://github.com/vim-scripts/yowish.git)
+* [vcscommand.vim](https://github.com/vim-scripts/vcscommand.vim.git)
+
