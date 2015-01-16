@@ -151,3 +151,6 @@
 [submodule "bundle/ag.vim"]
 	path = bundle/ag.vim
 	url = https://github.com/rking/ag.vim.git
+[submodule "bundle/threesome.vim"]
+	path = bundle/threesome.vim
+	url = https://github.com/sjl/threesome.vim.git
