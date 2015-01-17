@@ -145,9 +145,6 @@
 [submodule "bundle/yowish"]
 	path = bundle/yowish
 	url = https://github.com/vim-scripts/yowish.git
-[submodule "bundle/vcscommand.vim"]
-	path = bundle/vcscommand.vim
-	url = https://github.com/vim-scripts/vcscommand.vim.git
 [submodule "bundle/ag.vim"]
 	path = bundle/ag.vim
 	url = https://github.com/rking/ag.vim.git
