@@ -1,0 +1,5 @@
+plain() { #{{{
+	(( QUIET )) && return
+	local mesg=$1; shift
+	printf "${BOLD}    ${mesg}${ALL_OFF}\n" "$@" >&1
+} # end if function plain }}}

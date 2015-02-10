@@ -138,7 +138,7 @@ set tildeop                     " Tylda(~) robi za operator, można teraz używa
 " }}}
 " Folding rules {{{
 set foldenable                  " enable folding
-set foldcolumn=2                " add a fold column
+set foldcolumn=0                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
 " set foldmarek={{{,}}}
 "set foldlevelstart=99           " start out with everything unfolded
@@ -566,7 +566,7 @@ if has("gui_running")
     " Black, Dark, desert, grb256, moria, ron, solarized, torte
     colorscheme solarized
     set mousehide                                   " Hide the mouse when typing text
-    set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
+    set mouse=v                                     " normal(n) + visual(v) + insert(i) + comman line(c)
                                                     " help(h) - all previous + help files
                                                     " a - all previous
 

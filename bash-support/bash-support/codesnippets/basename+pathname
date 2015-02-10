@@ -1,0 +1,6 @@
+basename=${pathname##*/}
+dirname=${pathname%/*}
+filename=${basename%%.*}
+lastextension=${basename##*.}
+allextensions=${basename#*.}
+PROGRAM_NAME=${0##*/}
