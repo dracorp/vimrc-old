@@ -1,8 +1,8 @@
 == LIST: snippets_jamptags == hash ==
-	'less-plus'   : '<+<CURSOR>+>',
-	'less-minus'  : '<-<CURSOR>->',
-	'brace-plus'  : '{+<CURSOR>+}',
-	'brace-minus' : '{-<CURSOR>-}',
+    'less-plus'   : '<+<CURSOR>+>',
+    'less-minus'  : '<-<CURSOR>->',
+    'brace-plus'  : '{+<CURSOR>+}',
+    'brace-minus' : '{-<CURSOR>-}',
 == ENDLIST ==
 
 == Snippets.jump tags == expandmenu, insert, map:njt, sc:m ==
@@ -15,7 +15,7 @@
 # DESCRIPTION: <CURSOR>
 #
 {-REGEX-}
-# 
+#
 # EXAMPLES:
-# 
+#
 == ENDTEMPLATE ==

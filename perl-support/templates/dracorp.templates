@@ -1,0 +1,56 @@
+== Comments.file description pl == map:chpl, sc:d, start, noindent ==
+#!/usr/bin/env perl
+#===============================================================================
+#       AUTHOR: |AUTHOR| |EMAIL|
+# ORGANIZATION: |ORGANIZATION|
+#         DATE: $Date$
+#     REVISION: $Revision$
+#           ID: $Id$
+#===============================================================================
+
+use strict;
+use warnings;
+use utf8;
+use Carp;
+use English qw( -no_match_vars );
+
+our $AUTHOR  = '|AUTHOR| |EMAIL|';
+our $VERSION = '0.1';
+
+<CURSOR>
+
+__END__
+== Comments.file pod pl == map:cppl, sc:p ==
+=pod
+
+=head1 NAME
+
+|FILENAME| - short_description
+
+=head1 SYNOPSIS
+
+|FILENAME| - short_usage
+
+=head1 DESCRIPTION
+
+long_description
+
+=head1 OPTIONS
+
+=over4
+
+=item --options
+
+description
+
+=back
+
+=head1 EXAMPLES
+
+=head1 AUTHOR
+
+L<|AUTHOR|mailto:|EMAIL|>
+
+=cut
+
+== ENDTEMPLATE ==

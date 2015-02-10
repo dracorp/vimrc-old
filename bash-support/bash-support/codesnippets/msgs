@@ -1,0 +1,11 @@
+msg() { # {{{
+	(( QUIET )) && return
+	local mesg=$1; shift
+	printf "${GREEN}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&1
+} # end of function msg }}}
+msg2() { #{{{
+	(( QUIET )) && return
+	local mesg=$1; shift
+	printf "${BLUE}  ->${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@" >&1
+} # end of function msg2 }}}
+

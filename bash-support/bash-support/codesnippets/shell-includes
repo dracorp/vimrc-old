@@ -1,0 +1,65 @@
+_error() { #{{{
+    printf '%s' "`basename -- "$0"`: " >&2
+
+    if [ -t 1 ]
+    then
+        tput setf 4 || tput setaf 1
+    fi
+
+    # If the last parameter is a number, it's not part of the messages
+    exit_code=1
+    while true
+    do
+        if [ $# -eq 0 ]
+        then
+            break
+        fi
+        if [ $# -eq 1 ]
+        then
+            case "$1" in
+                ''|*[!0-9]*)
+                    ;;
+                *)
+                    exit_code="$1"
+                    shift
+                    continue
+            esac
+        fi
+        printf '%s\n' "$1" >&2
+        shift
+    done
+
+    if [ -t 1 ]
+    then
+       tput sgr0 # Reset formatting
+    fi
+
+    exit "$exit_code"
+} # end of error }}}
+_warning() { #{{{
+    if [ -t 1 ]
+    then
+        tput setf 4 || tput setaf 1
+    fi
+
+    printf '%s\n' "$@" >&2
+
+    if [ -t 1 ]
+    then
+       tput sgr0 # Reset formatting
+    fi
+} # end of warning }}}
+_msg() { #{{{
+    if [ -t 1 ]
+    then
+        tput setf 4 || tput setaf 1
+    fi
+
+    printf '%s\n' "$@"
+
+    if [ -t 1 ]
+    then
+       tput sgr0 # Reset formatting
+    fi
+} # end of msg }}}
+

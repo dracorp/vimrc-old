@@ -33,4 +33,4 @@ IncludeFile( 'regex.templates' )
 IncludeFile( 'pod.templates' )
 IncludeFile( 'snippets.templates' )
 IncludeFile( 'filetests.templates' )
-
+IncludeFile( 'dracorp.templates' )
