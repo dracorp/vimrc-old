@@ -157,3 +157,6 @@
 [submodule "bundle/vim-perl"]
 	path = bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
+[submodule "bundle/perl_h2xs"]
+	path = bundle/perl_h2xs
+	url = https://github.com/vim-scripts/perl_h2xs.git
