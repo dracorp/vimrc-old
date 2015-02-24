@@ -2,9 +2,9 @@
 
 _<+#COMMAND#+>(){
     COMPREPLY=()
-    local cur=${COMP_WORDS[COMP_CWORD]}         # current word
-    local opts="`$1 2>&1 |tr ' |' '\n\n' | sed -ne 's/[^-]*\(-\{1,2\}[a-z]\{1,\}\).*/\1/p' | sort -u`"
+    local cur opts
+    _get_comp_words_by_ref cur
+    local opts=$(_parse_help $1 -h)
+    COMPREPLY=( $( compgen -W "$opts" -- "$cur" ) )
 } &&
 complete -F _<+#COMMAND#+> <+#COMMAND#+>
-
-# vi: ft=sh
