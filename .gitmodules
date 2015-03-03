@@ -163,3 +163,6 @@
 [submodule "bundle/vim-unimpaired"]
 	path = bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/EnhancedDiff"]
+	path = bundle/EnhancedDiff
+	url = https://github.com/vim-scripts/EnhancedDiff.git
