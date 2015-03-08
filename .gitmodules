@@ -166,3 +166,21 @@
 [submodule "bundle/EnhancedDiff"]
 	path = bundle/EnhancedDiff
 	url = https://github.com/vim-scripts/EnhancedDiff.git
+[submodule "bundle/open-browser.vim"]
+	path = bundle/open-browser.vim
+	url = https://github.com/tyru/open-browser.vim.git
+[submodule "bundle/vim-pairs"]
+	path = bundle/vim-pairs
+	url = https://github.com/kurkale6ka/vim-pairs.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/emmet-vim"]
+	path = bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
