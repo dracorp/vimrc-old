@@ -21,7 +21,6 @@
 "     F12 -  list buffers and edit n-th buffer
 "-------------------------------------------------------------------------------
 if has("unix")
-    "noremap    <silent>    <F1>    :help usr_toc.txt@pl<CR>
     noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 endif
 
@@ -68,22 +67,21 @@ nnoremap <leader>s vip!sort -f<CR><Esc>
 map zp :setlocal spell!<CR>
 imap zP <ESC>:setlocal spell!<CR>i<right>
 
-noremap     <silent>    <F8>    :cnext<CR>
+"noremap     <silent>    <F8>    :cnext<CR>
 "noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
 noremap     <silent>    <F9>    :set nonumber!<CR>
-noremap                 <F12>   :ls<CR>:edit #
+"noremap                 <F12>   :ls<CR>:edit #
 "noremap <silent> <F12> :cal VimCommanderToggle()<CR>
 "
-inoremap    <silent>    <F1>    <C-C>:call DisplayManpage()<CR>
 "inoremap  <silent> <F2>    <C-C>:write<CR>
-inoremap    <silent>    <F3>    <C-C>:Explore<CR>
+"inoremap    <silent>    <F3>    <C-C>:Explore<CR>
 inoremap    <silent>    <F4>    <C-C>:execute ":ptag ".expand("<cword>")<CR>
-inoremap    <silent>    <F5>    <C-C>:copen<CR>
+"inoremap    <silent>    <F5>    <C-C>:copen<CR>
 "inoremap    <silent>    <F6>    <C-C>:cclose<CR>
-inoremap    <silent>    <F7>    <C-C>:cprevious<CR>
-inoremap    <silent>    <F8>    <C-C>:cnext<CR>
+"inoremap    <silent>    <F7>    <C-C>:cprevious<CR>
+"inoremap    <silent>    <F8>    <C-C>:cnext<CR>
 inoremap    <silent>    <F9>    <C-O>:set nonumber!<CR>
-inoremap                <F12>   <C-C>:ls<CR>:edit #
+"inoremap                <F12>   <C-C>:ls<CR>:edit #
 "
 " wklejanie
 vnoremap <C-Insert> "+y
@@ -178,11 +176,6 @@ nnoremap <c-s-tab> :tabprev<cr>
 "highlight search
 "nnoremap <s-3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-"vim-toggle
-imap <C-T>:call Toggle()<CR>
-nmap <C-T>:call Toggle()<CR>
-vmap <C-T> <ESC>:call Toggle()<CR>
-
 " Quote words under cursor
 nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
@@ -201,4 +194,4 @@ nnoremap L $
 "nnoremap n n:call PulseCursorLine()<cr>
 "nnoremap N N:call PulseCursorLine()<cr>
 
-nnoremap <Leader>h :set hlsearch!<CR>
+"nnoremap <Leader>h :set hlsearch!<CR>

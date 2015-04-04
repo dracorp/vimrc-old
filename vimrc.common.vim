@@ -396,7 +396,7 @@ if has("autocmd")
         " general help can still be entered manually, with :h
         autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
         autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-        autocmd filetype vim nnoremap <buffer> <F12> :source %<CR>
+"        autocmd filetype vim nnoremap <buffer> <F12> :source %<CR>
     augroup end "}}}
 
     augroup html_files "{{{
@@ -431,9 +431,9 @@ if has("autocmd")
             let b:closetag_html_style=1
             setlocal foldmethod=syntax
             " keymap
-            let l:filename = expand("%:r")
-            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
-            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
+"            let l:filename = expand("%:r")
+"            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
+"            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
         endfun
     augroup end " }}}
 
@@ -599,6 +599,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " bundle/* {{{
 
+" vim-toggle {{{
+imap <C-T>:call Toggle()<CR>
+nmap <C-T>:call Toggle()<CR>
+vmap <C-T> <ESC>:call Toggle()<CR>
+"}}}
 " tagbar {{{
 nmap <F7> :TagbarToggle<CR>
 "}}}
@@ -633,7 +638,7 @@ let g:Vim_CreateMapsForHelp = 'yes'
 " jshint {{{
 let jshint2_command = '/home/piecia/opt/npm/jshint'
 "}}}
-"{{{ manpageview
+" manpageview {{{ 
 let $PAGER=''
 "}}}
 " lattex-support {{{
@@ -734,4 +739,7 @@ if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+" }}}
+" NerdTree {{{
+map <F2> :NERDTreeToggle<CR>
 " }}}
