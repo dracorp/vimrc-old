@@ -190,3 +190,6 @@
 [submodule "bundle/ShowSpaces"]
 	path = bundle/ShowSpaces
 	url = https://github.com/vim-scripts/ShowSpaces.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
