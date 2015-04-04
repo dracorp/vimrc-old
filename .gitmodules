@@ -196,3 +196,6 @@
 [submodule "bundle/python-mode"]
 	path = bundle/python-mode
 	url = https://github.com/klen/python-mode.git
+[submodule "bundle/powerline-shell"]
+	path = bundle/powerline-shell
+	url = https://github.com/milkbikis/powerline-shell.git
