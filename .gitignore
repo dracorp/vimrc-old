@@ -13,4 +13,5 @@ vim_mru_files
 user.vim
 bash-support/templates/Templates
 perl-support/templates/Templates
-bundle/
+bundle/*/
+!bundle/file_templates/
