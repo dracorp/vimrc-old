@@ -50,6 +50,9 @@ Plugin 'LargeFile'
 Plugin 'SudoEdit.vim'
 Plugin 'vis'
 
+" Python
+Plugin 'davidhalter/jedi-vim'
+
 " Fritz Mehner
 Plugin 'awk-support.vim'
 Plugin 'bash-support.vim'
@@ -71,7 +74,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
 
 " Others
-"Plugin 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 Plugin 'closetag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
