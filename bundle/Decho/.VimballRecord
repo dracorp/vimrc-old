@@ -1,1 +1,0 @@
-Decho.vba: call delete('/home/piecia/.vim/bundle/Decho/plugin/Decho.vim')|call delete('/home/piecia/.vim/bundle/Decho/plugin/cecutil.vim')|call delete('/home/piecia/.vim/bundle/Decho/syntax/Decho.vim')|call delete('/home/piecia/.vim/bundle/Decho/doc/Decho.txt')
