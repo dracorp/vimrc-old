@@ -120,8 +120,9 @@ Plugin 'yowish'
 Plugin 'MRU'
 
 " local filesystem
-"Plugin 'Rainbow', {'rtp': 'vim/'}
+" https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates
 Plugin 'file:///home/piecia/.vim/bundle/file_templates'
+" My vim plugin for PKGBUILD
 Plugin 'file:///home/piecia/Projekty-linux/Projekty-moje/vim-pkgbuild'
 
 " Windows
