@@ -11,6 +11,6 @@ passwords.vim
 vim_mru_files
 *.swp
 user.vim
-bundle/lido
 bash-support/templates/Templates
 perl-support/templates/Templates
+bundle/

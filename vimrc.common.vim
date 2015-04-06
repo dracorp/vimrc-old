@@ -1,6 +1,6 @@
 "===================================================================================
 "         FILE:  .vimrc
-"  DESCRIPTION:  suggestion for a personal configuration file ~/.vimrc
+"  DESCRIPTION:  Suggestion for a personal configuration file ~/.vimrc
 "===================================================================================
 "
 " To start vim without using this .vimrc file, use:
@@ -22,12 +22,117 @@ autocmd!
 " Use pathogen to easily modify the runtime path to include all plugins under
 " the ~/.vim/bundle directory
 filetype off                                    " force reloading *after* pathogen loaded
-call pathogen#infect()
-call pathogen#helptags()                        " slow start and generate tags
 
+" pathogen
+"call pathogen#infect()
+"call pathogen#helptags()                        " slow start and generate tags
+" vundle
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" base
+Plugin 'xolox/vim-misc'
+Plugin 'Shougo/vimproc.vim'
+
+" Charles Campbell
+Plugin 'AnsiEsc.vim'
+Plugin 'DrawIt'
+Plugin 'Astronaut'
+Plugin 'emezeske/manpageview'
+Plugin 'vim-scripts/Decho'
+Plugin 'vim-scripts/gdbmgr'
+Plugin 'HiColors'
+Plugin 'highlight.vim'
+Plugin 'LargeFile'
+"Plugin 'StlShowFunc'
+Plugin 'SudoEdit.vim'
+Plugin 'vis'
+
+" Fritz Mehner
+Plugin 'awk-support.vim'
+Plugin 'bash-support.vim'
+Plugin 'perl-support.vim'
+Plugin 'Vim-support'
+Plugin 'c.vim'
+Plugin 'latex-support.vim'
+
+" git
+Plugin 'int3/vim-extradite'
+Plugin 'tpope/vim-fugitive'
+Plugin 'WolfgangMehner/git-support'
+Plugin 'idanarye/vim-merginal'
+Plugin 'airblade/vim-gitgutter'
+
+" colorschemes
+Plugin 'blueshirts/darcula'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'xolox/vim-colorscheme-switcher'
+
+" Others
+"Plugin 'rking/ag.vim'
+Plugin 'closetag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'chrisbra/vim-diff-enhanced'
+Plugin 'jQuery'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'tyru/open-browser.vim'
+Plugin 'perl_h2xs'
+Plugin 'jlemetay/permut.git'
+Plugin 'edkolev/promptline.vim'
+Plugin 'klen/python-mode'
+Plugin 'restore_view.vim'
+Plugin 'tpope/vim-sensible'
+Plugin 'SuperTab'
+Plugin 'AndrewRadev/switch.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Tabmerge'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+Plugin 'taglist.vim'
+Plugin 'sjl/splice.vim'
+Plugin 'Toggle'
+Plugin 'TWiki-Syntax'
+"Plugin 'SirVer/ultisnips'
+Plugin 'mbbill/undotree'
+Plugin 'Shougo/unite.vim'
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'nvie/vim-flake8'
+Plugin 'vitalk/vim-lesscss.git'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'kurkale6ka/vim-pairs'
+Plugin 'vim-perl/vim-perl'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-scriptease'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vimwiki'
+Plugin 'vim-scripts/whitespace-syntax-highlight'
+Plugin 'xml.vim'
+Plugin 'xmledit'
+Plugin 'xslt'
+Plugin 'yowish'
+Plugin 'MRU'
+
+" local filesystem
+"Plugin 'Rainbow', {'rtp': 'vim/'}
+Plugin 'file:///home/piecia/.vim/bundle/file_templates'
+Plugin 'file:///home/piecia/Projekty-linux/Projekty-moje/vim-pkgbuild'
+
+" Windows
+if has('win32')
+    Plugin 'maximize.dll'
+endif
+call vundle#end()
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on                       " enable detection, plugins and indenting in one step
+
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch                                " highlight search
@@ -580,7 +685,7 @@ if has("gui_running")
     noremap  <silent> <s-F3>       :silent browse confirm e<CR>
     inoremap  <silent> <s-F3>  <Esc>:silent browse confirm e<CR>
 
-    " toggle insert mode <--> 'normal mode with the <RightMouse>-key
+    " toggle insert mode  'normal mode with the <RightMouse>-key
     "nnoremap  <RightMouse> <Insert>
     "inoremap  <RightMouse> <ESC>
 
@@ -638,7 +743,7 @@ let g:Vim_CreateMapsForHelp = 'yes'
 " jshint {{{
 let jshint2_command = '/home/piecia/opt/npm/jshint'
 "}}}
-" manpageview {{{ 
+" manpageview {{{
 let $PAGER=''
 "}}}
 " lattex-support {{{
@@ -726,11 +831,6 @@ nnoremap <F5> :UndotreeToggle<cr>
 " yaifa {{{
 let yaifa_max_lines = 512
 "}}}
-" Extra user or machine specific settings {{{
-if filereadable(vimrc_dir . "user.vim")
-    execute ":source " . vimrc_dir . "user.vim"
-endif
-" }}}
 " silver search|ag {{{
 if executable('ag')
   " Use Ag over Grep
@@ -783,4 +883,9 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " Don't autofold code
 let g:pymode_folding = 0
+" }}}
+" Extra user or machine specific settings {{{
+if filereadable(vimrc_dir . "user.vim")
+    execute ":source " . vimrc_dir . "user.vim"
+endif
 " }}}
