@@ -28,8 +28,15 @@ filetype off                                    " force reloading *after* pathog
 "call pathogen#helptags()                        " slow start and generate tags
 " vundle
 "set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+if g:UNIX
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+elseif g:MSWIN
+    " vim's directory
+    let &rtp .= ',' . vimrc_dir . 'bundle\Vundle.vim'
+    let path=vimrc_dir . 'bundle'
+    call vundle#begin(path)
+endif
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 " base
@@ -39,7 +46,6 @@ Plugin 'Shougo/vimproc.vim'
 " Charles Campbell
 Plugin 'AnsiEsc.vim'
 Plugin 'DrawIt'
-Plugin 'Astronaut'
 Plugin 'emezeske/manpageview'
 Plugin 'vim-scripts/Decho'
 Plugin 'vim-scripts/gdbmgr'
@@ -49,9 +55,13 @@ Plugin 'LargeFile'
 "Plugin 'StlShowFunc'
 Plugin 'SudoEdit.vim'
 Plugin 'vis'
+"Plugin 'Astronaut'
 
 " Python
-Plugin 'davidhalter/jedi-vim'
+if has('python')
+    Plugin 'davidhalter/jedi-vim'
+endif
+Plugin 'klen/python-mode'
 
 " Fritz Mehner
 Plugin 'awk-support.vim'
@@ -86,7 +96,6 @@ Plugin 'tyru/open-browser.vim'
 Plugin 'perl_h2xs'
 Plugin 'jlemetay/permut.git'
 Plugin 'edkolev/promptline.vim'
-Plugin 'klen/python-mode'
 Plugin 'restore_view.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'SuperTab'
@@ -122,14 +131,16 @@ Plugin 'xslt'
 Plugin 'yowish'
 Plugin 'MRU'
 
+" My vim plugin for PKGBUILD
+if g:UNIX
+    Plugin 'dracorp/vim-pkgbuild'
+endif
 " local filesystem
 " https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates
-Plugin 'file:///home/piecia/.vim/bundle/file_templates'
-" My vim plugin for PKGBUILD
-Plugin 'file:///home/piecia/Projekty-linux/Projekty-moje/vim-pkgbuild'
+Plugin 'file_templates', {'pinned': 1}
 
 " Windows
-if has('win32')
+if g:MSWIN
     Plugin 'maximize.dll'
 endif
 call vundle#end()
@@ -143,7 +154,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
-" if has("win32")
+" if g:MSWIN
 "     behave mswin
 " else
     behave xterm
@@ -270,7 +281,7 @@ scriptencoding utf-8
 set fenc=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
-"if has("win32")
+"if g:MSWIN
 "    Problem with function and command which operates on diacriticals!
 "    set encoding=cp1250
 "else
@@ -693,9 +704,9 @@ if has("gui_running")
     "nnoremap  <RightMouse> <Insert>
     "inoremap  <RightMouse> <ESC>
 
-    if has("win32")
+    if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
-    elseif has("unix")
+    elseif g:UNIX
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
     endif
 endif
@@ -754,7 +765,7 @@ let $PAGER=''
 let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
 let tlist_make_settings  = 'make;m:makros;t:targets'
 let tlist_tex_settings   = 'latex;s:Contents;g:Graphics;i:Listings;l:\label;r:\ref;p:\pageref;b:\bibitem'
-if has("unix")
+if g:UNIX
     let s:LATEX_pdf_viewer         = "evince"
 endif
 " }}}
