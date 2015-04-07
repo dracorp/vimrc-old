@@ -46,19 +46,21 @@ Plugin 'Shougo/vimproc.vim'
 " Charles Campbell
 Plugin 'AnsiEsc.vim'
 Plugin 'DrawIt'
-Plugin 'emezeske/manpageview'
-Plugin 'vim-scripts/Decho'
-Plugin 'vim-scripts/gdbmgr'
+if g:UNIX
+    Plugin 'manpageview', {'pinned': 1}
+endif
+Plugin 'Decho'
+Plugin 'gdbmgr'
 Plugin 'HiColors'
 Plugin 'highlight.vim'
 Plugin 'LargeFile'
 "Plugin 'StlShowFunc'
 Plugin 'SudoEdit.vim'
 Plugin 'vis'
-"Plugin 'Astronaut'
+Plugin 'astronaut', {'pinned': 1}
 
 " Python
-if has('python')
+if has('python') || has('python3')
     Plugin 'davidhalter/jedi-vim'
 endif
 Plugin 'klen/python-mode'
@@ -70,6 +72,7 @@ Plugin 'perl-support.vim'
 Plugin 'Vim-support'
 Plugin 'c.vim'
 Plugin 'latex-support.vim'
+"Plugin 'doxygen-support.vim'
 
 " git
 Plugin 'int3/vim-extradite'
@@ -77,6 +80,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'WolfgangMehner/git-support'
 Plugin 'idanarye/vim-merginal'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'sjl/splice.vim'
 
 " colorschemes
 Plugin 'blueshirts/darcula'
@@ -84,6 +88,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
 
 " Others
+Plugin 'EnhancedDiff'
 Plugin 'rking/ag.vim'
 Plugin 'closetag.vim'
 Plugin 'kien/ctrlp.vim'
@@ -94,25 +99,23 @@ Plugin 'Shutnik/jshint2.vim'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'tyru/open-browser.vim'
 Plugin 'perl_h2xs'
-Plugin 'jlemetay/permut.git'
+Plugin 'jlemetay/permut'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'godlygeek/tabular'
 Plugin 'edkolev/promptline.vim'
 Plugin 'restore_view.vim'
-Plugin 'tpope/vim-sensible'
 Plugin 'SuperTab'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Tabmerge'
-Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
-Plugin 'sjl/splice.vim'
 Plugin 'Toggle'
 Plugin 'TWiki-Syntax'
 "Plugin 'SirVer/ultisnips'
 Plugin 'mbbill/undotree'
 Plugin 'Shougo/unite.vim'
 Plugin 'bling/vim-airline'
-Plugin 'powerline/powerline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'nvie/vim-flake8'
 Plugin 'vitalk/vim-lesscss.git'
@@ -125,18 +128,18 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vimwiki'
-Plugin 'vim-scripts/whitespace-syntax-highlight'
+Plugin 'whitespace-syntax-highlight'
 Plugin 'xml.vim'
 Plugin 'xmledit'
 Plugin 'xslt'
 Plugin 'yowish'
-Plugin 'MRU'
+"Plugin 'MRU'
 
 " My vim plugin for PKGBUILD
 if g:UNIX
     Plugin 'dracorp/vim-pkgbuild'
 endif
-" local filesystem
+" installed manualy or by script bin/add-vba-bundle.sh
 " https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates
 Plugin 'file_templates', {'pinned': 1}
 

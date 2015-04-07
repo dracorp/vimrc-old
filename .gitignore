@@ -16,3 +16,5 @@ perl-support/templates/Templates
 vim-support/templates/Templates
 bundle/*/
 !bundle/file_templates/
+!bundle/astronaut/
+!bundle/manpageview/
