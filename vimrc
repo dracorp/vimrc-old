@@ -18,9 +18,8 @@ elseif g:MSWIN
     set fileformat=unix
 endif
 
-let vimrc = vimrc_dir.'vimrc.common.vim'
-"let bundle_dir = vimrc_dir.'bundle/'
+let s:vimrc = vimrc_dir . 'vimrc.common.vim'
 
-if filereadable(vimrc)
-    execute ':source' vimrc
+if filereadable(s:vimrc)
+    execute ':source' s:vimrc
 endif
