@@ -19,15 +19,13 @@ set nocompatible
 " Remove ALL autocommands for the current group.
 autocmd!
 
-" Use pathogen to easily modify the runtime path to include all plugins under
-" the ~/.vim/bundle directory
-filetype off                                    " force reloading *after* pathogen loaded
+filetype off                                    " required
 
 "-------------------------------------------------------------------------------
 " Pathogen
 "-------------------------------------------------------------------------------
 "call pathogen#infect()
-"call pathogen#helptags()                        " slow start and generate tags
+"call pathogen#helptags()
 
 "-------------------------------------------------------------------------------
 " Vundle
@@ -36,12 +34,7 @@ filetype off                                    " force reloading *after* pathog
 let iCanHazVundle   = 1
 let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
 let s:vundle_readme = s:vundle_home . '/README.md'
-let s:bundle_dir      = vimrc_dir . 'bundle'
-if g:UNIX
-    let s:path = ''
-elseif g:MSWIN
-    let s:path = s:bundle_dir
-endif
+let s:bundle_dir    = vimrc_dir . 'bundle'
 if !filereadable(s:vundle_readme)
     echo "Installing Vundle.."
     echo ""
@@ -57,7 +50,7 @@ if !filereadable(s:vundle_readme)
 endif "}}}
 "set the runtime path to include Vundle and initialize
 let &rtp .= ',' . s:vundle_home
-call vundle#begin(s:path)
+call vundle#begin(s:bundle_dir)
 " manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -308,7 +301,7 @@ nnoremap z5 :set foldlevel=5<cr>
 " }}}
 " Editor layout {{{
 scriptencoding utf-8
-set fenc=utf-8
+set fileencoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 "if g:MSWIN
