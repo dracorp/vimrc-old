@@ -1,6 +1,6 @@
 "===================================================================================
 "         FILE:  .vimrc
-"  DESCRIPTION:  suggestion for a personal configuration file ~/.vimrc
+"  DESCRIPTION:  Suggestion for a personal configuration file ~/.vimrc
 "===================================================================================
 "
 " To start vim without using this .vimrc file, use:
@@ -22,19 +22,143 @@ autocmd!
 " Use pathogen to easily modify the runtime path to include all plugins under
 " the ~/.vim/bundle directory
 filetype off                                    " force reloading *after* pathogen loaded
-call pathogen#infect()
-call pathogen#helptags()                        " slow start and generate tags
 
+" pathogen
+"call pathogen#infect()
+"call pathogen#helptags()                        " slow start and generate tags
+" vundle
+"set the runtime path to include Vundle and initialize
+if g:UNIX
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+elseif g:MSWIN
+    " vim's directory
+    let &rtp .= ',' . vimrc_dir . 'bundle\Vundle.vim'
+    let path=vimrc_dir . 'bundle'
+    call vundle#begin(path)
+endif
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" base
+Plugin 'xolox/vim-misc'
+Plugin 'Shougo/vimproc.vim'
+
+" Charles Campbell
+Plugin 'AnsiEsc.vim'
+Plugin 'DrawIt'
+if g:UNIX
+    Plugin 'manpageview', {'pinned': 1}
+endif
+Plugin 'Decho'
+Plugin 'gdbmgr'
+Plugin 'HiColors'
+Plugin 'highlight.vim'
+Plugin 'LargeFile'
+"Plugin 'StlShowFunc'
+Plugin 'SudoEdit.vim'
+Plugin 'vis'
+Plugin 'astronaut', {'pinned': 1}
+
+" Python
+if has('python') || has('python3')
+    Plugin 'davidhalter/jedi-vim'
+endif
+Plugin 'klen/python-mode'
+
+" Fritz Mehner
+Plugin 'awk-support.vim'
+Plugin 'bash-support.vim'
+Plugin 'perl-support.vim'
+Plugin 'Vim-support'
+Plugin 'c.vim'
+Plugin 'latex-support.vim'
+"Plugin 'doxygen-support.vim'
+
+" git
+Plugin 'int3/vim-extradite'
+Plugin 'tpope/vim-fugitive'
+Plugin 'WolfgangMehner/git-support'
+Plugin 'idanarye/vim-merginal'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'sjl/splice.vim'
+
+" colorschemes
+Plugin 'blueshirts/darcula'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'xolox/vim-colorscheme-switcher'
+
+" Others
+Plugin 'EnhancedDiff'
+Plugin 'rking/ag.vim'
+Plugin 'closetag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'chrisbra/vim-diff-enhanced'
+Plugin 'jQuery'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'tyru/open-browser.vim'
+Plugin 'perl_h2xs'
+Plugin 'jlemetay/permut'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'godlygeek/tabular'
+Plugin 'edkolev/promptline.vim'
+Plugin 'restore_view.vim'
+Plugin 'SuperTab'
+Plugin 'AndrewRadev/switch.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Tabmerge'
+Plugin 'majutsushi/tagbar'
+Plugin 'taglist.vim'
+Plugin 'Toggle'
+Plugin 'TWiki-Syntax'
+"Plugin 'SirVer/ultisnips'
+Plugin 'mbbill/undotree'
+Plugin 'Shougo/unite.vim'
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'nvie/vim-flake8'
+Plugin 'vitalk/vim-lesscss.git'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'kurkale6ka/vim-pairs'
+Plugin 'vim-perl/vim-perl'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-scriptease'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'vimwiki'
+Plugin 'whitespace-syntax-highlight'
+Plugin 'xml.vim'
+Plugin 'xmledit'
+Plugin 'xslt'
+Plugin 'yowish'
+"Plugin 'MRU'
+
+" My vim plugin for PKGBUILD
+if g:UNIX
+    Plugin 'dracorp/vim-pkgbuild'
+endif
+" installed manualy or by script bin/add-vba-bundle.sh
+" https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates
+Plugin 'file_templates', {'pinned': 1}
+
+" Windows
+if g:MSWIN
+    Plugin 'maximize.dll'
+endif
+call vundle#end()
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on                       " enable detection, plugins and indenting in one step
+
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch                                " highlight search
 endif
 
 " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
-" if has("win32")
+" if g:MSWIN
 "     behave mswin
 " else
     behave xterm
@@ -161,7 +285,7 @@ scriptencoding utf-8
 set fenc=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
-"if has("win32")
+"if g:MSWIN
 "    Problem with function and command which operates on diacriticals!
 "    set encoding=cp1250
 "else
@@ -396,7 +520,7 @@ if has("autocmd")
         " general help can still be entered manually, with :h
         autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
         autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-        autocmd filetype vim nnoremap <buffer> <F12> :source %<CR>
+"        autocmd filetype vim nnoremap <buffer> <F12> :source %<CR>
     augroup end "}}}
 
     augroup html_files "{{{
@@ -431,9 +555,9 @@ if has("autocmd")
             let b:closetag_html_style=1
             setlocal foldmethod=syntax
             " keymap
-            let l:filename = expand("%:r")
-            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
-            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
+"            let l:filename = expand("%:r")
+"            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
+"            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
         endfun
     augroup end " }}}
 
@@ -580,13 +704,13 @@ if has("gui_running")
     noremap  <silent> <s-F3>       :silent browse confirm e<CR>
     inoremap  <silent> <s-F3>  <Esc>:silent browse confirm e<CR>
 
-    " toggle insert mode <--> 'normal mode with the <RightMouse>-key
+    " toggle insert mode  'normal mode with the <RightMouse>-key
     "nnoremap  <RightMouse> <Insert>
     "inoremap  <RightMouse> <ESC>
 
-    if has("win32")
+    if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
-    elseif has("unix")
+    elseif g:UNIX
         set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
     endif
 endif
@@ -599,6 +723,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " bundle/* {{{
 
+" vim-toggle {{{
+imap <C-T>:call Toggle()<CR>
+nmap <C-T>:call Toggle()<CR>
+vmap <C-T> <ESC>:call Toggle()<CR>
+"}}}
 " tagbar {{{
 nmap <F7> :TagbarToggle<CR>
 "}}}
@@ -633,14 +762,14 @@ let g:Vim_CreateMapsForHelp = 'yes'
 " jshint {{{
 let jshint2_command = '/home/piecia/opt/npm/jshint'
 "}}}
-"{{{ manpageview
+" manpageview {{{
 let $PAGER=''
 "}}}
 " lattex-support {{{
 let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
 let tlist_make_settings  = 'make;m:makros;t:targets'
 let tlist_tex_settings   = 'latex;s:Contents;g:Graphics;i:Listings;l:\label;r:\ref;p:\pageref;b:\bibitem'
-if has("unix")
+if g:UNIX
     let s:LATEX_pdf_viewer         = "evince"
 endif
 " }}}
@@ -721,11 +850,6 @@ nnoremap <F5> :UndotreeToggle<cr>
 " yaifa {{{
 let yaifa_max_lines = 512
 "}}}
-" Extra user or machine specific settings {{{
-if filereadable(vimrc_dir . "user.vim")
-    execute ":source " . vimrc_dir . "user.vim"
-endif
-" }}}
 " silver search|ag {{{
 if executable('ag')
   " Use Ag over Grep
@@ -733,5 +857,54 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+" }}}
+" NerdTree {{{
+map <F2> :NERDTreeToggle<CR>
+" }}}
+" python-mode {{{
+" Activate rope
+" Keys:
+" K             Show python docs
+" <Ctrl-Space>  Rope autocomplete
+" <Ctrl-c>g     Rope goto definition
+" <Ctrl-c>d     Rope show documentation
+" <Ctrl-c>f     Rope find occurrences
+" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
+" [[            Jump on previous class or function (normal, visual, operator modes)
+" ]]            Jump on next class or function (normal, visual, operator modes)
+" [M            Jump on previous class or method (normal, visual, operator modes)
+" ]M            Jump on next class or method (normal, visual, operator modes)
+let g:pymode_rope = 1
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
+"Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" Enable breakpoints plugin
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+let g:pymode_folding = 0
+" }}}
+" Extra user or machine specific settings {{{
+if filereadable(vimrc_dir . "user.vim")
+    execute ":source " . vimrc_dir . "user.vim"
 endif
 " }}}

@@ -1,0 +1,1 @@
+astronaut.vba: call delete('/home/piecia/.vim/bundle/astronaut/colors/astronaut.vim')

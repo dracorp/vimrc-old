@@ -16,25 +16,27 @@ like it.  To do so, please do the following:
 
     `wget -qO - http://github.com/dracorp/vimrc/tarball/master | tar -xzvf -`
 
-3. Change directory:
+I've migrated from pathogen to [Vundle](https://github.com/gmarik/Vundle.vim) so you can skip next steps or no.
+
+2. Change directory:
 
     `cd vimrc`
 
-4. Fetch submodules:
+3. Fetch submodules:
 
     `git submodule init`
 
     `git submodule update`
 
-5. Move the content repository to the directory:
+4. Move the content repository to the directory:
 
     * *vimfiles* under Windows (under user's home directory or vim's installation directory)
     * *.vim* under Linux
     * see output command `:version` in vim
 
-6. Check vimrc file and variable 'vimrc_dir'. I don't use path ~/vimfiles in runtimepath under Windows OS
+5. Check vimrc file and variable 'vimrc_dir'. I don't use path ~/vimfiles in runtimepath under Windows OS
 
-7. In future you'll be able to upgrade submodules:
+6. In future you'll be able to upgrade submodules:
 
     `git submodule foreach git pull origin master`
 
@@ -42,7 +44,7 @@ like it.  To do so, please do the following:
 
     `git submodule update --init` when a new module arrives
 
-8. If you have a problem with a plugin then add line to the problematic submodules in _.gitmodules_:
+7. If you have a problem with a plugin then add line to the problematic submodules in _.gitmodules_:
 
     `ignore = dirty`
 
