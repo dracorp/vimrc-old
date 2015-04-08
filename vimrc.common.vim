@@ -23,23 +23,45 @@ autocmd!
 " the ~/.vim/bundle directory
 filetype off                                    " force reloading *after* pathogen loaded
 
-" pathogen
+"-------------------------------------------------------------------------------
+" Pathogen
+"-------------------------------------------------------------------------------
 "call pathogen#infect()
 "call pathogen#helptags()                        " slow start and generate tags
-" vundle
-"set the runtime path to include Vundle and initialize
+
+"-------------------------------------------------------------------------------
+" Vundle
+"-------------------------------------------------------------------------------
+" Setting up Vundle - the vim plugin bundler http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/ {{{
+let iCanHazVundle   = 1
+let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
+let s:vundle_readme = s:vundle_home . '/README.md'
+let s:bundle_dir      = vimrc_dir . 'bundle'
 if g:UNIX
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+    let s:path = ''
 elseif g:MSWIN
-    " vim's directory
-    let &rtp .= ',' . vimrc_dir . 'bundle\Vundle.vim'
-    let path=vimrc_dir . 'bundle'
-    call vundle#begin(path)
+    let s:path = s:bundle_dir
 endif
+if !filereadable(s:vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    if !isdirectory(s:bundle_dir)
+        if g:UNIX
+            silent !mkdir -p s:bundle_dir
+        elseif g:MSWIN
+            silent !mkdir s:bundle_dir
+        endif
+    endif
+    execute system('git clone https://github.com/gmarik/vundle ' . s:vundle_home)
+    let iCanHazVundle=0
+endif "}}}
+"set the runtime path to include Vundle and initialize
+let &rtp .= ',' . s:vundle_home
+call vundle#begin(s:path)
+" manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-" base
+" base plugins
 Plugin 'xolox/vim-misc'
 Plugin 'Shougo/vimproc.vim'
 
@@ -74,13 +96,14 @@ Plugin 'c.vim'
 Plugin 'latex-support.vim'
 "Plugin 'doxygen-support.vim'
 
-" git
+" git and other vcs
 Plugin 'int3/vim-extradite'
 Plugin 'tpope/vim-fugitive'
 Plugin 'WolfgangMehner/git-support'
 Plugin 'idanarye/vim-merginal'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'sjl/splice.vim'
+Plugin 'sjl/splice.vim'                         " replace threesome.vim
+"Plugin 'vcscommand.vim'                        " mapping conflict
 
 " colorschemes
 Plugin 'blueshirts/darcula'
@@ -148,21 +171,24 @@ if g:MSWIN
     Plugin 'maximize.dll'
 endif
 call vundle#end()
+
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    ":PluginInstall
+endif
 " Enable file type detection. Use the default filetype settings.
 " Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on                       " enable detection, plugins and indenting in one step
+filetype plugin indent on                       " required by Vundle, pathogen etc
+" end of Vundle }}}
 
 if &t_Co > 2 || has("gui_running")
     syntax on
-    set hlsearch                                " highlight search
+    set hlsearch
 endif
 
 " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
-" if g:MSWIN
-"     behave mswin
-" else
-    behave xterm
-" endif
+behave xterm
 
 " set mousemodel=extend           "fast search by mouse
 
@@ -721,8 +747,9 @@ endif
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-" bundle/* {{{
-
+"-------------------------------------------------------------------------------
+" bundle - Vim's plugins
+"-------------------------------------------------------------------------------
 " vim-toggle {{{
 imap <C-T>:call Toggle()<CR>
 nmap <C-T>:call Toggle()<CR>
