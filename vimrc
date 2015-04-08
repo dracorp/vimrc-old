@@ -1,9 +1,12 @@
 " vi: ft=vim
 " $HOME - user's home directory
 " $VIM - vim's installation direcotry
-if has('unix')
+let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
+let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
+
+if g:UNIX
     let  vimrc_dir = $HOME . '/.vim/'
-elseif has('win32')
+elseif g:MSWIN
     " configuration held in user's home directory
     "let  vimrc_dir = $HOME . '/vimfiles/'
 

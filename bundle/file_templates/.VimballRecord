@@ -1,0 +1,1 @@
+file_templates.vba: call delete('/home/piecia/.vim/bundle/file_templates/plugin/file_templates.vim')|call delete('/home/piecia/.vim/bundle/file_templates/templates/example.h')|call delete('/home/piecia/.vim/bundle/file_templates/templates/example.c')
