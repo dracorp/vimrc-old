@@ -7,12 +7,16 @@ let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
 if g:UNIX
     let  vimrc_dir = $HOME . '/.vim/'
 elseif g:MSWIN
-    " configuration held in user's home directory
-    "let  vimrc_dir = $HOME . '/vimfiles/'
-
-    " configuration held in vim's installation directory
-    let vimrc_dir = $VIM . '\vimfiles\'
-    set runtimepath-=~/vimfiles
+    " change '\' to '/' to avoid interpretation as escape character
+    if match( substitute( expand("<sfile>"), '\', '/', 'g' ),
+        \   substitute( expand("$HOME"),   '\', '/', 'g' ) ) == 0 
+        " configuration held in user's home directory
+        let vimrc_dir = $HOME . '\vimfiles\'
+    else
+        " configuration held in vim's installation directory
+        let vimrc_dir = $VIM . '\vimfiles\'
+        set runtimepath-=~/vimfiles
+    endif
 
     " default file format for all OS
     set fileformat=unix
