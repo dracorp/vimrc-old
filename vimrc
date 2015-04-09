@@ -9,7 +9,7 @@ if g:UNIX
 elseif g:MSWIN
     " change '\' to '/' to avoid interpretation as escape character
     if match( substitute( expand("<sfile>"), '\', '/', 'g' ),
-        \   substitute( expand("$HOME"),   '\', '/', 'g' ) ) == 0 
+        \   substitute( expand("$HOME"),   '\', '/', 'g' ) ) == 0
         " configuration held in user's home directory
         let vimrc_dir = $HOME . '\vimfiles\'
     else
