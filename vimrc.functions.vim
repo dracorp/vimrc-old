@@ -166,14 +166,8 @@ set foldtext=MyFoldText_wikia()
 "}}}
 command! -nargs=0 Trim :%s/\s\+$//
 function! UsunDiakrytyki() "{{{
-    echo a:type
+    :%s/[ąĄćĆęĘłŁńŃóÓśŚźŹżŻ]/\={'ą':'a','Ą':'A','ć':'c','Ć':'C','ę':'e','Ę':'E','ł':'l','Ł':'L','ń':'n','Ń':'N','ó':'o','Ó':'O','ś':'s','Ś':'S','ź':'z','Ź':'Z','ż':'z','Ż':'Z'}[submatch(0)]/g
     return
-    echo a:firstline
-    echo a:lastline
-    let mode = mode()
-    echo mode
-    return
-
     if mode ==? 'v' || mode ==? ''
         exe "keepj '<,'>"
         let l:begline  = line("'<")
@@ -187,6 +181,6 @@ function! UsunDiakrytyki() "{{{
         let l:endline = '$'
     endif
 
-    echo l:begline . "," . l:endline . "s/[ąĄćĆęĘłŁńŃóÓśŚźŹżŻ]/\={'ą':'a','Ą':'A','ć':'c','Ć':'C','ę':'e','Ę':'E','ł':'l','Ł':'L','ń':'n','Ń':'N','ó':'o','Ó':'O','ś':'s','Ś':'S','ź':'z','Ź':'Z','ż':'z','Ż':'Z'}[submatch(0)]/g"
 endfunction
 command! -range -nargs=0 UsunDiakrytyki call UsunDiakrytyki() "}}}
+
