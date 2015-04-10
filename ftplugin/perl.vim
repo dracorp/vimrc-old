@@ -26,5 +26,5 @@ function GetPerlFold()
     return "="
   endif
 endfunction
-"setlocal foldexpr=GetPerlFold()
+setlocal foldexpr=GetPerlFold()
 "setlocal foldmethod=expr
