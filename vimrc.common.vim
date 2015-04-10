@@ -183,16 +183,6 @@ endif
 " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
 behave xterm
 
-" Key mapping {{{
-if filereadable(vimrc_dir . "vimrc.keys.vim")
-    execute ":source" vimrc_dir . "vimrc.keys.vim"
-endif
-" }}}
-" Some functions {{{
-if filereadable(vimrc_dir . "vimrc.functions.vim")
-    execute ":source" vimrc_dir . "vimrc.functions.vim"
-endif
-" }}}
 " Common abbreviations / misspellings {{{
 if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
@@ -398,6 +388,7 @@ let g:html_use_css = "1"
 let g:use_xhtml = 1000
 " }}}
 " Filetype specific handling {{{
+" only do this part when compiled with support for autocommands
 if has("autocmd")
     augroup invisible_chars "{{{
         au!
@@ -1061,9 +1052,6 @@ imap <C-T>:call Toggle()<CR>
 nmap <C-T>:call Toggle()<CR>
 vmap <C-T> <ESC>:call Toggle()<CR>
 "}}}
-" tagbar {{{
-nmap <F7> :TagbarToggle<CR>
-"}}}
 " vim-airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -1074,13 +1062,18 @@ let g:airline_powerline_fonts = 1
 set wildignore+=*.7z
 " }}}
 " syntastic {{{
+" disable perlcritic
+"let g:loaded_syntastic_perl_perlcritic_checker = 1
 let g:syntastic_enable_perl_checker = 1
+"let g:syntastic_perl_checkers ??
+"let g:syntastic_perl_perlcritic_thres = 5 "default 5
+"let g:syntastic_perl_perlcritic_thres = string "default empty
 "}}}
 " perl-support {{{
 " let g:Perl_TemplateOverwrittenMsg= 'no'
 let g:Perl_PerlcriticSeverity = 5
 let g:Perl_PerlcriticVerbosity = 9
-" sprawdzanie składni pod
+" sprawdzanie skladni pod
 let g:Perl_PodcheckerWarnings = 'yes'
 " }}}
 " bash-support {{{
@@ -1122,14 +1115,13 @@ let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
 " vim-session {{{
 let g:session_autosave = 'no'
 " }}}
-" TagList settings {{{
+" TagList {{{
  noremap <silent> <F11>       :TlistToggle<CR>
 inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
 
 let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
-" nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
-" nnoremap <leader>L :TlistClose<CR>
 
+let Tlist_Enable_Fold_Column=0
 " quit Vim when the TagList window is the last open window
 let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
 let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
@@ -1146,15 +1138,27 @@ let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
 " the default ctags in /usr/bin on the Mac is GNU ctags, so change it to the
 " exuberant ctags version in /usr/local/bin
 " let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+set tags=./tags;/,tags;/
 
 " show function/method prototypes in the list
 let Tlist_Display_Prototype=1
 
 " don't show scope info
-let Tlist_Display_Tag_Scope=0
+let Tlist_Display_Tag_Scope=1
 
-" show TagList window on the right
-let Tlist_Use_Right_Window=1
+" show TagList window on the left
+let Tlist_Use_Left_Window=1
+" }}}
+" Tagbar {{{
+ noremap <silent> <F12>       :TagbarToggle<CR>
+inoremap <silent> <F12>  <C-C>:TagbarToggle<CR>
+let g:tagbar_ctags_bin='/u/U537501/local/bin/ctags'
+let g:tagbar_left = 1
+let g:tagbar_sort = 0
+"let g:tagbar_width = 30
+"let g:tagbar_vertical = 30
+let g:tagbar_autofocus = 1
+
 " }}}
 " xml_completion {{{
 let g:xmlSubelements = "yes"
@@ -1164,15 +1168,20 @@ nnoremap <c-t> :Switch<cr>
 let g:switch_custom_definitions =
     \ [
     \   ['Y', 'N'],
+    \   ['y', 'n'],
     \   ['yes', 'no'],
     \   ['1', '0'],
     \   ['on', 'off'],
-    \   ['enable', 'disable']
+    \   ['ON', 'OFF'],
+    \   ['enable', 'disable'],
+    \   ['ENABLE', 'DISABLE'],
+    \   ['true', 'false'],
+    \   ['TRUE', 'FALSE']
     \ ]
 " }}}
 " restore_view, @see also save/restore for au {{{
 set viewoptions=cursor,folds,slash,unix
-" let g:skipview_files = ['*\vim']
+let g:skipview_files = ['*\.vim']
 " }}}
 " mru {{{
 let MRU_File = vimrc_dir . 'vim_mru_files'
@@ -1183,6 +1192,13 @@ nnoremap <F5> :UndotreeToggle<cr>
 " yaifa {{{
 let yaifa_max_lines = 512
 "}}}
+" promptline {{{
+let g:promptline_preset = {
+    \'y' : [ promptline#slices#vcs_branch({'svn': 1}) ]}
+" }}}
+" gitgutter {{{
+let g:gitgutter_sign_removed_first_line = "^_"
+" }}}
 " silver search|ag {{{
 if executable('ag')
   " Use Ag over Grep
