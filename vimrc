@@ -96,6 +96,11 @@ Plugin 'SudoEdit.vim'
 Plugin 'vis'
 Plugin 'astronaut', {'pinned': 1}
 
+" xolox
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-shell'
+Plugin 'xolox/vim-reload'
+
 " Python
 if has('python') || has('python3')
     Plugin 'davidhalter/jedi-vim'
@@ -120,11 +125,14 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/splice.vim'                         " replace threesome.vim
 "Plugin 'vcscommand.vim'                        " mapping conflict
 
-" colorschemes and 
+" colorschemes and
 Plugin 'blueshirts/darcula'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'jszakmeister/vim-togglecursor'
+
+" for dev
+Plugin 'xolox/vim-easytags'
 
 " Others
 Plugin 'EnhancedDiff'
@@ -221,7 +229,7 @@ set shiftround                                  " use multiple of shiftwidth whe
 set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
 set autoindent                                  " always set autoindenting on
 set copyindent                                  " copy the previous indentation on autoindenting
-set number                                      " show line numbers
+"set number                                      " show line numbers
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
 set smartcase                                   " ignore case if search pattern is all lowercase,
@@ -367,33 +375,13 @@ set noerrorbells                " don't beep
 set showcmd                     " show (partial) command in the last line of the screen
                                 " this also shows visual selection info
 " }}}
-" Some autocommands {{{
-if has("autocmd")
-    " Automatyczna zmiana katalogu do tego, w ktorym jest aktualnie edytowany plik.
-    " Przydatne gdy chcemy otworzyc inny z tego samego katalogu
-    " http://vim.sourceforge.net/tip_view.php?tip_id=101
-    " mozna tez uzyc set acd, ale ta opcja nie dziala z pewnymi wtyczkami, zobacz :he acd
-    autocmd BufEnter * :cd %:p:h
-
-    " The current directory is the directory of the file in the current window.
-    autocmd BufEnter * :lchdir %:p:h
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-
- endif " has("autocmd")
-" }}}
 " Spell {{{
 set spelllang=pl,en
 " }}}
 " Highlight & Colorscheme {{{
 let c_comment_strings=1                         " highlight strings inside C comments
 
+let g:solarized_termcolors=256
 if has('gui_running')
     colorscheme solarized
 else
@@ -410,6 +398,29 @@ let g:use_xhtml = 1000
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
+    augroup change_dir "{{{
+        au!
+        " Automatyczna zmiana katalogu do tego, w ktorym jest aktualnie edytowany plik.
+        " Przydatne gdy chcemy otworzyc inny z tego samego katalogu
+        " http://vim.sourceforge.net/tip_view.php?tip_id=101
+        " mozna tez uzyc set acd, ale ta opcja nie dziala z pewnymi wtyczkami, zobacz :he acd
+"        autocmd BufEnter * :cd %:p:h
+
+        " The current directory is the directory of the file in the current window.
+        autocmd BufEnter * :lchdir %:p:h
+    augroup end "}}}
+
+    augroup jump_last_position "{{{
+        au!
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+    augroup end "}}}
+
     augroup invisible_chars "{{{
         au!
 
@@ -904,7 +915,7 @@ nnoremap :g/ :g/\v
 nnoremap :g// :g//
 " paste mode, where you can paste mass data
 " that won't be autoindented
-set pastetoggle=<F6>
+set pastetoggle=<S-F6>
 " open file under cursors in a new window (a vertical split)
 map <c-w>F :vertical wincmd f<CR>
 
@@ -1104,7 +1115,7 @@ let g:Vim_CreateMapsForHelp = 'yes'
 " let g:C_TemplateOverwrittenMsg= 'no'
 " }}}
 " jshint {{{
-let jshint2_command = '/home/piecia/opt/npm/jshint'
+"let jshint2_command = '/home/piecia/opt/npm/jshint' " moved to user.vim
 "}}}
 " manpageview {{{
 let $PAGER=''
@@ -1270,6 +1281,17 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " Don't autofold code
 let g:pymode_folding = 0
+" }}}
+" {{{ Solarized Colorscheme Config
+let g:solarized_underline=0    "default value is 1
+let g:solarized_italic=0    "default value is 1
+let g:solarized_termcolors=256    "default value is 16
+set background=dark
+"let g:solarized_termtrans=0
+"let g:solarized_degrade=0
+"let g:solarized_bold=1
+"let g:solarized_diffmode="normal"
+"let g:solarized_hitrail=0
 " }}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
