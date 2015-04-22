@@ -147,6 +147,7 @@ Plugin 'chrisbra/vim-diff-enhanced'
 Plugin 'jQuery'
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'scrooloose/nerdtree.git'
+Plugin 'netrw.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'perl_h2xs'
 Plugin 'jlemetay/permut'
@@ -623,7 +624,7 @@ endif
 if has("gui_running")
     " Black, Dark, desert, grb256, moria, ron, solarized, torte
     set mousehide                                   " Hide the mouse when typing text
-    set mouse=v                                     " normal(n) + visual(v) + insert(i) + comman line(c)
+    set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
                                                     " help(h) - all previous + help files
                                                     " a - all previous
 
