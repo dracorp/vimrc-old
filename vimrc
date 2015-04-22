@@ -10,6 +10,8 @@
 "
 " To test timing startup
 "   vim --startuptime start.log
+" Be more verbose
+"set verbose=1
 "===================================================================================
 
 " Use Vim settings, rather then Vi settings.
@@ -98,7 +100,7 @@ Plugin 'astronaut', {'pinned': 1}
 
 " xolox
 Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-shell'
+"Plugin 'xolox/vim-shell'
 Plugin 'xolox/vim-reload'
 
 " Python
@@ -125,14 +127,15 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/splice.vim'                         " replace threesome.vim
 "Plugin 'vcscommand.vim'                        " mapping conflict
 
-" colorschemes and
+" colorschemes and syntax
 Plugin 'blueshirts/darcula'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'jszakmeister/vim-togglecursor'
+Plugin 'nginx.vim'
 
 " for dev
-Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-easytags'
 
 " Others
 Plugin 'EnhancedDiff'
@@ -645,6 +648,8 @@ endif
 " insert mode
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" for easytags, Tlist etc
+set tags=./tags;/,tags;/
 
 "-------------------------------------------------------------------------------
 " Functions
@@ -1167,7 +1172,6 @@ let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
 " the default ctags in /usr/bin on the Mac is GNU ctags, so change it to the
 " exuberant ctags version in /usr/local/bin
 " let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-set tags=./tags;/,tags;/
 
 " show function/method prototypes in the list
 let Tlist_Display_Prototype=1
@@ -1181,13 +1185,11 @@ let Tlist_Use_Left_Window=1
 " Tagbar {{{
  noremap <silent> <F12>       :TagbarToggle<CR>
 inoremap <silent> <F12>  <C-C>:TagbarToggle<CR>
-let g:tagbar_ctags_bin='/u/U537501/local/bin/ctags'
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
 "let g:tagbar_width = 30
 "let g:tagbar_vertical = 30
 let g:tagbar_autofocus = 1
-
 " }}}
 " xml_completion {{{
 let g:xmlSubelements = "yes"
@@ -1282,7 +1284,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 0
 " }}}
-" {{{ Solarized Colorscheme Config
+" Solarized Colorscheme Config {{{
 let g:solarized_underline=0    "default value is 1
 let g:solarized_italic=0    "default value is 1
 let g:solarized_termcolors=256    "default value is 16
@@ -1292,6 +1294,15 @@ set background=dark
 "let g:solarized_bold=1
 "let g:solarized_diffmode="normal"
 "let g:solarized_hitrail=0
+" }}}
+" easytags {{{
+let g:easytags_cmd = '/usr/bin/ctags'
+let g:easytags_async = 'true'
+let g:easytags_dynamic_files = 1
+let g:easytags_dynamic_files = 1
+let g:easytags_auto_highlight = 0
+let g:easytags_autorecurse = 1
+let g:easytags_python_enabled = 1
 " }}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
