@@ -128,10 +128,8 @@ Plugin 'sjl/splice.vim'                         " replace threesome.vim
 "Plugin 'vcscommand.vim'                        " mapping conflict
 
 " colorschemes and syntax
-Plugin 'blueshirts/darcula'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'nginx.vim'
 Plugin 'Primary'
 
@@ -139,6 +137,7 @@ Plugin 'Primary'
 "Plugin 'xolox/vim-easytags'
 
 " Others
+Plugin 'matchit.zip'
 Plugin 'EnhancedDiff'
 Plugin 'rking/ag.vim'
 Plugin 'closetag.vim'
@@ -367,7 +366,7 @@ let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
 
 set nobackup                    " do not keep backup files, it's 70's style cluttering
 set noswapfile                  " do not write annoying intermediate swap files,
-"set directory=~/tmp,/tmp
+set directory=.,~/tmp
                                 " store swap files in one of these directories
                                 "    (in case swapfile is ever turned on)
 set viminfo='20,\"80            " read/write a .viminfo file, don't store more
@@ -394,6 +393,7 @@ else
 endif
 if &diff
     colorscheme xterm16
+"    set diffopt+=iwhite
 endif
 " }}}
 " use css while export to html {{{
@@ -1102,15 +1102,16 @@ set wildignore+=*.7z
 "let g:loaded_syntastic_perl_perlcritic_checker = 1
 let g:syntastic_enable_perl_checker = 1
 "let g:syntastic_perl_checkers ??
-"let g:syntastic_perl_perlcritic_thres = 5 "default 5
+let g:syntastic_perl_perlcritic_thres = 1 "default 5
 "let g:syntastic_perl_perlcritic_thres = string "default empty
 "}}}
 " perl-support {{{
 " let g:Perl_TemplateOverwrittenMsg= 'no'
-let g:Perl_PerlcriticSeverity = 5
+let g:Perl_PerlcriticSeverity = 1
 let g:Perl_PerlcriticVerbosity = 9
 " sprawdzanie skladni pod
 let g:Perl_PodcheckerWarnings = 'yes'
+let g:Perl_LocalTemplateFile = vimrc_dir . 'perl-support/templates/Templates'
 " }}}
 " bash-support {{{
 " let g:BASH_TemplateOverwrittenMsg = 'no'

@@ -24,10 +24,10 @@ $<CURSOR> =~ s/<+pattern+>/<+replacement+>/xm
 == Idioms.translate == map:it, sc:t, insert ==
 $<CURSOR> =~ tr/<+searchlist+>/<+replacementlist+>/
 == Idioms.subroutine == map:isu, sc:s ==
-sub |?FUNCTION_NAME| { #{{{
+sub |?FUNCTION_NAME| {
     my ( $par1<CURSOR> ) = @_;
 <SPLIT> return ;
-} # end sub |FUNCTION_NAME| }}}
+} ## --- end sub |FUNCTION_NAME|
 == Idioms.print == map:ip, sc:p, insert ==
 print "<CURSOR>\n";
 == Idioms.open input file == map:ii, sc:i ==

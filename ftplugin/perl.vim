@@ -1,7 +1,7 @@
 "au BufWritePost *.pl,*.pm !perl -wcIlib %
 setlocal number
 setlocal expandtab
-let perl_fold=1
+"let perl_fold=1
 function! GetPerlFold()
   if getline(v:lnum) =~ '^\s*sub\s'
     return ">1"
