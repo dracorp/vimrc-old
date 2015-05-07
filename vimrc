@@ -132,6 +132,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'nginx.vim'
 Plugin 'Primary'
+Plugin 'jiangxincode/mpi.vim'
 
 " for dev
 "Plugin 'xolox/vim-easytags'
