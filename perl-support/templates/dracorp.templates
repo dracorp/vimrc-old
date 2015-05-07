@@ -1,3 +1,13 @@
+== Idioms.subroutine == map:isu, sc:s ==
+sub |?FUNCTION_NAME| { #{{{
+    my ( $param<CURSOR> ) = @ARG;
+<SPLIT> return ;
+} # end sub |FUNCTION_NAME| }}}
+== Idioms.class_subroutine == map:isc, sc:s ==
+sub |?FUNCTION_NAME| { #{{{
+    my ( $self<CURSOR> ) = @ARG;
+<SPLIT> return ;
+} # end sub |FUNCTION_NAME| }}}
 == Comments.file description pl == map:chpl, sc:d, start, noindent ==
 #!/usr/bin/env perl
 #===============================================================================
@@ -10,7 +20,6 @@
 
 use strict;
 use warnings;
-use utf8;
 use Carp;
 use English qw( -no_match_vars );
 
