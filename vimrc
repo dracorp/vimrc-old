@@ -133,12 +133,14 @@ Plugin 'git-flow-format'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'nginx.vim'
-Plugin 'Primary'
+Plugin 'primary.vim'
 Plugin 'jiangxincode/mpi.vim'
 
 " for dev
 "Plugin 'xolox/vim-easytags'
 Plugin 'vim-javacomplete2'
+Plugin 'Vim-R-plugin'
+Plugin 'python_fold'
 
 " Others
 Plugin 'matchit.zip'
