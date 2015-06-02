@@ -141,6 +141,7 @@ Plugin 'jiangxincode/mpi.vim'
 Plugin 'vim-javacomplete2'
 Plugin 'Vim-R-plugin'
 Plugin 'python_fold'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Others
 Plugin 'matchit.zip'
