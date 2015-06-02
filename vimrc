@@ -106,6 +106,7 @@ Plugin 'xolox/vim-reload'
 " Python
 if has('python') || has('python3')
     Plugin 'davidhalter/jedi-vim'
+    Plugin 'betterga'
 endif
 Plugin 'klen/python-mode'
 
@@ -126,6 +127,7 @@ Plugin 'idanarye/vim-merginal'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/splice.vim'                         " replace threesome.vim
 "Plugin 'vcscommand.vim'                        " mapping conflict
+Plugin 'git-flow-format'
 
 " colorschemes and syntax
 Plugin 'altercation/vim-colors-solarized'
@@ -136,6 +138,7 @@ Plugin 'jiangxincode/mpi.vim'
 
 " for dev
 "Plugin 'xolox/vim-easytags'
+Plugin 'vim-javacomplete2'
 
 " Others
 Plugin 'matchit.zip'
@@ -186,6 +189,7 @@ Plugin 'xmledit'
 Plugin 'xslt'
 Plugin 'yowish'
 "Plugin 'MRU'
+Plugin 'airblade/vim-rooter'
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -1308,6 +1312,10 @@ let g:easytags_auto_highlight = 0
 let g:easytags_autorecurse = 1
 let g:easytags_python_enabled = 1
 " }}}
+"{{{ vim-javacomplete2
+autocmd FileType java set omnifunc=javacomplete#Complete
+autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
+"}}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
