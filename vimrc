@@ -111,12 +111,12 @@ endif
 Plugin 'klen/python-mode'
 
 " Fritz Mehner
+Plugin 'Vim-support'
 Plugin 'awk-support.vim'
 Plugin 'bash-support.vim'
 Plugin 'perl-support.vim'
-Plugin 'Vim-support'
 Plugin 'c.vim'
-Plugin 'latex-support.vim'
+"Plugin 'latex-support.vim'
 "Plugin 'doxygen-support.vim'
 
 " git and other vcs
@@ -1113,12 +1113,14 @@ let g:Perl_LocalTemplateFile = vimrc_dir . 'perl-support/templates/Templates'
 " }}}
 " bash-support {{{
 " let g:BASH_TemplateOverwrittenMsg = 'no'
+let g:Bash_LocalTemplateFile = vimrc_dir . 'bash-support/templates/Templates'
 " }}}
 " vim-support {{{
 let g:Vim_CreateMapsForHelp = 'yes'
 "}}}
 " c-support {{{
 " let g:C_TemplateOverwrittenMsg= 'no'
+let g:C_LocalTemplateFile = vimrc_dir . 'c-support/templates/Templates'
 " }}}
 " jshint {{{
 "let jshint2_command = '/home/piecia/opt/npm/jshint' " moved to user.vim
