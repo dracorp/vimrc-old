@@ -192,7 +192,7 @@ Plugin 'xmledit'
 Plugin 'xslt'
 Plugin 'yowish'
 "Plugin 'MRU'
-Plugin 'airblade/vim-rooter'
+"Plugin 'airblade/vim-rooter' "conflict with map
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -262,8 +262,8 @@ set nolist                                      " don't show invisible character
 set mouse=a                                     " enable using the mouse if terminal emulator
                                                 "    supports it (xterm does)
 
-" automatyczne formatowanie, gq je wywołuje, domyślne wartości: formatoptions=croql :help fo-table
-set formatoptions+=1            " 1 przenosi ostatni, pojedynczy znak, taki jak i a z w, do następnej linii.
+" automatyczne formatowanie, gq je wywoluje, domyslne wartosci: formatoptions=croql :help fo-table
+set formatoptions+=1            " 1 przenosi ostatni, pojedynczy znak, taki jak i a z w, do nastepnej linii.
 set formatoptions+=t            " t automatyczne zwijanie do textwidth
 set formatoptions-=c            " c automatyczne zwijanie do textwidth komentarzy
 
@@ -277,10 +277,10 @@ set clipboard=unnamed           " normal OS clipboard interaction
 " Various settings {{{
 set linebreak
 set smartindent                                 " smart autoindenting when starting a new line
-set wrapscan                                    " przy wyszukiwaniu będzie zaczynał od początku pliku, przy no tylko do końca
+set wrapscan                                    " przy wyszukiwaniu bedzie zaczynal od poczatku pliku, przy no tylko do konca
 "set autoread                                    " read open files again when changed outside Vim
 set autowrite                                   " write a modified buffer on each :next , ...
-" definiuje które klawisze przenoszą kursor do nowej linii gdy jest na końcu/początku lini
+" definiuje ktore klawisze przenosza kursor do nowej linii gdy jest na koncu/poczatku lini
 " backspace, space, <left>, <right> w Normal, i w Insert
 set whichwrap=b,s,<,>,[,],h,l
 set browsedir=current                           " which directory to use for the file browser
@@ -288,12 +288,12 @@ set complete+=k                                 " scan the files given with the 
 set mousehide                                   " Hide the mouse when typing text
 set popt=left:8pc,right:3pc                     " print options
 set ruler                                       " show the cursor position all the time
-set display+=lastline                           " Pokazuje na dole ostatnią linię?
-set so=3                                        " przy przewijaniu trzymaj się n lini od końca/początku ekranu
-set textwidth=0                                 " domyślna wartość: czasem wato ustawić szerokość ekranu na 78 kolumn
-set showbreak=+\                                " załamanie/wrap lini oznacza przez
+set display+=lastline                           " Pokazuje na dole ostatnia linie?
+set so=3                                        " przy przewijaniu trzymaj sie n lini od konca/poczatku ekranu
+set textwidth=0                                 " domyslna wartosc: czasem wato ustawic szerokosc ekranu na 78 kolumn
+set showbreak=+\                                " zalamanie/wrap lini oznacza przez
 
-set modeline                                    " modeline to komendy dla vima w komentarzach innych plików
+set modeline                                    " modeline to komendy dla vima w komentarzach innych plikow
 "set ttyfast                                     " always use a fast terminal
 set nocursorline                                " underline the current line, for quick orientation
 " Large file when syntax on
@@ -303,7 +303,7 @@ set synmaxcol=500
 set splitbelow                                  " command :sp put a new window below the active
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
-set tildeop                                     " Tylda(~) robi za operator, można teraz używać jej np. tak: ~w ~~
+set tildeop                                     " Tylda(~) robi za operator, mozna teraz uzywac jej np. tak: ~w ~~
 "set iskeyword+=-,,                              " which char make a word
 " }}}
 " Folding rules {{{
@@ -342,17 +342,17 @@ set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-1
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
 " UTF-16le: FF FE
-" 'termencoding' jest zestawem znaków dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
-" 'printencoding' jest zestawem znaków dla drukarki, jeśli oba +printer i +postscript są wkompilowane.
-" Konwersja przebiega następująco, jeśli zestawy znaków różnią się a metoda konwersji jest znana:
+" 'termencoding' jest zestawem znakow dla klawiatury, oraz (tylko w konsolowym Vimie) dla ekranu.
+" 'printencoding' jest zestawem znakow dla drukarki, jesli oba +printer i +postscript sa wkompilowane.
+" Konwersja przebiega nastepujaco, jesli zestawy znakow roznia sie a metoda konwersji jest znana:
 "    * 'fileencoding' na 'encoding' podczas czytania z dysku
 "    * 'termencoding' na 'encoding' podczas wpisywania z klawiatury
-"    * (tylko w konsolowym Vimie): 'encoding' na 'termencoding' podczas wyświetlania
+"    * (tylko w konsolowym Vimie): 'encoding' na 'termencoding' podczas wyswietlania
 "    * 'encoding' na 'printencoding' podczas drukowania przez PostScript
 "    * 'encoding' na 'fileencoding' podczas zapisu na dysk
-" Użycie ":w ++enc=XXX" nie zmienia zachowania domyślnego (ang. ulterior?) zapisu.
-" Użycie 'fileencoding' (które lepiej zmieniać przez ":setlocal" niż ":set") zmienia zachowanie zapisu.
-" fileencodings różni się od fileencoding tym, że ustawia domyślny zapis dla wszystkich plików.
+" Uzycie ":w ++enc=XXX" nie zmienia zachowania domyslnego (ang. ulterior?) zapisu.
+" Uzycie 'fileencoding' (ktore lepiej zmieniac przez ":setlocal" niz ":set") zmienia zachowanie zapisu.
+" fileencodings rozni sie od fileencoding tym, ze ustawia domyslny zapis dla wszystkich plikow.
 " }}}
 " Vim behaviour {{{
 "set hidden                                      " hide buffers instead of closing them this
@@ -704,12 +704,12 @@ function! QuoteInsertionWrapper (quote) "{{{
 	end
 endfunction " }}}
 function! s:Tag() "{{{
-" Tworzenie pliku znaczników
+" Tworzenie pliku znacznikow
    try
       exe "norm! \<c-]>"
    catch /^Vim([^)]\+):E433/
       call inputsave()
-      let l:kat = input("Katalog główny projektu:   ", ".")
+      let l:kat = input("Katalog glowny projektu:   ", ".")
       let l:opt = input("Opcje dla ctags:   ", "-R --fields=+S")
       call inputrestore()
       exe "!cd " . l:kat . " ; ctags " . l:opt . " ."
@@ -718,8 +718,8 @@ function! s:Tag() "{{{
 endfun "}}}
 function! InsertTabWrapper(direction) "{{{
 " Benoit Cerrina tab completion + A. addittion tip#102
-" Bardzo fajna funkcja umożliwiająca uzupełnianie wyrazów przez <Tab>
-" Jest wtyczka supertab realizująca to samo
+" Bardzo fajna funkcja umozliwiajaca uzupelnianie wyrazow przez <Tab>
+" Jest wtyczka supertab realizujaca to samo
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
         return "\<tab>"
@@ -740,7 +740,7 @@ function! ToggleHLSearch() "{{{
 endfunction
 "}}}
 function! CheckReadonly() "{{{
-" Nie pozwalaj na żadne modyfikacje plików tylko do odczytu.
+" Nie pozwalaj na zadne modyfikacje plikow tylko do odczytu.
     if version >= 600
         if &readonly
             setlocal nomodifiable
@@ -854,29 +854,14 @@ function! MyFoldText_wikia() "{{{
 endfunction
 set foldtext=MyFoldText_wikia()
 "}}}
-function! UsunDiakrytyki() "{{{
-    :%s/[ąĄćĆęĘłŁńŃóÓśŚźŹżŻ]/\={'ą':'a','Ą':'A','ć':'c','Ć':'C','ę':'e','Ę':'E','ł':'l','Ł':'L','ń':'n','Ń':'N','ó':'o','Ó':'O','ś':'s','Ś':'S','ź':'z','Ź':'Z','ż':'z','Ż':'Z'}[submatch(0)]/g
-    return
-    if mode ==? 'v' || mode ==? ''
-        exe "keepj '<,'>"
-        let l:begline  = line("'<")
-        let l:endline  = line("'>")
-        if begline > endline
-            let l:begline = a:lastline
-            let l:endline = a:firstline
-        endif
-    else
-        let l:begline = 0
-        let l:endline = '$'
-    endif
-
-endfunction " UsunDiakrytyki }}}
+if filereadable(vimrc_dir . "functions.vim")
+    execute ":source" vimrc_dir . "functions.vim"
+endif
 " }}}
 
 "-------------------------------------------------------------------------------
 " Commands for functions
 "-------------------------------------------------------------------------------
-command! -range -nargs=0 UsunDiakrytyki call UsunDiakrytyki()
 
 "-------------------------------------------------------------------------------
 " Mapping for functions
@@ -917,6 +902,9 @@ command! -nargs=0 Trim :%s/\s\+$//
 " %         actual file, :he expand
 " <leader>  default \
 "-------------------------------------------------------------------------------
+" refresh syntax highlight
+noremap <F10> <Esc>:syntax sync fromstart<CR>
+inoremap <F10> <C-o>:syntax sync fromstart<CR>
 " Permanent 'very magic' mode, see :he pattern
 " search
 " nnoremap / /\v
@@ -940,7 +928,7 @@ nnoremap <leader>i :set list!<cr>
 " Toggle line numbers
 nnoremap <leader>N :setlocal number!<cr>
 
-" podświetlaj linię pod kursorem
+" podswietlaj linie pod kursorem
 nnoremap <Leader>c :set cursorline!<CR>
 
 " Speed up scrolling of the viewport slightly
@@ -1042,7 +1030,7 @@ nnoremap <s-right>  <c-w>l
 "vnoremap <BS> d
 "
 "-------------------------------------------------------------------------------
-"Nawigowanie po złamaniej lini jak po zwykłej
+"Nawigowanie po zlamaniej lini jak po zwyklej
 "-------------------------------------------------------------------------------
 nnoremap j gj
 nnoremap k gk
@@ -1055,15 +1043,15 @@ vnoremap <Up> gk
 inoremap <Up> <C-o>gk
 inoremap <Up> <C-o>gk
 "
-"Edycja wielu plików: vim -o ....
+"Edycja wielu plikow: vim -o ....
 "map <F2> <C-W><C-W>
 "imap <F2> <C-O><C-W><C-W>
-"Edycja wielu plików: vim plik1 plik2 plik3
+"Edycja wielu plikow: vim plik1 plik2 plik3
 "map <F3> :np!<CR>
 "imap <F3> <ESC>:np!<CR>
 "
 "map :W :w
-"obsługa zakładek w vimie, CTRL-I robi to co TAB, domyślnie CTRL-I skacze do przodu
+"obsluga zakladek w vimie, CTRL-I robi to co TAB, domyslnie CTRL-I skacze do przodu
 "nnoremap <TAB> :tabnext<CR>
 "nnoremap <S-TAB> :tabp<CR>
 nnoremap <c-tab> :tabnext<cr>
