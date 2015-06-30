@@ -75,12 +75,14 @@ endif "}}}
 "set the runtime path to include Vundle and initialize
 let &rtp .= ',' . s:vundle_home
 call vundle#begin(s:bundle_dir)
+
 " manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 " base plugins
 Plugin 'xolox/vim-misc'
 Plugin 'Shougo/vimproc.vim'
+"Plugin 'SirVer/ultisnips'
 
 " Charles Campbell
 Plugin 'AnsiEsc.vim'
@@ -138,12 +140,21 @@ Plugin 'jiangxincode/mpi.vim'
 
 " for dev
 "Plugin 'xolox/vim-easytags'
+Plugin 'AutoFold.vim'
 Plugin 'vim-javacomplete2'
 Plugin 'Vim-R-plugin'
 Plugin 'python_fold'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'supersearch'
+Plugin 'Dokumentary'
+Plugin 'cpp_cppcheck.vim'
+Plugin 'vim-gitignore'
+
 
 " Others
+Plugin 'mru.vim'
+Plugin 'ggreer/the_silver_searcher' "ag: better search
+Plugin 'ctrlsf.vim'
 Plugin 'matchit.zip'
 Plugin 'EnhancedDiff'
 Plugin 'rking/ag.vim'
