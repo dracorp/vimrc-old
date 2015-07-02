@@ -8,6 +8,39 @@ sub |?FUNCTION_NAME| { #{{{
     my ( $self<CURSOR> ) = @ARG;
 <SPLIT> return ;
 } # end sub |FUNCTION_NAME| }}}
+== Comments.file unicode pl == map:cupl, sc:u, start, noindent ==
+#!/usr/bin/env perl
+#===============================================================================
+#       AUTHOR: |AUTHOR| |EMAIL|
+# ORGANIZATION: |ORGANIZATION|
+#         DATE: $Date$
+#     REVISION: $Revision$
+#           ID: $Id$
+#===============================================================================
+
+use v5.14;
+
+use strict;
+use warnings;
+use warnings qw( FATAL utf8 );
+use utf8;
+use open qw( :std :utf8 );
+use Unicode::Normalize qw( NFC );
+use Unicode::Collate;
+use Encode qw( decode );
+
+use Carp;
+use English qw( -no_match_vars );
+
+if ( grep /\P{ASCII}/ => @ARGV ) {
+    @ARGV = map { decode( 'UTF-8', $_ ) } @ARGV;
+}
+# If there is __DATA__,then uncomment next line:
+# binmode( DATA, ':encoding(UTF-8)' );
+
+<CURSOR>
+
+__END__
 == Comments.file description pl == map:chpl, sc:d, start, noindent ==
 #!/usr/bin/env perl
 #===============================================================================
