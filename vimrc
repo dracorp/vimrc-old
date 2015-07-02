@@ -913,6 +913,9 @@ command! -nargs=0 Trim :%s/\s\+$//
 " %         actual file, :he expand
 " <leader>  default \
 "-------------------------------------------------------------------------------
+" change search mapping and don't jump
+nnoremap * #``
+nnoremap # *``
 " refresh syntax highlight
 noremap <F10> <Esc>:syntax sync fromstart<CR>
 inoremap <F10> <C-o>:syntax sync fromstart<CR>
@@ -937,9 +940,9 @@ map <c-w>F :vertical wincmd f<CR>
 nnoremap <leader>i :set list!<cr>
 
 " Toggle line numbers
-nnoremap <leader>N :setlocal number!<cr>
+nnoremap <leader>n :setlocal number!<cr>
 
-" podswietlaj linie pod kursorem
+" highlight line under cursor, horizontal cursor
 nnoremap <Leader>c :set cursorline!<CR>
 
 " Speed up scrolling of the viewport slightly
