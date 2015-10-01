@@ -204,6 +204,7 @@ Plugin 'xslt'
 Plugin 'yowish'
 "Plugin 'MRU'
 "Plugin 'airblade/vim-rooter' "conflict with map
+Plugin 'togglenumber'
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -1321,10 +1322,13 @@ let g:easytags_auto_highlight = 0
 let g:easytags_autorecurse = 1
 let g:easytags_python_enabled = 1
 " }}}
-"{{{ vim-javacomplete2
+" vim-javacomplete2 {{{
 autocmd FileType java set omnifunc=javacomplete#Complete
 autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
-"}}}
+" }}}
+" togglenumber {{{
+nnoremap <F6> :ToggleNumber<CR>
+" }}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
