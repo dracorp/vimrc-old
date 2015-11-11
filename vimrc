@@ -159,7 +159,7 @@ Plugin 'Shutnik/jshint2.vim'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'netrw.vim'
 Plugin 'tyru/open-browser.vim'
-Plugin 'perl_h2xs'
+"Plugin 'perl_h2xs'
 Plugin 'jlemetay/permut'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
@@ -233,7 +233,6 @@ if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
 endif
 " }}}
-
 " Editing behaviour {{{
 behave xterm                                    " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
 set showmode                                    " always show what mode we're currently editing in
@@ -643,6 +642,12 @@ if has("gui_running")
                                                     " a - all previous
 
     set guioptions+=mgtT                            " Uktywnia na 'twardo' elementy GUI: pasek menu i odrywanie menu
+    " m - menu
+    " T - toolbar
+    " t - tear menu
+    " e - tabs
+    " g - grey inactive menu's items
+
     "set noguipty                                   " Make external commands work through a pipe instead of a pseudo-tty
     "set columns=80 lines=30                        " don't inherit geometry from parent term
     "set mousemodel=popup                           " right mouse button pops up a menu in the GUI
