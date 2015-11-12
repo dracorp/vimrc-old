@@ -1,7 +1,4 @@
 "===================================================================================
-"         FILE:  .vimrc
-"  DESCRIPTION:  Suggestion for a personal configuration file ~/.vimrc
-"
 " To start vim without using this .vimrc file, use:
 "   vim -u NORC
 "
@@ -10,6 +7,7 @@
 "
 " To test timing startup
 "   vim --startuptime start.log
+"
 " Be more verbose
 "set verbose=1
 "===================================================================================
@@ -21,7 +19,7 @@ set nocompatible
 let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
 
-" Check OS and where is installed vim ( only on Windows )
+" Check OS and where is installed vim
 " $HOME - user's home directory
 " $VIM - vim's installation direcotry
 if g:UNIX
@@ -44,12 +42,6 @@ endif
 autocmd!
 
 filetype off                                    " required by pathogen or Vundle etc
-
-"-------------------------------------------------------------------------------
-" Pathogen
-"-------------------------------------------------------------------------------
-"call pathogen#infect()
-"call pathogen#helptags()
 
 "-------------------------------------------------------------------------------
 " Vundle
@@ -139,7 +131,7 @@ Plugin 'primary.vim'
 Plugin 'jiangxincode/mpi.vim'
 
 " for dev
-"Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-easytags'
 Plugin 'AutoFold.vim'
 Plugin 'vim-javacomplete2'
 Plugin 'Vim-R-plugin'
@@ -167,7 +159,7 @@ Plugin 'Shutnik/jshint2.vim'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'netrw.vim'
 Plugin 'tyru/open-browser.vim'
-Plugin 'perl_h2xs'
+"Plugin 'perl_h2xs'
 Plugin 'jlemetay/permut'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
@@ -189,7 +181,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'nvie/vim-flake8'
 Plugin 'vitalk/vim-lesscss.git'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'markdown-preview.vim'
+"Plugin 'markdown-preview.vim'
 Plugin 'kurkale6ka/vim-pairs'
 Plugin 'vim-perl/vim-perl'
 Plugin 'tpope/vim-repeat.git'
@@ -205,7 +197,7 @@ Plugin 'xslt'
 Plugin 'yowish'
 "Plugin 'MRU'
 "Plugin 'airblade/vim-rooter' "conflict with map
-Plugin 'togglenumber'
+"Plugin 'togglenumber'
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -219,7 +211,7 @@ Plugin 'file_templates', {'pinned': 1}
 if g:MSWIN
     Plugin 'maximize.dll'
 endif
-call vundle#end()
+call vundle#end()                               " required
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -241,7 +233,6 @@ if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
 endif
 " }}}
-
 " Editing behaviour {{{
 behave xterm                                    " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
 set showmode                                    " always show what mode we're currently editing in
@@ -254,7 +245,7 @@ set shiftround                                  " use multiple of shiftwidth whe
 set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
 set autoindent                                  " always set autoindenting on
 set copyindent                                  " copy the previous indentation on autoindenting
-"set number                                      " show line numbers
+set nonumber                                      " show line numbers
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
 set smartcase                                   " ignore case if search pattern is all lowercase,
@@ -651,6 +642,12 @@ if has("gui_running")
                                                     " a - all previous
 
     set guioptions+=mgtT                            " Uktywnia na 'twardo' elementy GUI: pasek menu i odrywanie menu
+    " m - menu
+    " T - toolbar
+    " t - tear menu
+    " e - tabs
+    " g - grey inactive menu's items
+
     "set noguipty                                   " Make external commands work through a pipe instead of a pseudo-tty
     "set columns=80 lines=30                        " don't inherit geometry from parent term
     "set mousemodel=popup                           " right mouse button pops up a menu in the GUI
@@ -1206,6 +1203,7 @@ let Tlist_Use_Left_Window=1
 inoremap <silent> <F12>  <C-C>:TagbarToggle<CR>
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
+let g:tagbar_show_linenumbers = 0
 "let g:tagbar_width = 30
 "let g:tagbar_vertical = 30
 let g:tagbar_autofocus = 1
@@ -1316,19 +1314,20 @@ set background=dark
 " }}}
 " easytags {{{
 let g:easytags_cmd = '/usr/bin/ctags'
-let g:easytags_async = 'true'
+let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
 let g:easytags_dynamic_files = 1
-let g:easytags_auto_highlight = 0
+let g:easytags_auto_highlight = 1
 let g:easytags_autorecurse = 1
 let g:easytags_python_enabled = 1
+"let g:easytags_always_enabled = 0
 " }}}
 " vim-javacomplete2 {{{
 autocmd FileType java set omnifunc=javacomplete#Complete
 autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
 " }}}
 " togglenumber {{{
-nnoremap <F6> :ToggleNumber<CR>
+"nnoremap <F6> :ToggleNumber<CR>
 " }}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
