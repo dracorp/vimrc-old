@@ -1,13 +1,14 @@
 == Idioms.subroutine == map:isu, sc:s ==
-sub |?FUNCTION_NAME| { #{{{
+sub |?FUNCTION_NAME| {
     my ( $param<CURSOR> ) = @ARG;
 <SPLIT> return ;
-} # end sub |FUNCTION_NAME| }}}
+}
 == Idioms.class_subroutine == map:isc, sc:s ==
-sub |?FUNCTION_NAME| { #{{{
-    my ( $self<CURSOR> ) = @ARG;
+sub |?FUNCTION_NAME| {
+    my $self = shift;
+    my ( $param<CURSOR> ) = @ARG;
 <SPLIT> return ;
-} # end sub |FUNCTION_NAME| }}}
+}
 == Comments.file unicode pl == map:cupl, sc:u, start, noindent ==
 #!/usr/bin/env perl
 #===============================================================================
@@ -56,11 +57,7 @@ use warnings;
 use Carp;
 use English qw( -no_match_vars );
 
-our $AUTHOR  = '|AUTHOR| |EMAIL|';
-our $VERSION = '0.1';
-
 <CURSOR>
-
 __END__
 == Comments.file pod pl == map:cppl, sc:p ==
 =pod
@@ -79,7 +76,7 @@ long_description
 
 =head1 OPTIONS
 
-=over4
+=over 4
 
 =item --options
 
