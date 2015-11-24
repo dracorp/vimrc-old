@@ -617,6 +617,7 @@ iab secratary secretary
 iab sectino section
 iab seh she
 iab selectoin selection
+iab sefl self
 iab sentance sentence
 iab separeate separate
 iab seperate separate

@@ -1,5 +1,4 @@
-# Maintainer: Piotr Rogoża <piotr dot r dot public at gmail dot com>
-# Contributor: Piotr Rogoża <piotr dot r dot public at gmail dot com>
+# Maintainer: dracorp aka Piotr Rogoza <piotr.r.public@gmail.com>
 
 pkgname=<+$BASENAME$+>
 pkgver=<+#VERSION#+>
