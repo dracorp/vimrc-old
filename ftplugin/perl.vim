@@ -1,7 +1,3 @@
-"au BufWritePost *.pl,*.pm !perl -wcIlib %
-setlocal number
-setlocal expandtab
-"let perl_fold=1
 function! GetPerlFold()
   if getline(v:lnum) =~ '^\s*sub\s'
     return ">1"
@@ -26,5 +22,14 @@ function! GetPerlFold()
     return "="
   endif
 endfunction
-setlocal foldexpr=GetPerlFold()
-"setlocal foldmethod=expr
+
+"au BufWritePost *.pl,*.pm !perl -wcIlib %
+"let perl_fold=1
+"set foldexpr=GetPerlFold()
+
+"let sh_fold_enabled=1
+"let perl_extended_vars=1
+
+set number
+set foldmethod=marker
+set foldmarker={,}

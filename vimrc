@@ -71,6 +71,7 @@ call vundle#begin(s:bundle_dir)
 " manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+
 " base plugins
 Plugin 'xolox/vim-misc'
 Plugin 'Shougo/vimproc.vim'
@@ -132,16 +133,15 @@ Plugin 'jiangxincode/mpi.vim'
 
 " for dev
 Plugin 'xolox/vim-easytags'
-Plugin 'AutoFold.vim'
+"Plugin 'AutoFold.vim'
 Plugin 'vim-javacomplete2'
 Plugin 'Vim-R-plugin'
-Plugin 'python_fold'
+"Plugin 'python_fold'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'supersearch'
 Plugin 'Dokumentary'
 Plugin 'cpp_cppcheck.vim'
 Plugin 'vim-gitignore'
-
 
 " Others
 Plugin 'mru.vim'
@@ -183,8 +183,8 @@ Plugin 'vitalk/vim-lesscss.git'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'markdown-preview.vim'
 Plugin 'kurkale6ka/vim-pairs'
-Plugin 'vim-perl/vim-perl'
-Plugin 'tpope/vim-repeat.git'
+"Plugin 'vim-perl/vim-perl'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-scriptease'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround.git'
@@ -314,8 +314,8 @@ set tildeop                                     " Tylda(~) robi za operator, moz
 set foldenable                  " enable folding
 set foldcolumn=0                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
-" set foldmarek={{{,}}}
-"set foldlevelstart=99           " start out with everything unfolded
+set foldmarker={,}
+set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 " Mappings to easily toggle fold levels
@@ -501,7 +501,7 @@ if has("autocmd")
         autocmd filetype xml,xsd,xslt,xsl,html,htmldjango call SetHtmlOptions()
         function! SetHtmlOptions()
             let b:closetag_html_style=1
-            setlocal foldmethod=syntax
+"            setlocal foldmethod=syntax
             " keymap
 "            let l:filename = expand("%:r")
 "            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"

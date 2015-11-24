@@ -1,5 +1,4 @@
-# Maintainer: Piotr Rogoza <piotr dot r dot public at gmail dot com>
-# Contributor: Piotr Rogoza <piotr dot r dot public at gmail dot com>
+# Maintainer: dracorp aka Piotr Rogoza <piotr.r.public@gmail.com>
 
 pkgname=perl-<+$LBASENAME$+>
 pkgver=<+#VERSION#+>
