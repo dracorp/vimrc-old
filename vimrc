@@ -123,6 +123,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/splice.vim'                         " replace threesome.vim
 "Plugin 'vcscommand.vim'                        " mapping conflict
 Plugin 'git-flow-format'
+Plugin 'gitv'
 
 " colorschemes and syntax
 Plugin 'altercation/vim-colors-solarized'
@@ -142,6 +143,7 @@ Plugin 'supersearch'
 Plugin 'Dokumentary'
 Plugin 'cpp_cppcheck.vim'
 Plugin 'vim-gitignore'
+Plugin 'joonty/vdebug.git'
 
 " Others
 Plugin 'mru.vim'
