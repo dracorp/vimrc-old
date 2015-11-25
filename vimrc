@@ -79,9 +79,7 @@ Plugin 'Shougo/vimproc.vim'
 " Charles Campbell
 Plugin 'AnsiEsc.vim'
 Plugin 'DrawIt'
-if g:UNIX
-    Plugin 'manpageview', {'pinned': 1}
-endif
+Plugin 'manpageview', {'pinned': 1}
 Plugin 'Decho'
 Plugin 'gdbmgr'
 Plugin 'HiColors'
@@ -129,6 +127,7 @@ Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'nginx.vim'
 Plugin 'primary.vim'
 Plugin 'jiangxincode/mpi.vim'
+Plugin 'putty'
 
 " for dev
 Plugin 'xolox/vim-easytags'
