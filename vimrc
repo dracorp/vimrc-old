@@ -67,7 +67,7 @@ call vundle#begin(s:bundle_dir)
 Plugin 'gmarik/Vundle.vim'
 
 " base plugins
-Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-misc'                         " Miscellaneous auto-load Vim scripts
 Plugin 'Shougo/vimproc.vim'
 "Plugin 'SirVer/ultisnips'
 
@@ -86,9 +86,14 @@ Plugin 'vis'
 Plugin 'astronaut', {'pinned': 1}
 
 " xolox
-Plugin 'xolox/vim-notes'
-"Plugin 'xolox/vim-shell'
-Plugin 'xolox/vim-reload'
+Plugin 'xolox/vim-notes'                        " Easy note taking in Vim
+Plugin 'xolox/vim-shell'                        " Improved integration between Vim and its environment
+Plugin 'xolox/vim-reload'                       " Automatic reloading of Vim scripts
+Plugin 'xolox/vim-session'                      " Extended session management for Vim
+Plugin 'xolox/vim-colorscheme-switcher'         " Color scheme switcher for Vim
+Plugin 'xolox/vim-tools'                        " Python scripts to publish Vim plug-ins
+Plugin 'xolox/vim-easytags'                     " Automated tag generation and syntax highlighting in Vim
+
 
 " Python
 if has('python') || has('python3')
@@ -119,14 +124,12 @@ Plugin 'gitv'
 
 " colorschemes and syntax
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'nginx.vim'
 Plugin 'primary.vim'
 Plugin 'jiangxincode/mpi.vim'
 Plugin 'putty'
 
 " for dev
-Plugin 'xolox/vim-easytags'
 "Plugin 'AutoFold.vim'
 Plugin 'vim-javacomplete2'
 Plugin 'Vim-R-plugin'
