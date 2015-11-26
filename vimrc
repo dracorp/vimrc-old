@@ -283,19 +283,19 @@ let g:html_use_css = "1"
 let g:use_xhtml = 1000
 
 set ruler                                       " show the cursor position all the time
-set display+=lastline                           " Pokazuje na dole ostatnia linie?
-set scrolloff=3                                 " przy przewijaniu trzymaj sie n lini od konca/poczatku ekranu
-set textwidth=0                                 " domyslna wartosc: czasem wato ustawic szerokosc ekranu na 78 kolumn
-set showbreak=+\                                " zalamanie/wrap lini oznacza przez
+set display+=lastline                           " show last line even it does not fit
+set scrolloff=3                                 " keep distance when scroll a file
+set textwidth=0                                 " maximum width of text that is being inserted
+set showbreak=+\                                " show wraped lines as
 
-set modeline                                    " modeline to komendy dla vima w komentarzach innych plikow
+set modeline                                    " search for additional vim commands in n-th first lines(see modelines)
 "set ttyfast                                     " always use a fast terminal
 "set nocursorline                                " underline the current line, for quick orientation
 
 set splitbelow                                  " command :sp put a new window below the active
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
-set tildeop                                     " Tylda(~) robi za operator, mozna teraz uzywac jej np. tak: ~w ~~
+set tildeop                                     " Tylde(~) behaves like operator
 "set iskeyword+=-,,                              " which char make a word
 " }}}
 " Folding rules {{{
