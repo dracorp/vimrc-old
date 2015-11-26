@@ -1,4 +1,4 @@
-"===================================================================================
+"===============================================================================
 " To start vim without using this .vimrc file, use:
 "   vim -u NORC
 "
@@ -7,10 +7,7 @@
 "
 " To test timing startup
 "   vim --startuptime start.log
-"
-" Be more verbose
-"set verbose=1
-"===================================================================================
+"===============================================================================
 
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
@@ -19,13 +16,12 @@ set nocompatible
 let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
 
-" Check OS and where is installed vim
+" Check OS and where are vim's config files
 " $HOME - user's home directory
 " $VIM - vim's installation direcotry
 if g:UNIX
     let  vimrc_dir = $HOME . '/.vim/'
 elseif g:MSWIN
-    language messages en
     " change '\' to '/' to avoid interpretation as escape character
     if match( substitute( expand("<sfile>"), '\', '/', 'g' ),
         \   substitute( expand("$HOME"),   '\', '/', 'g' ) ) == 0
@@ -43,10 +39,8 @@ autocmd!
 
 filetype off                                    " required by pathogen or Vundle etc
 
-"-------------------------------------------------------------------------------
-" Vundle
-"-------------------------------------------------------------------------------
-" Setting up Vundle - the vim plugin bundler http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/ {{{
+" Vundle/bundle {{{
+" Setting up Vundle - the vim plugin bundler http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc
 let iCanHazVundle   = 1
 let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
 let s:vundle_readme = s:vundle_home . '/README.md'
@@ -63,12 +57,12 @@ if !filereadable(s:vundle_readme)
     endif
     execute system('git clone https://github.com/gmarik/vundle ' . s:vundle_home)
     let iCanHazVundle=0
-endif "}}}
+endif
 "set the runtime path to include Vundle and initialize
 let &rtp .= ',' . s:vundle_home
 call vundle#begin(s:bundle_dir)
-
-" manage plugins by Vundle {{{
+" }}}
+" Manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
@@ -143,6 +137,7 @@ Plugin 'Dokumentary'
 Plugin 'cpp_cppcheck.vim'
 Plugin 'vim-gitignore'
 Plugin 'joonty/vdebug.git'
+Plugin 'terryma/vim-expand-region'
 
 " Others
 Plugin 'mru.vim'
@@ -223,16 +218,12 @@ endif
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on                       " required by Vundle, pathogen etc
 " end of Vundle }}}
-
-if &t_Co > 2 || has("gui_running")
-    syntax on
-    set hlsearch
-endif
-
-" Common abbreviations / misspellings {{{
+" Common abbreviations/misspellings, spell {{{
 if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
 endif
+set spelllang=pl,en
+language messages en
 " }}}
 " Editing behaviour {{{
 behave xterm                                    " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
@@ -246,65 +237,58 @@ set shiftround                                  " use multiple of shiftwidth whe
 set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
 set autoindent                                  " always set autoindenting on
 set copyindent                                  " copy the previous indentation on autoindenting
-set nonumber                                      " show line numbers
+set nonumber                                    " show line numbers
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
-set smartcase                                   " ignore case if search pattern is all lowercase,
-                                                " case-sensitive otherwise
-set smarttab                                    " insert tabs on the start of a line according to
-                                                " shiftwidth, not tabstop
+set smartcase                                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set smarttab                                    " insert tabs on the start of a line according to shiftwidth, not tabstop
 set scrolloff=4                                 " keep 4 lines off the edges of the screen when scrolling
-" set virtualedit=all                             " allow the cursor to go in to 'invalid' places
+set virtualedit=                                " allow the cursor to go in to 'invalid' places
 set incsearch                                   " show search matches as you type
-" set gdefault                                     " search/replace 'globally' (on a line) by default
+"set gdefault                                    " search/replace 'globally' (on a line) by default
 
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 set listchars=tab:>-,eol:$,trail:-,nbsp:%
+set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
-set nolist                                      " don't show invisible characters by default,
-                                                " but it is enabled for some file types (see later)
-set mouse=a                                     " enable using the mouse if terminal emulator
-                                                "    supports it (xterm does)
+" autoformat: call using gq, see also |fo-table|
+set formatoptions+=1                            " long lines are not broken in insert mode
+set formatoptions+=t                            " autowrap text using textwidth
+set formatoptions-=c                            " autowrap comments using textwidth
 
-" automatyczne formatowanie, gq je wywoluje, domyslne wartosci: formatoptions=croql :help fo-table
-set formatoptions+=1            " 1 przenosi ostatni, pojedynczy znak, taki jak i a z w, do nastepnej linii.
-set formatoptions+=t            " t automatyczne zwijanie do textwidth
-set formatoptions-=c            " c automatyczne zwijanie do textwidth komentarzy
-
-set nrformats=                  " make <C-a> and <C-x> play well with
-                                "    zero-padded numbers (i.e. don't consider
-                                "    them octal or hex)
-
-set shortmess+=I                " hide the launch screen
-set clipboard=unnamed           " normal OS clipboard interaction
+set nrformats=                                  " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
+set shortmess+=I                                " hide the launch screen
+set clipboard=unnamed                           " normal OS clipboard interaction
+set mouse=a                                     " enable using the mouse if terminal emulator supports it (xterm does)
 " }}}
 " Various settings {{{
 set linebreak
 set smartindent                                 " smart autoindenting when starting a new line
-set wrapscan                                    " przy wyszukiwaniu bedzie zaczynal od poczatku pliku, przy no tylko do konca
+set wrapscan                                    " searches wrap around the end of file
 "set autoread                                    " read open files again when changed outside Vim
 set autowrite                                   " write a modified buffer on each :next , ...
-" definiuje ktore klawisze przenosza kursor do nowej linii gdy jest na koncu/poczatku lini
-" backspace, space, <left>, <right> w Normal, i w Insert
-set whichwrap=b,s,<,>,[,],h,l
+" backspace, space, <left>, <right>
+set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
 set browsedir=current                           " which directory to use for the file browser
 set complete+=k                                 " scan the files given with the 'dictionary' option
 set mousehide                                   " Hide the mouse when typing text
-set popt=left:8pc,right:3pc                     " print options
+
+" export: print or to html
+set printoptions=left:8pc,right:3pc             " print options
+let g:html_use_css = "1"
+let g:use_xhtml = 1000
+
 set ruler                                       " show the cursor position all the time
 set display+=lastline                           " Pokazuje na dole ostatnia linie?
-set so=3                                        " przy przewijaniu trzymaj sie n lini od konca/poczatku ekranu
+set scrolloff=3                                 " przy przewijaniu trzymaj sie n lini od konca/poczatku ekranu
 set textwidth=0                                 " domyslna wartosc: czasem wato ustawic szerokosc ekranu na 78 kolumn
 set showbreak=+\                                " zalamanie/wrap lini oznacza przez
 
 set modeline                                    " modeline to komendy dla vima w komentarzach innych plikow
 "set ttyfast                                     " always use a fast terminal
-set nocursorline                                " underline the current line, for quick orientation
-" Large file when syntax on
-syntax sync minlines=30
-syntax sync maxlines=40
-set synmaxcol=500
+"set nocursorline                                " underline the current line, for quick orientation
+
 set splitbelow                                  " command :sp put a new window below the active
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
@@ -315,7 +299,7 @@ set tildeop                                     " Tylda(~) robi za operator, moz
 set foldenable                  " enable folding
 set foldcolumn=0                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
-set foldmarker={,}
+set foldmarker={{{,}}}
 set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
@@ -392,26 +376,30 @@ set noerrorbells                " don't beep
 set showcmd                     " show (partial) command in the last line of the screen
                                 " this also shows visual selection info
 " }}}
-" Spell {{{
-set spelllang=pl,en
-" }}}
-" Highlight & Colorscheme {{{
+" Highlight, Colorscheme, syntax{{{
+if &t_Co > 2 || has("gui_running")
+    syntax on
+    set hlsearch
+endif
+
 let c_comment_strings=1                         " highlight strings inside C comments
 
-let g:solarized_termcolors=256
+" Black, Dark, desert, grb256, moria, ron, solarized, torte
 if has('gui_running')
     colorscheme solarized
 else
     colorscheme redstring
 endif
+
 if &diff
     colorscheme xterm16
 "    set diffopt+=iwhite
 endif
-" }}}
-" use css while export to html {{{
-let g:html_use_css = "1"
-let g:use_xhtml = 1000
+
+" Large file when syntax on
+syntax sync minlines=30
+syntax sync maxlines=40
+set synmaxcol=500
 " }}}
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
@@ -636,13 +624,12 @@ endif
 " }}}
 " gui/gvim {{{
 if has("gui_running")
-    " Black, Dark, desert, grb256, moria, ron, solarized, torte
     set mousehide                                   " Hide the mouse when typing text
     set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
-                                                    " help(h) - all previous + help files
+                                                    " help(h) - all previous when editing help files
                                                     " a - all previous
 
-    set guioptions+=mgtT                            " Uktywnia na 'twardo' elementy GUI: pasek menu i odrywanie menu
+    set guioptions+=mgtT
     " m - menu
     " T - toolbar
     " t - tear menu
@@ -664,18 +651,7 @@ if has("gui_running")
     endif
 endif
 " }}}
-
-" Switch from block-cursor to vertical-line-cursor when going into/out of
-" insert mode
-"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-" for easytags, Tlist etc
-set tags=./tags;/,tags;/
-
-"-------------------------------------------------------------------------------
-" Functions
-"-------------------------------------------------------------------------------
-" {{{
+" Functions {{{
 " exclamation mark(!) means that function replace previous
 " Toggle the quickfix window {{{
 " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
@@ -869,15 +845,9 @@ if filereadable(vimrc_dir . "functions.vim")
     execute ":source" vimrc_dir . "functions.vim"
 endif
 " }}}
-
-"-------------------------------------------------------------------------------
-" Commands for functions
-"-------------------------------------------------------------------------------
-
-"-------------------------------------------------------------------------------
-" Mapping for functions
-"-------------------------------------------------------------------------------
-" {{{
+" Commands for functions {{{
+" }}}
+" Mapping for functions {{{
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
 "inoremap	'  '<Esc>:call QuoteInsertionWrapper("'")<CR>a
@@ -896,16 +866,10 @@ noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 "nnoremap n n:call PulseCursorLine()<cr>
 "nnoremap N N:call PulseCursorLine()<cr>
 " }}}
-
-"-------------------------------------------------------------------------------
-" Commands
-"-------------------------------------------------------------------------------
+" Commands {{{
 command! -nargs=0 Trim :%s/\s\+$//
-
-"-------------------------------------------------------------------------------
-" Mappings
-"-------------------------------------------------------------------------------
-" {{{
+" }}}
+" Mappings {{{
 " !         make a switch from a key
 " <CR>      it's enter
 " <c-o>     allows in 'insert' mode insert a command
@@ -943,7 +907,7 @@ nnoremap <leader>i :set list!<cr>
 nnoremap <leader>n :setlocal number!<cr>
 
 " highlight line under cursor, horizontal cursor
-nnoremap <Leader>c :set cursorline!<CR>
+nnoremap <Leader>c :setlocal cursorline!<CR>
 
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
@@ -990,23 +954,16 @@ inoremap    <silent>    <F4>    <C-C>:execute ":ptag ".expand("<cword>")<CR>
 "inoremap    <silent>    <F8>    <C-C>:cnext<CR>
 inoremap    <silent>    <F9>    <C-O>:set nonumber!<CR>
 "inoremap                <F12>   <C-C>:ls<CR>:edit #
-"
+
 " wklejanie
 vnoremap <C-Insert> "+y
-"
+
 " search for visually highlighted text
 "vmap // y/<C-R>"<CR>
 "with spec chars
 vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 
-"-------------------------------------------------------------------------------
-" comma always followed by a space
-"-------------------------------------------------------------------------------
-"inoremap  ,  ,<Space>
-
-"-------------------------------------------------------------------------------
 " autocomplete parenthesis, (brackets) and braces
-"-------------------------------------------------------------------------------
 "inoremap  (  ()<Left>
 "inoremap  [  []<Left>
 "inoremap  {  {}<Left>
@@ -1020,14 +977,12 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 "vnoremap  )  s(  )<Esc><Left>P<Right><Right>%
 "vnoremap  ]  s[  ]<Esc><Left>P<Right><Right>%
 "vnoremap  }  s{  }<Esc><Left>P<Right><Right>%
-"
-"-------------------------------------------------------------------------------
+
 " autocomplete quotes (visual and select mode)
-"-------------------------------------------------------------------------------
 "xnoremap  '  s''<Esc>P<Right>
 "xnoremap  "  s""<Esc>P<Right>
 "xnoremap  `  s``<Esc>P<Right>
-"
+
 "-------------------------------------------------------------------------------
 " Moving cursor to other windows:
 " shift down   : change window focus to lower one (cyclic)
@@ -1039,13 +994,11 @@ nnoremap <s-down>   <c-w>w
 nnoremap <s-up>     <c-w>W
 nnoremap <s-left>   <c-w>h
 nnoremap <s-right>  <c-w>l
-"
+
 "backspace in VisualMode deletes selection
 "vnoremap <BS> d
-"
-"-------------------------------------------------------------------------------
-"Nawigowanie po zlamaniej lini jak po zwyklej
-"-------------------------------------------------------------------------------
+
+" Navigate on a wrapped line as the normal
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -1056,43 +1009,27 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Up> <C-o>gk
 inoremap <Up> <C-o>gk
-"
-"Edycja wielu plikow: vim -o ....
-"map <F2> <C-W><C-W>
-"imap <F2> <C-O><C-W><C-W>
-"Edycja wielu plikow: vim plik1 plik2 plik3
-"map <F3> :np!<CR>
-"imap <F3> <ESC>:np!<CR>
-"
-"map :W :w
-"obsluga zakladek w vimie, CTRL-I robi to co TAB, domyslnie CTRL-I skacze do przodu
-"nnoremap <TAB> :tabnext<CR>
-"nnoremap <S-TAB> :tabp<CR>
-nnoremap <c-tab> :tabnext<cr>
-nnoremap <c-s-tab> :tabprev<cr>
 
-"highlight search
-"nnoremap <s-3> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+"obsluga zakladek w vimie, CTRL-I robi to co TAB, domyslnie CTRL-I skacze do przodu
+nnoremap <c-TAB> :tabnext<cr>
+nnoremap <c-s-TAB> :tabprev<cr>
 
 " Quote words under cursor
 nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
 nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 
-" Quote current selection
+" Quote current selection use plugin ... instead it
 " TODO: This only works for selections that are created "forwardly"
-vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
-vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
+"vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
+"vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
 " Use shift-H and shift-L for move to beginning/end
 nnoremap H 0
 nnoremap L $
 
-"nnoremap <Leader>h :set hlsearch!<CR>
+nnoremap <Leader>h :set hlsearch!<CR>
 "}}}
-
-"-------------------------------------------------------------------------------
-" bundle - Vim's plugins
-"-------------------------------------------------------------------------------
+" plugins configuration {{{
 " vim-toggle {{{
 imap <C-T>:call Toggle()<CR>
 nmap <C-T>:call Toggle()<CR>
@@ -1303,6 +1240,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_folding = 0
 " }}}
 " Solarized Colorscheme Config {{{
+let g:solarized_termcolors=256
 let g:solarized_underline=0    "default value is 1
 let g:solarized_italic=0    "default value is 1
 let g:solarized_termcolors=256    "default value is 16
@@ -1329,6 +1267,7 @@ autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
 " }}}
 " togglenumber {{{
 "nnoremap <F6> :ToggleNumber<CR>
+" }}}
 " }}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
