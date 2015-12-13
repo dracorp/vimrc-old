@@ -226,7 +226,6 @@ if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
 endif
 set spelllang=pl,en
-language messages en
 " }}}
 " Editing behaviour {{{
 behave xterm                                    " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
