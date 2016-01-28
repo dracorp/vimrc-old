@@ -141,6 +141,7 @@ Plugin 'cpp_cppcheck.vim'
 Plugin 'vim-gitignore'
 Plugin 'joonty/vdebug.git'
 Plugin 'terryma/vim-expand-region'
+Plugin 'Yggdroot/hiPairs'
 
 " Others
 Plugin 'mru.vim'
@@ -155,7 +156,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'chrisbra/vim-diff-enhanced'
 Plugin 'jQuery'
 Plugin 'Shutnik/jshint2.vim'
-Plugin 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'netrw.vim'
 Plugin 'tyru/open-browser.vim'
 "Plugin 'perl_h2xs'
@@ -197,6 +199,8 @@ Plugin 'yowish'
 "Plugin 'MRU'
 "Plugin 'airblade/vim-rooter' "conflict with map
 "Plugin 'togglenumber'
+Plugin 'ap/vim-buftabline'
+Plugin 'vim-nfo'
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -268,7 +272,7 @@ set mouse=a                                     " enable using the mouse if term
 set linebreak
 set smartindent                                 " smart autoindenting when starting a new line
 set wrapscan                                    " searches wrap around the end of file
-"set autoread                                    " read open files again when changed outside Vim
+set autoread                                    " read open files again when changed outside Vim
 set autowrite                                   " write a modified buffer on each :next , ...
 " backspace, space, <left>, <right>
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
@@ -346,7 +350,7 @@ set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-1
 " fileencodings rozni sie od fileencoding tym, ze ustawia domyslny zapis dla wszystkich plikow.
 " }}}
 " Vim behaviour {{{
-"set hidden                                      " hide buffers instead of closing them this
+set hidden                                      " hide buffers instead of closing them this
                                 " means that the current buffer can be put
                                 " to background without being written; and
                                 " that marks and undo history are preserved
@@ -705,20 +709,6 @@ function! s:Tag() "{{{
       exe "norm! \<c-]>"
    endtry
 endfun "}}}
-function! InsertTabWrapper(direction) "{{{
-" Benoit Cerrina tab completion + A. addittion tip#102
-" Bardzo fajna funkcja umozliwiajaca uzupelnianie wyrazow przez <Tab>
-" Jest wtyczka supertab realizujaca to samo
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    elseif "backward" == a:direction
-        return "\<c-p>"
-    else
-        return "\<c-n>"
-    endif
-endfunction
-"}}}
 function! ToggleHLSearch() "{{{
 " On/Off highlight search
       if &hls
@@ -856,10 +846,8 @@ nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
 "inoremap	"  "<Esc>:call QuoteInsertionWrapper('"')<CR>a
 "inoremap	`  `<Esc>:call QuoteInsertionWrapper('`')<CR>a
 "nnoremap <C-]> :call <SID>Tag()<CR>\|:echo ""<CR>
-"inoremap <Tab> <C-R>=InsertTabWrapper("backward")<cr>
-"inoremap <S-Tab> <C-R>=InsertTabWrapper("forward")<cr>
 "przelaczanie podswietlania wynikow szukania ctrl+n
-noremap <silent> <C-n> <Esc>:call ToggleHLSearch()<CR>
+"noremap <silent> <C-n> <Esc>:call ToggleHLSearch()<CR>
 "noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
 noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 
@@ -1270,6 +1258,12 @@ autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
 " togglenumber {{{
 "nnoremap <F6> :ToggleNumber<CR>
 " }}}
+" vim-buftabline {{{
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
+" }}}
+" vim-shell
+let g:shell_mappings_enabled=0
 " }}}
 " Extra user or machine specific settings {{{
 if filereadable(vimrc_dir . "user.vim")
