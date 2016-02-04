@@ -64,12 +64,11 @@ call vundle#begin(s:bundle_dir)
 " }}}
 " Manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'                   " [the plug-in manager](https://github.com/VundleVim/Vundle.vim)
 
 " base plugins
-Plugin 'xolox/vim-misc'                         " Miscellaneous auto-load Vim scripts
-Plugin 'Shougo/vimproc.vim'
-"Plugin 'SirVer/ultisnips'
+Plugin 'xolox/vim-misc'                          " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
+Plugin 'Shougo/vimproc.vim'                     " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 
 " Charles Campbell
 Plugin 'AnsiEsc.vim'
@@ -86,13 +85,13 @@ Plugin 'vis'
 Plugin 'astronaut', {'pinned': 1}
 
 " xolox
-Plugin 'xolox/vim-notes'                        " Easy note taking in Vim
-Plugin 'xolox/vim-shell'                        " Improved integration between Vim and its environment
-Plugin 'xolox/vim-reload'                       " Automatic reloading of Vim scripts
-Plugin 'xolox/vim-session'                      " Extended session management for Vim
-Plugin 'xolox/vim-colorscheme-switcher'         " Color scheme switcher for Vim
-Plugin 'xolox/vim-tools'                        " Python scripts to publish Vim plug-ins
-Plugin 'xolox/vim-easytags'                     " Automated tag generation and syntax highlighting in Vim
+Plugin 'xolox/vim-notes'                        " [Easy note taking in Vim](https://github.com/xolox/vim-notes)
+Plugin 'xolox/vim-shell'                        " [Improved integration between Vim and its environment](https://github.com/xolox/vim-shell)
+Plugin 'xolox/vim-reload'                       " [Automatic reloading of Vim scripts](https://github.com/xolox/vim-reload)
+Plugin 'xolox/vim-session'                      " [Extended session management for Vim](https://github.com/xolox/vim-session)
+Plugin 'xolox/vim-colorscheme-switcher'         " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
+"Plugin 'xolox/vim-tools'                        " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
+Plugin 'xolox/vim-easytags'                     " [Automated tag generation and syntax highlighting in Vim](https://github.com/xolox/vim-easytags)
 
 
 " Python
@@ -174,7 +173,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'Toggle'
 Plugin 'TWiki-Syntax'
-"Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'                       " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
+Plugin 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 Plugin 'mbbill/undotree'
 Plugin 'Shougo/unite.vim'
 Plugin 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
