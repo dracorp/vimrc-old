@@ -116,7 +116,8 @@ Plugin 'int3/vim-extradite'
 Plugin 'tpope/vim-fugitive'
 Plugin 'WolfgangMehner/git-support'
 Plugin 'idanarye/vim-merginal'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'                 " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
+Plugin 'mhinz/vim-signify'                      " [show differences with style](https://github.com/mhinz/vim-signify)
 Plugin 'sjl/splice.vim'                         " replace threesome.vim
 "Plugin 'vcscommand.vim'                        " mapping conflict
 Plugin 'git-flow-format'
@@ -152,7 +153,6 @@ Plugin 'rking/ag.vim'
 Plugin 'closetag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
-Plugin 'chrisbra/vim-diff-enhanced'
 Plugin 'jQuery'
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'scrooloose/nerdtree.git'
@@ -175,7 +175,10 @@ Plugin 'TWiki-Syntax'
 "Plugin 'SirVer/ultisnips'
 Plugin 'mbbill/undotree'
 Plugin 'Shougo/unite.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
+Plugin 'vim-airline/vim-airline-themes'         " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
+
+
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'nvie/vim-flake8'
 Plugin 'vitalk/vim-lesscss.git'
@@ -197,6 +200,7 @@ Plugin 'yowish'
 "Plugin 'MRU'
 "Plugin 'airblade/vim-rooter' "conflict with map
 "Plugin 'togglenumber'
+Plugin 'vim-keeppad'
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -380,6 +384,10 @@ set showcmd                     " show (partial) command in the last line of the
                                 " this also shows visual selection info
 " }}}
 " Highlight, Colorscheme, syntax{{{
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+\%#\@<!$/
+
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch
