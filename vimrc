@@ -62,27 +62,30 @@ endif
 let &rtp .= ',' . s:vundle_home
 call vundle#begin(s:bundle_dir)
 " }}}
+
 " Manage plugins by Vundle {{{
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'                   " [the plug-in manager](https://github.com/VundleVim/Vundle.vim)
 
 " base plugins
-Plugin 'xolox/vim-misc'                          " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
+Plugin 'xolox/vim-misc'                         " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plugin 'Shougo/vimproc.vim'                     " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 
 " Charles Campbell
-Plugin 'AnsiEsc.vim'
-Plugin 'DrawIt'
-Plugin 'manpageview', {'pinned': 1}
-Plugin 'Decho'
-Plugin 'gdbmgr'
-Plugin 'HiColors'
-Plugin 'highlight.vim'
-Plugin 'LargeFile'
-"Plugin 'StlShowFunc'
-Plugin 'SudoEdit.vim'
-Plugin 'vis'
-Plugin 'astronaut', {'pinned': 1}
+"Plugin 'AnsiEsc.vim'                            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
+Plugin 'powerman/vim-plugin-AnsiEsc'            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/powerman/vim-plugin-AnsiEsc)
+Plugin 'DrawIt'                                 " [Ascii drawing plugin: lines, ellipses, arrows, fills, and more!](https://github.com/vim-scripts/DrawIt)
+Plugin 'manpageview', {'pinned': 1}             "
+"Plugin 'emezeske/manpageview'                   " [man page view for vim](https://github.com/emezeske/manpageview)
+Plugin 'Decho'                                  " [internal debugger](https://github.com/vim-scripts/decho)
+Plugin 'gdbmgr'                                 " [interface to gdb](https://github.com/vim-scripts/gdbmgr)
+Plugin 'HiColors'                               " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
+Plugin 'highlight.vim'                          " [Highlight lines or patterns of interest in different colors](https://github.com/vim-scripts/highlight.vim)
+Plugin 'LargeFile'                              " [Edit large files quickly (keywords: large huge speed)](https://github.com/vim-scripts/largefile)
+"Plugin 'StlShowFunc', {'pinned': 1}                           " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+Plugin 'SudoEdit.vim'                           " [Edit Files using sudo or su or any other tool](https://github.com/vim-scripts/SudoEdit.vim)
+Plugin 'vis'                                    " [Extended Visual Mode Commands, Substitutes, and Searches](https://github.com/vim-scripts/vis)
+Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 
 " xolox
 Plugin 'xolox/vim-notes'                        " [Easy note taking in Vim](https://github.com/xolox/vim-notes)
@@ -96,31 +99,31 @@ Plugin 'xolox/vim-easytags'                     " [Automated tag generation and 
 
 " Python
 if has('python') || has('python3')
-    Plugin 'davidhalter/jedi-vim'
-    Plugin 'betterga'
+    Plugin 'davidhalter/jedi-vim'               " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
+    Plugin 'betterga'                           " [betterga can get more information than ga (:ascii)](https://github.com/vim-scripts/betterga)
 endif
-Plugin 'klen/python-mode'
+Plugin 'klen/python-mode'                       " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
 
 " Fritz Mehner
-Plugin 'Vim-support'
-Plugin 'awk-support.vim'
-Plugin 'bash-support.vim'
-Plugin 'perl-support.vim'
-Plugin 'c.vim'
+Plugin 'Vim-support'                            " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
+Plugin 'awk-support.vim'                        " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
+Plugin 'bash-support.vim'                       " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
+Plugin 'perl-support.vim'                       " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
+Plugin 'c.vim'                                  " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
 "Plugin 'latex-support.vim'
 "Plugin 'doxygen-support.vim'
 
 " git and other vcs
 Plugin 'int3/vim-extradite'
-Plugin 'tpope/vim-fugitive'
-Plugin 'WolfgangMehner/git-support'
-Plugin 'idanarye/vim-merginal'
+Plugin 'tpope/vim-fugitive'                     " [Git wrapper of all time](https://github.com/tpope/vim-fugitive)
+Plugin 'WolfgangMehner/git-support'             " [Git for Vim/gVim](https://github.com/WolfgangMehner/git-support)
+Plugin 'idanarye/vim-merginal'                  " [Fugitive extension to manage and merge Git branches](https://github.com/idanarye/vim-merginal)
 Plugin 'airblade/vim-gitgutter'                 " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
 "Plugin 'mhinz/vim-signify'                      " [show differences with style](https://github.com/mhinz/vim-signify)
-Plugin 'sjl/splice.vim'                         " replace threesome.vim
-"Plugin 'vcscommand.vim'                        " mapping conflict
-Plugin 'git-flow-format'
-Plugin 'gitv'
+Plugin 'sjl/splice.vim'                         " [managing three-way merges](https://github.com/sjl/splice.vim)
+"Plugin 'vcscommand.vim'                        " [CVS/SVN/SVK/git/hg/bzr integration plugin - mapping conflict](https://github.com/vim-scripts/vcscommand.vim)
+Plugin 'git-flow-format'                        " [formats a Git Flow branch name in order to shorten the prefixes](https://github.com/vim-scripts/git-flow-format)
+Plugin 'gitv'                                   " [gitk for Vim](https://github.com/vim-scripts/gitv)
 
 " colorschemes and syntax
 Plugin 'altercation/vim-colors-solarized'
@@ -136,12 +139,12 @@ Plugin 'Vim-R-plugin'
 "Plugin 'python_fold'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'supersearch'
-Plugin 'Dokumentary'
+"Plugin 'Dokumentary'
 Plugin 'cpp_cppcheck.vim'
 Plugin 'vim-gitignore'
 Plugin 'joonty/vdebug.git'
 Plugin 'terryma/vim-expand-region'
-Plugin 'Yggdroot/hiPairs'
+"Plugin 'Yggdroot/hiPairs'                      " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
 
 " Others
 Plugin 'mru.vim'
@@ -163,9 +166,9 @@ Plugin 'tyru/open-browser.vim'
 Plugin 'jlemetay/permut'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
-Plugin 'edkolev/promptline.vim'
+Plugin 'edkolev/promptline.vim'                 " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
 Plugin 'restore_view.vim'
-Plugin 'SuperTab'
+Plugin 'SuperTab'                               " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'Tabmerge'
@@ -173,8 +176,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'Toggle'
 Plugin 'TWiki-Syntax'
-Plugin 'SirVer/ultisnips'                       " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
-Plugin 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
+"Plugin 'SirVer/ultisnips'                       " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
+"Plugin 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 Plugin 'mbbill/undotree'
 Plugin 'Shougo/unite.vim'
 Plugin 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
@@ -227,12 +230,14 @@ endif
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on                       " required by Vundle, pathogen etc
 " end of Vundle }}}
+
 " Common abbreviations/misspellings, spell {{{
 if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
 endif
 set spelllang=pl,en
 " }}}
+
 " Editing behaviour {{{
 behave xterm                                    " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
 set showmode                                    " always show what mode we're currently editing in
@@ -270,6 +275,7 @@ set shortmess+=I                                " hide the launch screen
 set clipboard=unnamed                           " normal OS clipboard interaction
 set mouse=a                                     " enable using the mouse if terminal emulator supports it (xterm does)
 " }}}
+
 " Various settings {{{
 set linebreak
 set smartindent                                 " smart autoindenting when starting a new line
@@ -303,6 +309,7 @@ set infercase
 set tildeop                                     " Tylde(~) behaves like operator
 "set iskeyword+=-,,                              " which char make a word
 " }}}
+
 " Folding rules {{{
 set foldenable                  " enable folding
 set foldcolumn=0                " add a fold column
@@ -319,6 +326,7 @@ nnoremap z3 :set foldlevel=3<cr>
 nnoremap z4 :set foldlevel=4<cr>
 nnoremap z5 :set foldlevel=5<cr>
 " }}}
+
 " Editor layout {{{
 " default file format for all OS
 set fileformat=unix
@@ -351,6 +359,7 @@ set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-1,ucs-bom,utf-1
 " Uzycie 'fileencoding' (ktore lepiej zmieniac przez ":setlocal" niz ":set") zmienia zachowanie zapisu.
 " fileencodings rozni sie od fileencoding tym, ze ustawia domyslny zapis dla wszystkich plikow.
 " }}}
+
 " Vim behaviour {{{
 set hidden                                      " hide buffers instead of closing them this
                                 " means that the current buffer can be put
@@ -384,6 +393,7 @@ set noerrorbells                " don't beep
 set showcmd                     " show (partial) command in the last line of the screen
                                 " this also shows visual selection info
 " }}}
+
 " Highlight, Colorscheme, syntax{{{
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -413,6 +423,7 @@ syntax sync minlines=30
 syntax sync maxlines=40
 set synmaxcol=500
 " }}}
+
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -634,7 +645,8 @@ if has("autocmd")
     augroup end "}}}
 endif
 " }}}
-" gui/gvim {{{
+
+" {{{ gui/gvim
 if has("gui_running")
     set mousehide                                   " Hide the mouse when typing text
     set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
@@ -663,7 +675,8 @@ if has("gui_running")
     endif
 endif
 " }}}
-" Functions {{{
+
+" {{{ Functions
 " exclamation mark(!) means that function replace previous
 " Toggle the quickfix window {{{
 " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
@@ -696,11 +709,11 @@ endfunction
 function! QuoteInsertionWrapper (quote) "{{{
 " Add a second quote only if the left and the right character are not keyword
 " characters.
-	let	col	= col('.')
-	if getline('.')[col-2] !~ '\k' && getline('.')[col] !~ '\k'
-		normal ax
-		exe "normal r".a:quote."h"
-	end
+    let col = col('.')
+    if getline('.')[col-2] !~ '\k' && getline('.')[col] !~ '\k'
+        normal ax
+        exe "normal r".a:quote."h"
+    end
 endfunction " }}}
 function! s:Tag() "{{{
 " Tworzenie pliku znacznikow
@@ -843,14 +856,16 @@ if filereadable(vimrc_dir . "functions.vim")
     execute ":source" vimrc_dir . "functions.vim"
 endif
 " }}}
-" Commands for functions {{{
+
+" {{{ Commands for functions
 " }}}
-" Mapping for functions {{{
+
+" {{{ Mapping for functions
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
-"inoremap	'  '<Esc>:call QuoteInsertionWrapper("'")<CR>a
-"inoremap	"  "<Esc>:call QuoteInsertionWrapper('"')<CR>a
-"inoremap	`  `<Esc>:call QuoteInsertionWrapper('`')<CR>a
+"inoremap   '  '<Esc>:call QuoteInsertionWrapper("'")<CR>a
+"inoremap   "  "<Esc>:call QuoteInsertionWrapper('"')<CR>a
+"inoremap   `  `<Esc>:call QuoteInsertionWrapper('`')<CR>a
 "nnoremap <C-]> :call <SID>Tag()<CR>\|:echo ""<CR>
 "przelaczanie podswietlania wynikow szukania ctrl+n
 "noremap <silent> <C-n> <Esc>:call ToggleHLSearch()<CR>
@@ -862,10 +877,12 @@ noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 "nnoremap n n:call PulseCursorLine()<cr>
 "nnoremap N N:call PulseCursorLine()<cr>
 " }}}
-" Commands {{{
+
+" {{{ Commands
 command! -nargs=0 Trim :%s/\s\+$//
 " }}}
-" Mappings {{{
+
+" {{{ Mappings
 " !         make a switch from a key
 " <CR>      it's enter
 " <c-o>     allows in 'insert' mode insert a command
@@ -1025,7 +1042,8 @@ nnoremap L $
 
 nnoremap <Leader>h :set hlsearch!<CR>
 "}}}
-" plugins configuration {{{
+
+" {{{ plugins configuration
 " vim-toggle {{{
 imap <C-T>:call Toggle()<CR>
 nmap <C-T>:call Toggle()<CR>
@@ -1084,10 +1102,10 @@ if g:UNIX
 endif
 " }}}
 " supertab {{{
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabDefaultCompletionType = "<c-p>"
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingForward  = '<tab>'
-" let g:SuperTabMappingBackward = '<s-tab>'
+"let g:SuperTabMappingBackward = '<s-tab>'
 " }}}
 " file_templates {{{
 let g:file_template_default = "def/PKGBUILD"
@@ -1268,11 +1286,21 @@ autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
 " }}}
-" vim-shell
+" vim-shell {{{
 let g:shell_mappings_enabled=0
 " }}}
-" Extra user or machine specific settings {{{
+" {{{ Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" }}}
+" }}}
+
+" Extra user or machine specific settings
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
 endif
-" }}}
