@@ -110,8 +110,8 @@ Plugin 'awk-support.vim'                        " [AWK-IDE for Vim/gVim](https:/
 Plugin 'bash-support.vim'                       " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
 Plugin 'perl-support.vim'                       " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
 Plugin 'c.vim'                                  " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
-"Plugin 'latex-support.vim'
-"Plugin 'doxygen-support.vim'
+"Plugin 'latex-support.vim'                     " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
+"Plugin 'doxygen-support.vim'                   " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
 
 " git and other vcs
 Plugin 'int3/vim-extradite'
@@ -126,94 +126,97 @@ Plugin 'git-flow-format'                        " [formats a Git Flow branch nam
 Plugin 'gitv'                                   " [gitk for Vim](https://github.com/vim-scripts/gitv)
 
 " colorschemes and syntax
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nginx.vim'
-Plugin 'primary.vim'
-Plugin 'jiangxincode/mpi.vim'
-Plugin 'putty'
+Plugin 'altercation/vim-colors-solarized'       " [precision colorscheme for the vim text editor](https://github.com/altercation/vim-colors-solarized)
+Plugin 'nginx.vim'                              " [highlights configuration files for nginx, the high-performance web server](https://github.com/vim-scripts/nginx.vim)
+Plugin 'primary.vim'                            " [Inspired by Google's official colors](https://github.com/vim-scripts/primary.vim)
+Plugin 'jiangxincode/mpi.vim'                   " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
+Plugin 'putty'                                  " [A color scheme that resembles one of Putty](https://github.com/vim-scripts/putty)
+Plugin 'httplog'                                " [Highlight access log of Apache, nginx, etc](https://github.com/vim-scripts/httplog)
+"Plugin 'LogViewer'                              " [Comfortable examination of multiple parallel logfiles](https://github.com/vim-scripts/LogViewer)
+Plugin 'jQuery'                                 " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
+Plugin 'TWiki-Syntax'                           " [Syntaxfile for TWiki-Syntax](https://github.com/vim-scripts/TWiki-Syntax)
+Plugin 'whitespace-syntax-highlight'            " [whitespace syntax highlight](https://github.com/vim-scripts/whitespace-syntax-highlight/)
+Plugin 'yowish'                                 " [A yellowish dark color scheme](https://github.com/vim-scripts/yowish)
 
 " for dev
-"Plugin 'AutoFold.vim'
-Plugin 'vim-javacomplete2'
-Plugin 'Vim-R-plugin'
-"Plugin 'python_fold'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'supersearch'
-"Plugin 'Dokumentary'
-Plugin 'cpp_cppcheck.vim'
-Plugin 'vim-gitignore'
-Plugin 'joonty/vdebug.git'
-Plugin 'terryma/vim-expand-region'
+Plugin 'OmniCppComplete'                        " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
+Plugin 'jiangxincode/TagCollection'             " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
+"Plugin 'AutoFold.vim'                          " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
+Plugin 'vim-javacomplete2'                      " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
+Plugin 'Vim-R-plugin'                           " [Plugin to work with R](https://github.com/vim-scripts/Vim-R-plugin)
+"Plugin 'python_fold'                           " [Folding expression for python](https://github.com/vim-scripts/Python_fold)
+Plugin 'nathanaelkane/vim-indent-guides'        " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
+Plugin 'supersearch'                            " [plugin is a source code browser plugin](https://github.com/vim-scripts/supersearch)
+"Plugin 'Dokumentary'                           " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
+Plugin 'cpp_cppcheck.vim'                       " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
+Plugin 'vim-gitignore'                          " [Another gitignore plugin for Vim](https://github.com/vim-scripts/vim-gitignore)
+Plugin 'joonty/vdebug.git'                      " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
+Plugin 'terryma/vim-expand-region'              " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
 "Plugin 'Yggdroot/hiPairs'                      " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
+Plugin 'Shutnik/jshint2.vim'                    " [Lightweight, customizable and functional Vim plugin for JSHint integration](https://github.com/Shutnik/jshint2.vim)
+Plugin 'nvie/vim-flake8'                        " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
+Plugin 'xml.vim'                                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
+Plugin 'xmledit'                                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
+Plugin 'xslt'                                   " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
+"Plugin 'vim-perl/vim-perl'                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 
 " Others
-Plugin 'mru.vim'
-Plugin 'ggreer/the_silver_searcher' "ag: better search
-Plugin 'ctrlsf.vim'
-Plugin 'matchit.zip'
-Plugin 'EnhancedDiff'
-Plugin 'rking/ag.vim'
-Plugin 'closetag.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'jQuery'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'netrw.vim'
-Plugin 'tyru/open-browser.vim'
-"Plugin 'perl_h2xs'
-Plugin 'jlemetay/permut'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'godlygeek/tabular'
+Plugin 'mru.vim'                                " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
+Plugin 'ggreer/the_silver_searcher'             " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
+Plugin 'ctrlsf.vim'                             " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
+Plugin 'matchit.zip'                            " [extended % matching for HTML, LaTeX, and many other languages](https://github.com/vim-scripts/matchit.zip)
+Plugin 'EnhancedDiff'                           " [A Vim plugin for creating better diffs](https://github.com/vim-scripts/EnhancedDiff)
+Plugin 'rking/ag.vim'                           " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
+Plugin 'closetag.vim'                           " [Functions and mappings to close open HTML/XML tags](https://github.com/vim-scripts/closetag.vim)
+Plugin 'kien/ctrlp.vim'                         " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
+Plugin 'mattn/emmet-vim'                        " [provides support for expanding abbreviations similar to emmet](https://github.com/mattn/emmet-vim)
+Plugin 'netrw.vim'                              " [Network oriented reading, writing, and browsing (keywords: netrw ftp scp)(https://github.com/vim-scripts/netrw.vim)
+Plugin 'tyru/open-browser.vim'                  " [Open URI with your favorite browser from your most favorite editor](https://github.com/tyru/open-browser.vim)
+"Plugin 'perl_h2xs'                             " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
+Plugin 'jlemetay/permut'                        " [swap columns of text separated by arbitrary characters](https://github.com/jlemetay/permut)
+Plugin 'junegunn/vim-easy-align'                " [A Vim alignment plugin](https://github.com/junegunn/vim-easy-align)
+Plugin 'godlygeek/tabular'                      " [Vim script for text filtering and alignment](https://github.com/godlygeek/tabular)
 Plugin 'edkolev/promptline.vim'                 " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
-Plugin 'restore_view.vim'
+Plugin 'restore_view.vim'                       " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
 Plugin 'SuperTab'                               " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'Tabmerge'
-Plugin 'majutsushi/tagbar'
-Plugin 'taglist.vim'
-Plugin 'Toggle'
-Plugin 'TWiki-Syntax'
+Plugin 'AndrewRadev/switch.vim'                 " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
+Plugin 'scrooloose/nerdtree'                    " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
+Plugin 'scrooloose/syntastic'                   " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+Plugin 'scrooloose/nerdcommenter'               " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
+Plugin 'scrooloose/nerdtree-git-plugin'         " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
+Plugin 'majutsushi/tagbar'                      " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
+Plugin 'Tabmerge'                               " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
+Plugin 'taglist.vim'                            " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
+Plugin 'Toggle'                                 " [allows you to toggle bool (true/false) and other words with a shortcut](https://github.com/vim-scripts/Toggle)
 "Plugin 'SirVer/ultisnips'                       " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
 "Plugin 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
-Plugin 'mbbill/undotree'
-Plugin 'Shougo/unite.vim'
+Plugin 'mbbill/undotree'                        " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
+Plugin 'Shougo/unite.vim'                       " [Unite and create user interfaces](https://github.com/Shougo/unite.vim)
 Plugin 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
 Plugin 'vim-airline/vim-airline-themes'         " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
 
-
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'nvie/vim-flake8'
-Plugin 'vitalk/vim-lesscss.git'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'markdown-preview.vim'
-Plugin 'kurkale6ka/vim-pairs'
-"Plugin 'vim-perl/vim-perl'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-scriptease'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-surround.git'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vimwiki'
-Plugin 'whitespace-syntax-highlight'
-Plugin 'xml.vim'
-Plugin 'xmledit'
-Plugin 'xslt'
-Plugin 'yowish'
-"Plugin 'MRU'
-"Plugin 'airblade/vim-rooter' "conflict with map
-"Plugin 'togglenumber'
-Plugin 'ap/vim-buftabline'
+Plugin 'easymotion/vim-easymotion'              " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
+Plugin 'vitalk/vim-lesscss'                     " [Update corresponding css files on the fly while edit less files](https://github.com/vitalk/vim-lesscss)
+Plugin 'plasticboy/vim-markdown'                " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
+Plugin 'markdown-preview.vim'                  " [Markdown Preview](https://github.com/vim-scripts/markdown-preview.vim)
+Plugin 'kurkale6ka/vim-pairs'                   " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
+Plugin 'tpope/vim-repeat'                       " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
+Plugin 'tpope/vim-scriptease'                   " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
+Plugin 'tpope/vim-speeddating'                  " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
+Plugin 'tpope/vim-surround.git'                 " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
+Plugin 'tpope/vim-unimpaired'                   " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
+Plugin 'vimwiki'                                " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
+"Plugin 'MRU'                                   " [Most recently used files in your file menu](https://github.com/vim-scripts/mru)
+"Plugin 'airblade/vim-rooter'                   " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
+"Plugin 'togglenumber'                          " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
+Plugin 'ap/vim-buftabline'                      " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 
 " My vim plugin for PKGBUILD
 if g:UNIX
     Plugin 'dracorp/vim-pkgbuild'
 endif
 " installed manualy or by script bin/add-vba-bundle.sh
-" https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates
-Plugin 'file_templates', {'pinned': 1}
+Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 
 " Windows
 if g:MSWIN
@@ -1289,7 +1292,7 @@ nnoremap <C-P> :bprev<CR>
 " vim-shell {{{
 let g:shell_mappings_enabled=0
 " }}}
-" {{{ Ultisnips
+" Ultisnips {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -1297,6 +1300,17 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+" }}}
+" open-browser.vim {{{
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+" }}}
+" vim-easy-align {{{
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " }}}
 " }}}
 
