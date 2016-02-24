@@ -68,6 +68,8 @@ call vundle#begin(s:bundle_dir)
 Plugin 'VundleVim/Vundle.vim'                   " [the plug-in manager](https://github.com/VundleVim/Vundle.vim)
 
 " base plugins
+Plugin 'idanarye/vim-merginal'                  " [Fugitive extension to manage and merge Git branches](https://github.com/idanarye/vim-merginal)
+Plugin 'airblade/vim-gitgutter'                 " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
 Plugin 'xolox/vim-misc'                         " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plugin 'Shougo/vimproc.vim'                     " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 
@@ -117,12 +119,10 @@ Plugin 'c.vim'                                  " [C/C++ IDE -- Write and run pr
 Plugin 'int3/vim-extradite'
 Plugin 'tpope/vim-fugitive'                     " [Git wrapper of all time](https://github.com/tpope/vim-fugitive)
 Plugin 'WolfgangMehner/git-support'             " [Git for Vim/gVim](https://github.com/WolfgangMehner/git-support)
-Plugin 'idanarye/vim-merginal'                  " [Fugitive extension to manage and merge Git branches](https://github.com/idanarye/vim-merginal)
-Plugin 'airblade/vim-gitgutter'                 " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
 "Plugin 'mhinz/vim-signify'                      " [show differences with style](https://github.com/mhinz/vim-signify)
 Plugin 'sjl/splice.vim'                         " [managing three-way merges](https://github.com/sjl/splice.vim)
 "Plugin 'vcscommand.vim'                        " [CVS/SVN/SVK/git/hg/bzr integration plugin - mapping conflict](https://github.com/vim-scripts/vcscommand.vim)
-Plugin 'git-flow-format'                        " [formats a Git Flow branch name in order to shorten the prefixes](https://github.com/vim-scripts/git-flow-format)
+"Plugin 'git-flow-format'                        " [formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file](https://github.com/vim-scripts/git-flow-format)
 Plugin 'gitv'                                   " [gitk for Vim](https://github.com/vim-scripts/gitv)
 
 " colorschemes and syntax
@@ -198,9 +198,10 @@ Plugin 'vim-airline/vim-airline-themes'         " [the official theme repository
 Plugin 'easymotion/vim-easymotion'              " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 Plugin 'vitalk/vim-lesscss'                     " [Update corresponding css files on the fly while edit less files](https://github.com/vitalk/vim-lesscss)
 Plugin 'plasticboy/vim-markdown'                " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
-Plugin 'markdown-preview.vim'                  " [Markdown Preview](https://github.com/vim-scripts/markdown-preview.vim)
+"Plugin 'markdown-preview.vim'                  " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim)
 Plugin 'kurkale6ka/vim-pairs'                   " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
 Plugin 'tpope/vim-repeat'                       " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
+
 Plugin 'tpope/vim-scriptease'                   " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
 Plugin 'tpope/vim-speeddating'                  " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
 Plugin 'tpope/vim-surround.git'                 " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
@@ -1058,7 +1059,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#branch#format = 'Git_flow_branch_format'
+"let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 "}}}
 " ctrlp {{{
 set wildignore+=*.7z
