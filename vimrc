@@ -13,6 +13,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" {{{ OS Settings
 let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
 
@@ -33,7 +34,7 @@ elseif g:MSWIN
         set runtimepath-=~/vimfiles
     endif
 endif
-
+" }}}
 " Remove ALL autocommands for the current group.
 autocmd!
 
@@ -158,7 +159,13 @@ Plugin 'nvie/vim-flake8'                        " [Flake8 plugin for Vim](https:
 Plugin 'xml.vim'                                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plugin 'xmledit'                                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plugin 'xslt'                                   " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
-"Plugin 'vim-perl/vim-perl'                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
+Plugin 'vim-perl/vim-perl'                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
+if g:MSWIN
+    Plugin 'poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
+endif
+Plugin 'Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
+Plugin 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
+Plugin 'mattn/webapi-vim'                       " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 
 " Others
 Plugin 'mru.vim'                                " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
