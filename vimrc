@@ -73,6 +73,7 @@ Plugin 'idanarye/vim-merginal'                  " [Fugitive extension to manage 
 Plugin 'airblade/vim-gitgutter'                 " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
 Plugin 'xolox/vim-misc'                         " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plugin 'Shougo/vimproc.vim'                     " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
+Plugin 'tlib'                                   " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
 
 " Charles Campbell
 "Plugin 'AnsiEsc.vim'                            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
@@ -89,6 +90,7 @@ Plugin 'LargeFile'                              " [Edit large files quickly (key
 Plugin 'SudoEdit.vim'                           " [Edit Files using sudo or su or any other tool](https://github.com/vim-scripts/SudoEdit.vim)
 Plugin 'vis'                                    " [Extended Visual Mode Commands, Substitutes, and Searches](https://github.com/vim-scripts/vis)
 Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
+Plugin 'cecutil'                                " [save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps](https://github.com/vim-scripts/cecutil)
 
 " xolox
 Plugin 'xolox/vim-notes'                        " [Easy note taking in Vim](https://github.com/xolox/vim-notes)
@@ -218,6 +220,7 @@ Plugin 'vimwiki'                                " [Personal Wiki for Vim](https:
 "Plugin 'airblade/vim-rooter'                   " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
 "Plugin 'togglenumber'                          " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
 Plugin 'ap/vim-buftabline'                      " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
+Plugin 'tskeleton'                              " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
 
 " My vim plugin for PKGBUILD
 if g:UNIX
