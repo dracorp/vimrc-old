@@ -203,7 +203,7 @@ Plugin 'mbbill/undotree'                        " [The ultimate undo history vis
 Plugin 'Shougo/unite.vim'                       " [Unite and create user interfaces](https://github.com/Shougo/unite.vim)
 Plugin 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
 Plugin 'vim-airline/vim-airline-themes'         " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
-
+Plugin 'vim-nfo'                                " [ftplugin for .nfo files](https://github.com/vim-scripts/vim-nfo)
 Plugin 'easymotion/vim-easymotion'              " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 Plugin 'vitalk/vim-lesscss'                     " [Update corresponding css files on the fly while edit less files](https://github.com/vitalk/vim-lesscss)
 Plugin 'plasticboy/vim-markdown'                " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
