@@ -42,7 +42,7 @@ filetype plugin indent on                       " required by Vundle, pathogen e
 " Manage plugins by vim-plug {{{
 call plug#begin('~/.vim/bundle')
 " common
-Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+"Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 Plug 'scrooloose/nerdtree-git-plugin'         " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 Plug 'scrooloose/nerdcommenter'               " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
@@ -135,13 +135,13 @@ endif
 Plug 'klen/python-mode'                       " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
 
 " Fritz Mehner
-Plug 'Vim-support'                            " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
-Plug 'awk-support.vim'                        " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
-Plug 'bash-support.vim'                       " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
-Plug 'perl-support.vim'                       " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
-Plug 'c.vim'                                  " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
-Plug 'latex-support.vim'                     " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
-Plug 'doxygen-support.vim'                   " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
+Plug 'Vim-support', { 'for': 'vim' }                            " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
+Plug 'awk-support.vim', { 'for': 'awk' }                        " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
+Plug 'bash-support.vim', { 'for': 'sh' }                       " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
+Plug 'perl-support.vim', { 'for': 'perl' }                       " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
+Plug 'c.vim', { 'for': 'c' }                                  " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
+Plug 'latex-support.vim', { 'for': 'latex' }                     " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
+Plug 'doxygen-support.vim', { 'for': 'doxygen' }                   " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
 
 " git and other vcs
 Plug 'int3/vim-extradite'
@@ -156,8 +156,8 @@ Plug 'gitv'                                   " [gitk for Vim](https://github.co
 " for dev
 Plug 'OmniCppComplete'                        " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
 Plug 'jiangxincode/TagCollection'             " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
-Plug 'AutoFold.vim'                          " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
-Plug 'vim-javacomplete2'                      " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
+"Plug 'AutoFold.vim'                          " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
+Plug 'vim-javacomplete2', { 'for': 'java' }                      " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
 Plug 'Vim-R-plugin'                           " [Plugin to work with R](https://github.com/vim-scripts/Vim-R-plugin)
 Plug 'python_fold'                           " [Folding expression for python](https://github.com/vim-scripts/Python_fold)
 Plug 'nathanaelkane/vim-indent-guides'        " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
@@ -173,7 +173,7 @@ Plug 'nvie/vim-flake8'                        " [Flake8 plugin for Vim](https://
 Plug 'xml.vim'                                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'xmledit'                                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'xslt'                                   " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
-Plug 'vim-perl/vim-perl'                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
+Plug 'vim-perl/vim-perl', { 'for': 'perl' }                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 if g:MSWIN
     Plug 'poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
     Plug 'Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
@@ -191,7 +191,7 @@ Plug 'rking/ag.vim'                           " [Vim plugin for the_silver_searc
 Plug 'closetag.vim'                           " [Functions and mappings to close open HTML/XML tags](https://github.com/vim-scripts/closetag.vim)
 Plug 'netrw.vim'                              " [Network oriented reading, writing, and browsing (keywords: netrw ftp scp)(https://github.com/vim-scripts/netrw.vim)
 Plug 'tyru/open-browser.vim'                  " [Open URI with your favorite browser from your most favorite editor](https://github.com/tyru/open-browser.vim)
-Plug 'perl_h2xs'                             " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
+Plug 'perl_h2xs', { 'for': 'perl' }                             " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
 Plug 'jlemetay/permut'                        " [swap columns of text separated by arbitrary characters](https://github.com/jlemetay/permut)
 Plug 'junegunn/vim-easy-align'                " [A Vim alignment plugin](https://github.com/junegunn/vim-easy-align)
 Plug 'godlygeek/tabular'                      " [Vim script for text filtering and alignment](https://github.com/godlygeek/tabular)
@@ -220,7 +220,7 @@ Plug 'tpope/vim-speeddating'                  " [use CTRL-A/CTRL-X to increment 
 Plug 'tpope/vim-surround.git'                 " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
 Plug 'tpope/vim-unimpaired'                   " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
 Plug 'MRU'                                   " [Most recently used files in your file menu](https://github.com/vim-scripts/mru)
-Plug 'airblade/vim-rooter'                   " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
+"Plug 'airblade/vim-rooter'                   " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
 Plug 'togglenumber'                          " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
 Plug 'ap/vim-buftabline'                      " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 Plug 'tskeleton'                              " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
