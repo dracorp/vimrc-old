@@ -12,6 +12,7 @@
 " Use Vim settings, rather then Vi settings.
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+
 " {{{ OS Settings
 let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
@@ -35,9 +36,9 @@ endif
 " }}}
 " Remove ALL autocommands for the current group.
 autocmd!
+
 " Manage plugins by vim-plug {{{
-"call plug#begin('vim/bundle')
-call plug#begin('c:\Users\U537501\opt\vim\vimfiles\bundle')
+call plug#begin('~/.vim/bundle')
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
 " common
@@ -166,7 +167,7 @@ Plug 'nathanaelkane/vim-indent-guides'        " [displaying indent levels in cod
 Plug 'supersearch'                            " [plugin is a source code browser plugin](https://github.com/vim-scripts/supersearch)
 Plug 'Dokumentary'                           " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
 Plug 'cpp_cppcheck.vim', { 'for': 'cpp' }       " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
-Plug 'joonty/vdebug'                      " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
+Plug 'joonty/vdebug'                            " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
 Plug 'terryma/vim-expand-region'              " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
 "Plug 'Yggdroot/hiPairs'                      " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
 Plug 'nvie/vim-flake8'                        " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
@@ -246,6 +247,20 @@ Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-ba
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Manage plugin by Vundle
+filetype off "required by Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" installed manualy or by script bin/add-vba-bundle.sh
+Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
+Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
+"Plugin 'manpageview', {'pinned': 1}             "
+Plugin 'StlShowFunc', {'pinned': 1}                           " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+call vundle#end()
+
+" Enable file type detection. Use the default filetype settings.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on                       " required by Vundle, pathogen etc
 " Common abbreviations/misspellings, spell {{{
 if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
