@@ -37,8 +37,9 @@ endif
 " Remove ALL autocommands for the current group.
 autocmd!
 
+let s:bundle_dir    = vimrc_dir . 'bundle'
 " Manage plugins by vim-plug {{{
-call plug#begin('~/.vim/bundle')
+call plug#begin(s:bundle_dir)
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
 " common
@@ -158,27 +159,27 @@ Plug 'idanarye/vim-merginal'                  " [Fugitive extension to manage an
 Plug 'vim-gitignore'                          " [Another gitignore plugin for Vim](https://github.com/vim-scripts/vim-gitignore)
 
 " for dev
-Plug 'OmniCppComplete'                        " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
-Plug 'jiangxincode/TagCollection'             " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
-"Plug 'AutoFold.vim'                          " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
-Plug 'vim-javacomplete2', { 'for': 'java' }                      " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
+Plug 'OmniCppComplete', { 'for': 'cpp' }        " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
+Plug 'jiangxincode/TagCollection'               " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
+"Plug 'AutoFold.vim'                            " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
+Plug 'vim-javacomplete2', { 'for': 'java' }     " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
 Plug 'Vim-R-plugin', { 'for': 'R' }             " [Plugin to work with R](https://github.com/vim-scripts/Vim-R-plugin)
-Plug 'nathanaelkane/vim-indent-guides'        " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
-Plug 'supersearch'                            " [plugin is a source code browser plugin](https://github.com/vim-scripts/supersearch)
-Plug 'Dokumentary'                           " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
+Plug 'nathanaelkane/vim-indent-guides'          " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
+Plug 'supersearch'                              " [plugin is a source code browser plugin](https://github.com/vim-scripts/supersearch)
+Plug 'Dokumentary'                              " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
 Plug 'cpp_cppcheck.vim', { 'for': 'cpp' }       " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
 Plug 'joonty/vdebug'                            " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
-Plug 'terryma/vim-expand-region'              " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
-"Plug 'Yggdroot/hiPairs'                      " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
-Plug 'nvie/vim-flake8'                        " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
-Plug 'xml.vim', { 'for': 'xml' }                               " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
-Plug 'xmledit', { 'for': 'xml' }                               " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
-Plug 'xslt', { 'for': 'xslt' }                                   " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
+Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
+"Plug 'Yggdroot/hiPairs'                        " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
+Plug 'nvie/vim-flake8', { 'for': 'python' }     " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
+Plug 'xml.vim', { 'for': 'xml' }                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
+Plug 'xmledit', { 'for': 'xml' }                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
+Plug 'xslt', { 'for': 'xslt' }                  " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
 if g:MSWIN
     Plug 'poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
     Plug 'Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
     Plug 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
-"    Plug 'mattn/webapi-vim'                       " [vim interface to Web API](https://github.com/mattn/webapi-vim)
+"    Plug 'mattn/webapi-vim'                      " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 endif
 
 " Others
@@ -203,8 +204,8 @@ Plug 'majutsushi/tagbar'                      " [Vim plugin that displays tags i
 Plug 'Tabmerge'                               " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
 Plug 'taglist.vim'                            " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
 Plug 'Toggle'                                 " [allows you to toggle bool (true/false) and other words with a shortcut](https://github.com/vim-scripts/Toggle)
-Plug 'SirVer/ultisnips'                       " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
-Plug 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
+"Plug 'SirVer/ultisnips'                       " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
+"Plug 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 Plug 'mbbill/undotree'                        " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
 Plug 'Shougo/unite.vim'                       " [Unite and create user interfaces](https://github.com/Shougo/unite.vim)
 Plug 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
@@ -214,14 +215,14 @@ Plug 'kurkale6ka/vim-pairs'                   " [Punctuation text objects: ci/ d
 Plug 'tpope/vim-repeat'                       " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
 Plug 'tpope/vim-scriptease'                   " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
 Plug 'tpope/vim-speeddating'                  " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
-Plug 'tpope/vim-surround'                 " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
+Plug 'tpope/vim-surround'                       " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
 Plug 'tpope/vim-unimpaired'                   " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
 "Plug 'MRU'                                   " [Most recently used files in your file menu](https://github.com/vim-scripts/mru)
 "Plug 'airblade/vim-rooter'                   " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
-Plug 'togglenumber'                          " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
-Plug 'ap/vim-buftabline'                      " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
+Plug 'togglenumber'                             " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
+Plug 'ap/vim-buftabline'                        " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
-"Plug 'tlib'                                   " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
+"Plug 'tlib'                              " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -231,36 +232,26 @@ endif
 if g:MSWIN
     Plug 'maximize.dll'
 endif
-call plug#end() "}}}
+call plug#end()
 delc PlugUpgrade
-
-" Plugin managed by Vundle
+"}}}
+" Vundle/bundle {{{
 filetype off                                    " required
+let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
 " set the runtime path to include Vundle and initialize
-set rtp+='c:\Users\U537501\opt\vim\vimfiles\bundle\Vundle.vim'
-call vundle#begin()
+let &rtp .= ',' . s:vundle_home
+call vundle#begin(s:bundle_dir)
 " installed manualy or by script bin/add-vba-bundle.sh
-Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
-"Plugin 'manpageview', {'pinned': 1}             "
-Plugin 'StlShowFunc', {'pinned': 1}                           " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
-Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" Manage plugin by Vundle
-filetype off "required by Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" installed manualy or by script bin/add-vba-bundle.sh
+" }}}
+" Manage plugin by Vundle {{{
 Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 "Plugin 'manpageview', {'pinned': 1}             "
-Plugin 'StlShowFunc', {'pinned': 1}                           " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
 call vundle#end()
+filetype plugin indent on    " required
+"}}}
 
-" Enable file type detection. Use the default filetype settings.
-" Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on                       " required by Vundle, pathogen etc
 " Common abbreviations/misspellings, spell {{{
 if filereadable(vimrc_dir . "autocorrect.vim")
     execute ":source" vimrc_dir . "autocorrect.vim"
