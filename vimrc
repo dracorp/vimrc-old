@@ -13,7 +13,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" {{{ OS Settings
+" OS Settings {{{
 let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
 " Check OS and where are vim's config files
@@ -37,22 +37,23 @@ endif
 " Remove ALL autocommands for the current group.
 autocmd!
 
+" Plugin manager(s)
 let s:bundle_dir    = vimrc_dir . 'bundle'
 " Manage plugins by vim-plug {{{
 call plug#begin(s:bundle_dir)
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
 " common
-"Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
-Plug 'scrooloose/nerdtree-git-plugin'         " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
-Plug 'scrooloose/nerdcommenter'               " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
-Plug 'airblade/vim-gitgutter'                 " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
+Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
+Plug 'scrooloose/nerdtree-git-plugin', {'on': 'NERDTreeToggle'} " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
+Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
+Plug 'airblade/vim-gitgutter'                   " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
 Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
-Plug 'easymotion/vim-easymotion'              " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
+Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
 "Plug 'jiangmiao/auto-pairs'                     " [insert or delete brackets, parens, quotes in pair](https://github.com/jiangmiao/auto-pairs)
-Plug 'vimwiki'                                " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
+Plug 'vimwiki'                                  " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
 Plug 'gmarik/Vundle.vim'                        " [the plug-in manager](https://github.com/VundleVim/Vundle.vim)
 
 "HTML
@@ -150,7 +151,7 @@ Plug 'doxygen-support.vim', { 'for': 'doxygen' }                   " [Generate D
 Plug 'int3/vim-extradite'
 Plug 'tpope/vim-fugitive'                     " [Git wrapper of all time](https://github.com/tpope/vim-fugitive)
 Plug 'WolfgangMehner/git-support'             " [Git for Vim/gVim](https://github.com/WolfgangMehner/git-support)
-Plug 'mhinz/vim-signify'                      " [show differences with style](https://github.com/mhinz/vim-signify)
+"Plug 'mhinz/vim-signify'                      " [show differences with style](https://github.com/mhinz/vim-signify)
 Plug 'sjl/splice.vim'                         " [managing three-way merges](https://github.com/sjl/splice.vim)
 "Plug 'vcscommand.vim'                        " [CVS/SVN/SVK/git/hg/bzr integration plugin - mapping conflict](https://github.com/vim-scripts/vcscommand.vim)
 Plug 'git-flow-format'                        " [formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file](https://github.com/vim-scripts/git-flow-format)
@@ -208,8 +209,9 @@ Plug 'Toggle'                                 " [allows you to toggle bool (true
 "Plug 'honza/vim-snippets'                     " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 Plug 'mbbill/undotree'                        " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
 Plug 'Shougo/unite.vim'                       " [Unite and create user interfaces](https://github.com/Shougo/unite.vim)
-Plug 'vim-airline/vim-airline'                " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
-Plug 'vim-airline/vim-airline-themes'         " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
+Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
+" [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
+" [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
 Plug 'vim-nfo'                                " [ftplugin for .nfo files](https://github.com/vim-scripts/vim-nfo)
 Plug 'kurkale6ka/vim-pairs'                   " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
 Plug 'tpope/vim-repeat'                       " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
@@ -222,7 +224,7 @@ Plug 'tpope/vim-unimpaired'                   " [pairs of handy bracket mappings
 Plug 'togglenumber'                             " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
 Plug 'ap/vim-buftabline'                        " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
-"Plug 'tlib'                              " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
+                                                " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
 
 " My vim plugin for PKGBUILD
 if g:UNIX
@@ -235,7 +237,7 @@ endif
 call plug#end()
 delc PlugUpgrade
 "}}}
-" Vundle/bundle {{{
+" Settings for Vundle/bundle {{{
 filetype off                                    " required
 let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
 " set the runtime path to include Vundle and initialize
@@ -246,10 +248,9 @@ call vundle#begin(s:bundle_dir)
 " Manage plugin by Vundle {{{
 Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
-"Plugin 'manpageview', {'pinned': 1}             "
 Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
 call vundle#end()
-filetype plugin indent on    " required
+filetype plugin indent on                       " required
 "}}}
 
 " Common abbreviations/misspellings, spell {{{
