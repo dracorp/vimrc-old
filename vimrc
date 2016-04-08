@@ -13,9 +13,12 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" OS Settings {{{
+" Some globale settings for further using
 let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
+let g:PYTHON = has('python') || has('python3')
+"}}}
+" OS {{{
 " Check OS and where are vim's config files
 " $HOME - user's home directory
 " $VIM - vim's installation direcotry
@@ -44,7 +47,7 @@ call plug#begin(s:bundle_dir)
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
 " common
-Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+"Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 Plug 'scrooloose/nerdtree-git-plugin', {'on': 'NERDTreeToggle'} " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
@@ -98,13 +101,12 @@ Plug 'ryanoasis/vim-devicons'
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }                " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
-Plug 'markdown-preview.vim', { 'for': 'markdown' }                  " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim)
+"Plug 'markdown-preview.vim', { 'for': 'markdown' }                  " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim)
 
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
 
-Plug 'xolox/vim-misc'                         " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plug 'Shougo/vimproc.vim'                     " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 
 " Charles Campbell
@@ -122,16 +124,24 @@ Plug 'vis'                                    " [Extended Visual Mode Commands, 
 Plug 'cecutil'                                " [save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps](https://github.com/vim-scripts/cecutil)
 
 " xolox
-Plug 'xolox/vim-notes'                        " [Easy note taking in Vim](https://github.com/xolox/vim-notes)
+"Plug 'xolox/vim-notes'                        " [Easy note taking in Vim](https://github.com/xolox/vim-notes)
 Plug 'xolox/vim-shell'                        " [Improved integration between Vim and its environment](https://github.com/xolox/vim-shell)
+Plug 'xolox/vim-misc'                         " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plug 'xolox/vim-reload'                       " [Automatic reloading of Vim scripts](https://github.com/xolox/vim-reload)
 Plug 'xolox/vim-session'                      " [Extended session management for Vim](https://github.com/xolox/vim-session)
 Plug 'xolox/vim-colorscheme-switcher'         " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
-Plug 'xolox/vim-tools'                        " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
-Plug 'xolox/vim-easytags'                     " [Automated tag generation and syntax highlighting in Vim](https://github.com/xolox/vim-easytags)
+"if g:PYTHON
+"    Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
+"endif
+if g:MSWIN
+    Plug 'xolox/vim-easytags'
+        \| Plug 'xolox/vim-shell'
+elseif g:UNIX
+    Plug 'xolox/vim-easytags'                   " [Automated tag generation and syntax highlighting in Vim](https://github.com/xolox/vim-easytags)
+endif
 
 " Python
-if has('python') || has('python3')
+if g:PYTHON
     Plug 'davidhalter/jedi-vim'               " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
     Plug 'betterga'                           " [betterga can get more information than ga (:ascii)](https://github.com/vim-scripts/betterga)
 endif
@@ -176,12 +186,6 @@ Plug 'nvie/vim-flake8', { 'for': 'python' }     " [Flake8 plugin for Vim](https:
 Plug 'xml.vim', { 'for': 'xml' }                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'xmledit', { 'for': 'xml' }                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'xslt', { 'for': 'xslt' }                  " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
-if g:MSWIN
-    Plug 'poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
-    Plug 'Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
-    Plug 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
-"    Plug 'mattn/webapi-vim'                      " [vim interface to Web API](https://github.com/mattn/webapi-vim)
-endif
 
 " Others
 Plug 'mru.vim'                                " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
@@ -225,14 +229,14 @@ Plug 'togglenumber'                             " [easy toggle between different
 Plug 'ap/vim-buftabline'                        " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
                                                 " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
-
-" My vim plugin for PKGBUILD
-if g:UNIX
-    Plug 'dracorp/vim-pkgbuild'
-endif
+if g:UNIX | Plug 'dracorp/vim-pkgbuild' | endif
 " Windows
 if g:MSWIN
     Plug 'maximize.dll'
+    Plug 'poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
+    Plug 'Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
+    Plug 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
+"    Plug 'mattn/webapi-vim'                      " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 endif
 call plug#end()
 delc PlugUpgrade
@@ -702,10 +706,10 @@ endif
 
 " {{{ Functions
 " exclamation mark(!) means that function replace previous
-" Toggle the quickfix window {{{
-" From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
 let g:quickfix_is_open = 0
-function! s:QuickfixToggle()
+function! s:QuickfixToggle() "{{{
+    " Toggle the quickfix window
+    " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
     if g:quickfix_is_open
         cclose
         let g:quickfix_is_open = 0
@@ -717,11 +721,10 @@ function! s:QuickfixToggle()
     endif
 endfunction
 " }}}
-" Toggle the foldcolumn {{{
-" From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
 let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
-
-function! FoldColumnToggle()
+function! FoldColumnToggle() "{{{
+    " Toggle the foldcolumn
+    " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
     if &foldcolumn
         let g:last_fold_column_width = &foldcolumn
         setlocal foldcolumn=0
@@ -771,7 +774,7 @@ function! CheckReadonly() "{{{
 endfunction
 "}}}
 function! ChangeFileencoding() "{{{
-    let encodings = ['cp1250', 'utf-8', 'iso8859-2']
+    let encodings = ['cp1250', 'utf-8', 'iso8859-2', 'iso8859-1', 'iso8859-15']
     let prompt_encs = []
     let index = 0
     while index < len(encodings)
@@ -944,7 +947,7 @@ nnoremap <leader>i :set list!<cr>
 nnoremap <leader>n :setlocal number!<cr>
 
 " highlight line under cursor, horizontal cursor
-nnoremap <Leader>c :setlocal cursorline!<CR>
+nnoremap <Leader>l :setlocal cursorline!<CR>
 
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
@@ -1139,7 +1142,10 @@ let g:VIMFILESDIR = vimrc_dir
 let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
 " }}}
 " vim-session {{{
-let g:session_autosave = 'no'
+let g:session_autosave = 'yes'
+let g:session_autoload = 'yes'
+let g:session_directory = vimrc_dir . 'sessions'
+let g:session_autosave_periodic = '5'
 " }}}
 " TagList {{{
  noremap <silent> <F11>       :TlistToggle<CR>
@@ -1296,11 +1302,13 @@ let g:solarized_termcolors=256    "default value is 16
 let g:easytags_cmd = '/usr/bin/ctags'
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
-let g:easytags_dynamic_files = 1
 let g:easytags_auto_highlight = 1
-let g:easytags_autorecurse = 1
+let g:easytags_autorecurse = 0
 let g:easytags_python_enabled = 1
-"let g:easytags_always_enabled = 0
+let g:easytags_always_enabled = 0
+let g:easytags_on_cursorhold = 1
+set tags=./tags;
+"set vbs=1 | call xolox#easytags#why_so_slow()
 " }}}
 " vim-javacomplete2 {{{
 autocmd FileType java set omnifunc=javacomplete#Complete
