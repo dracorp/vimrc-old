@@ -13,15 +13,15 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Some globale settings for further using
-let g:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
-let g:UNIX  = has("unix")  || has("macunix") || has("win32unix")
+" Some globale settings for further using {{{
+let g:MSWIN  = has("win16") || has("win32")   || has("win64")    || has("win95")
+let g:UNIX   = has("unix")  || has("macunix") || has("win32unix")
 let g:PYTHON = has('python') || has('python3')
 "}}}
-" OS {{{
+" OS Settings {{{
 " Check OS and where are vim's config files
 " $HOME - user's home directory
-" $VIM - vim's installation direcotry
+" $VIM  - vim's installation direcotry
 if g:UNIX
     let  vimrc_dir = $HOME . '/.vim/'
 elseif g:MSWIN
@@ -186,6 +186,8 @@ Plug 'nvie/vim-flake8', { 'for': 'python' }     " [Flake8 plugin for Vim](https:
 Plug 'xml.vim', { 'for': 'xml' }                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'xmledit', { 'for': 'xml' }                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'xslt', { 'for': 'xslt' }                  " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
+"Plug 'openroad.vim'                             " [Goodies for OpenROAD users](https://github.com/vim-scripts/openroad.vim)
+Plug 'Ingres-vim-syntax'                        " [Ingres syntax](http://community.actian.com/wiki/Vim_syntax)
 
 " Others
 Plug 'mru.vim'                                " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
@@ -241,6 +243,7 @@ endif
 call plug#end()
 delc PlugUpgrade
 "}}}
+
 " Settings for Vundle/bundle {{{
 filetype off                                    " required
 let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
@@ -249,6 +252,7 @@ let &rtp .= ',' . s:vundle_home
 call vundle#begin(s:bundle_dir)
 " installed manualy or by script bin/add-vba-bundle.sh
 " }}}
+
 " Manage plugin by Vundle {{{
 Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
@@ -421,9 +425,9 @@ set showcmd                     " show (partial) command in the last line of the
 " }}}
 
 " Highlight, Colorscheme, syntax{{{
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+\%#\@<!$/
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+"match ExtraWhitespace /\s\+\%#\@<!$/
 
 if &t_Co > 2 || has("gui_running")
     syntax on
@@ -681,7 +685,8 @@ if has("gui_running")
                                                     " help(h) - all previous when editing help files
                                                     " a - all previous
 
-    set guioptions+=mgtT
+    set guioptions+=mgt
+    set guioptions-=T
     " m - menu
     " T - toolbar
     " t - tear menu
