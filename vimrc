@@ -187,7 +187,6 @@ Plug 'xml.vim', { 'for': 'xml' }                " [helps editing xml (and [x]htm
 Plug 'xmledit', { 'for': 'xml' }                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'xslt', { 'for': 'xslt' }                  " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
 "Plug 'openroad.vim'                             " [Goodies for OpenROAD users](https://github.com/vim-scripts/openroad.vim)
-Plug 'Ingres-vim-syntax'                        " [Ingres syntax](http://community.actian.com/wiki/Vim_syntax)
 
 " Others
 Plug 'mru.vim'                                " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
@@ -257,6 +256,7 @@ call vundle#begin(s:bundle_dir)
 Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+Plugin 'Ingres-vim-syntax', {'pinned':1}        " [Ingres syntax](http://community.actian.com/wiki/Vim_syntax)
 call vundle#end()
 filetype plugin indent on                       " required
 "}}}
