@@ -230,6 +230,8 @@ Plug 'togglenumber'                             " [easy toggle between different
 Plug 'ap/vim-buftabline'                        " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
                                                 " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
+Plug 'ryanoasis/vim-devicons'                   " [adds font icons](https://github.com/ryanoasis/vim-devicons)
+
 if g:UNIX | Plug 'dracorp/vim-pkgbuild' | endif
 " Windows
 if g:MSWIN
@@ -1246,10 +1248,8 @@ endif
 " }}}
 " NerdTree {{{
 map <F2> :NERDTreeToggle<CR>
-"set timeout
 set timeoutlen=1000
-"set ttimeout
-set ttimeoutlen=50
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 " python-mode {{{
 " Activate rope
