@@ -83,6 +83,9 @@ Plug 'Shutnik/jshint2.vim'                    " [Lightweight, customizable and f
 Plug 'vim-perl/vim-perl', { 'for': 'perl' }                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 Plug 'perl_h2xs', { 'for': 'perl' }                             " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
 
+" Vim
+Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
+
 " Themes and syntax
 Plug 'altercation/vim-colors-solarized'       " [precision colorscheme for the vim text editor](https://github.com/altercation/vim-colors-solarized)
 Plug 'nginx.vim'                              " [highlights configuration files for nginx, the high-performance web server](https://github.com/vim-scripts/nginx.vim)
@@ -95,9 +98,9 @@ Plug 'jQuery'                                 " [Syntax file for jQuery](https:/
 Plug 'TWiki-Syntax'                           " [Syntaxfile for TWiki-Syntax](https://github.com/vim-scripts/TWiki-Syntax)
 Plug 'whitespace-syntax-highlight'            " [whitespace syntax highlight](https://github.com/vim-scripts/whitespace-syntax-highlight/)
 Plug 'yowish'                                 " [A yellowish dark color scheme](https://github.com/vim-scripts/yowish)
-Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
-Plug 'ryanoasis/vim-devicons'
+Plug 'flazz/vim-colorschemes'                   " [this is harvested from vim.org. only colorschemes downloaded in a single .vim](https://github.com/flazz/vim-colorschemes)
+Plug 'morhetz/gruvbox'                          " [Retro groove color scheme for Vim](https://github.com/morhetz/gruvbox)
+Plug 'ryanoasis/vim-devicons'                   " [adds font icons (glyphs ★♨☢)(https://github.com/ryanoasis/vim-devicons)
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }                " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
@@ -230,7 +233,6 @@ Plug 'togglenumber'                             " [easy toggle between different
 Plug 'ap/vim-buftabline'                        " [Forget Vim tabs – now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
                                                 " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
-Plug 'ryanoasis/vim-devicons'                   " [adds font icons](https://github.com/ryanoasis/vim-devicons)
 
 if g:UNIX | Plug 'dracorp/vim-pkgbuild' | endif
 " Windows
@@ -241,6 +243,10 @@ if g:MSWIN
     Plug 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
 "    Plug 'mattn/webapi-vim'                      " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 endif
+
+" The last
+Plug 'ryanoasis/vim-devicons'                   " [adds font icons](https://github.com/ryanoasis/vim-devicons)
+
 call plug#end()
 delc PlugUpgrade
 "}}}
