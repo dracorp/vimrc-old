@@ -932,8 +932,10 @@ command! -nargs=0 Trim :%s/\s\+$//
 " <leader>  default \
 "-------------------------------------------------------------------------------
 " change search mapping and don't jump
-nnoremap * #``
-nnoremap # *``
+nnoremap * g#``
+nnoremap # g*``
+nnoremap g* #``
+nnoremap g# *``
 " refresh syntax highlight
 noremap <F10> <Esc>:syntax sync fromstart<CR>
 inoremap <F10> <C-o>:syntax sync fromstart<CR>
