@@ -85,7 +85,8 @@ Plug 'perl_h2xs', { 'for': 'perl' }                             " [Automate crea
 
 " Vim
 Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
-Plug  'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
+Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
 
 " Themes and syntax
 Plug 'altercation/vim-colors-solarized'       " [precision colorscheme for the vim text editor](https://github.com/altercation/vim-colors-solarized)
