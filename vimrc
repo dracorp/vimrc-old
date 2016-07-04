@@ -1269,8 +1269,8 @@ endif
 map <F2> :NERDTreeToggle<CR>
 set timeoutlen=1000
 let g:NERDTreeDirArrows=0
-let g:NERDTreeDirArrowExpandable='|+'
-let g:NERDTreeDirArrowCollapsible='|~'
+let g:NERDTreeDirArrowExpandable='+'
+let g:NERDTreeDirArrowCollapsible='~'
 " close when last
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
