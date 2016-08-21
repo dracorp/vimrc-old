@@ -18,6 +18,7 @@ let g:MSWIN  = has("win16") || has("win32")   || has("win64")    || has("win95")
 let g:UNIX   = has("unix")  || has("macunix") || has("win32unix")
 let g:PYTHON = has('python') || has('python3')
 "}}}
+
 " OS Settings {{{
 " Check OS and where are vim's config files
 " $HOME - user's home directory
@@ -37,11 +38,13 @@ elseif g:MSWIN
     endif
 endif
 " }}}
+
 " Remove ALL autocommands for the current group.
 autocmd!
 
 " Plugin manager(s)
 let s:bundle_dir    = vimrc_dir . 'bundle'
+
 " Manage plugins by vim-plug {{{
 call plug#begin(s:bundle_dir)
 " manage vim-plug by itself
@@ -82,6 +85,7 @@ Plug 'Shutnik/jshint2.vim'                    " [Lightweight, customizable and f
 "Perl
 Plug 'vim-perl/vim-perl', { 'for': 'perl' }                     " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 Plug 'perl_h2xs', { 'for': 'perl' }                             " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
+Plug 'nxadm/syntastic-perl6', { 'for': 'perl' }                 " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
 
 " Vim
 Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
@@ -396,6 +400,11 @@ endif
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 set cmdheight=1                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
@@ -697,7 +706,7 @@ if has("autocmd")
 endif
 " }}}
 
-" {{{ gui/gvim
+" gui/gvim {{{
 if has("gui_running")
     set mousehide                                   " Hide the mouse when typing text
     set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
@@ -728,7 +737,7 @@ if has("gui_running")
 endif
 " }}}
 
-" {{{ Functions
+" Functions {{{
 " exclamation mark(!) means that function replace previous
 let g:quickfix_is_open = 0
 function! s:QuickfixToggle() "{{{
@@ -908,10 +917,10 @@ if filereadable(vimrc_dir . "functions.vim")
 endif
 " }}}
 
-" {{{ Commands for functions
+" Commands for functions {{{
 " }}}
 
-" {{{ Mapping for functions
+" Mapping for functions {{{
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
 "inoremap   '  '<Esc>:call QuoteInsertionWrapper("'")<CR>a
@@ -929,11 +938,11 @@ noremap     <silent>    <F1>    :call DisplayManpage()<CR>
 "nnoremap N N:call PulseCursorLine()<cr>
 " }}}
 
-" {{{ Commands
+" Commands {{{
 command! -nargs=0 Trim :%s/\s\+$//
 " }}}
 
-" {{{ Mappings
+" Mappings {{{
 " !         make a switch from a key
 " <CR>      it's enter
 " <c-o>     allows in 'insert' mode insert a command
@@ -1096,7 +1105,8 @@ nnoremap L $
 nnoremap <Leader>h :set hlsearch!<CR>
 "}}}
 
-" {{{ plugins configuration
+" Plugins configuration {{{
+
 " vim-toggle {{{
 imap <C-T>:call Toggle()<CR>
 nmap <C-T>:call Toggle()<CR>
@@ -1104,10 +1114,9 @@ vmap <C-T> <ESC>:call Toggle()<CR>
 "}}}
 " vim-airline {{{
 let g:airline_powerline_fonts = 1
+let g:airline_theme='luna'
 " vim-airline's extensions
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 "}}}
 " ctrlp {{{
@@ -1116,10 +1125,12 @@ set wildignore+=*.7z
 " syntastic {{{
 " disable perlcritic
 "let g:loaded_syntastic_perl_perlcritic_checker = 1
+let g:syntastic_perl_perlcritic_thres = 1
 let g:syntastic_enable_perl_checker = 1
-"let g:syntastic_perl_checkers ??
-let g:syntastic_perl_perlcritic_thres = 1 "default 5
-"let g:syntastic_perl_perlcritic_thres = string "default empty
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 "}}}
 " perl-support {{{
 " let g:Perl_TemplateOverwrittenMsg= 'no'
@@ -1372,10 +1383,11 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " }}}
-"{{{ Emmet settings
+" Emmet settings {{{
 let g:user__install_global = 0
 autocmd FileType html,css EmmetInstall
 "}}}
+" vim-jsbeautify {{{
 "Beautify js, html, css with ctrl-f
 map <c-f> :call JsBeautify()<cr>
 " or
@@ -1388,7 +1400,7 @@ autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 "react settings
 let g:jsx_ext_required = 0
-
+"}}}
 " }}}
 
 " Extra user or machine specific settings
