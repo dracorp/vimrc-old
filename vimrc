@@ -382,28 +382,15 @@ nnoremap z5 :set foldlevel=5<cr>
 " Editor layout {{{
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 
-scriptencoding utf-8
-set fileencoding=utf-8
 if has("multi_byte")
+    scriptencoding utf-8
+    set fileencoding=utf-8
     set encoding=utf-8
-    if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
-        set termencoding=latin1
-    endif
-    if $TERM == "xterm" || $TERM == "xterm-color" || $TERM == "xterm-256color"
-        let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
-        if propv !~ "WM_LOCALE_NAME .*UTF.*8"
-            set termencoding=latin1
-        endif
-    endif
 endif
 
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 set cmdheight=1                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
@@ -1131,6 +1118,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 "}}}
 " perl-support {{{
 " let g:Perl_TemplateOverwrittenMsg= 'no'
