@@ -1,17 +1,23 @@
-" vi: ft=help
-" :help write-local-help
-" :e $VIMRUNTIME/syntax/help.vim
-
-*vimrc.tips.txt*                                          Tips and tricks for vim
+*vimrc-tips.txt* Tips and tricks for vim
 ===============================================================================
-TIPS & TRICKS ~
+Contents ~
+
+Tips & tricks  |tips-and-tricks|
+Zakładki/marks |zakladki-marks|
+
+===============================================================================
+                                                               *tips-and-tricks*
+Tips & tricks ~
 
 - ! w mapowaniu robi przełącznik z przycisku
 - ! za nazwą funkcji (w jej definicji) podczas ładowania zastępuje już
   istniejącą
+- :help write-local-help
+- :e $VIMRUNTIME/syntax/help.vim
 
 ===============================================================================
-ZAKŁADKI/MARK ~
+                                                              *zakladki-marks*
+Zakładki/marks ~
 
 m{a-zA-Z} ustawia zakładkę, do dyspozycji jest 26 zakładek
 
@@ -20,16 +26,22 @@ m{a-zA-Z} ustawia zakładkę, do dyspozycji jest 26 zakładek
 - duże litery to globalne zakładki, zapamiętuje nawet po wyjściu,
 - polecenie marks pokazuje wszystkie zakładki
 
-specjalne zakładki ~
+                                                               *special-marks*
+Specjalne zakładki ~
 
 " ostatnia pozycja kursora , . pozycja kursora ostatniej zmiany
 
-SCHOWEK~
+===============================================================================
+                                                                   *clipboard*
+Schowek~
+
 "* to bierzący wybór zastępujący wybieranie myszką, możliwy do przenoszenia pomiędzy programami poprzez wciśnięcie środkowe przyciska myszy "*p "*yy
 natomiast "+ to prawdziwy schowek np ctrl+v w OOo lub shift+Insert, jeśli
 zostanie wybrany jako drugi skasuje schowek bierzący
 po za tym istnieją jeszcze lokalne rejestry a-z, "rej
 
+===============================================================================
+                                                           *keys-combinations*
 Kombinacje klawiszy~
 
 - cas lub cis zmienia całe zdanie,
@@ -39,17 +51,23 @@ Kombinacje klawiszy~
 - yaw, yas yankuje cały wyraz lub sentencję
 - xp poprawia czeski błąd
 
-UNICODE~
+===============================================================================
+                                                                     *unicode*
+Unicode~
 - znaki specjalne można wpisać dzięki ctrl-V kod
 - klawisze ga na danym znaku wyświetlają jego kod
 >
     :he digraph
 
+===============================================================================
+                                                                     *vimdiff*
 vimdiff~
 - skakanie pomiędzy różnicami [c ]c
 - diffupdate uaktualnia różnic
 - dp do - przenoszą poszczególne różnice
 
+===============================================================================
+                                                          *commands-recording*
 Nagrywanie poleceń~
 - qx zaczyna nagrywać polecenie, gdzie x=a-z, potem dowolne polecenie
   modyfikujące i kończymy przez q bez żadnego znaku. Makro wykonujemy poprzez
@@ -57,7 +75,9 @@ Nagrywanie poleceń~
 - dodawanie do rejestru qXpolecenieq (działa to do yankowania
   i usuwania-sumuje rejestr)
 
-subsitute zasięg ~
+===============================================================================
+                                                            *substitute-range*
+Subsitute zasięg ~
 - % cały plik
 - x,y wierszy x do y
 - . bierząca linia
@@ -66,20 +86,28 @@ subsitute zasięg ~
 - ctrl+V visual blokowy pionowy, V całe linie poziomo
 - '<,'> - dla trybu wizualnego
 
-komenda global ~
+===============================================================================
+                                                              *global-command*
+Komenda global ~
 - :[zasięg]global|g/wzorzec/polecenie
 
+===============================================================================
+                                                                    *counting*
 Zliczanie~
 - :%s/.//gn - wszystkie znaki
 - :%s/\S//gn - nie spacje
 - :%s/\s//gn - spacje, tab itp
 
+===============================================================================
+                                                                     *vimball*
 Vimball~
 
 - pliki instalujemy poleceniem :source % lub :UseVimball [ścieżka]
 - usuwanie pluginu :RmVimball nazwa_pluginu
 - lista plików :VimballList
 
+===============================================================================
+                                                                *tabs-windows*
 Zakładki/Okna~
 - tworzenie nowych okient: split, vsplit
 - przechodzenie pomiędzy oknami: <ctrl-w> w, <ctrl-w> kierunek,
@@ -89,10 +117,15 @@ Zakładki/Okna~
 - minimalizacja okna w pionie: <ctrl-w> |
 - wyrównanie okien: <Ctrl-w> =
 
+===============================================================================
+                                                           *options-variables*
 set/let~
+
 :set is for setting options, :let for assigning a value to a variable
 eg.
 :set  tw=40
 :let &tw=40
 :verbose set
 :verbose let
+
+vim:tw=78:ft=help:norl

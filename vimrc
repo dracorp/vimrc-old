@@ -219,6 +219,7 @@ Plug 'restore_view.vim'                       " [automatically restoring file's 
 Plug 'SuperTab'                               " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
 Plug 'AndrewRadev/switch.vim'                 " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
 Plug 'scrooloose/syntastic'                   " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
 Plug 'majutsushi/tagbar'                      " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
 Plug 'Tabmerge'                               " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
 Plug 'taglist.vim'                            " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
@@ -321,6 +322,8 @@ set nolist                                      " don't show invisible character
 set formatoptions+=1                            " long lines are not broken in insert mode
 set formatoptions+=t                            " autowrap text using textwidth
 set formatoptions-=c                            " autowrap comments using textwidth
+set fo+=o                                       " automatically insert the current comment leader after hitting 'o' in Normal mode
+set fo+=r                                       " as above but after <Enter> in Insert mode
 
 set nrformats=                                  " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I                                " hide the launch screen
