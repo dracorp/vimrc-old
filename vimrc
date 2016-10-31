@@ -279,7 +279,6 @@ call vundle#begin(s:bundle_dir)
 Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
-Plugin 'Ingres-vim-syntax', {'pinned':1}        " [Ingres syntax](http://community.actian.com/wiki/Vim_syntax)
 call vundle#end()
 filetype plugin indent on                       " required
 "}}}
