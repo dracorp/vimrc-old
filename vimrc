@@ -233,7 +233,6 @@ endif
 Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
 " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
 " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
-Plug 'vim-nfo'                                " [ftplugin for .nfo files](https://github.com/vim-scripts/vim-nfo)
 Plug 'kurkale6ka/vim-pairs'                   " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
 Plug 'tpope/vim-repeat'                       " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
 Plug 'tpope/vim-scriptease'                   " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
