@@ -1,4 +1,4 @@
-# Maintainer: dracorp aka Piotr Rogoza <piotr.r.public@gmail.com>
+# Maintainer: dracorp aka Piotr Rogoza <piotr.r.public at gmail.com>
 
 pkgname=<+$BASENAME$+>
 pkgver=<+#VERSION#+>
@@ -26,18 +26,17 @@ md5sums=(SKIP)
 pkgver(){
   if [ -d "$srcdir"/$_gitname ]; then
     cd "$srcdir"/$_gitname
-    git describe --always | sed 's|-|.|g'
+    ( set -o pipefail
+    git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)" )
   fi
 }
 build(){
   cd "$srcdir"
-  msg2 "Starting make"
-
   ./configure --prefix=/usr
   make
 }
 package(){
   cd "$srcdir"/$_gitname
-  msg2 "Starting make install"
   make DESTDIR="$pkgdir/" install
 }
