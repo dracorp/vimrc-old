@@ -62,6 +62,8 @@ Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://
 Plug 'vimwiki'                                  " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
 Plug 'gmarik/Vundle.vim'                        " [the plug-in manager](https://github.com/VundleVim/Vundle.vim)
 
+"Visual
+
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': 'html'}
 Plug 'mattn/emmet-vim', { 'for': 'html' }       " [provides support for expanding abbreviations similar to emmet](https://github.com/mattn/emmet-vim)
@@ -153,7 +155,7 @@ if g:PYTHON
     Plug 'davidhalter/jedi-vim'               " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
     Plug 'betterga'                           " [betterga can get more information than ga (:ascii)](https://github.com/vim-scripts/betterga)
 endif
-Plug 'klen/python-mode', { 'for': 'python' }    " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
+Plug 'klen/python-mode'                         " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
 Plug 'python_fold', { 'for': 'python' }         " [Folding expression for python](https://github.com/vim-scripts/Python_fold)
 
 " Fritz Mehner
@@ -161,7 +163,7 @@ Plug 'Vim-support', { 'for': 'vim' }                            " [Vim Script ID
 Plug 'awk-support.vim', { 'for': 'awk' }                        " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
 Plug 'bash-support.vim', { 'for': 'sh' }                       " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
 Plug 'perl-support.vim', { 'for': 'perl' }                       " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
-Plug 'c.vim', { 'for': 'c' }                                  " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
+Plug 'c.vim', { 'for': ['c', 'cpp'] }                                  " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
 Plug 'latex-support.vim', { 'for': 'latex' }                     " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
 Plug 'doxygen-support.vim', { 'for': 'doxygen' }                   " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
 
@@ -189,10 +191,10 @@ Plug 'nathanaelkane/vim-indent-guides'          " [displaying indent levels in c
 Plug 'supersearch'                              " [plugin is a source code browser plugin](https://github.com/vim-scripts/supersearch)
 Plug 'Dokumentary'                              " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
 Plug 'cpp_cppcheck.vim', { 'for': 'cpp' }       " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
-Plug 'joonty/vdebug'                            " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
+Plug 'joonty/vdebug', { 'for': 'python' }       " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
 Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
 "Plug 'Yggdroot/hiPairs'                        " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
-Plug 'nvie/vim-flake8', { 'for': 'python' }     " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
+"Plug 'nvie/vim-flake8', { 'for': 'python' }     " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
 Plug 'xml.vim', { 'for': 'xml' }                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'xmledit', { 'for': 'xml' }                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'xslt', { 'for': 'xslt' }                  " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
@@ -208,6 +210,7 @@ if version >= 740
     Plug 'EnhancedDiff'                           " [A Vim plugin for creating better diffs](https://github.com/vim-scripts/EnhancedDiff)
 endif
 Plug 'rking/ag.vim'                           " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
+Plug 'mileszs/ack.vim'                        " [Vim plugin for the Perl module / CLI script 'ack'](https://github.com/mileszs/ack.vim)
 Plug 'closetag.vim'                           " [Functions and mappings to close open HTML/XML tags](https://github.com/vim-scripts/closetag.vim)
 Plug 'netrw.vim'                              " [Network oriented reading, writing, and browsing (keywords: netrw ftp scp)(https://github.com/vim-scripts/netrw.vim)
 Plug 'tyru/open-browser.vim'                  " [Open URI with your favorite browser from your most favorite editor](https://github.com/tyru/open-browser.vim)
@@ -219,6 +222,7 @@ Plug 'restore_view.vim'                       " [automatically restoring file's 
 Plug 'SuperTab'                               " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
 Plug 'AndrewRadev/switch.vim'                 " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
 Plug 'scrooloose/syntastic'                   " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+"Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
 Plug 'majutsushi/tagbar'                      " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
 Plug 'Tabmerge'                               " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
 Plug 'taglist.vim'                            " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
@@ -232,7 +236,6 @@ endif
 Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
 " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
 " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
-Plug 'vim-nfo'                                " [ftplugin for .nfo files](https://github.com/vim-scripts/vim-nfo)
 Plug 'kurkale6ka/vim-pairs'                   " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
 Plug 'tpope/vim-repeat'                       " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
 Plug 'tpope/vim-scriptease'                   " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
@@ -275,10 +278,12 @@ call vundle#begin(s:bundle_dir)
 " }}}
 
 " Manage plugin by Vundle {{{
-Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
-Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
-Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
-Plugin 'Ingres-vim-syntax', {'pinned':1}        " [Ingres syntax](http://community.actian.com/wiki/Vim_syntax)
+"Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
+Plug '~/.vim/bundle/file_templates'
+"Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
+Plug '~/.vim/bundle/astronaut'
+"Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+Plug '~/.vim/bundle/StlShowFunc'
 call vundle#end()
 filetype plugin indent on                       " required
 "}}}
@@ -321,11 +326,13 @@ set nolist                                      " don't show invisible character
 set formatoptions+=1                            " long lines are not broken in insert mode
 set formatoptions+=t                            " autowrap text using textwidth
 set formatoptions-=c                            " autowrap comments using textwidth
+set fo+=o                                       " automatically insert the current comment leader after hitting 'o' in Normal mode
+set fo+=r                                       " as above but after <Enter> in Insert mode
 
 set nrformats=                                  " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I                                " hide the launch screen
 set clipboard=unnamed                           " normal OS clipboard interaction
-set mouse=a                                     " enable using the mouse if terminal emulator supports it (xterm does)
+set mouse=v                                     " enable using the mouse if terminal emulator supports it (xterm does)
 " }}}
 
 " Various settings {{{
@@ -382,28 +389,15 @@ nnoremap z5 :set foldlevel=5<cr>
 " Editor layout {{{
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 
-scriptencoding utf-8
-set fileencoding=utf-8
 if has("multi_byte")
+    scriptencoding utf-8
+    set fileencoding=utf-8
     set encoding=utf-8
-    if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
-        set termencoding=latin1
-    endif
-    if $TERM == "xterm" || $TERM == "xterm-color" || $TERM == "xterm-256color"
-        let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
-        if propv !~ "WM_LOCALE_NAME .*UTF.*8"
-            set termencoding=latin1
-        endif
-    endif
 endif
 
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 set cmdheight=1                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
@@ -480,7 +474,7 @@ set background=dark
 colorscheme gruvbox
 
 if &diff
-    colorscheme xterm16
+"    colorscheme xterm16
 "    set diffopt+=iwhite
 endif
 
@@ -639,7 +633,7 @@ if has("autocmd")
         autocmd filetype python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
 
         " Run a quick static syntax check every time we save a Python file
-        autocmd BufWritePost *.py call Flake8()
+"        autocmd BufWritePost *.py call Flake8()
 
         " Defer to isort for sorting headers (instead of using Unix sort)
         autocmd filetype python nnoremap <leader>s :Isort<cr>
@@ -1118,6 +1112,7 @@ let g:airline_theme='luna'
 " vim-airline's extensions
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#branch#format = 'Git_flow_branch_format'
+let g:airline_section_c='%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
 "}}}
 " ctrlp {{{
 set wildignore+=*.7z
@@ -1131,6 +1126,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 "}}}
 " perl-support {{{
 " let g:Perl_TemplateOverwrittenMsg= 'no'
@@ -1306,7 +1305,7 @@ let g:pymode_doc_key = 'K'
 
 "Linting
 let g:pymode_lint = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
+"let g:pymode_lint_checker = "pyflakes,pep8"
 " Auto check on save
 let g:pymode_lint_write = 1
 

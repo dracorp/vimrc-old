@@ -5,3 +5,4 @@ au BufRead *error.log* setf httplog
 " Parse the php-fpm.conf file as a dosini
 autocmd BufRead,BufNewFile /etc/php/* set syntax=dosini
 au BufRead *.vmb set ft=vim
+autocmd BufNewFile,BufRead ~/.conky/* if expand('%:e') == '' | set syntax=conkyrc | endif
