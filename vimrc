@@ -198,7 +198,6 @@ Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to
 Plug 'xml.vim', { 'for': 'xml' }                " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'xmledit', { 'for': 'xml' }                " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'xslt', { 'for': 'xslt' }                  " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
-"Plug 'openroad.vim'                             " [Goodies for OpenROAD users](https://github.com/vim-scripts/openroad.vim)
 Plug 'chase/vim-ansible-yaml'                   " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
 
 " Others
@@ -250,6 +249,7 @@ if version >= 730
 endif
 "Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
                                                 " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
+Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
 
 if g:UNIX | Plug 'dracorp/vim-pkgbuild' | endif
 " Windows
@@ -263,6 +263,10 @@ endif
 
 " The last
 "Plug 'ryanoasis/vim-devicons'                   " [adds font icons](https://github.com/ryanoasis/vim-devicons)
+
+Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
+Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
+Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
 
 call plug#end()
 delc PlugUpgrade
@@ -278,12 +282,6 @@ call vundle#begin(s:bundle_dir)
 " }}}
 
 " Manage plugin by Vundle {{{
-"Plugin 'file_templates', {'pinned': 1}          "[A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
-Plug '~/.vim/bundle/file_templates'
-"Plugin 'astronaut', {'pinned': 1}               " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
-Plug '~/.vim/bundle/astronaut'
-"Plugin 'StlShowFunc', {'pinned': 1}             " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
-Plug '~/.vim/bundle/StlShowFunc'
 call vundle#end()
 filetype plugin indent on                       " required
 "}}}
