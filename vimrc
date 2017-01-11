@@ -264,6 +264,9 @@ endif
 " The last
 "Plug 'ryanoasis/vim-devicons'                   " [adds font icons](https://github.com/ryanoasis/vim-devicons)
 
+Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
+Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
+
 Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
@@ -285,13 +288,6 @@ call vundle#begin(s:bundle_dir)
 call vundle#end()
 filetype plugin indent on                       " required
 "}}}
-
-" Common abbreviations/misspellings, spell {{{
-if filereadable(vimrc_dir . "autocorrect.vim")
-    execute ":source" vimrc_dir . "autocorrect.vim"
-endif
-set spelllang=pl,en
-" }}}
 
 " Editing behaviour {{{
 behave xterm                                    " Set behavior for mouse and selection, affect on selectmode mousemodel keymodel selection
@@ -417,6 +413,8 @@ set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,uc
 " }}}
 
 " Vim behaviour {{{
+set spelllang=pl,en
+
 set hidden                                      " hide buffers instead of closing them this
                                 " means that the current buffer can be put
                                 " to background without being written; and
@@ -450,11 +448,7 @@ set showcmd                     " show (partial) command in the last line of the
                                 " this also shows visual selection info
 " }}}
 
-" Highlight, Colorscheme, syntax{{{
-"highlight ExtraWhitespace ctermbg=red guibg=red
-"autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-"match ExtraWhitespace /\s\+\%#\@<!$/
-
+" View {{{
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch
@@ -462,25 +456,9 @@ endif
 
 let c_comment_strings=1                         " highlight strings inside C comments
 
-" Black, Dark, desert, grb256, moria, ron, solarized, torte
-"if has('gui_running')
-"    colorscheme solarized
-"else
-"    colorscheme redstring
-"endif
 set background=dark
 colorscheme gruvbox
-
-if &diff
-"    colorscheme xterm16
-"    set diffopt+=iwhite
-endif
-
-" Large file when syntax on
-syntax sync minlines=30
-syntax sync maxlines=40
-set synmaxcol=500
-" }}}
+"}}}
 
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
