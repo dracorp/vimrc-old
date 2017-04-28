@@ -20,9 +20,10 @@ install=
 noextract=()
 options=(!emptydirs)
 source=("http://search.cpan.org/CPAN/authors/id/$_author/$_perlmod-$pkgver.tar.gz")
-unset PERL5LIB PERL_MM_OPT PERL_MB_OPT PERL_LOCAL_LIB_ROOT
-export PERL_MM_USE_DEFAULT=1 PERL_AUTOINSTALL=--skipdeps MODULEBUILDRC=/dev/null
-
+prepare(){
+  unset PERL5LIB PERL_MM_OPT PERL_MB_OPT PERL_LOCAL_LIB_ROOT
+  export PERL_MM_USE_DEFAULT=1 PERL_AUTOINSTALL=--skipdeps MODULEBUILDRC=/dev/null
+}
 build(){
   cd "$srcdir"/$_perlmod-$pkgver
 
@@ -51,7 +52,4 @@ package(){
   else
     ./Build install installdirs=vendor destdir="$pkgdir"
   fi
-
-  # remove perllocal.pod and .packlist
-  #find "$pkgdir" -name .packlist -o -name perllocal.pod -delete
 }
