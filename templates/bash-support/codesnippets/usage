@@ -1,4 +1,4 @@
-help() { #{{{
+_help() { #{{{
     local header
     local pre_header=''
     while IFS= read -r line || [ -n "$line" ]; do
@@ -37,5 +37,5 @@ help() { #{{{
     done < "$0"
 } # end of function help }}}
 usage() { #{{{
-    help usage
+    _help usage
 } # end of function usage }}}
