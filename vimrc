@@ -1113,18 +1113,22 @@ let g:Perl_PerlcriticSeverity = 1
 let g:Perl_PerlcriticVerbosity = 9
 " sprawdzanie skladni pod
 let g:Perl_PodcheckerWarnings = 'yes'
-let g:Perl_LocalTemplateFile = vimrc_dir . 'perl-support/templates/Templates'
+let g:Perl_LocalTemplateFile = vimrc_dir . 'templates/perl-support/templates/Templates'
 " }}}
 " bash-support {{{
 " let g:BASH_TemplateOverwrittenMsg = 'no'
-let g:BASH_LocalTemplateFile = vimrc_dir . 'bash-support/templates/Templates'
+let g:BASH_LocalTemplateFile = vimrc_dir . 'templates/bash-support/templates/Templates'
+" }}}
+" doxygen-support {{{
+let g:Doxy_LocalTemplateFile = vimrc_dir . 'templates/doxygen-support/templates/Templates'
 " }}}
 " vim-support {{{
+let g:Vim_LocalTemplateFile = vimrc_dir . 'templates/vim-support/templates/Templates'
 let g:Vim_CreateMapsForHelp = 'yes'
 "}}}
 " c-support {{{
 " let g:C_TemplateOverwrittenMsg= 'no'
-let g:C_LocalTemplateFile = vimrc_dir . 'c-support/templates/Templates'
+let g:C_LocalTemplateFile = vimrc_dir . 'templates/c-support/templates/Templates'
 " }}}
 " jshint {{{
 "let jshint2_command = '/home/piecia/opt/npm/jshint' " moved to user.vim
