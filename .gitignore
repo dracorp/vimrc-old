@@ -11,9 +11,6 @@ passwords.vim
 vim_mru_files
 *.swp
 user.vim
-bash-support/templates/Templates
-perl-support/templates/Templates
-vim-support/templates/Templates
 bundle/*/
 !bundle/file_templates/
 !bundle/astronaut/

@@ -1,5 +1,0 @@
-version() { #{{{
-	printf "%s %s\n" "$myname" "$myver"
-	echo 'Copyright (C) 2015 Piotr Rogoza <piotr.rogoza@lhsystems.com>'
-} # end of function version }}}
-
