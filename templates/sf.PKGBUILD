@@ -19,7 +19,7 @@ backup=()
 options=()
 install=''
 noextract=()
-source=(https://sourceforge.net/projects/$pkgname/files/$pkgname-$pkgver.tar.gz)
+source=(https://downloads.sourceforge.net/project/$pkgname/$pkgname-$pkgver.tar.gz)
 sha512sums=()
 
 build(){
