@@ -77,7 +77,7 @@ Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt 
 Plug 'gregsexton/MatchTag'
     \, {'for': 'html'}
 Plug 'mattn/emmet-vim'
-    \, {'for': 'html'}                          " [provides support for expanding abbreviations similar to emmet](https://github.com/mattn/emmet-vim)
+    \, {'for': ['html','css']}                  " [provides support for expanding abbreviations similar to emmet](https://github.com/mattn/emmet-vim)
 Plug 'othree/html5.vim'
     \, {'for': 'html'}
 Plug 'tpope/vim-haml'
@@ -270,7 +270,7 @@ Plug 'tpope/vim-surround'                       " [quoting/parenthesizing made s
 Plug 'tpope/vim-unimpaired'                     " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
 "Plug 'MRU'                                      " [Most recently used files in your file menu](https://github.com/vim-scripts/mru)
 "Plug 'airblade/vim-rooter'                      " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
-Plug 'togglenumber'                             " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
+"Plug 'togglenumber'                             " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
 if version >= 730
     Plug 'ap/vim-buftabline'                    " [Forget Vim tabs - now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 endif
@@ -308,6 +308,7 @@ Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sit
 Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
 
+" end of vim-plug plugins }}}2
 call plug#end()
 delc PlugUpgrade
 "}}}
@@ -394,7 +395,6 @@ set showbreak=+\                                " show wraped lines as
 
 set modeline                                    " search for additional vim commands in n-th first lines(see modelines)
 set ttyfast                                     " always use a fast terminal
-"set cursorline                                " underline the current line, for quick orientation
 
 set splitbelow                                  " command :sp put a new window below the active
 set splitright                                  " command :vs put a new windows on right side of active
@@ -531,6 +531,7 @@ if has("autocmd")
     augroup end "}}}
 
     augroup html_files "{{{
+        if 0                                    " disable this
         au!
 
         " This function detects, based on HTML content, whether this is a
@@ -566,6 +567,7 @@ if has("autocmd")
 "            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
 "            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
         endfun
+        endif
     augroup end " }}}
 
     augroup awk_files " {{{
@@ -584,6 +586,7 @@ if has("autocmd")
         augroup end " }}}
 
     augroup python_files "{{{
+        if 0                                    " disable this
         au!
 
         " This function detects, based on Python content, whether this is a
@@ -630,21 +633,26 @@ if has("autocmd")
 
         " Defer to isort for sorting headers (instead of using Unix sort)
         autocmd filetype python nnoremap <leader>s :Isort<cr>
+        endif
     augroup end " }}}
 
     augroup markdown_files "{{{
+        if 0                                    " disable this
         au!
 
         autocmd filetype markdown noremap <buffer> <leader>p :w<CR>:!open -a Marked %<CR><CR>
+        endif
     augroup end " }}}
 
     augroup rst_files "{{{
+        if 0
         au!
 
         " Auto-wrap text around 74 chars
         autocmd filetype rst setlocal textwidth=74
         autocmd filetype rst setlocal formatoptions+=nqt
         autocmd filetype rst match ErrorMsg '\%>74v.\+'
+        endif
     augroup end " }}}
 
     augroup css_files "{{{
@@ -654,23 +662,28 @@ if has("autocmd")
     augroup end "}}}
 
     augroup javascript_files "{{{
+        if 0                                    " disable this
         au!
 
         autocmd filetype javascript setlocal expandtab
-        autocmd filetype javascript setlocal listchars=trail:·,extends:#,nbsp:·
+        autocmd filetype javascript setlocal listchars=trail:Â·,extends:#,nbsp:Â·
         autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
 
         " Toggling True/False
         autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+        endif
     augroup end "}}}
 
     augroup jquery "{{{
+        if 0                                    " disable this
         au!
         au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
         au BufRead,BufNewFile *.user.js set ft=javascript syntax=jquery
+        endif
     augroup end "}}}
 
     augroup textile_files "{{{
+        if 0                                    " disable this
         au!
 
         autocmd filetype textile set tw=78 wrap
@@ -678,7 +691,9 @@ if has("autocmd")
         " Render YAML front matter inside Textile documents as comments
         autocmd filetype textile syntax region frontmatter start=/\%^---$/ end=/^---$/
         autocmd filetype textile highlight link frontmatter Comment
+        endif
     augroup end "}}}
+
 endif
 " }}}
 
@@ -715,21 +730,6 @@ endif
 
 " Functions {{{
 " exclamation mark(!) means that function replace previous
-let g:quickfix_is_open = 0
-function! s:QuickfixToggle() "{{{
-    " Toggle the quickfix window
-    " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen
-        let g:quickfix_is_open = 1
-    endif
-endfunction
-" }}}
 let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
 function! FoldColumnToggle() "{{{
     " Toggle the foldcolumn
@@ -742,39 +742,8 @@ function! FoldColumnToggle() "{{{
     endif
 endfunction
 " }}}
-function! QuoteInsertionWrapper (quote) "{{{
-" Add a second quote only if the left and the right character are not keyword
-" characters.
-    let col = col('.')
-    if getline('.')[col-2] !~ '\k' && getline('.')[col] !~ '\k'
-        normal ax
-        exe "normal r".a:quote."h"
-    end
-endfunction " }}}
-function! s:Tag() "{{{
-" Tworzenie pliku znacznikow
-   try
-      exe "norm! \<c-]>"
-   catch /^Vim([^)]\+):E433/
-      call inputsave()
-      let l:kat = input("Katalog glowny projektu:   ", ".")
-      let l:opt = input("Opcje dla ctags:   ", "-R --fields=+S")
-      call inputrestore()
-      exe "!cd " . l:kat . " ; ctags " . l:opt . " ."
-      exe "norm! \<c-]>"
-   endtry
-endfun "}}}
-function! ToggleHLSearch() "{{{
-" On/Off highlight search
-      if &hls
-           set nohls
-      else
-           set hls
-      endif
-endfunction
-"}}}
 function! CheckReadonly() "{{{
-" Nie pozwalaj na zadne modyfikacje plikow tylko do odczytu.
+" Do not allow on any modifications read only files
     if version >= 600
         if &readonly
             setlocal nomodifiable
@@ -797,7 +766,7 @@ function! ChangeFileencoding() "{{{
 endf
 "}}}
 function! DisplayManpage() "{{{
-" Display man page for the file
+" Display man page for the file. The functions uses manpageview plugin.
     let filename = expand("%")
     let short_filename = expand("%:r")
     let filetype = &filetype
@@ -811,49 +780,14 @@ function! DisplayManpage() "{{{
 endf
 "}}}
 function! CopyAll() "{{{
-    " zaznacz wszystko
+    " mark whole
     exec 'normal ggVG'
-    " kopiuj wszystko
+    " copy whole
     exec 'normal "+y'
 endf
 "}}}
-function! PulseCursorLine() "{{{
-    let current_window = winnr()
-
-    windo set nocursorline
-    execute current_window . 'wincmd w'
-
-    setlocal cursorline
-
-    redir => old_hi
-        silent execute 'hi CursorLine'
-    redir END
-    let old_hi = split(old_hi, '\n')[0]
-    let old_hi = substitute(old_hi, 'xxx', '', '')
-
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 20m
-
-    hi CursorLine guibg=#4a4a4a
-    redraw
-    sleep 30m
-
-    hi CursorLine guibg=#3a3a3a
-    redraw
-    sleep 30m
-
-    hi CursorLine guibg=#2a2a2a
-    redraw
-    sleep 20m
-
-    execute 'hi ' . old_hi
-
-    windo set cursorline
-    execute current_window . 'wincmd w'
-endfunction
-" }}}
-function! MyFoldText_wikia() "{{{
+function! MyFoldText() "{{{
+    " http://vim.wikia.com/wiki/Customize_text_for_closed_folds
   let line = getline(v:foldstart)
   if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
     let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
@@ -886,32 +820,21 @@ function! MyFoldText_wikia() "{{{
   let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
   return sub . info
 endfunction
-set foldtext=MyFoldText_wikia()
+set foldtext=MyFoldText()
 "}}}
 if filereadable(vimrc_dir . "functions.vim")
     execute ":source" vimrc_dir . "functions.vim"
 endif
+
+" Commands for functions {{{2
 " }}}
 
-" Commands for functions {{{
-" }}}
-
-" Mapping for functions {{{
+" Mapping for functions {{{2
 nnoremap <leader>f :call FoldColumnToggle()<cr>
-nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
-"inoremap   '  '<Esc>:call QuoteInsertionWrapper("'")<CR>a
-"inoremap   "  "<Esc>:call QuoteInsertionWrapper('"')<CR>a
-"inoremap   `  `<Esc>:call QuoteInsertionWrapper('`')<CR>a
-"nnoremap <C-]> :call <SID>Tag()<CR>\|:echo ""<CR>
-"przelaczanie podswietlania wynikow szukania ctrl+n
-"noremap <silent> <C-n> <Esc>:call ToggleHLSearch()<CR>
 "noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
 noremap     <silent>    <F1>    :call DisplayManpage()<CR>
+" }}}
 
-" Keep search matches in the middle of the window and pulse the line when moving
-" to them.
-"nnoremap n n:call PulseCursorLine()<cr>
-"nnoremap N N:call PulseCursorLine()<cr>
 " }}}
 
 " Commands {{{
@@ -925,35 +848,12 @@ command! -nargs=0 Trim :%s/\s\+$//
 " <silent>  a mapping will not be echoed on the command line
 " %         actual file, :he expand
 " <leader>  default \
-"-------------------------------------------------------------------------------
+
 " TAB and Shift-TAB in normal mode cycle buffers
 "nmap <Tab> :bn<CR>
 "nmap <S-Tab> :bp<CR>
-" change search mapping and don't jump
-nnoremap * g#``
-nnoremap # g*``
-nnoremap g* #``
-nnoremap g# *``
-" refresh syntax highlight
-noremap <F10> <Esc>:syntax sync fromstart<CR>
-inoremap <F10> <C-o>:syntax sync fromstart<CR>
-" Permanent 'very magic' mode, see :he pattern
-" search
-" nnoremap / /\v
-" vnoremap / /\v
-" substitute
-cnoremap %s/ %smagic/
-" substitute in visual mode
-cnoremap \>s/ \>smagic/
-" global
-nnoremap :g/ :g/\v
-nnoremap :g// :g//
-" paste mode, where you can paste mass data
-" that won't be autoindented
-"set pastetoggle=<S-F6>                         " replaced by vim-bracketed-paste plugin
-" open file under cursors in a new window (a vertical split)
-map <c-w>F :vertical wincmd f<CR>
 
+" Leader {{{2
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
 
@@ -963,6 +863,52 @@ nnoremap <leader>n :setlocal number!<cr>
 " highlight line under cursor, horizontal cursor
 nnoremap <Leader>l :setlocal cursorline!<CR>
 
+nnoremap <leader>; ;
+
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+
+" Sort paragraphs
+vnoremap <leader>s !sort -f<CR>gv
+nnoremap <leader>s vip!sort -f<CR><Esc>
+
+nnoremap <Leader>h :set hlsearch!<CR>
+
+" Quote words under cursor
+nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
+nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
+
+" }}}
+
+" change search mapping and don't jump
+nnoremap * g#``
+nnoremap # g*``
+nnoremap g* #``
+nnoremap g# *``
+
+" refresh syntax highlight
+noremap <F10> <Esc>:syntax sync fromstart<CR>
+inoremap <F10> <C-o>:syntax sync fromstart<CR>
+
+" Permanent 'very magic' mode, see :he pattern
+" search, broken history search!
+"nnoremap / /\v
+"vnoremap / /\v
+" substitute
+cnoremap %s/ %smagic/
+" substitute in visual mode
+cnoremap \>s/ \>smagic/
+" global
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
+
+" paste mode, where you can paste mass data
+" that won't be autoindented
+"set pastetoggle=<S-F6>                         " deprecated: replaced by vim-bracketed-paste plugin
+
+" open file under cursors in a new window (a vertical split)
+map <c-w>F :vertical wincmd f<CR>
+
 " Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
 nnoremap <C-y> 2<C-y>
@@ -970,44 +916,21 @@ nnoremap <C-y> 2<C-y>
 " C-U in insert/normal mode, to uppercase the word under cursor
 inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
+" C-L in insert/normal mode, to lowercase the word under cursor
+inoremap <c-l> <esc>viwuea
+nnoremap <c-l> viwue
 
 " Since I never use the ; key anyway, this is a real optimization for almost
 " all Vim commands, as I don't have to press the Shift key to form chords to
 " enter ex mode.
 nnoremap ; :
-nnoremap <leader>; ;
-
-" Avoid accidental hits of <F1> while aiming for <Esc>
-noremap! <F1> <Esc>
-
-" Quickly close the current window
-nnoremap <leader>q :q<CR>
 
 " Use Q for formatting the current paragraph (or visual selection)
 vnoremap Q gq
 nnoremap Q gqap
 
-" Sort paragraphs
-vnoremap <leader>s !sort -f<CR>gv
-nnoremap <leader>s vip!sort -f<CR><Esc>
-
 map zp :setlocal spell!<CR>
 imap zP <ESC>:setlocal spell!<CR>i<right>
-
-"noremap     <silent>    <F8>    :cnext<CR>
-noremap     <silent>    <F9>    :set nonumber!<CR>
-"noremap                 <F12>   :ls<CR>:edit #
-"noremap <silent> <F12> :cal VimCommanderToggle()<CR>
-"
-"inoremap  <silent> <F2>    <C-C>:write<CR>
-"inoremap    <silent>    <F3>    <C-C>:Explore<CR>
-inoremap    <silent>    <F4>    <C-C>:execute ":ptag ".expand("<cword>")<CR>
-"inoremap    <silent>    <F5>    <C-C>:copen<CR>
-"inoremap    <silent>    <F6>    <C-C>:cclose<CR>
-"inoremap    <silent>    <F7>    <C-C>:cprevious<CR>
-"inoremap    <silent>    <F8>    <C-C>:cnext<CR>
-inoremap    <silent>    <F9>    <C-O>:set nonumber!<CR>
-"inoremap                <F12>   <C-C>:ls<CR>:edit #
 
 " wklejanie
 vnoremap <C-Insert> "+y
@@ -1021,36 +944,25 @@ vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 "inoremap  (  ()<Left>
 "inoremap  [  []<Left>
 "inoremap  {  {}<Left>
-"
+
 "vnoremap  (  s()<Esc>P<Right>%
 "vnoremap  [  s[]<Esc>P<Right>%
 "vnoremap  {  s{}<Esc>P<Right>%
-"
-" surround content with additional spaces
-"
-"vnoremap  )  s(  )<Esc><Left>P<Right><Right>%
-"vnoremap  ]  s[  ]<Esc><Left>P<Right><Right>%
-"vnoremap  }  s{  }<Esc><Left>P<Right><Right>%
 
 " autocomplete quotes (visual and select mode)
 "xnoremap  '  s''<Esc>P<Right>
 "xnoremap  "  s""<Esc>P<Right>
 "xnoremap  `  s``<Esc>P<Right>
 
-"-------------------------------------------------------------------------------
 " Moving cursor to other windows:
 " shift down   : change window focus to lower one (cyclic)
 " shift up     : change window focus to upper one (cyclic)
 " shift left   : change window focus to one on left
 " shift right  : change window focus to one on right
-"-------------------------------------------------------------------------------
 nnoremap <s-down>   <c-w>w
 nnoremap <s-up>     <c-w>W
 nnoremap <s-left>   <c-w>h
 nnoremap <s-right>  <c-w>l
-
-"backspace in VisualMode deletes selection
-"vnoremap <BS> d
 
 " Navigate on a wrapped line as the normal
 nnoremap j gj
@@ -1064,24 +976,14 @@ vnoremap <Up> gk
 inoremap <Up> <C-o>gk
 inoremap <Up> <C-o>gk
 
-"obsluga zakladek w vimie, CTRL-I robi to co TAB, domyslnie CTRL-I skacze do przodu
+" tab pages
 nnoremap <c-TAB> :tabnext<cr>
 nnoremap <c-s-TAB> :tabprev<cr>
-
-" Quote words under cursor
-nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
-nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
-
-" Quote current selection use plugin ... instead it
-" TODO: This only works for selections that are created "forwardly"
-"vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
-"vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
 " Use shift-H and shift-L for move to beginning/end
 nnoremap H 0
 nnoremap L $
 
-nnoremap <Leader>h :set hlsearch!<CR>
 "}}}
 
 " Plugins configuration {{{
@@ -1139,12 +1041,6 @@ let g:Vim_CreateMapsForHelp = 'yes'
 " let g:C_TemplateOverwrittenMsg= 'no'
 let g:C_LocalTemplateFile = vimrc_dir . 'templates/c-support/templates/Templates'
 " }}}
-" jshint {{{
-"let jshint2_command = '/home/piecia/opt/npm/jshint' " moved to user.vim
-"}}}
-" manpageview {{{
-let $PAGER=''
-"}}}
 " lattex-support {{{
 let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
 let tlist_make_settings  = 'make;m:makros;t:targets'
@@ -1153,6 +1049,11 @@ if g:UNIX
     let s:LATEX_pdf_viewer         = "evince"
 endif
 " }}}
+" jshint {{{
+"}}}
+" manpageview {{{
+let $PAGER=''
+"}}}
 " supertab {{{
 "let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabDefaultCompletionType = "<c-p>"
@@ -1161,7 +1062,7 @@ let g:SuperTabMappingForward  = '<tab>'
 " }}}
 " file_templates {{{
 let g:file_template_default = "def/PKGBUILD"
-let g:VIMFILESDIR = vimrc_dir
+let g:VIMFILESDIR = vimrc_dir . 'templates'
 " }}}
 " vbookmark {{{
 let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
@@ -1191,10 +1092,6 @@ let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
 " note that this setting influences Vim's behaviour when saving swap files,
 " but we have already turned off swap files (earlier)
 " set updatetime=1000
-
-" the default ctags in /usr/bin on the Mac is GNU ctags, so change it to the
-" exuberant ctags version in /usr/local/bin
-" let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 
 " show function/method prototypes in the list
 let Tlist_Display_Prototype=1
@@ -1326,7 +1223,6 @@ let g:solarized_termcolors=256    "default value is 16
 "let g:solarized_hitrail=0
 " }}}
 " easytags {{{
-let g:easytags_cmd = '/usr/bin/ctags'
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 1
 let g:easytags_auto_highlight = 1
@@ -1335,14 +1231,12 @@ let g:easytags_python_enabled = 1
 let g:easytags_always_enabled = 0
 let g:easytags_on_cursorhold = 1
 set tags=./tags;
+" uncomment to see why so slow
 "set vbs=1 | call xolox#easytags#why_so_slow()
 " }}}
 " vim-javacomplete2 {{{
 autocmd FileType java set omnifunc=javacomplete#Complete
 autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
-" }}}
-" togglenumber {{{
-"nnoremap <F6> :ToggleNumber<CR>
 " }}}
 " vim-buftabline {{{
 nnoremap <C-N> :bnext<CR>
@@ -1380,9 +1274,7 @@ autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
+autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "react settings
 let g:jsx_ext_required = 0
 "}}}
