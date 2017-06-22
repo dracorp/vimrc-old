@@ -49,7 +49,7 @@ call plug#begin(s:bundle_dir)
 Plug 'junegunn/vim-plug'
 
 " commons {{{2
-"Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+"Plug 'Valloric/YouCompleteMe'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 Plug 'scrooloose/nerdtree'
     \, { 'on':  'NERDTreeToggle'}               " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 Plug 'scrooloose/nerdtree-git-plugin'
@@ -66,7 +66,6 @@ Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution 
 Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
 Plug 'tacahiroy/ctrlp-funky'                    " [A simple function navigator for ctrlp.vim](https://github.com/tacahiroy/ctrlp-funky)
 Plug 'sgur/ctrlp-extensions.vim'                " [Plugins for ctrlp.vim](https://github.com/sgur/ctrlp-extensions.vim)
-
 
 " Visual {{{2
 Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
@@ -138,6 +137,7 @@ Plug 'LogViewer'                                " [Comfortable examination of mu
 Plug 'TWiki-Syntax'                             " [Syntaxfile for TWiki-Syntax](https://github.com/vim-scripts/TWiki-Syntax)
 Plug 'whitespace-syntax-highlight'              " [whitespace syntax highlight](https://github.com/vim-scripts/whitespace-syntax-highlight/)
 Plug 'bronson/vim-trailing-whitespace'          " [Highlights trailing whitespace in red and provides](https://github.com/bronson/vim-trailing-whitespace)
+Plug 'logstash.vim'                             " [logstash.vim highlights configuration files for logstash](https://github.com/vim-scripts/logstash.vim)
 
 " Markdown {{{2
 Plug 'plasticboy/vim-markdown'
@@ -311,20 +311,6 @@ Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name i
 " end of vim-plug plugins }}}2
 call plug#end()
 delc PlugUpgrade
-"}}}
-
-" Settings for Vundle/bundle {{{
-"filetype off                                    " required
-"let s:vundle_home   = vimrc_dir . 'bundle/Vundle.vim'
-" set the runtime path to include Vundle and initialize
-"let &rtp .= ',' . s:vundle_home
-"call vundle#begin(s:bundle_dir)
-" installed manualy or by script bin/add-vba-bundle.sh
-" }}}
-
-" Manage plugin by Vundle {{{
-"call vundle#end()
-"filetype plugin indent on                       " required
 "}}}
 
 " Editing behaviour {{{
@@ -730,6 +716,21 @@ endif
 
 " Functions {{{
 " exclamation mark(!) means that function replace previous
+let g:quickfix_is_open = 0
+function! s:QuickfixToggle() "{{{
+    " Toggle the quickfix window
+    " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+" }}}
 let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
 function! FoldColumnToggle() "{{{
     " Toggle the foldcolumn
@@ -830,6 +831,7 @@ endif
 " }}}
 
 " Mapping for functions {{{2
+nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 "noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
 noremap     <silent>    <F1>    :call DisplayManpage()<CR>
