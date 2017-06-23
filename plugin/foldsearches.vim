@@ -2,6 +2,7 @@
 " Last change:  Wed Aug 10 10:06:31 BST 2011
 " Maintainer:	Damian Conway
 " License:	This file is placed in the public domain.
+" https://github.com/thoughtstream/Damian-Conway-s-Vim-Setup/blob/master/plugin/foldsearches.vim
 
 " If already loaded, we're done...
 if exists("loaded_foldsearch")
