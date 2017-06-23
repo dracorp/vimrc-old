@@ -16,6 +16,28 @@ let g:MSWIN  = has("win16")  || has("win32")   || has("win64")     || has("win95
 let g:UNIX   = has("unix")   || has("macunix") || has("win32unix")
 let g:PYTHON = has('python') || has('python3')
 
+if has("multi_byte")
+    let g:UNICODE = 0
+    if &termencoding == ""
+        let &termencoding = &encoding
+    endif
+    if $LC_ALL =~ "utf-?8"
+        let g:UNICODE = 1
+        scriptencoding utf-8
+        set fileencoding=utf-8
+        set encoding=utf-8
+    endif
+"    if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
+"        set termencoding=latin1
+"    endif
+"    if $TERM == "xterm" || $TERM == "xterm-color" || $TERM == "xterm-256color"
+"        let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
+"        if propv !~ "WM_LOCALE_NAME .*UTF.*8"
+"            set termencoding=latin1
+"        endif
+"    endif
+endif
+
 " OS Settings, exports vimrc_dir {{{
 " Check OS and where are vim's config files
 " $HOME - user's home directory
@@ -52,8 +74,10 @@ Plug 'junegunn/vim-plug'
 "Plug 'Valloric/YouCompleteMe'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 Plug 'scrooloose/nerdtree'
     \, { 'on':  'NERDTreeToggle'}               " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
-Plug 'scrooloose/nerdtree-git-plugin'
-    \, {'on': 'NERDTreeToggle'}                 " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
+if g:UNICODE
+    Plug 'scrooloose/nerdtree-git-plugin'
+        \, {'on': 'NERDTreeToggle'}             " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
+endif
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
 Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
@@ -81,6 +105,7 @@ Plug 'othree/html5.vim'
     \, {'for': 'html'}
 Plug 'tpope/vim-haml'
     \, {'for': ['haml', 'sass', 'scss']}
+Plug 'alvan/vim-closetag'                       " [Auto close (X)HTML tags](https://github.com/alvan/vim-closetag)
 
 " CSS/LESS {{{2
 Plug 'ap/vim-css-color'
@@ -275,7 +300,9 @@ if version >= 730
     Plug 'ap/vim-buftabline'                    " [Forget Vim tabs - now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 endif
 "Plug 'tskeleton' | Plug 'tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
-Plug 'ryanoasis/vim-devicons'                   " [adds font icons](https://github.com/ryanoasis/vim-devicons)
+if g:UNIX && g:UNICODE
+    Plug 'ryanoasis/vim-devicons'               " [adds font icons](https://github.com/ryanoasis/vim-devicons)
+endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
 
@@ -409,12 +436,6 @@ nnoremap z5 :set foldlevel=5<cr>
 " Editor layout {{{
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 
-if has("multi_byte")
-    scriptencoding utf-8
-    set fileencoding=utf-8
-    set encoding=utf-8
-endif
-
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
@@ -511,9 +532,9 @@ if has("autocmd")
 
         " Bind <F1> to show the keyword under cursor
         " general help can still be entered manually, with :h
-        autocmd filetype vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-        autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-"        autocmd filetype vim nnoremap <buffer> <F12> :source %<CR>
+        autocmd FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+        autocmd FileType vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+"        autocmd FileType vim nnoremap <buffer> <F12> :source %<CR>
     augroup end "}}}
 
     augroup html_files "{{{
@@ -544,7 +565,7 @@ if has("autocmd")
         " Auto-closing of HTML/XML tags
         let g:closetag_default_xml=1
         let g:xml_syntax_folding=1
-        autocmd filetype xml,xsd,xslt,xsl,html,htmldjango call SetHtmlOptions()
+        autocmd FileType xml,xsd,xslt,xsl,html,htmldjango call SetHtmlOptions()
         function! SetHtmlOptions()
             let b:closetag_html_style=1
 "            setlocal foldmethod=syntax
@@ -558,17 +579,17 @@ if has("autocmd")
 
     augroup awk_files " {{{
         au!
-        autocmd filetype awk nnoremap <buffer> <F12> :!gawk -f %<CR>
+        autocmd FileType awk nnoremap <buffer> <F12> :!gawk -f %<CR>
     augroup end " }}}
 
     augroup xdefaults_files " {{{
         au!
-        autocmd filetype xdefaults nnoremap <buffer> <F12> :!xrdb -load %<CR>
+        autocmd FileType xdefaults nnoremap <buffer> <F12> :!xrdb -load %<CR>
         augroup end " }}}
 
     augroup xmodmap_files " {{{
         au!
-        autocmd filetype xmodmap nnoremap <buffer> <F12> :!xmodmap %<CR>
+        autocmd FileType xmodmap nnoremap <buffer> <F12> :!xmodmap %<CR>
         augroup end " }}}
 
     augroup python_files "{{{
@@ -595,30 +616,30 @@ if has("autocmd")
 
         " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
         " earlier, as it is important)
-        autocmd filetype python setlocal textwidth=78
-        autocmd filetype python match ErrorMsg '\%>120v.\+'
+        autocmd FileType python setlocal textwidth=78
+        autocmd FileType python match ErrorMsg '\%>120v.\+'
 
         " But disable autowrapping as it is super annoying
-        autocmd filetype python setlocal formatoptions-=t
+        autocmd FileType python setlocal formatoptions-=t
 
         " Folding for Python (uses syntax/python.vim for fold definitions)
-        "autocmd filetype python,rst setlocal nofoldenable
-        "autocmd filetype python setlocal foldmethod=expr
+        "autocmd FileType python,rst setlocal nofoldenable
+        "autocmd FileType python setlocal foldmethod=expr
 
         " Python runners
-        autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
-        autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-        autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-        autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+        autocmd FileType python noremap <buffer> <F5> :w<CR>:!python %<CR>
+        autocmd FileType python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
+        autocmd FileType python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
+        autocmd FileType python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
 
         " Toggling True/False
-        autocmd filetype python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+        autocmd FileType python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
 
         " Run a quick static syntax check every time we save a Python file
 "        autocmd BufWritePost *.py call Flake8()
 
         " Defer to isort for sorting headers (instead of using Unix sort)
-        autocmd filetype python nnoremap <leader>s :Isort<cr>
+        autocmd FileType python nnoremap <leader>s :Isort<cr>
         endif
     augroup end " }}}
 
@@ -626,7 +647,7 @@ if has("autocmd")
         if 0                                    " disable this
         au!
 
-        autocmd filetype markdown noremap <buffer> <leader>p :w<CR>:!open -a Marked %<CR><CR>
+        autocmd FileType markdown noremap <buffer> <leader>p :w<CR>:!open -a Marked %<CR><CR>
         endif
     augroup end " }}}
 
@@ -635,28 +656,28 @@ if has("autocmd")
         au!
 
         " Auto-wrap text around 74 chars
-        autocmd filetype rst setlocal textwidth=74
-        autocmd filetype rst setlocal formatoptions+=nqt
-        autocmd filetype rst match ErrorMsg '\%>74v.\+'
+        autocmd FileType rst setlocal textwidth=74
+        autocmd FileType rst setlocal formatoptions+=nqt
+        autocmd FileType rst match ErrorMsg '\%>74v.\+'
         endif
     augroup end " }}}
 
     augroup css_files "{{{
         au!
 
-        autocmd filetype css,less setlocal foldmethod=marker foldmarker={,}
+        autocmd FileType css,less setlocal foldmethod=marker foldmarker={,}
     augroup end "}}}
 
     augroup javascript_files "{{{
         if 0                                    " disable this
         au!
 
-        autocmd filetype javascript setlocal expandtab
-        autocmd filetype javascript setlocal listchars=trail:Â·,extends:#,nbsp:Â·
-        autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
+        autocmd FileType javascript setlocal expandtab
+        autocmd FileType javascript setlocal listchars=trail:Â·,extends:#,nbsp:Â·
+        autocmd FileType javascript setlocal foldmethod=marker foldmarker={,}
 
         " Toggling True/False
-        autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+        autocmd FileType javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
         endif
     augroup end "}}}
 
@@ -672,11 +693,11 @@ if has("autocmd")
         if 0                                    " disable this
         au!
 
-        autocmd filetype textile set tw=78 wrap
+        autocmd FileType textile set tw=78 wrap
 
         " Render YAML front matter inside Textile documents as comments
-        autocmd filetype textile syntax region frontmatter start=/\%^---$/ end=/^---$/
-        autocmd filetype textile highlight link frontmatter Comment
+        autocmd FileType textile syntax region frontmatter start=/\%^---$/ end=/^---$/
+        autocmd FileType textile highlight link frontmatter Comment
         endif
     augroup end "}}}
 
