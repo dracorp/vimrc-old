@@ -26,10 +26,10 @@ build(){
   cd "$srcdir"/$_perlmod-$pkgver
 
   if [ -f Makefile.PL ]; then
-    /usr/bin/perl Makefile.PL
+    perl Makefile.PL
     make
   else
-    /usr/bin/perl Build.PL
+    perl Build.PL
     ./Build
   fi
 }
@@ -48,6 +48,6 @@ package(){
   if [ -f Makefile.PL ]; then
     make install INSTALLDIRS=vendor DESTDIR="$pkgdir"
   else
-    ./Build install installdirs=vendor destdir="$pkgdir"
+    ./Build install --installdirs=vendor --destdir="$pkgdir"
   fi
 }
