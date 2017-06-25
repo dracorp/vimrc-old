@@ -1,4 +1,7 @@
-*vimrc-tips.txt* Tips and tricks for vim
+vim:tw=78:ft=help:norl modifiable noreadonly
+Help files are by default regarded as readonly and nomodifiable files by vim.
+
+*vimrc-tips.txt*Tips and tricks for vim
 ===============================================================================
 Contents ~
 
@@ -127,5 +130,3 @@ eg.
 :let &tw=40
 :verbose set
 :verbose let
-
-vim:tw=78:ft=help:norl
