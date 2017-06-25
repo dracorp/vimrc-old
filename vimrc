@@ -1190,6 +1190,7 @@ set timeoutlen=1000
 let g:NERDTreeDirArrows=0
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='~'
+"let NERDTreeIgnore=['$',]
 " close when last
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
@@ -1307,3 +1308,4 @@ let g:jsx_ext_required = 0
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
 endif
+
