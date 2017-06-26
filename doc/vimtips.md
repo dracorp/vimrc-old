@@ -1015,4 +1015,4 @@ vim@rayninfo.co.uk
 :w!|sav! vimtips.html|:/^__BEGIN__/,/^__END__/s#<#\<#g|:w!|:!vimtipsftp
 ----------------------------------------
 
-vim:ft=help
+vim:tw=78:ft=help:norl modifiable noreadonly
