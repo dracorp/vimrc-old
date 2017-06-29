@@ -177,7 +177,7 @@ Plug 'nsf/gocode',  {'for': 'go'}
 Plug 'AnsiEsc.vim'                            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
 Plug 'powerman/vim-plugin-AnsiEsc'            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/powerman/vim-plugin-AnsiEsc)
 Plug 'DrawIt'                                 " [Ascii drawing plugin: lines, ellipses, arrows, fills, and more!](https://github.com/vim-scripts/DrawIt)
-Plug 'emezeske/manpageview'                   " [man page view for vim](https://github.com/emezeske/manpageview)
+"Plug 'emezeske/manpageview'                   " [man page view for vim](https://github.com/emezeske/manpageview)
 Plug 'Decho'                                  " [internal debugger](https://github.com/vim-scripts/decho)
 Plug 'gdbmgr'                                 " [interface to gdb](https://github.com/vim-scripts/gdbmgr)
 Plug 'HiColors'                               " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
@@ -335,6 +335,7 @@ Plug 'shawncplus/phpcomplete.vim'               " [Improved PHP omnicompletion](
 Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+Plug '~/.vim/bundle/manpageview'
 
 " end of vim-plug plugins }}}2
 call plug#end()

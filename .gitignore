@@ -15,3 +15,4 @@ bundle/*/
 !bundle/file_templates/
 !bundle/astronaut/
 !bundle/StlShowFunc
+!bundle/manpageview
