@@ -245,7 +245,6 @@ Plug 'xslt', {'for': 'xslt'}                    " [XSLT ftplugin](https://github
 Plug 'chase/vim-ansible-yaml', {'for': 'yaml'}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
 
 " Others {{{2
-Plug 'po.vim'                                   " [PO (portable object) helper functions](https://github.com/vim-scripts/po.vim)
 Plug 'mru.vim'                                  " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
 Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
 Plug 'ctrlsf.vim'                               " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
@@ -294,8 +293,7 @@ if g:UNIX && g:UNICODE
 endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
-
-                                                " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
+Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
 Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
 Plug 'jiangxincode/TagCollection'               " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
 Plug 'nathanaelkane/vim-indent-guides'          " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
@@ -906,8 +904,8 @@ nnoremap g* #``
 nnoremap g# *``
 
 " refresh syntax highlight
-noremap <F10> <Esc>:syntax sync fromstart<CR>
-inoremap <F10> <C-o>:syntax sync fromstart<CR>
+noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
+inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
 
 " Permanent 'very magic' mode, see :he pattern
 " search, broken history search!
@@ -1306,6 +1304,9 @@ autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "react settings
 let g:jsx_ext_required = 0
 "}}}
+" {{{ delimMate
+let delimitMate_expand_cr = 1
+" }}}
 " }}}
 
 " Extra user or machine specific settings
