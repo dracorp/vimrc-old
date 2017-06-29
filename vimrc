@@ -341,7 +341,6 @@ set tabstop=4                                   " a tab is four spaces
 set softtabstop=4                               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                                   " expand tabs by default (overloadable per file type later)
 set shiftwidth=4                                " number of spaces to use for autoindenting
-
 set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
 set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
 set autoindent                                  " always set autoindenting on
@@ -355,10 +354,15 @@ set scrolloff=4                                 " keep 4 lines off the edges of 
 set virtualedit=                                " allow the cursor to go in to 'invalid' places
 set incsearch                                   " show search matches as you type
 "set gdefault                                    " search/replace 'globally' (on a line) by default
+set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
 
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
-set listchars=tab:>-,eol:$,trail:-,nbsp:%
+if g:UNICODE
+    set listchars=tab:▸\ ,eol:¬,trail:-,nbsp:%
+else
+    set listchars=tab:>-,eol:$,trail:-,nbsp:%
+endif
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 " autoformat: call using gq, see also |fo-table|
