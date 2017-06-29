@@ -197,9 +197,6 @@ Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim
 if g:PYTHON
     Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
 endif
-if g:MSWIN
-    Plug 'xolox/vim-shell'
-endif
 Plug 'xolox/vim-easytags'
 
 " Python {{{2
@@ -330,6 +327,10 @@ if g:MSWIN
 "    Plug 'mattn/webapi-vim'                       " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 endif
 
+" PHP {{{2
+Plug 'StanAngeloff/php.vim'                     " [Up-to-date PHP syntax file (5.3  7.1 support)](https://github.com/StanAngeloff/php.vim)
+Plug 'shawncplus/phpcomplete.vim'               " [Improved PHP omnicompletion](https://github.com/shawncplus/phpcomplete.vim)
+
 " Some offline plugins {{{2
 Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
@@ -371,7 +372,8 @@ set nolist                                      " don't show invisible character
 
 " autoformat: call using gq, see also |fo-table|
 set formatoptions+=1                            " long lines are not broken in insert mode
-set formatoptions+=t                            " autowrap text using textwidth
+"set formatoptions+=t                            " autowrap text using textwidth
+set formatoptions-=t
 set formatoptions-=c                            " autowrap comments using textwidth
 set formatoptions+=o                            " automatically insert the current comment leader after hitting 'o' in Normal mode
 set formatoptions+=r                            " as above but after <Enter> in Insert mode
@@ -392,6 +394,7 @@ set autowrite                                   " write a modified buffer on eac
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
 set browsedir=current                           " which directory to use for the file browser
 set complete+=k                                 " scan the files given with the 'dictionary' option
+"set complete-=i                                " on slow machines
 set mousehide                                   " Hide the mouse when typing text
 
 " export: print or to html
@@ -440,7 +443,7 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 
-set cmdheight=1                 " use a status bar that is 1 rows high
+set cmdheight=2                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
 " UTF-8: EF BB BF
@@ -1030,7 +1033,14 @@ set wildignore+=*.7z
 "let g:loaded_syntastic_perl_perlcritic_checker = 1
 "let g:syntastic_perl_perlcritic_thres = 1
 "let g:syntastic_enable_perl_checker = 1
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+" see :he syntastic_mode_map
+let g:syntastic_mode_map = {
+    \ 'mode': 'passive',
+    \ 'passive_filetypes': ['python'],
+    \ 'active_filetypes': [],
+    \}
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_ignore_files = [ 'PKGBUILD' ]
 " Recomended settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
