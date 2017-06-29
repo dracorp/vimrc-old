@@ -21,21 +21,12 @@ if has("multi_byte")
     if &termencoding == ""
         let &termencoding = &encoding
     endif
-    if $LC_ALL =~ "utf-?8"
+    if $LC_ALL =~? 'utf-\?8' || $LANG =~? '\vutf-?8'
         let g:UNICODE = 1
         scriptencoding utf-8
         set fileencoding=utf-8
         set encoding=utf-8
     endif
-"    if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
-"        set termencoding=latin1
-"    endif
-"    if $TERM == "xterm" || $TERM == "xterm-color" || $TERM == "xterm-256color"
-"        let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
-"        if propv !~ "WM_LOCALE_NAME .*UTF.*8"
-"            set termencoding=latin1
-"        endif
-"    endif
 endif
 
 " OS Settings, exports vimrc_dir {{{
@@ -58,7 +49,7 @@ elseif g:MSWIN
 endif
 " }}}
 
-" Remove ALL autocommands for the current group.
+" Remove existing autocommands to avoid duplicates
 autocmd!
 
 " Plugin manager(s)
@@ -168,6 +159,7 @@ Plug 'logstash.vim'                             " [logstash.vim highlights confi
 Plug 'plasticboy/vim-markdown'
     \, {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
 "Plug 'markdown-preview.vim', {'for': 'markdown'}                  " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim)
+Plug 'nelstrom/vim-markdown-folding'
 
 " Go {{{2
 Plug 'fatih/vim-go', {'for': 'go'}
@@ -417,7 +409,7 @@ set splitbelow                                  " command :sp put a new window b
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
-"set iskeyword+=-,,                              " which char make a word
+set iskeyword+=-,,                              " which char make a word
 " }}}
 
 " Folding rules {{{
@@ -1026,6 +1018,7 @@ let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline_section_c='%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+let g:airline#extensions#wordcount#enabled = 1	"Show word count
 "}}}
 " ctrlp {{{
 set wildignore+=*.7z
