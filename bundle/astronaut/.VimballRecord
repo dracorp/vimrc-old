@@ -1,1 +1,0 @@
-astronaut.vba.gz: call delete('/home/dracorp/.vim/bundle/astronaut/colors/astronaut.vim')
