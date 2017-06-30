@@ -21,21 +21,12 @@ if has("multi_byte")
     if &termencoding == ""
         let &termencoding = &encoding
     endif
-    if $LC_ALL =~ "utf-?8"
+    if $LC_ALL =~? 'utf-\?8' || $LANG =~? '\vutf-?8'
         let g:UNICODE = 1
         scriptencoding utf-8
         set fileencoding=utf-8
         set encoding=utf-8
     endif
-"    if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
-"        set termencoding=latin1
-"    endif
-"    if $TERM == "xterm" || $TERM == "xterm-color" || $TERM == "xterm-256color"
-"        let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
-"        if propv !~ "WM_LOCALE_NAME .*UTF.*8"
-"            set termencoding=latin1
-"        endif
-"    endif
 endif
 
 " OS Settings, exports vimrc_dir {{{
@@ -58,7 +49,7 @@ elseif g:MSWIN
 endif
 " }}}
 
-" Remove ALL autocommands for the current group.
+" Remove existing autocommands to avoid duplicates
 autocmd!
 
 " Plugin manager(s)
@@ -168,6 +159,7 @@ Plug 'logstash.vim'                             " [logstash.vim highlights confi
 Plug 'plasticboy/vim-markdown'
     \, {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
 "Plug 'markdown-preview.vim', {'for': 'markdown'}                  " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim)
+Plug 'nelstrom/vim-markdown-folding'
 
 " Go {{{2
 Plug 'fatih/vim-go', {'for': 'go'}
@@ -177,7 +169,7 @@ Plug 'nsf/gocode',  {'for': 'go'}
 Plug 'AnsiEsc.vim'                            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
 Plug 'powerman/vim-plugin-AnsiEsc'            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/powerman/vim-plugin-AnsiEsc)
 Plug 'DrawIt'                                 " [Ascii drawing plugin: lines, ellipses, arrows, fills, and more!](https://github.com/vim-scripts/DrawIt)
-Plug 'emezeske/manpageview'                   " [man page view for vim](https://github.com/emezeske/manpageview)
+"Plug 'emezeske/manpageview'                   " [man page view for vim](https://github.com/emezeske/manpageview)
 Plug 'Decho'                                  " [internal debugger](https://github.com/vim-scripts/decho)
 Plug 'gdbmgr'                                 " [interface to gdb](https://github.com/vim-scripts/gdbmgr)
 Plug 'HiColors'                               " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
@@ -253,7 +245,6 @@ Plug 'xslt', {'for': 'xslt'}                    " [XSLT ftplugin](https://github
 Plug 'chase/vim-ansible-yaml', {'for': 'yaml'}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
 
 " Others {{{2
-Plug 'po.vim'                                   " [PO (portable object) helper functions](https://github.com/vim-scripts/po.vim)
 Plug 'mru.vim'                                  " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
 Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
 Plug 'ctrlsf.vim'                               " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
@@ -302,8 +293,7 @@ if g:UNIX && g:UNICODE
 endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
-
-                                                " [Some utility functions](http://vim.sourceforge.net/scripts/script.php?script_id=1863)
+Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
 Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
 Plug 'jiangxincode/TagCollection'               " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
 Plug 'nathanaelkane/vim-indent-guides'          " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
@@ -335,6 +325,7 @@ Plug 'shawncplus/phpcomplete.vim'               " [Improved PHP omnicompletion](
 Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
 Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+Plug '~/.vim/bundle/manpageview'
 
 " end of vim-plug plugins }}}2
 call plug#end()
@@ -350,7 +341,6 @@ set tabstop=4                                   " a tab is four spaces
 set softtabstop=4                               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                                   " expand tabs by default (overloadable per file type later)
 set shiftwidth=4                                " number of spaces to use for autoindenting
-
 set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
 set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
 set autoindent                                  " always set autoindenting on
@@ -364,10 +354,15 @@ set scrolloff=4                                 " keep 4 lines off the edges of 
 set virtualedit=                                " allow the cursor to go in to 'invalid' places
 set incsearch                                   " show search matches as you type
 "set gdefault                                    " search/replace 'globally' (on a line) by default
+set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
 
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
-set listchars=tab:>-,eol:$,trail:-,nbsp:%
+if g:UNICODE
+    set listchars=tab:▸\ ,eol:¬,trail:-,nbsp:%
+else
+    set listchars=tab:>-,eol:$,trail:-,nbsp:%
+endif
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 " autoformat: call using gq, see also |fo-table|
@@ -416,7 +411,7 @@ set splitbelow                                  " command :sp put a new window b
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
-"set iskeyword+=-,,                              " which char make a word
+set iskeyword+=-,,                              " which char make a word
 " }}}
 
 " Folding rules {{{
@@ -913,8 +908,8 @@ nnoremap g* #``
 nnoremap g# *``
 
 " refresh syntax highlight
-noremap <F10> <Esc>:syntax sync fromstart<CR>
-inoremap <F10> <C-o>:syntax sync fromstart<CR>
+noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
+inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
 
 " Permanent 'very magic' mode, see :he pattern
 " search, broken history search!
@@ -1025,6 +1020,7 @@ let g:airline_theme='luna'
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline_section_c='%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+let g:airline#extensions#wordcount#enabled = 1	"Show word count
 "}}}
 " ctrlp {{{
 set wildignore+=*.7z
@@ -1312,6 +1308,9 @@ autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "react settings
 let g:jsx_ext_required = 0
 "}}}
+" {{{ delimMate
+let delimitMate_expand_cr = 1
+" }}}
 " }}}
 
 " Extra user or machine specific settings
