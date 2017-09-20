@@ -1090,8 +1090,8 @@ let g:SuperTabMappingForward  = '<tab>'
 "let g:SuperTabMappingBackward = '<s-tab>'
 " }}}
 " file_templates {{{
-let g:file_template_default = "def/PKGBUILD"
-let g:VIMFILESDIR = vimrc_dir . 'templates'
+let g:file_template_default = "def.PKGBUILD"
+let g:VIMFILESDIR = vimrc_dir
 " }}}
 " vbookmark {{{
 let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
