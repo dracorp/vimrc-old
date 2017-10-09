@@ -12,9 +12,10 @@
 set nocompatible
 
 " Some globale settings for further using
-let g:MSWIN  = has('win16')  || has('win32')   || has('win64')     || has('win95')
-let g:UNIX   = has('unix')   || has('macunix') || has('win32unix')
-let g:PYTHON = has('python') || has('python3')
+let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
+let g:MSWIN64 = has("win64")
+let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
+let g:PYTHON  = has('python') || has('python3')
 
 if has('multi_byte')
     let g:UNICODE = 0
@@ -53,10 +54,10 @@ endif
 autocmd!
 
 " Plugin manager(s)
-let s:bundle_dir    = vimrc_dir . 'bundle'
+let bundle_dir = vimrc_dir . 'bundle'
 
 " Plugins managed by vim-plug {{{
-call plug#begin(s:bundle_dir)
+call plug#begin(bundle_dir)
 
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
@@ -69,7 +70,9 @@ if g:UNICODE
 endif
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
 Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
-Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
+if !g:MSWIN
+    Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
+endif
 Plug 'vimwiki'                                  " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
 Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 Plug 'YankRing.vim'                             " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
@@ -173,7 +176,7 @@ if executable('git')
     Plug 'idanarye/vim-merginal'                " [Fugitive extension to manage and merge Git branches](https://github.com/idanarye/vim-merginal)
     Plug 'vim-gitignore'                        " [Another gitignore plugin for Vim](https://github.com/vim-scripts/vim-gitignore)
     Plug 'sjl/splice.vim'                       " [managing three-way merges - conflict with vim-fugitive](https://github.com/sjl/splice.vim)
-    Plug 'mhinz/vim-signify'                    " [show differences with style](https://github.com/mhinz/vim-signify)
+"    Plug 'mhinz/vim-signify'                    " [show differences with style](https://github.com/mhinz/vim-signify) error while writting
 "    Plug 'vcscommand.vim'                       " [CVS/SVN/SVK/git/hg/bzr integration plugin - mapping conflict](https://github.com/vim-scripts/vcscommand.vim)
     Plug 'airblade/vim-gitgutter'               " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
     Plug 'jreybert/vimagit'                     " [Ease your git workflow within Vim](https://github.com/jreybert/vimagit)
@@ -258,7 +261,8 @@ Plug 'jlemetay/permut'                          " [swap columns of text separate
 "Plug 'junegunn/vim-easy-align'                  " [A Vim alignment plugin](https://github.com/junegunn/vim-easy-align)
 Plug 'godlygeek/tabular'                        " [Vim script for text filtering and alignment](https://github.com/godlygeek/tabular)
 Plug 'restore_view.vim'                         " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
-Plug 'SuperTab'                                 " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
+"Plug 'SuperTab'                                 " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
+Plug 'ervandew/supertab'                        " Perform all your vim insert mode completions with Tab
 Plug 'AndrewRadev/switch.vim'                   " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
 Plug 'scrooloose/syntastic'                     " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
 "Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
@@ -288,7 +292,6 @@ if g:UNIX && g:UNICODE
 endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
-Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
 Plug 'jiangxincode/TagCollection'               " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
 "Plug 'nathanaelkane/vim-indent-guides'          " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
 Plug 'supersearch'                              " [plugin is a source code browser plugin](https://github.com/vim-scripts/supersearch)
@@ -303,18 +306,27 @@ endif
 
 " Windows only {{{3
 if g:MSWIN
-    Plug 'maximize.dll'
     Plug 'poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
     Plug 'Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
     Plug 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
 "    Plug 'mattn/webapi-vim'                       " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 endif
+"if g:MSWIN && !g:MSWIN64
+"    Plug 'maximize.dll'
+"endif
+"if g:MSWIN64
+    au GUIEnter * simalt ~x
+"endif
+
 
 " Some offline plugins {{{3
-Plug '~/.vim/bundle/file_templates'             " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
-Plug '~/.vim/bundle/astronaut'                  " [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
-Plug '~/.vim/bundle/StlShowFunc'                " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
-Plug '~/.vim/bundle/manpageview'
+" [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
+execute 'Plug \"' . bundle_dir . '/file_templates\"'
+" [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
+execute 'Plug \"' . bundle_dir . '/astronaut\"'
+" [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
+execute 'Plug \"' . bundle_dir . '/StlShowFunc\"'
+execute 'Plug \"' . bundle_dir . '/manpageview\"'
 
 " end of vim-plug plugins }}}3
 call plug#end()
