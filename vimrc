@@ -13,7 +13,7 @@ set nocompatible
 
 " Some globale settings for further using
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
-let g:MSWIN64 = has("win64")
+let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
 let g:PYTHON  = has('python') || has('python3')
 
@@ -140,7 +140,7 @@ Plug 'jQuery',                  {'for': 'javascript'}         " [Syntax file for
 Plug 'vim-perl/vim-perl',       {'for': ['perl','pm','xs']} " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 Plug 'perl_h2xs',               {'for': ['perl','pm','xs']} " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
 Plug 'nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
-Plug 'perlhelp.vim',            {'for': ['perl','pm','xs']} " [Interface to perldoc](https://github.com/vim-scripts/perlhelp.vim)
+"Plug 'perlhelp.vim',            {'for': ['perl','pm','xs']} " [Interface to perldoc](https://github.com/vim-scripts/perlhelp.vim) " conflict vim perl-support <LocalLeader>pm
 Plug 'Perldoc.vim',             {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
 
 " PHP {{{3
@@ -209,12 +209,12 @@ Plug 'chrisbra/csv.vim',{'for':'csv'}           " [A Filetype plugin for csv fil
 Plug 'plasticboy/vim-markdown'
     \, {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
 "Plug 'markdown-preview.vim', {'for': 'markdown'}                  " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim)
-Plug 'nelstrom/vim-markdown-folding'
+Plug 'nelstrom/vim-markdown-folding',{'for': 'markdown'}
 
 " Charles Campbell {{{3
 Plug 'AnsiEsc.vim'                            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
 Plug 'powerman/vim-plugin-AnsiEsc'            " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/powerman/vim-plugin-AnsiEsc)
-Plug 'DrawIt'                                 " [Ascii drawing plugin: lines, ellipses, arrows, fills, and more!](https://github.com/vim-scripts/DrawIt)
+Plug 'DrawIt',{'on': 'DrawIt'}                                 " [Ascii drawing plugin: lines, ellipses, arrows, fills, and more!](https://github.com/vim-scripts/DrawIt)
 "Plug 'emezeske/manpageview'                   " [man page view for vim](https://github.com/emezeske/manpageview)
 Plug 'Decho'                                  " [internal debugger](https://github.com/vim-scripts/decho)
 Plug 'gdbmgr'                                 " [interface to gdb](https://github.com/vim-scripts/gdbmgr)
@@ -240,9 +240,8 @@ Plug 'xolox/vim-easytags'
 " Fritz Mehner {{{3
 Plug 'Vim-support', {'for': 'vim'}              " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
 Plug 'awk-support.vim', {'for': 'awk'}          " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
-Plug 'bash-support.vim'                         " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
-Plug 'perl-support.vim'
-    \, {'for': ['perl','pm'] }                 " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
+Plug 'bash-support.vim', {'for': ['sh','ksh']}  " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
+Plug 'perl-support.vim', {'for': ['perl','pm','xs'] }                 " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
 Plug 'c.vim', {'for': ['c','cpp'] }            " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
 Plug 'latex-support.vim', {'for': 'latex'}      " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
 Plug 'doxygen-support.vim', {'for': 'doxygen'}  " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
@@ -305,7 +304,7 @@ Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to
 
 " UNIX only {{{3
 if g:UNIX
-    Plug 'dracorp/vim-pkgbuild'
+    Plug 'dracorp/vim-pkgbuild', {'for': 'PKGBUILD'}
 endif
 
 " Windows only {{{3
@@ -394,7 +393,7 @@ set autowrite                                   " write a modified buffer on eac
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
 set browsedir=current                           " which directory to use for the file browser
 set complete+=k                                 " scan the files given with the 'dictionary' option
-"set complete-=i                                " on slow machines
+set complete-=i                                 " do not scan current and included files, on slow machines
 set mousehide                                   " Hide the mouse when typing text
 
 " export: print or to html
@@ -416,7 +415,7 @@ set splitbelow                                  " command :sp put a new window b
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
-set iskeyword+=-,,                              " which chars make a word
+"set iskeyword+=                                " which char make a word
 " }}}
 
 " Folding rules {{{
@@ -951,8 +950,8 @@ let g:SuperTabMappingForward  = '<tab>'
 "let g:SuperTabMappingBackward = '<s-tab>'
 " }}}
 " file_templates {{{
-let g:file_template_default = "def.PKGBUILD"
-let g:VIMFILESDIR = vimrc_dir
+let g:file_template_default = "def/PKGBUILD"
+let g:VIMFILESDIR = vimrc_dir . 'templates'
 " }}}
 " vbookmark {{{
 let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
@@ -1057,7 +1056,7 @@ set timeoutlen=1000
 let g:NERDTreeDirArrows=0
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='~'
-"let NERDTreeIgnore=['$',]
+"let NERDTreeIgnore=['\.swp$',]
 " close when last
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
@@ -1170,8 +1169,9 @@ autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 let g:jsx_ext_required = 0
 "}}}
 " delimitMate {{{
-"let delimitMate_expand_cr = 1
+let delimitMate_expand_cr = 1
 " }}}
+" SuperTab {{{
 " }}}
 
 " Extra user or machine specific settings
