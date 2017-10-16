@@ -85,13 +85,15 @@ Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt 
 Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
 Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
+Plug 'tpope/vim-sleuth'                         " [Heuristically set buffer options](https://github.com/tpope/vim-sleuth)
+Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 
 " pairs {{{3
 "Plug 'tpope/vim-unimpaired'                     " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
 "Plug 'kurkale6ka/vim-pairs'                     " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
 "Plug 'jiangmiao/auto-pairs'                     " [insert or delete brackets, parens, quotes in pair](https://github.com/jiangmiao/auto-pairs)
 "Plug 'Yggdroot/hiPairs'                        " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
-"Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
+Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
 
 " ctrlp {{{3
 Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
@@ -138,9 +140,11 @@ Plug 'jQuery',                  {'for': 'javascript'}         " [Syntax file for
 Plug 'vim-perl/vim-perl',       {'for': ['perl','pm','xs']} " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 Plug 'perl_h2xs',               {'for': ['perl','pm','xs']} " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
 Plug 'nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
+Plug 'perlhelp.vim',            {'for': ['perl','pm','xs']} " [Interface to perldoc](https://github.com/vim-scripts/perlhelp.vim)
+Plug 'Perldoc.vim',             {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
 
 " PHP {{{3
-Plug 'StanAngeloff/php.vim',{'for':'php'}        " [Up-to-date PHP syntax file (5.3  7.1 support)](https://github.com/StanAngeloff/php.vim)
+Plug 'StanAngeloff/php.vim',{'for':'php'}        " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
 Plug 'shawncplus/phpcomplete.vim', {'for':'php'} " [Improved PHP omnicompletion](https://github.com/shawncplus/phpcomplete.vim)
 
 " Python {{{3
@@ -343,7 +347,7 @@ set softtabstop=4                               " when hitting <BS>, pretend lik
 set expandtab                                   " expand tabs by default (overloadable per file type later)
 set shiftwidth=4                                " number of spaces to use for autoindenting
 set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
-set backspace=indent,eol,start                  " allow backspacing over everything in insert mode
+"set backspace=indent,eol,start                  " allow backspacing over everything in insert mode " vim-sensible
 set autoindent                                  " always set autoindenting on
 set copyindent                                  " copy the previous indentation on autoindenting
 set nonumber                                    " show line numbers
@@ -353,17 +357,17 @@ set smartcase                                   " ignore case if search pattern 
 set smarttab                                    " insert tabs on the start of a line according to shiftwidth, not tabstop
 set scrolloff=4                                 " keep 4 lines off the edges of the screen when scrolling
 set virtualedit=                                " allow the cursor to go in to 'invalid' places
-set incsearch                                   " show search matches as you type
+"set incsearch                                   " show search matches as you type " vim-sensible
 "set gdefault                                    " search/replace 'globally' (on a line) by default
 set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
 
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
-if g:UNICODE
-    set listchars=tab:▸\ ,eol:¬,trail:-,nbsp:%
-else
-    set listchars=tab:>-,eol:$,trail:-,nbsp:%
-endif
+"if g:UNICODE                                   " vim-sensible
+"    set listchars=tab:�\ ,eol:�,trail:-,nbsp:%
+"else
+"    set listchars=tab:>-,eol:$,trail:-,nbsp:%
+"endif
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 " autoformat: call using gq, see also |fo-table|
@@ -384,7 +388,7 @@ set mouse=v                                     " enable using the mouse if term
 set linebreak
 set smartindent                                 " smart autoindenting when starting a new line
 set wrapscan                                    " searches wrap around the end of file
-set autoread                                    " read open files again when changed outside Vim
+"set autoread                                    " read open files again when changed outside Vim " vim-sensible
 set autowrite                                   " write a modified buffer on each :next , ...
 " backspace, space, <left>, <right>
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
@@ -535,46 +539,6 @@ if has("autocmd")
 "        autocmd FileType vim nnoremap <buffer> <F12> :source %<CR>
     augroup end "}}}
 
-    augroup html_files "{{{
-        if 0                                    " disable this
-        au!
-
-        " This function detects, based on HTML content, whether this is a
-        " Django template, or a plain HTML file, and sets filetype accordingly
-        fun! s:DetectHTMLVariant()
-            let n = 1
-            while n < 50 && n < line("$")
-                " check for django
-                if getline(n) =~ '{%\s*\(extends\|load\|block\|if\|for\|include\|trans\)\>'
-                    set ft=htmldjango.html
-                    return
-                endif
-                let n = n + 1
-            endwhile
-            " go with html
-            set ft=html
-        endfun
-
-        " Auto-tidy selection
-        vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
-
-        autocmd BufNewFile,BufRead *.html,*.htm,*.j2 call s:DetectHTMLVariant()
-
-        " Auto-closing of HTML/XML tags
-        let g:closetag_default_xml=1
-        let g:xml_syntax_folding=1
-        autocmd FileType xml,xsd,xslt,xsl,html,htmldjango call SetHtmlOptions()
-        function! SetHtmlOptions()
-            let b:closetag_html_style=1
-"            setlocal foldmethod=syntax
-            " keymap
-"            let l:filename = expand("%:r")
-"            exe "nnoremap <F12> :!xmllint --noout --schema " . l:filename . ".xsd %<CR>"
-"            nnoremap <S-F12> :silent %!xmllint --format --recover - 2>/dev/null<CR>
-        endfun
-        endif
-    augroup end " }}}
-
     augroup awk_files " {{{
         au!
         autocmd FileType awk nnoremap <buffer> <F12> :!gawk -f %<CR>
@@ -590,115 +554,11 @@ if has("autocmd")
         autocmd FileType xmodmap nnoremap <buffer> <F12> :!xmodmap %<CR>
         augroup end " }}}
 
-    augroup python_files "{{{
-        if 0                                    " disable this
-        au!
-
-        " This function detects, based on Python content, whether this is a
-        " Django file, which may enabling snippet completion for it
-        fun! s:DetectPythonVariant()
-            let n = 1
-            while n < 50 && n < line("$")
-                " check for django
-                if getline(n) =~ 'import\s\+\<django\>' || getline(n) =~ 'from\s\+\<django\>\s\+import'
-                    set ft=python.django
-                    "set syntax=python
-                    return
-                endif
-                let n = n + 1
-            endwhile
-            " go with html
-            set ft=python
-        endfun
-        autocmd BufNewFile,BufRead *.py call s:DetectPythonVariant()
-
-        " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
-        " earlier, as it is important)
-        autocmd FileType python setlocal textwidth=78
-        autocmd FileType python match ErrorMsg '\%>120v.\+'
-
-        " But disable autowrapping as it is super annoying
-        autocmd FileType python setlocal formatoptions-=t
-
-        " Folding for Python (uses syntax/python.vim for fold definitions)
-        "autocmd FileType python,rst setlocal nofoldenable
-        "autocmd FileType python setlocal foldmethod=expr
-
-        " Python runners
-        autocmd FileType python noremap <buffer> <F5> :w<CR>:!python %<CR>
-        autocmd FileType python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-        autocmd FileType python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-        autocmd FileType python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
-
-        " Toggling True/False
-        autocmd FileType python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
-
-        " Run a quick static syntax check every time we save a Python file
-"        autocmd BufWritePost *.py call Flake8()
-
-        " Defer to isort for sorting headers (instead of using Unix sort)
-        autocmd FileType python nnoremap <leader>s :Isort<cr>
-        endif
-    augroup end " }}}
-
-    augroup markdown_files "{{{
-        if 0                                    " disable this
-        au!
-
-        autocmd FileType markdown noremap <buffer> <leader>p :w<CR>:!open -a Marked %<CR><CR>
-        endif
-    augroup end " }}}
-
-    augroup rst_files "{{{
-        if 0
-        au!
-
-        " Auto-wrap text around 74 chars
-        autocmd FileType rst setlocal textwidth=74
-        autocmd FileType rst setlocal formatoptions+=nqt
-        autocmd FileType rst match ErrorMsg '\%>74v.\+'
-        endif
-    augroup end " }}}
-
     augroup css_files "{{{
         au!
 
         autocmd FileType css,less setlocal foldmethod=marker foldmarker={,}
     augroup end "}}}
-
-    augroup javascript_files "{{{
-        if 0                                    " disable this
-        au!
-
-        autocmd FileType javascript setlocal expandtab
-        autocmd FileType javascript setlocal listchars=trail:Â·,extends:#,nbsp:Â·
-        autocmd FileType javascript setlocal foldmethod=marker foldmarker={,}
-
-        " Toggling True/False
-        autocmd FileType javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
-        endif
-    augroup end "}}}
-
-    augroup jquery "{{{
-        if 0                                    " disable this
-        au!
-        au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-        au BufRead,BufNewFile *.user.js set ft=javascript syntax=jquery
-        endif
-    augroup end "}}}
-
-    augroup textile_files "{{{
-        if 0                                    " disable this
-        au!
-
-        autocmd FileType textile set tw=78 wrap
-
-        " Render YAML front matter inside Textile documents as comments
-        autocmd FileType textile syntax region frontmatter start=/\%^---$/ end=/^---$/
-        autocmd FileType textile highlight link frontmatter Comment
-        endif
-    augroup end "}}}
-
 endif
 " }}}
 
@@ -750,7 +610,7 @@ function! s:QuickfixToggle() "{{{
     endif
 endfunction
 " }}}
-let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
+let g:last_fold_column_width = 4                " Pick a sane default for the foldcolumn
 function! FoldColumnToggle() "{{{
     " Toggle the foldcolumn
     " From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
@@ -1309,7 +1169,7 @@ autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "react settings
 let g:jsx_ext_required = 0
 "}}}
-" delimMate {{{
+" delimitMate {{{
 "let delimitMate_expand_cr = 1
 " }}}
 " }}}
