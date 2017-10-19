@@ -316,12 +316,12 @@ if g:MSWIN
     Plug 'Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
 "    Plug 'mattn/webapi-vim'                       " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 endif
-"if g:MSWIN && !g:MSWIN64
-"    Plug 'maximize.dll'
-"endif
-"if g:MSWIN64
+if g:MSWIN && !g:MSWIN64
+    Plug 'maximize.dll'
+endif
+if g:MSWIN64
     au GUIEnter * simalt ~x
-"endif
+endif
 
 
 " Some offline plugins {{{3
