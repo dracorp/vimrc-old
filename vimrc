@@ -267,7 +267,9 @@ Plug 'restore_view.vim'                         " [automatically restoring file'
 "Plug 'SuperTab'                                 " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
 Plug 'ervandew/supertab'                        " Perform all your vim insert mode completions with Tab
 Plug 'AndrewRadev/switch.vim'                   " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
-Plug 'scrooloose/syntastic'                     " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+if version > 700
+    Plug 'scrooloose/syntastic'                     " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+endif
 "Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
 Plug 'majutsushi/tagbar'                        " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
 Plug 'Tabmerge'                                 " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
@@ -511,6 +513,7 @@ colorscheme gruvbox
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
+
     augroup change_dir "{{{
         au!
         " The current directory is the directory of the file in the current window.
@@ -558,6 +561,12 @@ if has("autocmd")
 
         autocmd FileType css,less setlocal foldmethod=marker foldmarker={,}
     augroup end "}}}
+
+    augroup xml_files "{{{
+        au!
+        "!xmllint --nout --schema sci.xsd %
+    augroup end "}}}
+
 endif
 " }}}
 
@@ -701,6 +710,76 @@ function! MyFoldText() "{{{
 endfunction
 set foldtext=MyFoldText()
 "}}}
+function! s:set_all(option, val, ...) abort "{{{
+  let val = eval(a:val)
+
+  for t in range(1, tabpagenr('$'))
+    for w in range(1, tabpagewinnr(t, '$'))
+      if gettabwinvar(t, w, '&buftype') !=# ''
+        continue
+      endif
+      call settabwinvar(t, w, '&'.a:option, val)
+    endfor
+  endfor
+endfunction
+command! -complete=option -nargs=+ SetAll call s:set_all(<f-args>)
+"}}}
+function! DoFormatXML() range "{{{
+    " Save the file type
+    let l:origft = &ft
+
+    " Clean the file type
+    set ft=
+
+    " Add fake initial tag (so we can process multiple top-level elements)
+    exe ":let l:beforeFirstLine=" . a:firstline . "-1"
+    if l:beforeFirstLine < 0
+        let l:beforeFirstLine=0
+    endif
+    exe a:lastline . "put ='</PrettyXML>'"
+    exe l:beforeFirstLine . "put ='<PrettyXML>'"
+    exe ":let l:newLastLine=" . a:lastline . "+2"
+    if l:newLastLine > line('$')
+        let l:newLastLine=line('$')
+    endif
+
+    " Remove XML header
+    exe ":" . a:firstline . "," . a:lastline . "s/<\?xml\\_.*\?>\\_s*//e"
+
+    " Recalculate last line of the edited code
+    let l:newLastLine=search('</PrettyXML>')
+
+    " Execute external formatter
+    exe ":silent " . a:firstline . "," . l:newLastLine . "!xmllint --noblanks --format --recover -"
+
+    " Recalculate first and last lines of the edited code
+    let l:newFirstLine=search('<PrettyXML>')
+    let l:newLastLine=search('</PrettyXML>')
+
+    " Get inner range
+    let l:innerFirstLine=l:newFirstLine+1
+    let l:innerLastLine=l:newLastLine-1
+
+    " Remove extra unnecessary indentation
+    exe ":silent " . l:innerFirstLine . "," . l:innerLastLine "s/^  //e"
+
+    " Remove fake tag
+    exe l:newLastLine . "d"
+    exe l:newFirstLine . "d"
+
+    " Put the cursor at the first line of the edited code
+    exe ":" . l:newFirstLine
+
+    " Restore the file type
+    exe "set ft=" . l:origft
+endfunction
+command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
+
+nmap <silent> <leader>x :%FormatXML<CR>
+vmap <silent> <leader>x :FormatXML<CR>
+"}}}
+"}}}
+
 if filereadable(vimrc_dir . "functions.vim")
     execute ":source" vimrc_dir . "functions.vim"
 endif
@@ -1172,6 +1251,9 @@ let g:jsx_ext_required = 0
 let delimitMate_expand_cr = 1
 " }}}
 " SuperTab {{{
+" }}}
+" vim-ansible-yaml {{{
+let g:ansible_options = {'ignore_blank_lines': 0}
 " }}}
 
 " Extra user or machine specific settings
