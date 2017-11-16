@@ -68,6 +68,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}               " [A tree exp
 if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}             " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 endif
+Plug 'jistr/vim-nerdtree-tabs'                  " [NERDTree and tabs together in Vim, painlessly](https://github.com/jistr/vim-nerdtree-tabs)
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
 Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 if !g:MSWIN
@@ -265,7 +266,8 @@ Plug 'jlemetay/permut'                          " [swap columns of text separate
 Plug 'godlygeek/tabular'                        " [Vim script for text filtering and alignment](https://github.com/godlygeek/tabular)
 Plug 'restore_view.vim'                         " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
 "Plug 'SuperTab'                                 " [Do all your insert-mode completion with Tab!](https://github.com/vim-scripts/supertab)
-Plug 'ervandew/supertab'                        " Perform all your vim insert mode completions with Tab
+Plug 'Shougo/neocomplcache.vim'                 " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
+"Plug 'ervandew/supertab'                        " Perform all your vim insert mode completions with Tab
 Plug 'AndrewRadev/switch.vim'                   " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
 if version > 700
     Plug 'scrooloose/syntastic'                     " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
@@ -303,6 +305,7 @@ Plug 'supersearch'                              " [plugin is a source code brows
 Plug 'Dokumentary'                              " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
 Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
 "Plug 'AutoFold.vim'                            " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
+Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for writing](https://github.com/reedes/vim-pencil)
 
 " UNIX only {{{3
 if g:UNIX
@@ -365,7 +368,7 @@ set nojoinspaces                                " do not insert 2 spaces after .
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 "if g:UNICODE                                   " vim-sensible
-"    set listchars=tab:¿\ ,eol:¬,trail:-,nbsp:%
+"    set listchars=tab:Å¼\ ,eol:Â¬,trail:-,nbsp:%
 "else
 "    set listchars=tab:>-,eol:$,trail:-,nbsp:%
 "endif
@@ -959,7 +962,7 @@ let g:airline_section_c       = '%<%F%m %#__accent_red#%{airline#util#wrap(airli
 let g:airline#extensions#tabline#enabled      = 1
 let g:airline#extensions#tabline#left_sep     = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#wordcount#enabled    = 1	"Show word count
+let g:airline#extensions#wordcount#enabled    = 1   "Show word count
 "}}}
 " ctrlp {{{
 set wildignore+=*.7z
@@ -1023,10 +1026,47 @@ endif
 let $PAGER=''
 "}}}
 " supertab {{{
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingForward  = '<tab>'
-"let g:SuperTabMappingBackward = '<s-tab>'
+" }}}
+" {{{
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 2
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" Close popup by <Space>.
+inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
 " }}}
 " file_templates {{{
 let g:file_template_default = "def/PKGBUILD"
@@ -1131,6 +1171,7 @@ endif
 " }}}
 " NerdTree {{{
 map <F2> :NERDTreeToggle<CR>
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 set timeoutlen=1000
 let g:NERDTreeDirArrows=0
 let g:NERDTreeDirArrowExpandable='+'
@@ -1249,8 +1290,6 @@ let g:jsx_ext_required = 0
 "}}}
 " delimitMate {{{
 let delimitMate_expand_cr = 1
-" }}}
-" SuperTab {{{
 " }}}
 " vim-ansible-yaml {{{
 let g:ansible_options = {'ignore_blank_lines': 0}
