@@ -367,11 +367,7 @@ set nojoinspaces                                " do not insert 2 spaces after .
 
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
-"if g:UNICODE                                   " vim-sensible
-"    set listchars=tab:ż\ ,eol:¬,trail:-,nbsp:%
-"else
-"    set listchars=tab:>-,eol:$,trail:-,nbsp:%
-"endif
+" set listchars=tab:>-,eol:$,trail:-,nbsp:%
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 " autoformat: call using gq, see also |fo-table|
