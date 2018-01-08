@@ -170,6 +170,8 @@ Plug 'xslt',    {'for': 'xslt'}                 " [XSLT ftplugin](https://github
 " YAML {{{3
 Plug 'chase/vim-ansible-yaml', {'for':['yaml','yml']}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
 
+" JSON {{{3
+Plug 'elzr/vim-json'                            " [A better JSON](https://github.com/elzr/vim-json)
 " }}}2
 " Git and other VCS {{{3
 if executable('git')
@@ -443,7 +445,7 @@ set lazyredraw                  " don't update the display while executing macro
 set laststatus=2                " tell VIM to always put a status line in, even
                                 " if there is only one window
 
-set cmdheight=2                 " use a status bar that is 1 rows high
+set cmdheight=3                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
 " UTF-8: EF BB BF
@@ -1267,9 +1269,9 @@ vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 " vim-easy-align {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+"xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+"nmap ga <Plug>(EasyAlign)
 " }}}
 " Emmet settings {{{
 let g:user__install_global = 0
