@@ -1028,7 +1028,7 @@ let g:SuperTabMappingForward  = '<tab>'
 " }}}
 " {{{
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
+"let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -1043,7 +1043,7 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+"inoremap <expr><c-space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -1067,8 +1067,8 @@ let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " }}}
 " file_templates {{{
-let g:file_template_default = "def/PKGBUILD"
-let g:VIMFILESDIR = vimrc_dir . 'templates'
+let g:file_template_default = "def.PKGBUILD"
+let g:VIMFILESDIR = vimrc_dir
 " }}}
 " vbookmark {{{
 let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
@@ -1255,12 +1255,12 @@ let g:shell_mappings_enabled=0
 " }}}
 " Ultisnips {{{
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
 " }}}
 " open-browser.vim {{{
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
