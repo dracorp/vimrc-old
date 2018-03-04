@@ -7,16 +7,17 @@
 " To test timing startup
 "   vim --startuptime start.log
 
-" Use Vim settings, rather then Vi settings.
-" This must be first, because it changes other options as a side effect.
+" Basic settings {{{
+" Use Vim settings, rather then Vi settings. This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Some globale settings for further using
+" Some globale settings for further using {{{
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
 let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
 let g:PYTHON  = has('python') || has('python3')
-
+"}}}
+" multi_byte {{{
 if has('multi_byte')
     let g:UNICODE = 0
     if &termencoding == ''
@@ -29,7 +30,7 @@ if has('multi_byte')
         set encoding=utf-8
     endif
 endif
-
+"}}}
 " OS Settings, exports vimrc_dir {{{
 " Check OS and where are vim's config files
 " $HOME - user's home directory
@@ -52,31 +53,29 @@ endif
 
 " Remove existing autocommands to avoid duplicates
 autocmd!
-
-" Plugin manager(s)
-let bundle_dir = vimrc_dir . 'bundle'
-
+"}}}
 " Plugins managed by vim-plug {{{
+let bundle_dir = vimrc_dir . 'bundle'
 call plug#begin(bundle_dir)
 
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
 
 " For Vim {{{3
-"Plug 'Valloric/YouCompleteMe'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+Plug 'Valloric/YouComPLETEmE'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}               " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}             " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 endif
 Plug 'jistr/vim-nerdtree-tabs'                  " [NERDTree and tabs together in Vim, painlessly](https://github.com/jistr/vim-nerdtree-tabs)
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
-Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
+"Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 if !g:MSWIN
     Plug 'editorconfig/editorconfig-vim'            " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
 endif
-Plug 'vim-scripts/vimwiki'                                  " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
+Plug 'vim-scripts/vimwiki'                      " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
 Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
-Plug 'vim-scripts/YankRing.vim'                             " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
+Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
 
 " Visual
 Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
@@ -87,6 +86,7 @@ Plug 'tpope/vim-flagship'                       " [Configurable and extensible t
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
 Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
 Plug 'tpope/vim-sleuth'                         " [Heuristically set buffer options](https://github.com/tpope/vim-sleuth)
+" for basic settings
 Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 
 " pairs {{{3
@@ -97,9 +97,9 @@ Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree o
 Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
 
 " ctrlp {{{3
-Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
-Plug 'tacahiroy/ctrlp-funky'                    " [A simple function navigator for ctrlp.vim](https://github.com/tacahiroy/ctrlp-funky)
-Plug 'sgur/ctrlp-extensions.vim'                " [Plugins for ctrlp.vim](https://github.com/sgur/ctrlp-extensions.vim)
+"Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
+"Plug 'tacahiroy/ctrlp-funky'                    " [A simple function navigator for ctrlp.vim](https://github.com/tacahiroy/ctrlp-funky)
+"Plug 'sgur/ctrlp-extensions.vim'                " [Plugins for ctrlp.vim](https://github.com/sgur/ctrlp-extensions.vim)
 
 " Programming Languages {{{2
 " c++, c {{{3
@@ -116,7 +116,7 @@ Plug 'vitalk/vim-lesscss',          {'for': ['less']}                          "
 
 " Go {{{3
 Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'nsf/gocode',  {'for': 'go'}
+Plug 'nsf/gocode',   {'for': 'go'}
 
 " HTML {{{3
 Plug 'gregsexton/MatchTag', {'for': ['html','xml']}
@@ -126,8 +126,8 @@ Plug 'tpope/vim-haml',      {'for': ['haml','sass','scss']}
 Plug 'alvan/vim-closetag',  {'for': ['html','xml']}         " [Auto close (X)HTML tags](https://github.com/alvan/vim-closetag)
 
 " Java {{{3
-Plug 'vim-scripts/vim-javacomplete2', {'for': 'java'}       " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
-Plug 'vim-scripts/VimClojure',{'for':'clojure'}             " [A filetype, syntax and indent plugin for Clojure](https://github.com/vim-scripts/VimClojure)
+Plug 'vim-scripts/vim-javacomplete2', {'for':'java'}        " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
+Plug 'vim-scripts/VimClojure',        {'for':'clojure'}     " [A filetype, syntax and indent plugin for Clojure](https://github.com/vim-scripts/VimClojure)
 
 " JavaScript {{{3
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
@@ -135,14 +135,14 @@ Plug 'maksimr/vim-jsbeautify',  {'for': 'javascript'}
 Plug 'wizicer/vim-jison',       {'for': ['jison','yacc']}
 Plug 'mxw/vim-jsx',             {'for': ['javascript','jsx']}
 Plug 'Shutnik/jshint2.vim',     {'for': 'javascript'}         " [Lightweight, customizable and functional Vim plugin for JSHint integration](https://github.com/Shutnik/jshint2.vim)
-Plug 'vim-scripts/jQuery',                  {'for': 'javascript'}         " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
+Plug 'vim-scripts/jQuery',      {'for': 'javascript'}         " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
 
 " Perl {{{3
 Plug 'vim-perl/vim-perl',       {'for': ['perl','pm','xs']} " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
-Plug 'vim-scripts/perl_h2xs',               {'for': ['perl','pm','xs']} " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
+Plug 'vim-scripts/perl_h2xs',   {'for': ['perl','pm','xs']} " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
 Plug 'nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
+Plug 'vim-scripts/Perldoc.vim', {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
 "Plug 'vim-scripts/perlhelp.vim',            {'for': ['perl','pm','xs']} " [Interface to perldoc](https://github.com/vim-scripts/perlhelp.vim) " conflict vim perl-support <LocalLeader>pm
-Plug 'vim-scripts/Perldoc.vim',             {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
 
 " PHP {{{3
 Plug 'StanAngeloff/php.vim',{'for':'php'}        " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
@@ -243,7 +243,7 @@ Plug 'xolox/vim-easytags'
 " Fritz Mehner {{{3
 Plug 'vim-scripts/Vim-support', {'for': 'vim'}              " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
 Plug 'vim-scripts/awk-support.vim', {'for': 'awk'}          " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
-Plug 'vim-scripts/bash-support.vim', {'for': ['sh','ksh']}  " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
+Plug 'vim-scripts/bash-support.vim', {'for': 'sh'}          " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
 Plug 'vim-scripts/perl-support.vim', {'for': ['perl','pm','xs'] }                 " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
 Plug 'vim-scripts/c.vim', {'for': ['c','cpp'] }            " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
 Plug 'vim-scripts/latex-support.vim', {'for': 'latex'}      " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
@@ -353,7 +353,7 @@ set softtabstop=4                               " when hitting <BS>, pretend lik
 set shiftwidth=4                                " number of spaces to use for autoindenting
 set expandtab                                   " expand tabs by default (overloadable per file type later)
 set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
-"set backspace=indent,eol,start                  " allow backspacing over everything in insert mode " vim-sensible
+"set backspace=indent,eol,start                  " allow backspacing over everything in insert mode " replaced by vim-sensible
 set autoindent                                  " always set autoindenting on
 set copyindent                                  " copy the previous indentation on autoindenting
 set nonumber                                    " show line numbers
@@ -361,15 +361,15 @@ set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
 set smartcase                                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
 set smarttab                                    " insert tabs on the start of a line according to shiftwidth, not tabstop
-set scrolloff=4                                 " keep 4 lines off the edges of the screen when scrolling
+"set scrolloff=4                                 " keep 4 lines off the edges of the screen when scrolling " replaced by vim-sensible
 set virtualedit=                                " allow the cursor to go in to 'invalid' places
-"set incsearch                                   " show search matches as you type " vim-sensible
+"set incsearch                                   " show search matches as you type " replaced by vim-sensible
 "set gdefault                                    " search/replace 'globally' (on a line) by default
 set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
 
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
-" set listchars=tab:>-,eol:$,trail:-,nbsp:%
+" set listchars=tab:>-,eol:$,trail:-,nbsp:% " replaced by vim-sensible
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 " autoformat: call using gq, see also |fo-table|
@@ -390,7 +390,7 @@ set mouse=v                                     " enable using the mouse if term
 set linebreak
 set smartindent                                 " smart autoindenting when starting a new line
 set wrapscan                                    " searches wrap around the end of file
-"set autoread                                    " read open files again when changed outside Vim " vim-sensible
+"set autoread                                    " read open files again when changed outside Vim " vim-sensible " replaced by vim-sensible
 set autowrite                                   " write a modified buffer on each :next , ...
 " backspace, space, <left>, <right>
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
