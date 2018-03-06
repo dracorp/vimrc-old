@@ -62,7 +62,7 @@ call plug#begin(bundle_dir)
 Plug 'junegunn/vim-plug'
 
 " For Vim {{{3
-Plug 'Valloric/YouComPLETEmE'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+"Plug 'Valloric/YouCompleteMe'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}               " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}             " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
@@ -254,7 +254,8 @@ Plug 'WolfgangMehner/Vim-Mapathon'                             " [My talk for Vi
 Plug 'vim-scripts/mru.vim'                                  " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
 Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
 Plug 'vim-scripts/ctrlsf.vim'                               " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
-Plug 'vim-scripts/matchit.zip'                              " [extended % matching for HTML, LaTeX, and many other languages](https://github.com/vim-scripts/matchit.zip)
+"Plug 'vim-scripts/matchit.zip'                              " [extended % matching for HTML, LaTeX, and many other languages](https://github.com/vim-scripts/matchit.zip)
+Plug 'andymass/vim-matchup'                     " [even better % fist_oncoming navigate and highlight matching words fist_oncoming modern matchit and matchparen replacement](https://github.com/andymass/vim-matchup)
 if version >= 740
     Plug 'vim-scripts/EnhancedDiff'                         " [A Vim plugin for creating better diffs](https://github.com/vim-scripts/EnhancedDiff)
 endif
