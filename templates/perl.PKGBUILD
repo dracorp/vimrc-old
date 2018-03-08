@@ -20,12 +20,12 @@ install=
 noextract=()
 options=(!emptydirs)
 source=("http://search.cpan.org/CPAN/authors/id/$_author/$_perlmod-$pkgver.tar.gz")
+sha256sums=()
 unset PERL5LIB PERL_MM_OPT PERL_MB_OPT PERL_LOCAL_LIB_ROOT
 export PERL_MM_USE_DEFAULT=1 PERL_AUTOINSTALL=--skipdeps MODULEBUILDRC=/dev/null
 
 build(){
   cd "$srcdir"/$_perlmod-$pkgver
-
   if [ -f Makefile.PL ]; then
     perl Makefile.PL
     make
@@ -36,7 +36,6 @@ build(){
 }
 check(){
   cd "$srcdir"/$_perlmod-$pkgver
-
   if [ -f Makefile.PL ]; then
     make test
   else
@@ -45,7 +44,6 @@ check(){
 }
 package(){
   cd "$srcdir"/$_perlmod-$pkgver
-
   if [ -f Makefile.PL ]; then
     make install INSTALLDIRS=vendor DESTDIR="$pkgdir"
   else
