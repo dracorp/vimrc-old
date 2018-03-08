@@ -1292,6 +1292,9 @@ let delimitMate_expand_cr = 1
 " vim-ansible-yaml {{{
 let g:ansible_options = {'ignore_blank_lines': 0}
 " }}}
+"{{{
+let g:startify_fortune_use_unicode = 1
+"}}}
 
 " Extra user or machine specific settings
 if filereadable(vimrc_dir . "user.vim")
