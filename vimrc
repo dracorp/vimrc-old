@@ -76,6 +76,7 @@ endif
 Plug 'vim-scripts/vimwiki'                      " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
 Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
+Plug 'junegunn/vim-peekaboo'                    " [extends \" and @ in normal mode and <CTRL-R>](https://github.com/junegunn/vim-peekaboo)
 
 " Visual
 Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
@@ -246,7 +247,7 @@ Plug 'vim-scripts/awk-support.vim', {'for': 'awk'}          " [AWK-IDE for Vim/g
 Plug 'vim-scripts/bash-support.vim', {'for': 'sh'}          " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
 Plug 'vim-scripts/perl-support.vim', {'for': ['perl','pm','xs'] }                 " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
 Plug 'vim-scripts/c.vim', {'for': ['c','cpp'] }            " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
-Plug 'vim-scripts/latex-support.vim', {'for': 'latex'}      " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
+Plug 'vim-scripts/latex-support.vim', {'for':['tex','plaintex']}      " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
 Plug 'vim-scripts/doxygen-support.vim', {'for': 'doxygen'}  " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
 Plug 'WolfgangMehner/Vim-Mapathon'                             " [My talk for Vimfest 2017 - An advanced introduction to maps](https://github.com/WolfgangMehner/vim-mapathon)
 
@@ -597,7 +598,8 @@ if has("gui_running")
     if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
     elseif g:UNIX
-        set guifont=Bitstream\ Vera\ Sans\ Mono\ 11
+        set guifont=Hack\ 11
+        " from https://github.com/powerline/fonts.git
     endif
 endif
 " }}}
