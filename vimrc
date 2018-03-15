@@ -115,7 +115,9 @@ Plug 'hail2u/vim-css3-syntax',      {'for': ['css','scss']}
 Plug 'vitalk/vim-lesscss',          {'for': ['less']}                          " [Update corresponding css files on the fly while edit less files](https://github.com/vitalk/vim-lesscss)
 
 " Go {{{3
-Plug 'fatih/vim-go', {'for': 'go'}
+if version > 704 || (version == 704 && has('patch330'))
+    Plug 'fatih/vim-go', {'for': 'go'}
+endif
 Plug 'nsf/gocode',   {'for': 'go'}
 
 " HTML {{{3
@@ -254,9 +256,12 @@ Plug 'WolfgangMehner/Vim-Mapathon'                             " [My talk for Vi
 Plug 'vim-scripts/mru.vim'                                  " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
 Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
 Plug 'vim-scripts/ctrlsf.vim'                               " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
-"Plug 'vim-scripts/matchit.zip'                              " [extended % matching for HTML, LaTeX, and many other languages](https://github.com/vim-scripts/matchit.zip)
-Plug 'andymass/vim-matchup'                     " [even better % fist_oncoming navigate and highlight matching words fist_oncoming modern matchit and matchparen replacement](https://github.com/andymass/vim-matchup)
-if version >= 740
+if version > 704 || (version == 704 && has('patch330'))
+    Plug 'andymass/vim-matchup'                     " [even better % fist_oncoming navigate and highlight matching words fist_oncoming modern matchit and matchparen replacement](https://github.com/andymass/vim-matchup)
+else
+    Plug 'vim-scripts/matchit.zip'                              " [extended % matching for HTML, LaTeX, and many other languages](https://github.com/vim-scripts/matchit.zip)
+endif
+if version >= 704
     Plug 'vim-scripts/EnhancedDiff'                         " [A Vim plugin for creating better diffs](https://github.com/vim-scripts/EnhancedDiff)
 endif
 Plug 'rking/ag.vim'                             " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
@@ -283,7 +288,7 @@ Plug 'vim-scripts/Toggle'                                   " [allows you to tog
 "Plug 'SirVer/ultisnips'                         " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
 "Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 Plug 'mbbill/undotree'                          " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
-if version > 720
+if version > 704 || (version == 704 && has('patch330'))
     Plug 'Shougo/unite.vim'                     " [Unite and create user interfaces](https://github.com/Shougo/unite.vim)
 endif
 Plug 'tpope/vim-repeat'                         " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
@@ -500,6 +505,19 @@ set showcmd                     " show (partial) command in the last line of the
 " }}}
 
 " View {{{
+" more colors
+if &term =~ "xterm"
+  if has("terminfo")
+    let &t_Co=256
+    let &t_Sf="\<Esc>[3%p1%dm"
+    let &t_Sb="\<Esc>[4%p1%dm"
+  else
+    let &t_Co=256
+    let &t_Sf="\<Esc>[3%dm"
+    let &t_Sb="\<Esc>[4%dm"
+  endif
+endif
+
 if &t_Co > 2 || has("gui_running")
     syntax on
     set hlsearch
