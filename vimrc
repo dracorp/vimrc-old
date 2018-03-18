@@ -325,19 +325,19 @@ Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for 
 " Completion
 "Plug 'Shougo/neocomplcache.vim'                 " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
 if has('patch-7.3.885')
-    Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
+"    Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
 endif
 if version >= 800 && has('python3')
 "    Plug 'Shougo/deoplete.nvim'                 " [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim#requirements)
 endif
 "Plug 'ervandew/supertab'                        " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
-"Plug 'Valloric/YouCompleteMe'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+Plug 'Valloric/YouCompleteMe'                   "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 
 " Snippets
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-"Plug 'SirVer/ultisnips'                         " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
-"Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
+Plug 'SirVer/ultisnips'                         " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
+Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 
 " UNIX only {{{2
 if g:UNIX
@@ -772,12 +772,11 @@ endif
 " Ultisnips {{{2
 if IsPluginEnabled('ultisnips')
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    "let g:UltiSnipsExpandTrigger="<tab>"
-    "let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-    "
-    "" If you want :UltiSnipsEdit to split your window.
-    "let g:UltiSnipsEditSplit="vertical"
+"    let g:UltiSnipsExpandTrigger="<tab>"
+"    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
 endif
 " }}}
 " open-browser.vim {{{2
