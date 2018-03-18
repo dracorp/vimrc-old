@@ -72,7 +72,7 @@ Plug 'junegunn/vim-plug'
 " for basic settings
 Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 Plug 'scrooloose/nerdtree'               " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
-if g:UNICODE && IsPluginEnabled('nerdtree')
+if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
     Plug 'jistr/vim-nerdtree-tabs'              " [NERDTree and tabs together in Vim, painlessly](https://github.com/jistr/vim-nerdtree-tabs)
 endif
@@ -330,13 +330,12 @@ endif
 if version >= 800 && has('python3')
 "    Plug 'Shougo/deoplete.nvim'                 " [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim#requirements)
 endif
-if IsPluginEnabled('neocomplete.vim') || IsPluginEnabled('neocomplcache.vim')
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
-endif
 "Plug 'ervandew/supertab'                        " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
 "Plug 'Valloric/YouCompleteMe'                  "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 
+" Snippets
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 "Plug 'SirVer/ultisnips'                         " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
 "Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 
@@ -543,7 +542,6 @@ endif
 " }}}
 " neosnippet {{{2
 if IsPluginEnabled('neosnippet')
-    call vam#ActivateAddons(['neosnippet', 'neosnippet-snippets'])
 endif
 " }}}
 " deoplete {{{2
