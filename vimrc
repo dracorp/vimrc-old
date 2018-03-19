@@ -150,7 +150,8 @@ Plug 'Shutnik/jshint2.vim',     {'for': 'javascript'}         " [Lightweight, cu
 Plug 'vim-scripts/jQuery',      {'for': 'javascript'}         " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
 
 " Perl {{{3
-Plug 'vim-perl/vim-perl',       {'for': ['perl','pm','xs']} " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
+" [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
+Plug 'vim-perl/vim-perl',       {'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'vim-scripts/perl_h2xs',   {'for': ['perl','pm','xs']} " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
 Plug 'nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
 Plug 'vim-scripts/Perldoc.vim', {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
@@ -292,7 +293,7 @@ Plug 'majutsushi/tagbar'                        " [Vim plugin that displays tags
 Plug 'vim-scripts/Tabmerge'                     " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
 Plug 'vim-scripts/taglist.vim'                  " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
 Plug 'vim-scripts/Toggle'                       " [allows you to toggle bool (true/false) and other words with a shortcut](https://github.com/vim-scripts/Toggle)
-if version >= 704 || version ==703 && has('patch005')
+if version > 703 || (version == 703 && has('patch005'))
     Plug 'mbbill/undotree'                      " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
 endif
 if version > 704 || (version == 704 && has('patch330'))
@@ -305,7 +306,7 @@ Plug 'tpope/vim-surround'                       " [quoting/parenthesizing made s
 "Plug 'MRU'                                      " [Most recently used files in your file menu](https://github.com/vim-scripts/mru)
 "Plug 'airblade/vim-rooter'                      " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
 "Plug 'togglenumber'                             " [easy toggle between different numbering modes](https://github.com/vim-scripts/togglenumber)
-if version >= 730
+if version >= 703
     Plug 'ap/vim-buftabline'                    " [Forget Vim tabs - now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 endif
 "Plug 'vim-scripts/tskeleton' | Plug 'vim-scripts/tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
@@ -323,15 +324,19 @@ Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to
 Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for writing](https://github.com/reedes/vim-pencil)
 
 " Completion
-"Plug 'Shougo/neocomplcache.vim'                 " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
-if has('patch-7.3.885')
-"    Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
+if version < 703 || (version > 703 && !has('lua'))
+    Plug 'ervandew/supertab'                        " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
+"    Plug 'Shougo/neocomplcache.vim'                 " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
+    Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
+else
+    if version < 800 && ((version > 703 && has('lua')) || ( version == 703 && has('patch-885') && has('lua')))
+        Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
+    endif
+    if version >= 800 && has('python3')
+        Plug 'Shougo/deoplete.nvim'                 " [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim#requirements)
+    endif
 endif
-if version >= 800 && has('python3')
-"    Plug 'Shougo/deoplete.nvim'                 " [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim#requirements)
-endif
-"Plug 'ervandew/supertab'                        " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
-Plug 'Valloric/YouCompleteMe'                   "[A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+"Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 
 " Snippets
 Plug 'Shougo/neosnippet'
@@ -471,41 +476,29 @@ if IsPluginEnabled('supertab')
     let g:SuperTabMappingForward  = '<tab>'
 endif
 " }}}
-" Neocomplcache {{{2
+" neocomplcache {{{2
 if IsPluginEnabled('neocomplcache.vim')
     " Disable AutoComplPop.
-    "let g:acp_enableAtStartup = 0
+    let g:acp_enableAtStartup = 0
     " Use neocomplcache.
     let g:neocomplcache_enable_at_startup = 1
     " Use smartcase.
     let g:neocomplcache_enable_smart_case = 1
     " Set minimum syntax keyword length.
-    let g:neocomplcache_min_syntax_length = 2
+    let g:neocomplcache_min_syntax_length = 3
+
     " <TAB>: completion.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplcache#close_popup()
-    inoremap <expr><C-e>  neocomplcache#cancel_popup()
     " Close popup by <Space>.
     "inoremap <expr><c-space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
-
-    " Enable omni completion.
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
     " Enable heavy omni completion.
     if !exists('g:neocomplcache_force_omni_patterns')
         let g:neocomplcache_force_omni_patterns = {}
     endif
-
-    let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
     " For perlomni.vim setting.
     " https://github.com/c9s/perlomni.vim
@@ -535,13 +528,10 @@ if IsPluginEnabled('neocomplete.vim')
     if !exists('g:neocomplete#sources#omni#input_patterns')
         let g:neocomplete#sources#omni#input_patterns = {}
     endif
+
     " For perlomni.vim setting.
     " https://github.com/c9s/perlomni.vim
 "    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-endif
-" }}}
-" neosnippet {{{2
-if IsPluginEnabled('neosnippet')
 endif
 " }}}
 " deoplete {{{2
