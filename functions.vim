@@ -4,3 +4,4 @@ function! UsunDiakrytyki()
         \[submatch(0)]/g
 endfunction
 command! -nargs=0 UsunDiakrytyki call UsunDiakrytyki()
+
