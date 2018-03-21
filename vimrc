@@ -323,14 +323,18 @@ Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to
 "Plug 'AutoFold.vim'                            " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
 Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for writing](https://github.com/reedes/vim-pencil)
 Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two directories](https://github.com/will133/vim-dirdiff)
+Plug 'vim-scripts/cream-ascii'                  " [Insert an ASCII character from a dialog box](https://github.com/vim-scripts/cream-ascii)
 
 " Completion
-"Plug 'ervandew/supertab'                        " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
-Plug 'Shougo/neocomplcache.vim'                 " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
-Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
+" Use neocomplete or neocomplcache or supertab
 if (version > 703 && has('lua')) || ( version == 703 && has('patch-885') && has('lua'))
     Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
+elseif (version >= 703 && !has('lua'))
+    Plug 'Shougo/neocomplcache.vim'             " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
+else
+    Plug 'ervandew/supertab'                    " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
 endif
+Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
 Plug 'c9s/perlomni.vim',{'do':'make install'}   " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
 "Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 
@@ -479,7 +483,7 @@ if IsPluginEnabled('neocomplcache.vim')
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
-    let g:neocomplcache_enable_at_startup = 0
+    let g:neocomplcache_enable_at_startup = 1
     " Use smartcase.
     let g:neocomplcache_enable_smart_case = 1
     " Set minimum syntax keyword length.
