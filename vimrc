@@ -71,10 +71,9 @@ Plug 'junegunn/vim-plug'
 " For Vim {{{2
 " for basic settings
 Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
-Plug 'scrooloose/nerdtree'               " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
+Plug 'scrooloose/nerdtree'                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
-    Plug 'jistr/vim-nerdtree-tabs'              " [NERDTree and tabs together in Vim, painlessly](https://github.com/jistr/vim-nerdtree-tabs)
 endif
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
 "Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
@@ -335,13 +334,16 @@ else
     Plug 'ervandew/supertab'                    " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
 endif
 Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
-Plug 'c9s/perlomni.vim',{'do':'make install'}   " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
+if !g:MSWIN
+    Plug 'c9s/perlomni.vim',{'do':'make install'} " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
+endif
 "Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 
 " Snippets for neocomplcache, neocomplete
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 if g:PYTHON
+    " TAB conflict with other completion tools
 "    Plug 'SirVer/ultisnips'                     " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
 endif
 Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
