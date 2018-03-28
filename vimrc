@@ -312,6 +312,9 @@ endif
 if g:UNIX && g:UNICODE
     Plug 'ryanoasis/vim-devicons'               " [adds font icons](https://github.com/ryanoasis/vim-devicons)
 endif
+if g:UNICODE
+    Plug 'junegunn/vim-emoji'                   " [:smiley: Emoji in Vim](https://github.com/junegunn/vim-emoji)
+endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
 Plug 'jiangxincode/TagCollection'               " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
@@ -920,6 +923,17 @@ if IsPluginEnabled('vim-startify')
     let g:startify_fortune_use_unicode = 1
 endif
 "}}}
+" vim-emoji {{{2
+if IsPluginEnabled('vim-emoji')
+"    Using Emojis as Git Gutter symbols
+    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+    let g:gitgutter_sign_modified_removed = emoji#for('collision')
+"    Emoji completion
+    set completefunc=emoji#complete
+endif
+" }}}
 "}}}
 
 " Editing behaviour {{{
