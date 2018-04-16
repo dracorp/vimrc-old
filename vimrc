@@ -313,7 +313,7 @@ if g:UNIX && g:UNICODE
     Plug 'ryanoasis/vim-devicons'               " [adds font icons](https://github.com/ryanoasis/vim-devicons)
 endif
 if g:UNICODE
-    Plug 'junegunn/vim-emoji'                   " [:smiley: Emoji in Vim](https://github.com/junegunn/vim-emoji)
+"    Plug 'junegunn/vim-emoji'                   " [:smiley: Emoji in Vim](https://github.com/junegunn/vim-emoji) on some hosts it breaks appearance
 endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?](https://github.com/sedm0784/vim-you-autocorrect)
