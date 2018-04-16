@@ -111,6 +111,10 @@ Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion f
 "Plug 'sgur/ctrlp-extensions.vim'                " [Plugins for ctrlp.vim](https://github.com/sgur/ctrlp-extensions.vim)
 
 " Programming Languages {{{2
+" [A Vim plugin for Prettier](https://github.com/prettier/vim-prettier)
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 " c++, c {{{3
 Plug 'jiangxincode/mpi.vim', {'for':['c','cpp','fortran']}  " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
 Plug 'vim-scripts/OmniCppComplete',      {'for': 'cpp'}                 " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
@@ -200,7 +204,6 @@ if executable('git')
     if version >= 704
         Plug 'airblade/vim-gitgutter'           " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
     endif
-    Plug 'jreybert/vimagit'                     " [Ease your git workflow within Vim](https://github.com/jreybert/vimagit)
 endif
 
 " Themes {{{2
@@ -311,9 +314,6 @@ endif
 "Plug 'vim-scripts/tskeleton' | Plug 'vim-scripts/tlib'                  " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
 if g:UNIX && g:UNICODE
     Plug 'ryanoasis/vim-devicons'               " [adds font icons](https://github.com/ryanoasis/vim-devicons)
-endif
-if g:UNICODE
-"    Plug 'junegunn/vim-emoji'                   " [:smiley: Emoji in Vim](https://github.com/junegunn/vim-emoji) on some hosts it breaks appearance
 endif
 Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
 Plug 'sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?](https://github.com/sedm0784/vim-you-autocorrect)
@@ -924,17 +924,6 @@ if IsPluginEnabled('vim-startify')
     let g:startify_fortune_use_unicode = 1
 endif
 "}}}
-" vim-emoji {{{2
-if IsPluginEnabled('vim-emoji')
-"    Using Emojis as Git Gutter symbols
-    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-    let g:gitgutter_sign_modified_removed = emoji#for('collision')
-"    Emoji completion
-    set completefunc=emoji#complete
-endif
-" }}}
 "}}}
 
 " Editing behaviour {{{
