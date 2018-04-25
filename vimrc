@@ -17,6 +17,7 @@ let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
 let g:PYTHON  = has('python') || has('python3')
 let g:PYTHON3 = has('python3')
+let g:OS      = substitute(system('uname'), "\n", "", "")
 "}}}
 " multi_byte {{{
 if has('multi_byte')
@@ -1116,7 +1117,7 @@ set showcmd                     " show (partial) command in the last line of the
 
 " View {{{
 " enable true colors
-if has('nvim') || has('termguicolors') || has('vcon')
+if g:OS != "AIX" && ( has('nvim') || has('termguicolors') || has('vcon') )
     set termguicolors
 endif
 
