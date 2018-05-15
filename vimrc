@@ -678,6 +678,7 @@ if IsPluginEnabled('taglist.vim')
     inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
 
     let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
+    let tlist_sh_settings = 'sh;f:functions;v:variables;c:constants'
 
     let Tlist_Enable_Fold_Column=0
     " quit Vim when the TagList window is the last open window
@@ -713,6 +714,53 @@ if IsPluginEnabled('tagbar')
     let g:tagbar_autofocus        = 1
     "let g:tagbar_width           = 30
     "let g:tagbar_vertical        = 30
+
+let g:tagbar_compact = 1
+
+let g:tagbar_type_ansible = {
+    \ 'ctagstype' : 'ansible',
+    \ 'kinds' : [
+    \ 't:tasks',
+    \ 'h:hosts'
+    \ ],
+    \ 'sort' : 0
+    \ }
+
+let g:tagbar_type_terraform = {
+    \ 'ctagstype' : 'terraform',
+    \ 'kinds' : [
+    \ 'r:resources',
+    \ 'm:modules',
+    \ 'o:outputs',
+    \ 'v:variables',
+    \ 'f:tfvars'
+    \ ],
+    \ 'sort' : 0
+    \ }
+
+let g:tagbar_type_make = {
+    \ 'kinds':[
+    \ 'm:macros',
+    \ 't:targets'
+    \ ]
+    \}
+
+let g:tagbar_type_sh = {
+    \ 'kinds':[
+    \ 'f:functions',
+    \ 'c:constants',
+    \ 'v:variables'
+    \ ]
+    \}
+
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+    \ 'h:Heading_L1',
+    \ 'i:Heading_L2',
+    \ 'k:Heading_L3'
+    \ ]
+    \ }
 endif
 " }}}
 " xml_completion {{{2
