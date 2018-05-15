@@ -1024,6 +1024,7 @@ if has('clipboard')
     endif
 endif
 set mouse=v                                     " enable using the mouse if terminal emulator supports it (xterm does)
+
 " }}}
 
 " Various settings {{{
@@ -1068,8 +1069,14 @@ set splitright                                  " command :vs put a new windows 
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
 set iskeyword+=-                                " which char make a word
+" open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
+" open file under cursor for entry: VARIABLE=path
 set isfname-==
+" [Bash-it](https://github.com/Bash-it/) settings
+if !empty($BASH_IT)
+    set path+=$BASH_IT
+endif
 " }}}
 
 " Folding rules {{{
@@ -1087,6 +1094,9 @@ nnoremap z2 :set foldlevel=2<cr>
 nnoremap z3 :set foldlevel=3<cr>
 nnoremap z4 :set foldlevel=4<cr>
 nnoremap z5 :set foldlevel=5<cr>
+au FileType sh let g:sh_fold_enabled=5
+au FileType sh let g:is_bash=1
+au FileType sh set foldmethod=syntax
 " }}}
 
 " Editor layout {{{
@@ -1621,7 +1631,7 @@ nnoremap L $
 
 "}}}
 
-" Extra user or machine specific settings
+" Extra user or machine specific settings, not under version control
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
 endif
