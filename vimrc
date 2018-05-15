@@ -170,7 +170,7 @@ if g:PYTHON
     Plug 'davidhalter/jedi-vim'                 " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
     Plug 'vim-scripts/betterga'                 " [betterga can get more information than ga (:ascii)](https://github.com/vim-scripts/betterga)
     "Plug 'joonty/vdebug', {'for': 'python'}         " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
-    Plug 'klen/python-mode'                     " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
+    Plug 'klen/python-mode', {'for': 'python'}  " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
     Plug 'vim-scripts/python_fold', {'for': 'python'}           " [Folding expression for python](https://github.com/vim-scripts/Python_fold)
     "Plug 'nvie/vim-flake8', {'for': 'python'}       " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
     Plug 'jmcantrell/vim-virtualenv'            " [Vim plugin for working with python virtualenvs](https://github.com/jmcantrell/vim-virtualenv)
