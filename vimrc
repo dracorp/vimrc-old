@@ -1068,6 +1068,8 @@ set splitright                                  " command :vs put a new windows 
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
 set iskeyword+=-                                " which char make a word
+set isfname+={,}                                " where the file name starts and ends
+set isfname-==
 " }}}
 
 " Folding rules {{{
