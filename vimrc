@@ -430,6 +430,10 @@ if IsPluginEnabled('syntastic')
     let g:syntastic_auto_loc_list            = 1
     let g:syntastic_check_on_open            = 1
     let g:syntastic_check_on_wq              = 0
+
+    " syntastic on/off
+    noremap <silent> <F9> <Esc>:SyntasticToggleMode<cr>
+    inoremap <silent> <F9> <C-o>:SyntasticToggleMode<cr>
 endif
 "}}}
 " perl-support {{{2
@@ -1531,8 +1535,9 @@ nnoremap # g*``
 nnoremap g* #``
 nnoremap g# *``
 
+" Function keys
 " refresh syntax highlight
-noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
+ noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
 inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
 
 " Permanent 'very magic' mode, see :he pattern
