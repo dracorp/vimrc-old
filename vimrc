@@ -170,7 +170,7 @@ if g:PYTHON
     Plug 'davidhalter/jedi-vim'                 " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
     Plug 'vim-scripts/betterga'                 " [betterga can get more information than ga (:ascii)](https://github.com/vim-scripts/betterga)
     "Plug 'joonty/vdebug', {'for': 'python'}         " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
-    Plug 'klen/python-mode'                     " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
+    Plug 'klen/python-mode', {'for': 'python'}  " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
     Plug 'vim-scripts/python_fold', {'for': 'python'}           " [Folding expression for python](https://github.com/vim-scripts/Python_fold)
     "Plug 'nvie/vim-flake8', {'for': 'python'}       " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
     Plug 'jmcantrell/vim-virtualenv'            " [Vim plugin for working with python virtualenvs](https://github.com/jmcantrell/vim-virtualenv)
@@ -430,6 +430,10 @@ if IsPluginEnabled('syntastic')
     let g:syntastic_auto_loc_list            = 1
     let g:syntastic_check_on_open            = 1
     let g:syntastic_check_on_wq              = 0
+
+    " syntastic on/off
+    noremap <silent> <F9> <Esc>:SyntasticToggleMode<cr>
+    inoremap <silent> <F9> <C-o>:SyntasticToggleMode<cr>
 endif
 "}}}
 " perl-support {{{2
@@ -1024,6 +1028,7 @@ if has('clipboard')
     endif
 endif
 set mouse=v                                     " enable using the mouse if terminal emulator supports it (xterm does)
+
 " }}}
 
 " Various settings {{{
@@ -1068,8 +1073,14 @@ set splitright                                  " command :vs put a new windows 
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
 set iskeyword+=-                                " which char make a word
+" open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
+" open file under cursor for entry: VARIABLE=path
 set isfname-==
+" [Bash-it](https://github.com/Bash-it/) settings
+if !empty($BASH_IT)
+    set path+=$BASH_IT
+endif
 " }}}
 
 " Folding rules {{{
@@ -1087,6 +1098,9 @@ nnoremap z2 :set foldlevel=2<cr>
 nnoremap z3 :set foldlevel=3<cr>
 nnoremap z4 :set foldlevel=4<cr>
 nnoremap z5 :set foldlevel=5<cr>
+au FileType sh let g:sh_fold_enabled=5
+au FileType sh let g:is_bash=1
+au FileType sh set foldmethod=syntax
 " }}}
 
 " Editor layout {{{
@@ -1521,8 +1535,9 @@ nnoremap # g*``
 nnoremap g* #``
 nnoremap g# *``
 
+" Function keys
 " refresh syntax highlight
-noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
+ noremap <silent> <F10> <Esc>:syntax sync fromstart<CR>
 inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
 
 " Permanent 'very magic' mode, see :he pattern
@@ -1621,7 +1636,7 @@ nnoremap L $
 
 "}}}
 
-" Extra user or machine specific settings
+" Extra user or machine specific settings, not under version control
 if filereadable(vimrc_dir . "user.vim")
     execute ":source " . vimrc_dir . "user.vim"
 endif
