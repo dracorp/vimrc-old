@@ -35,10 +35,11 @@ Specjalne zakładki ~
 " ostatnia pozycja kursora , . pozycja kursora ostatniej zmiany
 
 ===============================================================================
-                                                                   *clipboard*
+                                                           *schowek-clipboard*
 Schowek~
 
-"* to bierzący wybór zastępujący wybieranie myszką, możliwy do przenoszenia pomiędzy programami poprzez wciśnięcie środkowe przyciska myszy "*p "*yy
+"* to bierzący wybór zastępujący wybieranie myszką, możliwy do przenoszenia
+pomiędzy programami poprzez wciśnięcie środkowe przyciska myszy "*p "*yy
 natomiast "+ to prawdziwy schowek np ctrl+v w OOo lub shift+Insert, jeśli
 zostanie wybrany jako drugi skasuje schowek bierzący
 po za tym istnieją jeszcze lokalne rejestry a-z, "rej
