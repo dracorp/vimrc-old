@@ -328,6 +328,7 @@ Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to
 Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for writing](https://github.com/reedes/vim-pencil)
 Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two directories](https://github.com/will133/vim-dirdiff)
 Plug 'vim-scripts/cream-ascii'                  " [Insert an ASCII character from a dialog box](https://github.com/vim-scripts/cream-ascii)
+Plug 'dhruvasagar/vim-table-mode'               " [Table Mode for instant table creation](https://github.com/dhruvasagar/vim-table-mode)
 
 " Completion
 " Use neocomplete or neocomplcache or supertab
@@ -681,8 +682,9 @@ if IsPluginEnabled('taglist.vim')
     noremap <silent> <F11>       :TlistToggle<CR>
     inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
 
-    let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
-    let tlist_sh_settings = 'sh;f:functions;v:variables;c:constants'
+    let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
+    " fix your ~/.ctags https://gist.github.com/dracorp/5d7308b894c1c9f301bc9cb8d2f262db
+    let tlist_sh_settings   = 'sh;f:functions;v:variables;c:constants'
 
     let Tlist_Enable_Fold_Column=0
     " quit Vim when the TagList window is the last open window
@@ -719,52 +721,53 @@ if IsPluginEnabled('tagbar')
     "let g:tagbar_width           = 30
     "let g:tagbar_vertical        = 30
 
-let g:tagbar_compact = 1
+    let g:tagbar_compact = 1
 
-let g:tagbar_type_ansible = {
-    \ 'ctagstype' : 'ansible',
-    \ 'kinds' : [
-    \ 't:tasks',
-    \ 'h:hosts'
-    \ ],
-    \ 'sort' : 0
-    \ }
+    let g:tagbar_type_ansible = {
+        \ 'ctagstype' : 'ansible',
+        \ 'kinds' : [
+        \ 't:tasks',
+        \ 'h:hosts'
+        \ ],
+        \ 'sort' : 0
+        \ }
 
-let g:tagbar_type_terraform = {
-    \ 'ctagstype' : 'terraform',
-    \ 'kinds' : [
-    \ 'r:resources',
-    \ 'm:modules',
-    \ 'o:outputs',
-    \ 'v:variables',
-    \ 'f:tfvars'
-    \ ],
-    \ 'sort' : 0
-    \ }
+    let g:tagbar_type_terraform = {
+        \ 'ctagstype' : 'terraform',
+        \ 'kinds' : [
+        \ 'r:resources',
+        \ 'm:modules',
+        \ 'o:outputs',
+        \ 'v:variables',
+        \ 'f:tfvars'
+        \ ],
+        \ 'sort' : 0
+        \ }
 
-let g:tagbar_type_make = {
-    \ 'kinds':[
-    \ 'm:macros',
-    \ 't:targets'
-    \ ]
-    \}
+    let g:tagbar_type_make = {
+        \ 'kinds':[
+        \ 'm:macros',
+        \ 't:targets'
+        \ ]
+        \}
 
-let g:tagbar_type_sh = {
-    \ 'kinds':[
-    \ 'f:functions',
-    \ 'c:constants',
-    \ 'v:variables'
-    \ ]
-    \}
+    " fix your ~/.ctags https://gist.github.com/dracorp/5d7308b894c1c9f301bc9cb8d2f262db
+    let g:tagbar_type_sh = {
+        \ 'kinds':[
+        \ 'f:functions',
+        \ 'c:constants',
+        \ 'v:variables'
+        \ ]
+        \}
 
-let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-    \ 'h:Heading_L1',
-    \ 'i:Heading_L2',
-    \ 'k:Heading_L3'
-    \ ]
-    \ }
+    let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+        \ ]
+        \ }
 endif
 " }}}
 " xml_completion {{{2
