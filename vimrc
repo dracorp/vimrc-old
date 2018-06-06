@@ -77,6 +77,7 @@ if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 endif
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
+Plug 'jbgutierrez/vim-better-comments'          " [Easily highlight human-friendly comments in your code!](https://github.com/jbgutierrez/vim-better-comments)
 "Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 if !g:MSWIN
     Plug 'editorconfig/editorconfig-vim'        " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
@@ -111,6 +112,7 @@ Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion f
 "Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
 "Plug 'tacahiroy/ctrlp-funky'                    " [A simple function navigator for ctrlp.vim](https://github.com/tacahiroy/ctrlp-funky)
 "Plug 'sgur/ctrlp-extensions.vim'                " [Plugins for ctrlp.vim](https://github.com/sgur/ctrlp-extensions.vim)
+Plug 'brooth/far.vim'                           " [Find And Replace](https://github.com/brooth/far.vim)
 
 " Programming Languages {{{2
 " [A Vim plugin for Prettier](https://github.com/prettier/vim-prettier)
@@ -225,7 +227,8 @@ Plug 'vim-scripts/httplog'                      " [Highlight access log of Apach
 Plug 'vim-scripts/LogViewer'                    " [Comfortable examination of multiple parallel logfiles](https://github.com/vim-scripts/LogViewer)
 Plug 'vim-scripts/TWiki-Syntax'                 " [Syntaxfile for TWiki-Syntax](https://github.com/vim-scripts/TWiki-Syntax)
 Plug 'vim-scripts/whitespace-syntax-highlight'  " [whitespace syntax highlight](https://github.com/vim-scripts/whitespace-syntax-highlight/)
-Plug 'bronson/vim-trailing-whitespace'          " [Highlights trailing whitespace in red and provides](https://github.com/bronson/vim-trailing-whitespace)
+"Plug 'bronson/vim-trailing-whitespace'          " [Highlights trailing whitespace in red and provides](https://github.com/bronson/vim-trailing-whitespace)
+Plug 'ntpeters/vim-better-whitespace'           " [Better whitespace highlighting](https://github.com/ntpeters/vim-better-whitespace)
 Plug 'vim-scripts/logstash.vim'                 " [logstash.vim highlights configuration files for logstash](https://github.com/vim-scripts/logstash.vim)
 Plug 'chrisbra/csv.vim',{'for':'csv'}           " [A Filetype plugin for csv files](https://github.com/chrisbra/csv.vim)
 
