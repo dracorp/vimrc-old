@@ -90,9 +90,10 @@ Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previo
 Plug 'junegunn/vim-peekaboo'                    " [extends \" and @ in normal mode and <CTRL-R>](https://github.com/junegunn/vim-peekaboo)
 
 " Visual
-Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
-Plug 'vim-airline/vim-airline-themes'           " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
+"Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
+"Plug 'vim-airline/vim-airline-themes'           " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
 Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
+Plug 'itchyny/lightline.vim'                    " [A light and configurable statusline/tabline plugin for Vim](https://github.com/itchyny/lightline.vim)
 
 Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
@@ -120,6 +121,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'jiangxincode/mpi.vim', {'for':['c','cpp','fortran']}  " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
 Plug 'vim-scripts/OmniCppComplete',      {'for': 'cpp'}                 " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
 Plug 'vim-scripts/cpp_cppcheck.vim',     {'for': 'cpp'}                 " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
+Plug 'octol/vim-cpp-enhanced-highlight'         " [Additional Vim syntax highlighting for C++ (including C++11/14)](https://github.com/octol/vim-cpp-enhanced-highlight)
 
 " CSS/LESS {{{3
 Plug 'ap/vim-css-color',            {'for': ['css','scss','sass','less']}
@@ -164,6 +166,8 @@ Plug 'vim-scripts/Perldoc.vim', {'for': ['perl','pm','xs']} " [perldoc command f
 " PHP {{{3
 Plug 'StanAngeloff/php.vim',       {'for':'php'} " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
 Plug 'shawncplus/phpcomplete.vim', {'for':'php'} " [Improved PHP omnicompletion](https://github.com/shawncplus/phpcomplete.vim)
+Plug 'rayburgemeestre/phpfolding.vim'           " [Automatic folding of PHP functions, classes,.. (also folds related PhpDoc)](https://github.com/rayburgemeestre/phpfolding.vim)
+
 
 " Python {{{3
 if g:PYTHON
@@ -978,6 +982,17 @@ endif
 " startify {{{2
 if IsPluginEnabled('vim-startify')
     let g:startify_fortune_use_unicode = 1
+endif
+"}}}
+" vim-cpp-enhanced-highlight {{{2
+if IsPluginEnabled('vim-cpp-enhanced-highlight')
+    let g:cpp_class_scope_highlight = 1
+    let g:cpp_member_variable_highlight = 1
+    let g:cpp_class_decl_highlight = 1
+    let g:cpp_experimental_simple_template_highlight = 1
+    let g:cpp_experimental_template_highlight = 1
+    let g:cpp_concepts_highlight = 1
+    let g:cpp_no_function_highlight = 1
 endif
 "}}}
 "}}}
