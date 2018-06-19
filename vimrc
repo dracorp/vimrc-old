@@ -90,16 +90,20 @@ Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution 
 Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
 Plug 'junegunn/vim-peekaboo'                    " [extends \" and @ in normal mode and <CTRL-R>](https://github.com/junegunn/vim-peekaboo)
 
-" Visual
+" Status line
 "Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
 "Plug 'vim-airline/vim-airline-themes'           " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
+"Plug 'itchyny/lightline.vim'                    " [A light and configurable statusline/tabline plugin for Vim](https://github.com/itchyny/lightline.vim)
+Plug 'liuchengxu/eleline.vim'                   " [A tiny elegant statusline for vim](https://github.com/liuchengxu/eleline.vim)
+
+" Visual
 Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
-Plug 'itchyny/lightline.vim'                    " [A light and configurable statusline/tabline plugin for Vim](https://github.com/itchyny/lightline.vim)
 
 Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
 Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
 "Plug 'tpope/vim-sleuth'                         " [Heuristically set buffer options](https://github.com/tpope/vim-sleuth)
+"Plug 'AndrewRadev/splitjoin.vim'                "[A vim plugin that simplifies the transition between multiline and single-line code](https://github.com/AndrewRadev/splitjoin.vim)
 
 " pairs {{{2
 "Plug 'tpope/vim-unimpaired'                     " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
@@ -200,6 +204,7 @@ Plug 'elzr/vim-json'                            " [A better JSON](https://github
 if executable('git')
     Plug 'int3/vim-extradite'
     Plug 'tpope/vim-fugitive'                   " [Git wrapper of all time](https://github.com/tpope/vim-fugitive)
+    Plug 'junegunn/gv.vim'                      " [A git commit browser in Vim](https://github.com/junegunn/gv.vim)
     Plug 'WolfgangMehner/git-support'           " [Git for Vim/gVim](https://github.com/WolfgangMehner/git-support)
     Plug 'vim-scripts/git-flow-format'          " [formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file](https://github.com/vim-scripts/git-flow-format)
     Plug 'vim-scripts/gitv'                     " [gitk for Vim](https://github.com/vim-scripts/gitv)
@@ -219,6 +224,7 @@ endif
 "Plug 'vim-scripts/yowish'                                   " [A yellowish dark color scheme](https://github.com/vim-scripts/yowish)
 "Plug 'flazz/vim-colorschemes'                   " [this is harvested from vim.org. only colorschemes downloaded in a single .vim](https://github.com/flazz/vim-colorschemes)
 Plug 'morhetz/gruvbox'                          " [Retro groove color scheme for Vim](https://github.com/morhetz/gruvbox)
+"Plug 'lilydjwg/colorizer'                       " [A Vim plugin to colorize all text in the form #rrggbb or #rgb](https://github.com/lilydjwg/colorizer)
 
 " Syntax {{{2
 Plug 'vim-scripts/nginx.vim', {'for':'nginx'}   " [highlights configuration files for nginx, the high-performance web server](https://github.com/vim-scripts/nginx.vim)
@@ -998,10 +1004,27 @@ if IsPluginEnabled('vim-cpp-enhanced-highlight')
     let g:cpp_no_function_highlight = 1
 endif
 "}}}
+" vim-go {{{2
+" vim-go
+if IsPluginEnabled('vim-go')
+    let g:go_fmt_command = "goimports"
+    let g:go_autodetect_gopath = 1
+    let g:go_list_type = "quickfix"
+    let g:go_highlight_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_calls = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_generate_tags = 1
+endif
+"}}}2
 "}}}
 
 " Editing behaviour {{{
 behave xterm                                    " Set behaviour for mouse and selection, affect on selectmode mousemodel keymodel selection
+set mousehide                                   " Hide the mouse when typing text
+set mouse=v                                     " enable using the mouse if terminal emulator supports it (xterm does)
+"set ttymouse=xterm2                             " Indicate terminal type for mouse codes
 set showmode                                    " always show what mode we're currently editing in
 set wrap                                        " wrap lines
 
@@ -1043,12 +1066,13 @@ set shortmess+=I                                " hide the launch screen
 " Enable clipboard if possible
 if has('clipboard')
     if has('unnamedplus')                       " When possible use + register for copy-paste
+        " Enable to copy to clipboard for operations like yank, delete, change and put
+        " http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
         set clipboard=unnamed,unnamedplus
     else                                        " On mac and Windows, use * register for copy-paste
         set clipboard=unnamed
     endif
 endif
-set mouse=v                                     " enable using the mouse if terminal emulator supports it (xterm does)
 
 " }}}
 
@@ -1073,7 +1097,6 @@ set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to 
 set browsedir=current                           " which directory to use for the file browser
 set complete+=k                                 " scan the files given with the 'dictionary' option
 set complete-=i                                 " do not scan current and included files, on slow machines
-set mousehide                                   " Hide the mouse when typing text
 
 " export: print or to html
 set printoptions=left:8pc,right:3pc             " print options
@@ -1274,6 +1297,46 @@ if has("autocmd")
     augroup xml_files "{{{
         au!
         "!xmllint --nout --schema sci.xsd %
+    augroup end "}}}
+
+
+    augroup go "}}}
+    autocmd!
+
+    " Show by default 4 spaces for a tab
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+    " :GoBuild and :GoTestCompile
+    autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+    " :GoTest
+    autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+    " :GoRun
+    autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
+    " :GoDoc
+    autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+
+    " :GoCoverageToggle
+    autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+    " :GoInfo
+    autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+    " :GoMetaLinter
+    autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+
+    " :GoDef but opens in a vertical split
+    autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+    " :GoDef but opens in a horizontal split
+    autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+
+    " :GoAlternate  commands :A, :AV, :AS and :AT
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
     augroup end "}}}
 
 endif
@@ -1494,6 +1557,17 @@ nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
 "}}}
 
+" build_go_files is a custom function that builds or compiles the test file.
+" It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
+function! s:build_go_files()
+let l:file = expand('%')
+if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+endif
+endfunction
+
 if filereadable(vimrc_dir . "functions.vim")
     execute ":source" vimrc_dir . "functions.vim"
 endif
@@ -1501,7 +1575,7 @@ endif
 " Commands for functions {{{2
 
 " Mapping for functions {{{2
-nnoremap <C-q> :call <SID>QuickfixToggle()<cr>
+nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
 nnoremap <leader>f :call FoldColumnToggle()<cr>
 "noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
 noremap     <silent>    <F1>    :call DisplayManpage()<CR>
@@ -1533,11 +1607,12 @@ nnoremap <leader>n :setlocal number!<cr>
 
 " highlight line under cursor, horizontal cursor
 nnoremap <Leader>l :setlocal cursorline!<CR>
+nnoremap <Leader>L :setlocal cursorcolumn!<CR>
 
 nnoremap <leader>; ;
 
 " Quickly close the current window
-nnoremap <leader>q :q<CR>
+"nnoremap <leader>q :q<CR>
 
 " Sort paragraphs
 vnoremap <leader>s !sort -f<CR>gv
@@ -1555,6 +1630,11 @@ nnoremap * g#``
 nnoremap # g*``
 nnoremap g* #``
 nnoremap g# *``
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " Function keys
 " refresh syntax highlight
