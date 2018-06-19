@@ -204,6 +204,7 @@ Plug 'elzr/vim-json'                            " [A better JSON](https://github
 if executable('git')
     Plug 'int3/vim-extradite'
     Plug 'tpope/vim-fugitive'                   " [Git wrapper of all time](https://github.com/tpope/vim-fugitive)
+    Plug 'junegunn/gv.vim'                      " [A git commit browser in Vim](https://github.com/junegunn/gv.vim)
     Plug 'WolfgangMehner/git-support'           " [Git for Vim/gVim](https://github.com/WolfgangMehner/git-support)
     Plug 'vim-scripts/git-flow-format'          " [formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file](https://github.com/vim-scripts/git-flow-format)
     Plug 'vim-scripts/gitv'                     " [gitk for Vim](https://github.com/vim-scripts/gitv)
