@@ -264,11 +264,12 @@ Plug 'xolox/vim-shell'                          " [Improved integration between 
 Plug 'xolox/vim-misc'                           " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plug 'xolox/vim-reload'                         " [Automatic reloading of Vim scripts](https://github.com/xolox/vim-reload)
 Plug 'xolox/vim-session'                        " [Extended session management for Vim](https://github.com/xolox/vim-session)
-Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
+"Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
 if g:PYTHON
     Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
 endif
 Plug 'xolox/vim-easytags'                       " [Automated tag file generation and syntax highlighting of tags](https://github.com/xolox/vim-easytags)
+Plug 'majutsushi/tagbar'                        " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
 
 " Fritz Mehner {{{2
 Plug 'vim-scripts/Vim-support',{'for': 'vim'}              " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
@@ -397,6 +398,11 @@ delc PlugUpgrade
 "}}}
 
 " Plugins configuration {{{
+" tagbar {{{2
+if IsPluginEnabled('tagbar')
+    nmap <F8> :TagbarToggle<CR>
+endif
+" }}}
 " vim-toggle {{{2
 if IsPluginEnabled('vim-toggle')
     imap <C-T>:call Toggle()<CR>
