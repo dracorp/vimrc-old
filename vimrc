@@ -11,7 +11,7 @@
 " Use Vim settings, rather then Vi settings. This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Some globale settings for further using {{{
+" Some global settings for further using {{{
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
 let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
@@ -19,7 +19,8 @@ let g:PYTHON  = has('python') || has('python3')
 let g:PYTHON3 = has('python3')
 let g:OS      = substitute(system('uname'), "\n", "", "")
 "}}}
-" multi_byte {{{
+
+" multi_byte/unicode/utf {{{
 if has('multi_byte')
     let g:UNICODE = 0
     if &termencoding == ''
@@ -33,6 +34,7 @@ if has('multi_byte')
     endif
 endif
 "}}}
+
 " OS Settings, exports vimrc_dir {{{
 " Check OS and where are vim's config files
 " $HOME - user's home directory
@@ -57,7 +59,8 @@ endif
 autocmd!
 "}}}
 
-" Use ~/.vim/before.before if exists
+" Use ~/.vim/before.before if exists.
+" It contains a few basic functions
 if filereadable(vimrc_dir . "before.vim")
     execute ":source" vimrc_dir . "before.vim"
 endif
@@ -77,7 +80,7 @@ if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 endif
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
-Plug 'jbgutierrez/vim-better-comments'          " [Easily highlight human-friendly comments in your code!](https://github.com/jbgutierrez/vim-better-comments)
+"Plug 'jbgutierrez/vim-better-comments'          " [Easily highlight human-friendly comments in your code!](https://github.com/jbgutierrez/vim-better-comments)
 "Plug 'easymotion/vim-easymotion'                " [Vim motions on speed!](https://github.com/easymotion/vim-easymotion)
 if !g:MSWIN
     Plug 'editorconfig/editorconfig-vim'        " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
@@ -367,6 +370,7 @@ if g:PYTHON
 "    Plug 'SirVer/ultisnips'                     " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
 endif
 Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
+Plug 'soywod/kronos.vim'                        " [A simple task and time manager for vim](https://github.com/soywod/kronos.vim)
 
 " UNIX only {{{2
 if g:UNIX
@@ -443,9 +447,9 @@ if IsPluginEnabled('syntastic')
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_ignore_files     = [ 'PKGBUILD' ]
     " Recomended settings
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+    set statusline+="%#warningmsg#"
+    set statusline+="%{SyntasticStatuslineFlag()}"
+    set statusline+="%*"
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list            = 1
     let g:syntastic_check_on_open            = 1
