@@ -9,7 +9,13 @@
 
 " Basic settings {{{
 " Use Vim settings, rather then Vi settings. This must be first, because it changes other options as a side effect.
-set nocompatible
+" Normally `:set nocp` is not needed, because it is done automatically
+" when .vimrc is found.
+if &compatible
+  " `:set nocp` has many side effects. Therefore this should be done
+  " only when 'compatible' is set.
+  set nocompatible
+endif
 
 " Some global settings for further using {{{
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
@@ -88,6 +94,9 @@ Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution 
 Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
 Plug 'junegunn/vim-peekaboo'                    " [extends \" and @ in normal mode and <CTRL-R>](https://github.com/junegunn/vim-peekaboo)
 Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
+if has('patch-8.0.1364') || has('nvim')
+    Plug 'andymass/vim-tradewinds'              " [the missing window movement](https://github.com/andymass/vim-tradewinds)
+endif
 
 " UI
 Plug 'scrooloose/nerdtree'                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
@@ -221,6 +230,7 @@ if executable('git')
     if version >= 704
         Plug 'airblade/vim-gitgutter'           " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
     endif
+    Plug 'whiteinge/diffconflicts'              " [A better Vimdiff Git mergetool](https://github.com/whiteinge/diffconflicts)
 endif
 
 " Themes {{{2
@@ -384,7 +394,7 @@ if g:UNIX
     Plug 'dracorp/vim-pkgbuild', {'for': 'PKGBUILD'}
 endif
 
-" Windows only {{{2
+" MS Windows only {{{2
 if g:MSWIN
     Plug 'vim-scripts/poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
     Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
