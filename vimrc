@@ -1194,11 +1194,6 @@ set showcmd                     " show (partial) command in the last line of the
 " }}}
 
 " View {{{
-" enable true colors
-if g:OS != "AIX" && ( has('nvim') || has('termguicolors') || has('vcon') )
-    set termguicolors
-endif
-
 " more colors
 if &term =~ "xterm"
     if has("terminfo")
