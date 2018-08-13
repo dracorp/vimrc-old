@@ -114,7 +114,7 @@ Plug 'tpope/vim-flagship'                       " [Configurable and extensible t
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
 "Plug 'vim-scripts/mru.vim'                      " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
 Plug 'lilydjwg/colorizer'                       " [A Vim plugin to colorize all text in the form #rrggbb or #rgb](https://github.com/lilydjwg/colorizer)
-Plug 'gu-fan/colorv.vim'                        " [edit color easy](https://github.com/gu-fan/colorv.vim)
+Plug 'gu-fan/colorv.vim',{'on': 'ColorV'}       " [edit color easy](https://github.com/gu-fan/colorv.vim)
 Plug 'mattn/webapi-vim'                         " [vim interface to Web API](https://github.com/mattn/webapi-vim)
 
 "Plug 'tpope/vim-sleuth'                         " [Heuristically set buffer options](https://github.com/tpope/vim-sleuth)
