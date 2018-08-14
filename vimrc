@@ -131,6 +131,7 @@ Plug 'mattn/webapi-vim'                         " [vim interface to Web API](htt
 Plug 'rstacruz/vim-closer'                      " [Closes brackets](https://github.com/rstacruz/vim-closer)
 Plug 'vim-scripts/restore_view.vim'             " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
 Plug 'markonm/traces.vim'                       " [Range, pattern and substitute preview for Vim](https://github.com/markonm/traces.vim)
+"Plug 'gcmt/taboo.vim'                           " [Few utilities for pretty tabs](https://github.com/gcmt/taboo.vim)
 
 " ctrlp {{{2
 "Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
@@ -262,7 +263,7 @@ Plug 'StanAngeloff/php.vim', {'for':'php'} " [Up-to-date PHP syntax file (5.3 - 
 " Markdown {{{2
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
 "Plug 'MikeCoder/markdown-preview.vim', {'for': 'markdown'}               " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim) does not work
-Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}
+Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}                " [Fold markdown documents by section](https://github.com/nelstrom/vim-markdown-folding)
 "Plug 'suan/vim-instant-markdown', {'for':'markdown'}                     " [Instant Markdown previews](https://github.com/suan/vim-instant-markdown)
 
 " Charles Campbell {{{2
@@ -781,6 +782,10 @@ if IsPluginEnabled('syntastic')
     inoremap <silent> <F9> <C-o>:SyntasticToggleMode<cr>
 endif
 "}}}
+" taboo.vim {{{2
+if IsPluginEnabled('taboo.vim')
+endif
+" }}}
 " tagbar {{{2
 if IsPluginEnabled('tagbar')
     noremap <silent> <F12>       :TagbarToggle<CR>
@@ -1039,8 +1044,8 @@ set formatoptions-=t
 set formatoptions-=c                            " autowrap comments using textwidth
 set formatoptions+=o                            " automatically insert the current comment leader after hitting 'o' in Normal mode
 set formatoptions+=r                            " as above but after <Enter> in Insert mode
-set formatoptions+=m                            " Also break at a multi-byte character above 255
-set formatoptions+=B                            " When joining lines, don't insert a space between two multi-byte characters
+"set formatoptions+=m                            " Also break at a multi-byte character above 255
+"set formatoptions+=B                            " When joining lines, don't insert a space between two multi-byte characters
 
 set nrformats=                                  " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I                                " hide the launch screen
@@ -1061,6 +1066,8 @@ endif
 filetype on
 filetype plugin on
 filetype plugin indent on
+
+set sessionoptions+=tabpages,globals
 
 if !IsPluginEnabled('vim-sensible')
     set autoread                                " read open files again when changed outside Vim " vim-sensible " replaced by vim-sensible
@@ -1097,7 +1104,7 @@ set splitbelow                                  " command :sp put a new window b
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
-set iskeyword+=-                                " which char make a word
+"set iskeyword+=-                                " which char make a word
 " open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
 " open file under cursor for entry: VARIABLE=path
@@ -1323,12 +1330,15 @@ if g:MSWIN64 && has("gui_running")
 endif
 
 if has("gui_running")
-    set mousehide                                   " Hide the mouse when typing text
-    set mouse=a                                     " normal(n) + visual(v) + insert(i) + comman line(c)
-                                                    " help(h) - all previous when editing help files
-                                                    " a - all previous
-    set guioptions+=mgt
-    set guioptions-=T
+    set mousehide                               " Hide the mouse when typing text
+    set mouse=a                                 " normal(n) + visual(v) + insert(i) + comman line(c)
+                                                " help(h) - all previous when editing help files
+                                                " a - all previous
+    set guioptions+=m                           " menu bar
+    set guioptions+=g                           " grey menu items
+    set guioptions+=t                           " include tearoff menu items
+    set guioptions-=e                           " Add tab pages when indicated with 'showtabline'
+    set guioptions-=T                           " exclude Toolbar
     " m - menu
     " T - toolbar
     " t - tear menu
