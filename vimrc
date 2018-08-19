@@ -367,6 +367,9 @@ Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar
 Plug 'rking/ag.vim'                             " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
 Plug 'vim-scripts/ctrlsf.vim'                   " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
 Plug 'mileszs/ack.vim'                          " [Vim plugin for the Perl module / CLI script 'ack'](https://github.com/mileszs/ack.vim)
+if executable('rg')
+    Plug 'jremmen/vim-ripgrep'                  " [Use RipGrep in Vim and display results in a quickfix list](https://github.com/jremmen/vim-ripgrep)
+endif
 
 " Completion
 " Use neocomplete or neocomplcache or supertab
