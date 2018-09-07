@@ -32,7 +32,7 @@ if has('multi_byte')
     if &termencoding == ''
         let &termencoding = &encoding
     endif
-    if $LC_ALL =~? 'utf-\?8' || $LANG =~? '\vutf-?8'
+    if $LC_ALL =~? 'utf-?8' || $LANG =~? '\vutf-?8'
         let g:UNICODE = 1
         scriptencoding utf-8
         set fileencoding=utf-8
@@ -90,12 +90,16 @@ Plug 'vim-scripts/vimwiki'                      " [Personal Wiki for Vim](https:
 if version >= 800 || has('nvim')
     Plug 'skywind3000/asyncrun.vim'             " [Run Async Shell Commands in Vim 8.0 / NeoVim and Output to Quickfix Window](https://github.com/skywind3000/asyncrun.vim)
 endif
-Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
+"Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
 Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
 Plug 'junegunn/vim-peekaboo'                    " [extends \" and @ in normal mode and <CTRL-R>](https://github.com/junegunn/vim-peekaboo)
 Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
 if has('patch-8.0.1364') || has('nvim')
     Plug 'andymass/vim-tradewinds'              " [the missing window movement](https://github.com/andymass/vim-tradewinds)
+endif
+Plug 'chrisbra/Recover.vim'                     " [A Plugin to show a diff, whenever recovering a buffer](https://github.com/chrisbra/Recover.vim)
+if has('patch-7.4.1154')
+    Plug 'embear/vim-localvimrc'                    " [Search local vimrc files ('.lvimrc') in the tree (root dir up to current dir) and load them.](https://github.com/embear/vim-localvimrc)
 endif
 
 " UI
