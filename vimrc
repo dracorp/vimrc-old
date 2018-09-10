@@ -107,22 +107,25 @@ Plug 'scrooloose/nerdtree'                      " [A tree explorer plugin for vi
 Plug 'tyok/nerdtree-ack'                        " [NERDtree + ack.vim](https://github.com/tyok/nerdtree-ack)
 if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
-    Plug 'liuchengxu/eleline.vim'                   " [A tiny elegant statusline for vim](https://github.com/liuchengxu/eleline.vim)
-else
-    Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
-    Plug 'vim-airline/vim-airline-themes'           " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
 endif
-"Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
-"Plug 'itchyny/lightline.vim'                    " [A light and configurable statusline/tabline plugin for Vim](https://github.com/itchyny/lightline.vim)
 Plug 'tpope/vim-flagship'                       " [Configurable and extensible tab line and status line](https://github.com/tpope/vim-flagship)
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
 "Plug 'vim-scripts/mru.vim'                      " [manage Most Recently Used (MRU) files](https://github.com/vim-scripts/mru.vim)
 Plug 'lilydjwg/colorizer'                       " [A Vim plugin to colorize all text in the form #rrggbb or #rgb](https://github.com/lilydjwg/colorizer)
 Plug 'gu-fan/colorv.vim',{'on': 'ColorV'}       " [edit color easy](https://github.com/gu-fan/colorv.vim)
 Plug 'mattn/webapi-vim'                         " [vim interface to Web API](https://github.com/mattn/webapi-vim)
+" UI::statusline
+if g:UNICODE
+    Plug 'liuchengxu/eleline.vim'                   " [A tiny elegant statusline for vim](https://github.com/liuchengxu/eleline.vim)
+else
+"    Plug 'itchyny/lightline.vim'                    " [A light and configurable statusline/tabline plugin for Vim](https://github.com/itchyny/lightline.vim)
+"    Plug 'vim-airline/vim-airline'                  " [Lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline)
+"    Plug 'vim-airline/vim-airline-themes'           " [the official theme repository](https://github.com/vim-airline/vim-airline-themes)
+endif
+"Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
 
 "Plug 'tpope/vim-sleuth'                         " [Heuristically set buffer options](https://github.com/tpope/vim-sleuth)
-"Plug 'AndrewRadev/splitjoin.vim'                "[A vim plugin that simplifies the transition between multiline and single-line code](https://github.com/AndrewRadev/splitjoin.vim)
+"Plug 'AndrewRadev/splitjoin.vim'                " [A vim plugin that simplifies the transition between multiline and single-line code](https://github.com/AndrewRadev/splitjoin.vim)
 
 " pairs {{{2
 "Plug 'tpope/vim-unimpaired'                     " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
@@ -245,6 +248,9 @@ endif
 "Plug 'vim-scripts/primary.vim'                            " [Inspired by Google's official colors](https://github.com/vim-scripts/primary.vim)
 "Plug 'vim-scripts/yowish'                                   " [A yellowish dark color scheme](https://github.com/vim-scripts/yowish)
 "Plug 'flazz/vim-colorschemes'                   " [this is harvested from vim.org. only colorschemes downloaded in a single .vim](https://github.com/flazz/vim-colorschemes)
+"Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
+"Plug 'vim-scripts/HiColors'                     " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
+"Plug 'sonph/onehalf',{'rtp':'vim/'}             " [Clean, vibrant and pleasing color schemes for Vim, Sublime Text, iTerm, gnome-terminal and more](https://github.com/sonph/onehalf)
 Plug 'morhetz/gruvbox'                          " [Retro groove color scheme for Vim](https://github.com/morhetz/gruvbox)
 
 " Syntax {{{2
@@ -277,7 +283,6 @@ Plug 'vim-scripts/DrawIt'                       " [Ascii drawing plugin: lines, 
 "Plug 'emezeske/manpageview'                     " [man page view for vim](https://github.com/emezeske/manpageview)
 Plug 'vim-scripts/Decho'                        " [internal debugger](https://github.com/vim-scripts/decho)
 Plug 'vim-scripts/gdbmgr'                       " [interface to gdb](https://github.com/vim-scripts/gdbmgr)
-Plug 'vim-scripts/HiColors'                     " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
 Plug 'vim-scripts/highlight.vim'                " [Highlight lines or patterns of interest in different colors](https://github.com/vim-scripts/highlight.vim)
 Plug 'vim-scripts/LargeFile'                    " [Edit large files quickly (keywords: large huge speed)](https://github.com/vim-scripts/largefile)
 Plug 'vim-scripts/SudoEdit.vim'                 " [Edit Files using sudo or su or any other tool](https://github.com/vim-scripts/SudoEdit.vim)
@@ -290,7 +295,6 @@ Plug 'xolox/vim-shell'                          " [Improved integration between 
 Plug 'xolox/vim-misc'                           " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plug 'xolox/vim-reload'                         " [Automatic reloading of Vim scripts](https://github.com/xolox/vim-reload)
 Plug 'xolox/vim-session'                        " [Extended session management for Vim](https://github.com/xolox/vim-session)
-"Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
 if g:PYTHON
     Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
 endif
@@ -472,6 +476,11 @@ if IsPluginEnabled('vim-easytags')
     "set vbs=1 | call xolox#easytags#why_so_slow()
 endif
 " }}}
+" eleline {{{2
+if IsPluginEnabled('eleline.vim')
+    let g:eleline_powerline_fonts = 1
+endif
+" }}}
 " emmet-vim {{{2
 if IsPluginEnabled('emmet-vim')
     let g:user__install_global = 0
@@ -490,6 +499,16 @@ if IsPluginEnabled('vim-gitgutter')
     let g:gitgutter_max_signs               = 2000
 endif
 " }}}
+" gruvbox {{{2
+if IsPluginEnabled('gruvbox')
+    colorscheme gruvbox
+    set background=dark
+    if !exists("g:lightline")
+        let g:lightline = {}
+    endif
+    let g:lightline.colorscheme='gruvbox'
+endif
+" }}}
 " latex-support {{{2
 if IsPluginEnabled('latex-support')
     let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
@@ -498,6 +517,31 @@ if IsPluginEnabled('latex-support')
     if g:UNIX
         let s:LATEX_pdf_viewer         = "evince"
     endif
+endif
+" }}}
+" lightline {{{2
+if IsPluginEnabled('lightline.vim')
+    if !exists("g:lightline")
+        g:lightline = {}
+    endif
+    let g:lightline.component_function = {
+                \ 'filename': 'LightlineFilename',
+                \ }
+    let g:lightline.active = {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'readonly', 'filename' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'percent' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ }
+    function! LightlineFilename()
+        let filename = &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+                \ &filetype ==# 'unite' ? unite#get_status_string() :
+                \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+                \ expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
+        let modified = &modified ? ' +' : ''
+        return filename . modified
+    endfunction
 endif
 " }}}
 " manpageview {{{2
@@ -667,6 +711,17 @@ if IsPluginEnabled('nerdtree')
     "let NERDTreeIgnore=['\.swp$',]
     " close when last
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+endif
+" }}}
+" onehalf {{{2
+if IsPluginEnabled('onehalf/vim')
+    colorscheme onehalfdark
+    let g:airline_theme='onehalfdark'
+    if !g:lightline
+        let g:lightline = {}
+    endif
+    let g:lightline.colorscheme='onehalfdark'
+
 endif
 " }}}
 " open-browser.vim {{{2
@@ -1227,9 +1282,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 let c_comment_strings=1                         " highlight strings inside C comments
-
-colorscheme gruvbox
-set background=dark
 "}}}
 
 " Filetype specific handling {{{
