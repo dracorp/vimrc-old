@@ -150,7 +150,7 @@ Plug 'markonm/traces.vim'                       " [Range, pattern and substitute
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-
+Plug 'tyru/current-func-info.vim'               " [Get current function name](https://github.com/tyru/current-func-info.vim)
 " c++, c {{{3
 Plug 'jiangxincode/mpi.vim', {'for':['c','cpp','fortran']}  " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
 Plug 'vim-scripts/OmniCppComplete',      {'for': 'cpp'}                 " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
@@ -430,13 +430,19 @@ execute 'Plug \"' . bundle_dir . '/manpageview\"'
 call plug#end()
 delc PlugUpgrade
 "}}}2
-"}}}
+" }}}
 
 " Plugins configuration {{{
 " bash-support {{{2
 if IsPluginEnabled('bash-support.vim')
     " let g:BASH_TemplateOverwrittenMsg = 'no'
     let g:BASH_LocalTemplateFile = vimrc_dir . 'templates/bash-support/templates/Templates'
+endif
+" }}}
+" current-func-info {{{2
+if IsPluginEnabled('current-func-info.vim')
+    let &statusline .= ' [%{cfi#format("%s", "")}]'
+    nnoremap <C-g>f :echo cfi#format("%s", "")<CR>
 endif
 " }}}
 " ctrlp {{{2
