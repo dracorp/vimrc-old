@@ -76,6 +76,7 @@ let bundle_dir = vimrc_dir . 'bundle'
 call plug#begin(bundle_dir)
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
+
 " For Vim {{{2
 Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
@@ -99,7 +100,8 @@ Plug 'chrisbra/Recover.vim'                     " [A Plugin to show a diff, when
 if has('patch-7.4.1154')
     Plug 'embear/vim-localvimrc'                    " [Search local vimrc files ('.lvimrc') in the tree (root dir up to current dir) and load them.](https://github.com/embear/vim-localvimrc)
 endif
-" UI
+
+" UI {{{2
 Plug 'scrooloose/nerdtree'                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 Plug 'tyok/nerdtree-ack'                        " [NERDtree + ack.vim](https://github.com/tyok/nerdtree-ack)
 if g:UNICODE
@@ -111,7 +113,8 @@ Plug 'mhinz/vim-startify'                       " [The fancy start screen](https
 Plug 'lilydjwg/colorizer'                       " [A Vim plugin to colorize all text in the form #rrggbb or #rgb](https://github.com/lilydjwg/colorizer)
 Plug 'gu-fan/colorv.vim',{'on': 'ColorV'}       " [edit color easy](https://github.com/gu-fan/colorv.vim)
 Plug 'mattn/webapi-vim'                         " [vim interface to Web API](https://github.com/mattn/webapi-vim)
-" UI::statusline
+
+" UI::statusline {{{2
 if g:UNICODE
     Plug 'liuchengxu/eleline.vim'                   " [A tiny elegant statusline for vim](https://github.com/liuchengxu/eleline.vim)
 else
@@ -122,55 +125,67 @@ endif
 "Plug 'edkolev/promptline.vim'                   " [Generate a fast shell prompt with powerline symbols and airline colors](https://github.com/edkolev/promptline.vim)
 "Plug 'tpope/vim-sleuth'                         " [Heuristically set buffer options](https://github.com/tpope/vim-sleuth)
 "Plug 'AndrewRadev/splitjoin.vim'                " [A vim plugin that simplifies the transition between multiline and single-line code](https://github.com/AndrewRadev/splitjoin.vim)
+
 " pairs {{{2
 "Plug 'tpope/vim-unimpaired'                     " [pairs of handy bracket mappings](https://github.com/tpope/vim-unimpaired)
 "Plug 'kurkale6ka/vim-pairs'                     " [Punctuation text objects: ci/ da; vi@ yiq da<space> ...](https://github.com/kurkale6ka/vim-pairs)
 "Plug 'jiangmiao/auto-pairs'                     " [insert or delete brackets, parens, quotes in pair](https://github.com/jiangmiao/auto-pairs)
 "Plug 'Yggdroot/hiPairs'                        " [Highlights the pair surrounding the current cursor position - slows gvim for complex files](https://github.com/Yggdroot/hiPairs)
+
 " Behavior {{{2
 "Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
 Plug 'rstacruz/vim-closer'                      " [Closes brackets](https://github.com/rstacruz/vim-closer)
 Plug 'vim-scripts/restore_view.vim'             " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
 Plug 'markonm/traces.vim'                       " [Range, pattern and substitute preview for Vim](https://github.com/markonm/traces.vim)
 "Plug 'gcmt/taboo.vim'                           " [Few utilities for pretty tabs](https://github.com/gcmt/taboo.vim)
+Plug 'vim-scripts/let-modeline.vim'             " [Extends the modeline feature to the assignment of variables](https://github.com/vim-scripts/let-modeline.vim)
+
 " ctrlp {{{2
 "Plug 'ctrlpvim/ctrlp.vim'                       " [Fuzzy file, buffer, mru, tag, etc finder](https://github.com/kien/ctrlp.vim)
 "Plug 'tacahiroy/ctrlp-funky'                    " [A simple function navigator for ctrlp.vim](https://github.com/tacahiroy/ctrlp-funky)
 "Plug 'sgur/ctrlp-extensions.vim'                " [Plugins for ctrlp.vim](https://github.com/sgur/ctrlp-extensions.vim)
+
 " Programming Languages {{{2
 " [A Vim plugin for Prettier](https://github.com/prettier/vim-prettier)
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+
 " c++, c {{{3
 Plug 'jiangxincode/mpi.vim', {'for':['c','cpp','fortran']}  " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
 Plug 'vim-scripts/OmniCppComplete',      {'for': 'cpp'}                 " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
 Plug 'vim-scripts/cpp_cppcheck.vim',     {'for': 'cpp'}                 " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
 Plug 'octol/vim-cpp-enhanced-highlight'         " [Additional Vim syntax highlighting for C++ (including C++11/14)](https://github.com/octol/vim-cpp-enhanced-highlight)
+
 " CSS/LESS {{{3
 Plug 'ap/vim-css-color',            {'for': ['css','scss','sass','less']}
 Plug 'groenewege/vim-less',         {'for': ['less']}
 Plug 'vitalk/vim-lesscss',          {'for': ['less']}                          " [Update corresponding css files on the fly while edit less files](https://github.com/vitalk/vim-lesscss)
+
 " Go {{{3
 if version > 704 || (version == 704 && has('patch330'))
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
 Plug 'nsf/gocode',   {'for': 'go'}
+
 " HTML {{{3
 Plug 'gregsexton/MatchTag', {'for': ['html','xml']}
 Plug 'mattn/emmet-vim',     {'for': ['html','css','sass']}  " [provides support for expanding abbreviations similar to emmet](https://github.com/mattn/emmet-vim)
 Plug 'othree/html5.vim',    {'for': ['html']}
 Plug 'tpope/vim-haml',      {'for': ['haml','sass','scss']}
 Plug 'alvan/vim-closetag',  {'for': ['html','xml']}         " [Auto close (X)HTML tags](https://github.com/alvan/vim-closetag)
+
 " Java {{{3
 Plug 'vim-scripts/vim-javacomplete2', {'for':'java'}        " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
 Plug 'vim-scripts/VimClojure',        {'for':'clojure'}     " [A filetype, syntax and indent plugin for Clojure](https://github.com/vim-scripts/VimClojure)
+
 " JavaScript {{{3
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'maksimr/vim-jsbeautify',  {'for': 'javascript'}
 Plug 'wizicer/vim-jison',       {'for': ['jison','yacc']}
 Plug 'mxw/vim-jsx',             {'for': ['javascript','jsx']}
 Plug 'Shutnik/jshint2.vim',     {'for': 'javascript'}         " [Lightweight, customizable and functional Vim plugin for JSHint integration](https://github.com/Shutnik/jshint2.vim)
+
 " Perl {{{3
 " [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
 Plug 'vim-perl/vim-perl',       {'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
@@ -178,9 +193,11 @@ Plug 'vim-scripts/perl_h2xs',   {'for': ['perl','pm','xs']} " [Automate creating
 Plug 'nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
 Plug 'vim-scripts/Perldoc.vim', {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
 "Plug 'vim-scripts/perlhelp.vim',            {'for': ['perl','pm','xs']} " [Interface to perldoc](https://github.com/vim-scripts/perlhelp.vim) " conflict vim perl-support <LocalLeader>pm
+
 " PHP {{{3
 Plug 'shawncplus/phpcomplete.vim', {'for':'php'} " [Improved PHP omnicompletion](https://github.com/shawncplus/phpcomplete.vim)
 Plug 'rayburgemeestre/phpfolding.vim'           " [Automatic folding of PHP functions, classes,.. (also folds related PhpDoc)](https://github.com/rayburgemeestre/phpfolding.vim)
+
 " Python {{{3
 if g:PYTHON
     Plug 'davidhalter/jedi-vim'                 " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
@@ -191,16 +208,21 @@ if g:PYTHON
     "Plug 'nvie/vim-flake8', {'for': 'python'}       " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
     Plug 'jmcantrell/vim-virtualenv'            " [Vim plugin for working with python virtualenvs](https://github.com/jmcantrell/vim-virtualenv)
 endif
+
 " R {{{3
 "Plug 'Vim-R-plugin', {'for': 'R'}               " [Plugin to work with R](https://github.com/vim-scripts/Vim-R-plugin)
+
 " XML, XSLT {{{3
 Plug 'vim-scripts/xml.vim', {'for': 'xml'}      " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'vim-scripts/xmledit', {'for': 'xml'}      " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
 Plug 'vim-scripts/xslt',    {'for': 'xslt'}     " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
+
 " YAML {{{3
 "Plug 'chase/vim-ansible-yaml', {'for':['yaml','yml']}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
+
 " JSON {{{3
 Plug 'elzr/vim-json'                            " [A better JSON](https://github.com/elzr/vim-json)
+
 " Git and other VCS {{{2
 if executable('git')
     Plug 'int3/vim-extradite'
@@ -219,6 +241,7 @@ if executable('git')
     endif
     Plug 'whiteinge/diffconflicts'              " [A better Vimdiff Git mergetool](https://github.com/whiteinge/diffconflicts)
 endif
+
 " Themes {{{2
 "Plug 'altercation/vim-colors-solarized'       " [precision colorscheme for the vim text editor](https://github.com/altercation/vim-colors-solarized)
 "Plug 'vim-scripts/primary.vim'                            " [Inspired by Google's official colors](https://github.com/vim-scripts/primary.vim)
@@ -228,6 +251,7 @@ endif
 "Plug 'vim-scripts/HiColors'                     " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
 "Plug 'sonph/onehalf',{'rtp':'vim/'}             " [Clean, vibrant and pleasing color schemes for Vim, Sublime Text, iTerm, gnome-terminal and more](https://github.com/sonph/onehalf)
 Plug 'morhetz/gruvbox'                          " [Retro groove color scheme for Vim](https://github.com/morhetz/gruvbox)
+
 " Syntax {{{2
 Plug 'vim-scripts/nginx.vim', {'for':'nginx'}   " [highlights configuration files for nginx, the high-performance web server](https://github.com/vim-scripts/nginx.vim)
 "Plug 'putty'                                    " [A color scheme that resembles one of Putty](https://github.com/vim-scripts/putty)
@@ -244,11 +268,13 @@ Plug 'cakebaker/scss-syntax.vim', {'for': ['scss','sass']}
 Plug 'hail2u/vim-css3-syntax', {'for': ['css','scss']}
 Plug 'vim-scripts/jQuery', {'for': 'javascript'}         " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
 Plug 'StanAngeloff/php.vim', {'for':'php'} " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
+
 " Markdown {{{2
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
 "Plug 'MikeCoder/markdown-preview.vim', {'for': 'markdown'}               " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim) does not work
 Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}                " [Fold markdown documents by section](https://github.com/nelstrom/vim-markdown-folding)
 "Plug 'suan/vim-instant-markdown', {'for':'markdown'}                     " [Instant Markdown previews](https://github.com/suan/vim-instant-markdown)
+
 " Charles Campbell {{{2
 Plug 'vim-scripts/AnsiEsc.vim'                  " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
 Plug 'powerman/vim-plugin-AnsiEsc'              " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/powerman/vim-plugin-AnsiEsc)
@@ -261,6 +287,7 @@ Plug 'vim-scripts/LargeFile'                    " [Edit large files quickly (key
 Plug 'vim-scripts/SudoEdit.vim'                 " [Edit Files using sudo or su or any other tool](https://github.com/vim-scripts/SudoEdit.vim)
 Plug 'vim-scripts/vis'                          " [Extended Visual Mode Commands, Substitutes, and Searches](https://github.com/vim-scripts/vis)
 Plug 'vim-scripts/cecutil'                      " [save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps](https://github.com/vim-scripts/cecutil)
+
 " xolox {{{2
 "Plug 'xolox/vim-notes'                          " [Easy note taking in Vim](https://github.com/xolox/vim-notes)
 Plug 'xolox/vim-shell'                          " [Improved integration between Vim and its environment](https://github.com/xolox/vim-shell)
@@ -271,6 +298,7 @@ if g:PYTHON
     Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
 endif
 Plug 'xolox/vim-easytags'                       " [Automated tag file generation and syntax highlighting of tags](https://github.com/xolox/vim-easytags)
+
 " Fritz Mehner {{{2
 Plug 'vim-scripts/Vim-support',{'for': 'vim'}              " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
 Plug 'vim-scripts/awk-support.vim',{'for': 'awk'}          " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
@@ -280,6 +308,7 @@ Plug 'vim-scripts/c.vim', {'for':['c','cpp']}                   " [C/C++ IDE -- 
 Plug 'vim-scripts/latex-support.vim',{'for':['tex','plaintex']} " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
 Plug 'vim-scripts/doxygen-support.vim',{'for':'doxygen'}        " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
 Plug 'WolfgangMehner/Vim-Mapathon'                              " [My talk for Vimfest 2017 - An advanced introduction to maps](https://github.com/WolfgangMehner/vim-mapathon)
+
 " Others {{{2
 if version > 704 || (version == 704 && has('patch330'))
 "    Plug 'andymass/vim-matchup'                     " [even better % fist_oncoming navigate and highlight matching words fist_oncoming modern matchit and matchparen replacement](https://github.com/andymass/vim-matchup)
@@ -347,7 +376,8 @@ Plug 'mileszs/ack.vim'                          " [Vim plugin for the Perl modul
 if executable('rg')
     Plug 'jremmen/vim-ripgrep'                  " [Use RipGrep in Vim and display results in a quickfix list](https://github.com/jremmen/vim-ripgrep)
 endif
-" Completion
+
+" Completion {{{2
 " Use neocomplete or neocomplcache or supertab
 if (version > 703 && has('lua')) || ( version == 703 && has('patch-885') && has('lua'))
     Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
@@ -369,10 +399,12 @@ if g:PYTHON
 "    Plug 'SirVer/ultisnips'                     " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
 endif
 Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
+
 " UNIX only {{{2
 if g:UNIX
     Plug 'dracorp/vim-pkgbuild', {'for': 'PKGBUILD'}
 endif
+
 " MS Windows only {{{2
 if g:MSWIN
     Plug 'vim-scripts/poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
@@ -383,6 +415,7 @@ endif
 if g:MSWIN && !g:MSWIN64
     Plug 'vim-scripts/maximize.dll'
 endif
+
 " Some offline plugins {{{2
 " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 execute 'Plug \"' . bundle_dir . '/file_templates\"'
@@ -440,7 +473,7 @@ if IsPluginEnabled('vim-easytags')
     let g:easytags_python_enabled = 1
     let g:easytags_always_enabled = 0
     let g:easytags_on_cursorhold  = 1
-    set tags=./tags;
+    setglobal tags+=./tags;
     " uncomment to see why so slow
     "set vbs=1 | call xolox#easytags#why_so_slow()
 endif
@@ -1051,6 +1084,10 @@ set mouse=v                                     " enable using the mouse if term
 set showmode                                    " always show what mode we're currently editing in
 set wrap                                        " wrap lines
 
+" indention & Tabs
+set autoindent                                  " always set autoindenting on
+set smartindent                                 " smart autoindenting when starting a new line
+set copyindent                                  " copy the previous indentation on autoindenting
 " 1 tab == 4 spaces
 set tabstop=4                                   " a tab is four spaces
 set softtabstop=4                               " when hitting <BS>, pretend like a tab is removed, even if spaces
@@ -1059,9 +1096,6 @@ set smarttab                                    " insert tabs on the start of a 
 set expandtab                                   " expand tabs by default (overloadable per file type later)
 set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
 
-set autoindent                                  " always set autoindenting on
-set smartindent                                 " smart autoindenting when starting a new line
-set copyindent                                  " copy the previous indentation on autoindenting
 set nonumber                                    " show line numbers
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
@@ -1074,6 +1108,8 @@ set nojoinspaces                                " do not insert 2 spaces after .
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
+set textwidth=79                                 " maximum width of text that is being inserted
+set wrapmargin=2                                " To wrap text based on a number of columns from the right side
 " autoformat: call using gq, see also |fo-table|
 set formatoptions+=1                            " long lines are not broken in insert mode
 set formatoptions+=t                            " autowrap text using textwidth
@@ -1084,7 +1120,6 @@ set formatoptions+=r                            " as above but after <Enter> in 
 "set formatoptions+=m                            " Also break at a multi-byte character above 255
 "set formatoptions+=B                            " When joining lines, don't insert a space between two multi-byte characters
 
-set nrformats=                                  " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set shortmess+=I                                " hide the launch screen
 " Enable clipboard if possible
 if has('clipboard')
@@ -1107,11 +1142,16 @@ filetype plugin indent on
 set sessionoptions+=tabpages,globals
 
 if !IsPluginEnabled('vim-sensible')
-    set autoread                                " read open files again when changed outside Vim " vim-sensible " replaced by vim-sensible
-    set scrolloff=4                             " keep 4 lines off the edges of the screen when scrolling " replaced by vim-sensible
-    set backspace=indent,eol,start              " allow backspacing over everything in insert mode " replaced by vim-sensible
-    set incsearch                               " show search matches as you type " replaced by vim-sensible
-    set listchars=tab:>-,eol:$,trail:-,nbsp:%   " replaced by vim-sensible
+    set autoread                                " read open files again when changed outside Vim
+    set scrolloff=4                             " keep 4 lines off the edges of the screen when scrolling
+    set backspace=indent,eol,start              " allow backspacing over everything in insert mode
+    set incsearch                               " show search matches as you type
+    set listchars=tab:>-,eol:$,trail:-,nbsp:%
+    set complete-=i                             " do not scan current and included files, on slow machines
+"    set nrformats=                              " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
+    set laststatus=2                            " tell VIM to always put a status line in, even if there is only one window
+    set ruler                                   " show the cursor position all the time
+    set history=1000                            " remember more commands and search history
 endif
 
 set linebreak
@@ -1121,16 +1161,13 @@ set autowrite                                   " write a modified buffer on eac
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
 set browsedir=current                           " which directory to use for the file browser
 set complete+=k                                 " scan the files given with the 'dictionary' option
-set complete-=i                                 " do not scan current and included files, on slow machines
 
 " export: print or to html
 set printoptions=left:8pc,right:3pc             " print options
 let g:html_use_css=1
 let g:use_xhtml=1000
 
-set ruler                                       " show the cursor position all the time
 set display+=lastline                           " show last line even it does not fit
-set textwidth=79                                 " maximum width of text that is being inserted
 "set colorcolumn=+1
 set showbreak=+\                                " show wraped lines as
 
@@ -1176,8 +1213,6 @@ au FileType sh set foldmethod=syntax
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 
 set lazyredraw                  " don't update the display while executing macros
-set laststatus=2                " tell VIM to always put a status line in, even
-                                " if there is only one window
 
 set cmdheight=1                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
@@ -1198,7 +1233,7 @@ set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,uc
 " }}}
 
 " Vim behaviour {{{
-set spelllang=pl,en
+set spell spelllang=pl,en
 
 set hidden                      " hide buffers instead of closing them this
                                 " means that the current buffer can be put
@@ -1207,8 +1242,6 @@ set hidden                      " hide buffers instead of closing them this
 set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
-set history=1000                                " remember more commands and search history
-
 set undolevels=1000                             " use many muchos levels of undo
 if has('persistent_undo')
     set undoreload=10000                        " maximum number lines to save for undo on a buffer reload
@@ -1219,9 +1252,8 @@ let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
 
 set nobackup                    " do not keep backup files, it's 70's style cluttering
 set noswapfile                  " do not write annoying intermediate swap files,
-set directory=.,~/tmp
-                                " store swap files in one of these directories
-                                "    (in case swapfile is ever turned on)
+set autochdir                   " automatically switch the working directory to that of the file being edited
+set directory=.,~/tmp           " store swap files in one of these directories (in case swapfile is ever turned on)
 set viminfo='20,\"80            " read/write a .viminfo file, don't store more
                                 " than 80 lines of registers
 set wildmenu                    " make tab completion for files/buffers act like bash
