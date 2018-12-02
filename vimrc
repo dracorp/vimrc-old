@@ -340,7 +340,6 @@ if version > 704 || (version == 704 && has('patch330'))
 endif
 Plug 'tpope/vim-repeat'                         " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
 Plug 'tpope/vim-scriptease'                     " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
-Plug 'tpope/vim-speeddating'                    " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
 Plug 'tpope/vim-surround'                       " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
 "Plug 'MRU'                                      " [Most recently used files in your file menu](https://github.com/vim-scripts/mru)
 "Plug 'airblade/vim-rooter'                      " [Changes Vim working directory to project root (identified by presence of known directory or file)](https://github.com/airblade/vim-rooter) conflict with map
@@ -376,6 +375,11 @@ Plug 'mileszs/ack.vim'                          " [Vim plugin for the Perl modul
 if executable('rg')
     Plug 'jremmen/vim-ripgrep'                  " [Use RipGrep in Vim and display results in a quickfix list](https://github.com/jremmen/vim-ripgrep)
 endif
+
+" ctrl-a
+"Plug 'tpope/vim-speeddating'                    " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
+Plug 'vim-scripts/visual-increment'                         " [Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode](https://github.com/vim-scripts/visual-increment)
+"Plug 'vim-scripts/monday'                                   " [Lets you use ctrl-a and ctrl-x on names of months and weekdays](https://github.com/vim-scripts/monday)
 
 " Completion {{{2
 " Use neocomplete or neocomplcache or supertab
