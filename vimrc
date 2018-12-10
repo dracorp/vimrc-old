@@ -223,6 +223,9 @@ Plug 'vim-scripts/xslt',    {'for': 'xslt'}     " [XSLT ftplugin](https://github
 " JSON {{{3
 Plug 'elzr/vim-json'                            " [A better JSON](https://github.com/elzr/vim-json)
 
+"maven {{{3
+Plug 'mikelue/vim-maven-plugin'                 " [The Maven plugin for VIM](https://github.com/mikelue/vim-maven-plugin)
+
 " Git and other VCS {{{2
 if executable('git')
     Plug 'int3/vim-extradite'
