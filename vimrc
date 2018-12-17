@@ -243,6 +243,7 @@ if executable('git')
         Plug 'airblade/vim-gitgutter'           " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
     endif
     Plug 'whiteinge/diffconflicts'              " [A better Vimdiff Git mergetool](https://github.com/whiteinge/diffconflicts)
+    Plug 'cohama/agit.vim'                      " [A powerful Git log viewer](https://github.com/cohama/agit.vim)
 endif
 
 " Themes {{{2
