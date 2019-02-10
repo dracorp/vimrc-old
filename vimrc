@@ -1,5 +1,3 @@
-" To start vim without using this .vimrc file, use:
-"   vim -u NORC
 "
 " To start vim without loading any .vimrc or plugins, use:
 "   vim -u NONE
@@ -219,11 +217,12 @@ Plug 'vim-scripts/xslt',    {'for': 'xslt'}     " [XSLT ftplugin](https://github
 
 " YAML {{{3
 "Plug 'chase/vim-ansible-yaml', {'for':['yaml','yml']}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
+Plug 'pearofducks/ansible-vim'                  " [A vim plugin for syntax highlighting Ansible's common filetypes](https://github.com/pearofducks/ansible-vim)
 
 " JSON {{{3
 Plug 'elzr/vim-json'                            " [A better JSON](https://github.com/elzr/vim-json)
 
-"maven {{{3
+" maven {{{3
 Plug 'mikelue/vim-maven-plugin'                 " [The Maven plugin for VIM](https://github.com/mikelue/vim-maven-plugin)
 
 " Git and other VCS {{{2
@@ -272,6 +271,7 @@ Plug 'cakebaker/scss-syntax.vim', {'for': ['scss','sass']}
 Plug 'hail2u/vim-css3-syntax', {'for': ['css','scss']}
 Plug 'vim-scripts/jQuery', {'for': 'javascript'}         " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
 Plug 'StanAngeloff/php.vim', {'for':'php'} " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
+Plug 'vim-scripts/bats.vim'                     " [Syntax highlighting for Bats - Bash Automated Testing System](https://github.com/vim-scripts/bats.vim)
 
 " Markdown {{{2
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
@@ -364,6 +364,7 @@ Plug 'vim-scripts/supersearch'                  " [plugin is a source code brows
 Plug 'vim-scripts/Dokumentary'                  " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
 Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
 "Plug 'AutoFold.vim'                            " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
+Plug 'Konfekt/FastFold'                         " [Speed up Vim by updating folds only when called-for](https://github.com/Konfekt/FastFold)
 Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for writing](https://github.com/reedes/vim-pencil)
 Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two directories](https://github.com/will133/vim-dirdiff)
 Plug 'vim-scripts/cream-ascii'                  " [Insert an ASCII character from a dialog box](https://github.com/vim-scripts/cream-ascii)
