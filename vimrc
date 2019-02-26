@@ -63,12 +63,6 @@ endif
 autocmd!
 "}}}
 
-" Use ~/.vim/before.before if exists.
-" It contains a few basic functions
-if filereadable(vimrc_dir . "before.vim")
-    execute ":source" vimrc_dir . "before.vim"
-endif
-
 " Plugins managed by vim-plug {{{
 let bundle_dir = vimrc_dir . 'bundle'
 call plug#begin(bundle_dir)
@@ -441,7 +435,7 @@ delc PlugUpgrade
 
 " Plugins configuration {{{
 " bash-support {{{2
-if IsPluginEnabled('bash-support.vim')
+if plugin#IsEnabled('bash-support.vim')
     " let g:BASH_TemplateOverwrittenMsg = 'no'
     if g:UNIX
         let g:BASH_LocalTemplateFile = vimrc_dir . 'templates/bash-support/templates/Templates'
@@ -449,14 +443,14 @@ if IsPluginEnabled('bash-support.vim')
 endif
 " }}}
 " ctrlp {{{2
-if IsPluginEnabled('ctrlp')
+if plugin#IsEnabled('ctrlp')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     set wildignore+=*.7z
 endif
 " }}}
 " c-support {{{2
-if IsPluginEnabled('c.vim')
+if plugin#IsEnabled('c.vim')
     " let g:C_TemplateOverwrittenMsg= 'no'
     if g:UNICODE
         let g:C_LocalTemplateFile = vimrc_dir . 'templates/c-support/templates/Templates'
@@ -464,17 +458,17 @@ if IsPluginEnabled('c.vim')
 endif
 " }}}
 " delimitMate {{{2
-if IsPluginEnabled('delimitMate')
+if plugin#IsEnabled('delimitMate')
     let delimitMate_expand_cr = 1
 endif
 " }}}
 " doxygen-support {{{2
-if IsPluginEnabled('doxygen-support.vim')
+if plugin#IsEnabled('doxygen-support.vim')
     let g:Doxy_LocalTemplateFile = vimrc_dir . 'templates/doxygen-support/templates/Templates'
 endif
 " }}}
 " easytags {{{2
-if IsPluginEnabled('vim-easytags')
+if plugin#IsEnabled('vim-easytags')
     let g:easytags_async          = 1
     let g:easytags_dynamic_files  = 1
     let g:easytags_auto_highlight = 1
@@ -488,30 +482,30 @@ if IsPluginEnabled('vim-easytags')
 endif
 " }}}
 " eleline {{{2
-if IsPluginEnabled('eleline.vim')
+if plugin#IsEnabled('eleline.vim')
     let g:eleline_powerline_fonts = 1
 endif
 " }}}
 " emmet-vim {{{2
-if IsPluginEnabled('emmet-vim')
+if plugin#IsEnabled('emmet-vim')
     let g:user__install_global = 0
     autocmd FileType html,css EmmetInstall
 endif
 "}}}
 " file_templates {{{2
-if IsPluginEnabled('file_templates')
+if plugin#IsEnabled('file_templates')
     let g:file_template_default = "def.PKGBUILD"
     let g:VIMFILESDIR = vimrc_dir
 endif
 " }}}
 " gitgutter {{{2
-if IsPluginEnabled('vim-gitgutter')
+if plugin#IsEnabled('vim-gitgutter')
     let g:gitgutter_sign_removed_first_line = "^_"
     let g:gitgutter_max_signs               = 2000
 endif
 " }}}
 " gruvbox {{{2
-if IsPluginEnabled('gruvbox')
+if plugin#IsEnabled('gruvbox')
     colorscheme gruvbox
     set background=dark
     if !exists("g:lightline")
@@ -521,7 +515,7 @@ if IsPluginEnabled('gruvbox')
 endif
 " }}}
 " latex-support {{{2
-if IsPluginEnabled('latex-support')
+if plugin#IsEnabled('latex-support')
     let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
     let tlist_make_settings  = 'make;m:makros;t:targets'
     let tlist_tex_settings   = 'latex;s:Contents;g:Graphics;i:Listings;l:\label;r:\ref;p:\pageref;b:\bibitem'
@@ -531,7 +525,7 @@ if IsPluginEnabled('latex-support')
 endif
 " }}}
 " lightline {{{2
-if IsPluginEnabled('lightline.vim')
+if plugin#IsEnabled('lightline.vim')
     if !exists("g:lightline")
         g:lightline = {}
     endif
@@ -556,17 +550,17 @@ if IsPluginEnabled('lightline.vim')
 endif
 " }}}
 " manpageview {{{2
-if IsPluginEnabled('manpageview')
+if plugin#IsEnabled('manpageview')
     let $PAGER=''
 endif
 "}}}
 " mru {{{2
-if IsPluginEnabled('mru.vim')
+if plugin#IsEnabled('mru.vim')
     let MRU_File = vimrc_dir . 'vim_mru_files'
 endif
 " }}}
 " neocomplcache {{{2
-if IsPluginEnabled('neocomplcache.vim')
+if plugin#IsEnabled('neocomplcache.vim')
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
@@ -647,7 +641,7 @@ if IsPluginEnabled('neocomplcache.vim')
 endif
 " }}}
 " neocomplete {{{2
-if IsPluginEnabled('neocomplete.vim')
+if plugin#IsEnabled('neocomplete.vim')
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplete.
@@ -711,7 +705,7 @@ if IsPluginEnabled('neocomplete.vim')
 endif
 " }}}
 " nerdtree {{{2
-if IsPluginEnabled('nerdtree')
+if plugin#IsEnabled('nerdtree')
     map <F2> :NERDTreeToggle<CR>
     map <Leader>n <plug>NERDTreeTabsToggle<CR>
     set timeoutlen=1000
@@ -725,7 +719,7 @@ if IsPluginEnabled('nerdtree')
 endif
 " }}}
 " onehalf {{{2
-if IsPluginEnabled('onehalf/vim')
+if plugin#IsEnabled('onehalf/vim')
     colorscheme onehalfdark
     let g:airline_theme='onehalfdark'
     if !g:lightline
@@ -735,14 +729,14 @@ if IsPluginEnabled('onehalf/vim')
 endif
 " }}}
 " open-browser.vim {{{2
-if IsPluginEnabled('open-browser.vim')
+if plugin#IsEnabled('open-browser.vim')
     let g:netrw_nogx = 0 " disable netrw's gx mapping.
     nmap gx <Plug>(openbrowser-smart-search)
     vmap gx <Plug>(openbrowser-smart-search)
 endif
 " }}}
 " perl-support {{{2
-if IsPluginEnabled('perl-support.vim')
+if plugin#IsEnabled('perl-support.vim')
     " let g:Perl_TemplateOverwrittenMsg= 'no'
     let g:Perl_PerlcriticSeverity  = 1
     let g:Perl_PerlcriticVerbosity = 9
@@ -756,13 +750,13 @@ if IsPluginEnabled('perl-support.vim')
 endif
 " }}}
 " promptline {{{2
-if IsPluginEnabled('promptline.vim')
+if plugin#IsEnabled('promptline.vim')
     let g:promptline_preset = {
         \'y' : [ promptline#slices#vcs_branch({'svn': 1}) ]}
 endif
 " }}}
 " python-mode {{{2
-if IsPluginEnabled('python-mode')
+if plugin#IsEnabled('python-mode')
     " Activate rope
     " Keys:
     " K             Show python docs
@@ -799,23 +793,23 @@ if IsPluginEnabled('python-mode')
 endif
 " }}}
 " restore_view {{{2
-if IsPluginEnabled('restore_view.vim')
+if plugin#IsEnabled('restore_view.vim')
     set viewoptions=cursor,folds,slash,unix
     let g:skipview_files = ['*\.vim']
 endif
 " }}}
 " startify {{{2
-if IsPluginEnabled('vim-startify')
+if plugin#IsEnabled('vim-startify')
     let g:startify_fortune_use_unicode = 1
 endif
 "}}}
 " supertab {{{2
-if IsPluginEnabled('supertab')
+if plugin#IsEnabled('supertab')
     let g:SuperTabMappingForward  = '<tab>'
 endif
 " }}}
 " switch {{{2
-if IsPluginEnabled('switch.vim')
+if plugin#IsEnabled('switch.vim')
     nnoremap <c-t> :Switch<cr>
     let g:switch_custom_definitions =
         \ [
@@ -833,7 +827,7 @@ if IsPluginEnabled('switch.vim')
 endif
 " }}}
 " syntastic {{{2
-if IsPluginEnabled('syntastic')
+if plugin#IsEnabled('syntastic')
     "let g:loaded_syntastic_perl_perlcritic_checker = 1
     "let g:syntastic_perl_perlcritic_thres          = 1
     "let g:syntastic_enable_perl_checker            = 1
@@ -859,11 +853,11 @@ if IsPluginEnabled('syntastic')
 endif
 "}}}
 " taboo.vim {{{2
-if IsPluginEnabled('taboo.vim')
+if plugin#IsEnabled('taboo.vim')
 endif
 " }}}
 " tagbar {{{2
-if IsPluginEnabled('tagbar')
+if plugin#IsEnabled('tagbar')
     noremap <silent> <F12>       :TagbarToggle<CR>
     inoremap <silent> <F12>  <C-C>:TagbarToggle<CR>
     let g:tagbar_left             = 1
@@ -917,7 +911,7 @@ if IsPluginEnabled('tagbar')
 endif
 " }}}
 " tagList {{{2
-if IsPluginEnabled('taglist.vim')
+if plugin#IsEnabled('taglist.vim')
     noremap <silent> <F11>       :TlistToggle<CR>
     inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
     let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
@@ -950,7 +944,7 @@ if executable('ag')
 endif
 " }}}
 " ultisnips {{{2
-if IsPluginEnabled('ultisnips')
+if plugin#IsEnabled('ultisnips')
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "    let g:UltiSnipsExpandTrigger="<tab>"
 "    let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -960,17 +954,17 @@ if IsPluginEnabled('ultisnips')
 endif
 " }}}
 " undotree {{{2
-if IsPluginEnabled('undotree')
+if plugin#IsEnabled('undotree')
     nnoremap <F5> :UndotreeToggle<cr>
 endif
 "}}}
 " vbookmark {{{2
-if IsPluginEnabled('vbookmark')
+if plugin#IsEnabled('vbookmark')
     let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
 endif
 " }}}
 " vim-airline {{{2
-if IsPluginEnabled('vim-airline')
+if plugin#IsEnabled('vim-airline')
     let g:airline_powerline_fonts = 1
     let g:airline_theme           = 'luna'
     let g:airline_section_c       = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
@@ -982,13 +976,13 @@ if IsPluginEnabled('vim-airline')
 endif
 "}}}
 " vim-buftabline {{{2
-if IsPluginEnabled('vim-buftabline')
+if plugin#IsEnabled('vim-buftabline')
     nnoremap <C-N> :bnext<CR>
     nnoremap <C-P> :bprev<CR>
 endif
 " }}}
 " vim-colors-solarized {{{2
-if IsPluginEnabled('vim-colors-solarized')
+if plugin#IsEnabled('vim-colors-solarized')
     let g:solarized_termcolors = 256
     let g:solarized_underline  = 0                     "default value is 1
     let g:solarized_italic     = 0                        "default value is 1
@@ -996,7 +990,7 @@ if IsPluginEnabled('vim-colors-solarized')
 endif
 " }}}
 " vim-cpp-enhanced-highlight {{{2
-if IsPluginEnabled('vim-cpp-enhanced-highlight')
+if plugin#IsEnabled('vim-cpp-enhanced-highlight')
     let g:cpp_class_scope_highlight = 1
     let g:cpp_member_variable_highlight = 1
     let g:cpp_class_decl_highlight = 1
@@ -1007,7 +1001,7 @@ if IsPluginEnabled('vim-cpp-enhanced-highlight')
 endif
 "}}}
 " vim-easy-align {{{2
-if IsPluginEnabled('vim-easy-align')
+if plugin#IsEnabled('vim-easy-align')
     " Start interactive EasyAlign in visual mode (e.g. vipga)
     "xmap ga <Plug>(EasyAlign)
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -1015,7 +1009,7 @@ if IsPluginEnabled('vim-easy-align')
 endif
 " }}}
 " vim-go {{{2
-if IsPluginEnabled('vim-go')
+if plugin#IsEnabled('vim-go')
     let g:go_fmt_command = "goimports"
     let g:go_autodetect_gopath = 1
     let g:go_list_type = "quickfix"
@@ -1028,13 +1022,13 @@ if IsPluginEnabled('vim-go')
 endif
 "}}}2
 " vim-javacomplete2 {{{2
-if IsPluginEnabled('vim-javacomplete2')
+if plugin#IsEnabled('vim-javacomplete2')
     autocmd FileType java set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
 endif
 " }}}
 " vim-jsbeautify {{{2
-if IsPluginEnabled('vim-jsbeautify')
+if plugin#IsEnabled('vim-jsbeautify')
     autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
     " for html
     autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
@@ -1045,7 +1039,7 @@ if IsPluginEnabled('vim-jsbeautify')
 endif
 "}}}
 " vim-session {{{2
-if IsPluginEnabled('vim-session')
+if plugin#IsEnabled('vim-session')
     let g:session_autosave = 'yes'
     let g:session_autoload = 'no'
     let g:session_directory = vimrc_dir . 'sessions'
@@ -1053,12 +1047,12 @@ if IsPluginEnabled('vim-session')
 endif
 " }}}
 " vim-shell {{{2
-if IsPluginEnabled('vim-shell')
+if plugin#IsEnabled('vim-shell')
     let g:shell_mappings_enabled=0
 endif
 " }}}
 " vim-support {{{2
-if IsPluginEnabled('vim-support')
+if plugin#IsEnabled('vim-support')
     if g:UNICODE
         let g:Vim_LocalTemplateFile = vimrc_dir . 'templates/vim-support/templates/Templates'
     endif
@@ -1066,19 +1060,19 @@ if IsPluginEnabled('vim-support')
 endif
 "}}}
 " vim-toggle {{{2
-if IsPluginEnabled('vim-toggle')
+if plugin#IsEnabled('vim-toggle')
     imap <C-T>:call Toggle()<CR>
     nmap <C-T>:call Toggle()<CR>
     vmap <C-T> <ESC>:call Toggle()<CR>
 endif
 "}}}
 " xml_completion {{{2
-if IsPluginEnabled('xml_completion')
+if plugin#IsEnabled('xml_completion')
     let g:xmlSubelements = "yes"
 endif
 " }}}
 " yaifa {{{2
-if IsPluginEnabled('yaifa')
+if plugin#IsEnabled('yaifa')
     let yaifa_max_lines = 512
 endif
 "}}}
@@ -1150,7 +1144,7 @@ filetype plugin indent on
 
 set sessionoptions+=tabpages,globals
 
-if !IsPluginEnabled('vim-sensible')
+if !plugin#IsEnabled('vim-sensible')
     set autoread                                " read open files again when changed outside Vim
     set scrolloff=4                             " keep 4 lines off the edges of the screen when scrolling
     set backspace=indent,eol,start              " allow backspacing over everything in insert mode

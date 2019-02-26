@@ -1,7 +1,16 @@
 " Auxilary function to chech if directory of plugin exists and is int runtimepath {{{2
 " There is side efect with on-demand loading on both conditions
+
+if exists('g:loaded_plugin')
+  finish
+endif
+let g:loaded_plugin = 1
+
+let s:cpo_save = &cpo
+set cpo&vim
+
 let g:isPluginEnabledVerbose=0
-function! IsPluginEnabled(directory, ...)
+function! plugin#IsEnabled(directory, ...)
     let a:verbose   = get(a:, 1, 0)
     let fullDir = expand(g:bundle_dir . "/" . a:directory)
     if g:isPluginEnabledVerbose || a:verbose
@@ -40,3 +49,6 @@ function! IsPluginEnabled(directory, ...)
     return 0
 endfunction
 "}}}
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
