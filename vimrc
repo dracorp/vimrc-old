@@ -338,7 +338,10 @@ Plug 'vim-scripts/Tabmerge'                     " [Merge a tab's windows with th
 Plug 'vim-scripts/taglist.vim'                  " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
 Plug 'vim-scripts/Toggle'                       " [allows you to toggle bool (true/false) and other words with a shortcut](https://github.com/vim-scripts/Toggle)
 if version > 703 || (version == 703 && has('patch005'))
-    Plug 'mbbill/undotree'                      " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
+"    Plug 'mbbill/undotree'                      " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
+endif
+if version > 703 && g:PYTHON
+    Plug 'simnalamburt/vim-mundo'                   " [Vim undo tree visualizer](https://github.com/simnalamburt/vim-mundo)
 endif
 if version > 704 || (version == 704 && has('patch330'))
     Plug 'Shougo/unite.vim'                     " [Unite and create user interfaces](https://github.com/Shougo/unite.vim)
@@ -559,6 +562,11 @@ endif
 " manpageview {{{2
 if plugin#isEnabled('manpageview')
     let $PAGER=''
+endif
+"}}}
+" mundotree {{{2
+if plugin#isEnabled('vim-mundo')
+    nnoremap <F5> :MundoToggle<cr>
 endif
 "}}}
 " mru {{{2
