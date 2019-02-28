@@ -64,7 +64,14 @@ autocmd!
 "}}}
 
 " Plugins managed by vim-plug {{{
+" define bundle directory for plugins and also default directory to check if
+" a plugin exists for function plugin#isEnabled
+" use g:bundle_dir or if you want overwrite default directory to check for
+" plugin use g:pluginIsEnabledDirectory
 let bundle_dir = vimrc_dir . 'bundle'
+"let g:pluginIsEnabledDirectory = expand("$HOME/.vim/bundle")
+"let g:pluginIsEnabledVerbose = 1
+
 call plug#begin(bundle_dir)
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'
@@ -244,7 +251,7 @@ endif
 "Plug 'vim-scripts/primary.vim'                            " [Inspired by Google's official colors](https://github.com/vim-scripts/primary.vim)
 "Plug 'vim-scripts/yowish'                                   " [A yellowish dark color scheme](https://github.com/vim-scripts/yowish)
 "Plug 'flazz/vim-colorschemes'                   " [this is harvested from vim.org. only colorschemes downloaded in a single .vim](https://github.com/flazz/vim-colorschemes)
-"Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
+Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
 "Plug 'vim-scripts/HiColors'                     " [Colorscheme display and editor](https://github.com/vim-scripts/hicolors)
 "Plug 'sonph/onehalf',{'rtp':'vim/'}             " [Clean, vibrant and pleasing color schemes for Vim, Sublime Text, iTerm, gnome-terminal and more](https://github.com/sonph/onehalf)
 Plug 'morhetz/gruvbox'                          " [Retro groove color scheme for Vim](https://github.com/morhetz/gruvbox)
@@ -435,7 +442,7 @@ delc PlugUpgrade
 
 " Plugins configuration {{{
 " bash-support {{{2
-if plugin#IsEnabled('bash-support.vim')
+if plugin#isEnabled('bash-support.vim')
     " let g:BASH_TemplateOverwrittenMsg = 'no'
     if g:UNIX
         let g:BASH_LocalTemplateFile = vimrc_dir . 'templates/bash-support/templates/Templates'
@@ -443,14 +450,14 @@ if plugin#IsEnabled('bash-support.vim')
 endif
 " }}}
 " ctrlp {{{2
-if plugin#IsEnabled('ctrlp')
+if plugin#isEnabled('ctrlp')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     set wildignore+=*.7z
 endif
 " }}}
 " c-support {{{2
-if plugin#IsEnabled('c.vim')
+if plugin#isEnabled('c.vim')
     " let g:C_TemplateOverwrittenMsg= 'no'
     if g:UNICODE
         let g:C_LocalTemplateFile = vimrc_dir . 'templates/c-support/templates/Templates'
@@ -458,17 +465,17 @@ if plugin#IsEnabled('c.vim')
 endif
 " }}}
 " delimitMate {{{2
-if plugin#IsEnabled('delimitMate')
+if plugin#isEnabled('delimitMate')
     let delimitMate_expand_cr = 1
 endif
 " }}}
 " doxygen-support {{{2
-if plugin#IsEnabled('doxygen-support.vim')
+if plugin#isEnabled('doxygen-support.vim')
     let g:Doxy_LocalTemplateFile = vimrc_dir . 'templates/doxygen-support/templates/Templates'
 endif
 " }}}
 " easytags {{{2
-if plugin#IsEnabled('vim-easytags')
+if plugin#isEnabled('vim-easytags')
     let g:easytags_async          = 1
     let g:easytags_dynamic_files  = 1
     let g:easytags_auto_highlight = 1
@@ -482,30 +489,30 @@ if plugin#IsEnabled('vim-easytags')
 endif
 " }}}
 " eleline {{{2
-if plugin#IsEnabled('eleline.vim')
+if plugin#isEnabled('eleline.vim')
     let g:eleline_powerline_fonts = 1
 endif
 " }}}
 " emmet-vim {{{2
-if plugin#IsEnabled('emmet-vim')
+if plugin#isEnabled('emmet-vim')
     let g:user__install_global = 0
     autocmd FileType html,css EmmetInstall
 endif
 "}}}
 " file_templates {{{2
-if plugin#IsEnabled('file_templates')
+if plugin#isEnabled('file_templates')
     let g:file_template_default = "def.PKGBUILD"
     let g:VIMFILESDIR = vimrc_dir
 endif
 " }}}
 " gitgutter {{{2
-if plugin#IsEnabled('vim-gitgutter')
+if plugin#isEnabled('vim-gitgutter')
     let g:gitgutter_sign_removed_first_line = "^_"
     let g:gitgutter_max_signs               = 2000
 endif
 " }}}
 " gruvbox {{{2
-if plugin#IsEnabled('gruvbox')
+if plugin#isEnabled('gruvbox')
     colorscheme gruvbox
     set background=dark
     if !exists("g:lightline")
@@ -515,7 +522,7 @@ if plugin#IsEnabled('gruvbox')
 endif
 " }}}
 " latex-support {{{2
-if plugin#IsEnabled('latex-support')
+if plugin#isEnabled('latex-support')
     let tlist_bib_settings   = 'bib;e:BibTeX-Entries;s:BibTeX-Strings'
     let tlist_make_settings  = 'make;m:makros;t:targets'
     let tlist_tex_settings   = 'latex;s:Contents;g:Graphics;i:Listings;l:\label;r:\ref;p:\pageref;b:\bibitem'
@@ -525,7 +532,7 @@ if plugin#IsEnabled('latex-support')
 endif
 " }}}
 " lightline {{{2
-if plugin#IsEnabled('lightline.vim')
+if plugin#isEnabled('lightline.vim')
     if !exists("g:lightline")
         g:lightline = {}
     endif
@@ -550,17 +557,17 @@ if plugin#IsEnabled('lightline.vim')
 endif
 " }}}
 " manpageview {{{2
-if plugin#IsEnabled('manpageview')
+if plugin#isEnabled('manpageview')
     let $PAGER=''
 endif
 "}}}
 " mru {{{2
-if plugin#IsEnabled('mru.vim')
+if plugin#isEnabled('mru.vim')
     let MRU_File = vimrc_dir . 'vim_mru_files'
 endif
 " }}}
 " neocomplcache {{{2
-if plugin#IsEnabled('neocomplcache.vim')
+if plugin#isEnabled('neocomplcache.vim')
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
@@ -641,7 +648,7 @@ if plugin#IsEnabled('neocomplcache.vim')
 endif
 " }}}
 " neocomplete {{{2
-if plugin#IsEnabled('neocomplete.vim')
+if plugin#isEnabled('neocomplete.vim')
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplete.
@@ -705,7 +712,7 @@ if plugin#IsEnabled('neocomplete.vim')
 endif
 " }}}
 " nerdtree {{{2
-if plugin#IsEnabled('nerdtree')
+if plugin#isEnabled('nerdtree')
     map <F2> :NERDTreeToggle<CR>
     map <Leader>n <plug>NERDTreeTabsToggle<CR>
     set timeoutlen=1000
@@ -719,7 +726,7 @@ if plugin#IsEnabled('nerdtree')
 endif
 " }}}
 " onehalf {{{2
-if plugin#IsEnabled('onehalf/vim')
+if plugin#isEnabled('onehalf/vim')
     colorscheme onehalfdark
     let g:airline_theme='onehalfdark'
     if !g:lightline
@@ -729,14 +736,14 @@ if plugin#IsEnabled('onehalf/vim')
 endif
 " }}}
 " open-browser.vim {{{2
-if plugin#IsEnabled('open-browser.vim')
+if plugin#isEnabled('open-browser.vim')
     let g:netrw_nogx = 0 " disable netrw's gx mapping.
     nmap gx <Plug>(openbrowser-smart-search)
     vmap gx <Plug>(openbrowser-smart-search)
 endif
 " }}}
 " perl-support {{{2
-if plugin#IsEnabled('perl-support.vim')
+if plugin#isEnabled('perl-support.vim')
     " let g:Perl_TemplateOverwrittenMsg= 'no'
     let g:Perl_PerlcriticSeverity  = 1
     let g:Perl_PerlcriticVerbosity = 9
@@ -750,13 +757,13 @@ if plugin#IsEnabled('perl-support.vim')
 endif
 " }}}
 " promptline {{{2
-if plugin#IsEnabled('promptline.vim')
+if plugin#isEnabled('promptline.vim')
     let g:promptline_preset = {
         \'y' : [ promptline#slices#vcs_branch({'svn': 1}) ]}
 endif
 " }}}
 " python-mode {{{2
-if plugin#IsEnabled('python-mode')
+if plugin#isEnabled('python-mode')
     " Activate rope
     " Keys:
     " K             Show python docs
@@ -793,23 +800,23 @@ if plugin#IsEnabled('python-mode')
 endif
 " }}}
 " restore_view {{{2
-if plugin#IsEnabled('restore_view.vim')
+if plugin#isEnabled('restore_view.vim')
     set viewoptions=cursor,folds,slash,unix
     let g:skipview_files = ['*\.vim']
 endif
 " }}}
 " startify {{{2
-if plugin#IsEnabled('vim-startify')
+if plugin#isEnabled('vim-startify')
     let g:startify_fortune_use_unicode = 1
 endif
 "}}}
 " supertab {{{2
-if plugin#IsEnabled('supertab')
+if plugin#isEnabled('supertab')
     let g:SuperTabMappingForward  = '<tab>'
 endif
 " }}}
 " switch {{{2
-if plugin#IsEnabled('switch.vim')
+if plugin#isEnabled('switch.vim')
     nnoremap <c-t> :Switch<cr>
     let g:switch_custom_definitions =
         \ [
@@ -827,7 +834,7 @@ if plugin#IsEnabled('switch.vim')
 endif
 " }}}
 " syntastic {{{2
-if plugin#IsEnabled('syntastic')
+if plugin#isEnabled('syntastic')
     "let g:loaded_syntastic_perl_perlcritic_checker = 1
     "let g:syntastic_perl_perlcritic_thres          = 1
     "let g:syntastic_enable_perl_checker            = 1
@@ -853,11 +860,11 @@ if plugin#IsEnabled('syntastic')
 endif
 "}}}
 " taboo.vim {{{2
-if plugin#IsEnabled('taboo.vim')
+if plugin#isEnabled('taboo.vim')
 endif
 " }}}
 " tagbar {{{2
-if plugin#IsEnabled('tagbar')
+if plugin#isEnabled('tagbar')
     noremap <silent> <F12>       :TagbarToggle<CR>
     inoremap <silent> <F12>  <C-C>:TagbarToggle<CR>
     let g:tagbar_left             = 1
@@ -911,7 +918,7 @@ if plugin#IsEnabled('tagbar')
 endif
 " }}}
 " tagList {{{2
-if plugin#IsEnabled('taglist.vim')
+if plugin#isEnabled('taglist.vim')
     noremap <silent> <F11>       :TlistToggle<CR>
     inoremap <silent> <F11>  <C-C>:TlistToggle<CR>
     let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
@@ -944,7 +951,7 @@ if executable('ag')
 endif
 " }}}
 " ultisnips {{{2
-if plugin#IsEnabled('ultisnips')
+if plugin#isEnabled('ultisnips')
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "    let g:UltiSnipsExpandTrigger="<tab>"
 "    let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -954,17 +961,17 @@ if plugin#IsEnabled('ultisnips')
 endif
 " }}}
 " undotree {{{2
-if plugin#IsEnabled('undotree')
+if plugin#isEnabled('undotree')
     nnoremap <F5> :UndotreeToggle<cr>
 endif
 "}}}
 " vbookmark {{{2
-if plugin#IsEnabled('vbookmark')
+if plugin#isEnabled('vbookmark')
     let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
 endif
 " }}}
 " vim-airline {{{2
-if plugin#IsEnabled('vim-airline')
+if plugin#isEnabled('vim-airline')
     let g:airline_powerline_fonts = 1
     let g:airline_theme           = 'luna'
     let g:airline_section_c       = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
@@ -976,13 +983,13 @@ if plugin#IsEnabled('vim-airline')
 endif
 "}}}
 " vim-buftabline {{{2
-if plugin#IsEnabled('vim-buftabline')
+if plugin#isEnabled('vim-buftabline')
     nnoremap <C-N> :bnext<CR>
     nnoremap <C-P> :bprev<CR>
 endif
 " }}}
 " vim-colors-solarized {{{2
-if plugin#IsEnabled('vim-colors-solarized')
+if plugin#isEnabled('vim-colors-solarized')
     let g:solarized_termcolors = 256
     let g:solarized_underline  = 0                     "default value is 1
     let g:solarized_italic     = 0                        "default value is 1
@@ -990,7 +997,7 @@ if plugin#IsEnabled('vim-colors-solarized')
 endif
 " }}}
 " vim-cpp-enhanced-highlight {{{2
-if plugin#IsEnabled('vim-cpp-enhanced-highlight')
+if plugin#isEnabled('vim-cpp-enhanced-highlight')
     let g:cpp_class_scope_highlight = 1
     let g:cpp_member_variable_highlight = 1
     let g:cpp_class_decl_highlight = 1
@@ -1001,7 +1008,7 @@ if plugin#IsEnabled('vim-cpp-enhanced-highlight')
 endif
 "}}}
 " vim-easy-align {{{2
-if plugin#IsEnabled('vim-easy-align')
+if plugin#isEnabled('vim-easy-align')
     " Start interactive EasyAlign in visual mode (e.g. vipga)
     "xmap ga <Plug>(EasyAlign)
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -1009,7 +1016,7 @@ if plugin#IsEnabled('vim-easy-align')
 endif
 " }}}
 " vim-go {{{2
-if plugin#IsEnabled('vim-go')
+if plugin#isEnabled('vim-go')
     let g:go_fmt_command = "goimports"
     let g:go_autodetect_gopath = 1
     let g:go_list_type = "quickfix"
@@ -1022,13 +1029,13 @@ if plugin#IsEnabled('vim-go')
 endif
 "}}}2
 " vim-javacomplete2 {{{2
-if plugin#IsEnabled('vim-javacomplete2')
+if plugin#isEnabled('vim-javacomplete2')
     autocmd FileType java set omnifunc=javacomplete#Complete
     autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
 endif
 " }}}
 " vim-jsbeautify {{{2
-if plugin#IsEnabled('vim-jsbeautify')
+if plugin#isEnabled('vim-jsbeautify')
     autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
     " for html
     autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
@@ -1039,7 +1046,7 @@ if plugin#IsEnabled('vim-jsbeautify')
 endif
 "}}}
 " vim-session {{{2
-if plugin#IsEnabled('vim-session')
+if plugin#isEnabled('vim-session')
     let g:session_autosave = 'yes'
     let g:session_autoload = 'no'
     let g:session_directory = vimrc_dir . 'sessions'
@@ -1047,12 +1054,12 @@ if plugin#IsEnabled('vim-session')
 endif
 " }}}
 " vim-shell {{{2
-if plugin#IsEnabled('vim-shell')
+if plugin#isEnabled('vim-shell')
     let g:shell_mappings_enabled=0
 endif
 " }}}
 " vim-support {{{2
-if plugin#IsEnabled('vim-support')
+if plugin#isEnabled('vim-support')
     if g:UNICODE
         let g:Vim_LocalTemplateFile = vimrc_dir . 'templates/vim-support/templates/Templates'
     endif
@@ -1060,19 +1067,19 @@ if plugin#IsEnabled('vim-support')
 endif
 "}}}
 " vim-toggle {{{2
-if plugin#IsEnabled('vim-toggle')
+if plugin#isEnabled('vim-toggle')
     imap <C-T>:call Toggle()<CR>
     nmap <C-T>:call Toggle()<CR>
     vmap <C-T> <ESC>:call Toggle()<CR>
 endif
 "}}}
 " xml_completion {{{2
-if plugin#IsEnabled('xml_completion')
+if plugin#isEnabled('xml_completion')
     let g:xmlSubelements = "yes"
 endif
 " }}}
 " yaifa {{{2
-if plugin#IsEnabled('yaifa')
+if plugin#isEnabled('yaifa')
     let yaifa_max_lines = 512
 endif
 "}}}
@@ -1144,7 +1151,7 @@ filetype plugin indent on
 
 set sessionoptions+=tabpages,globals
 
-if !plugin#IsEnabled('vim-sensible')
+if !plugin#isEnabled('vim-sensible')
     set autoread                                " read open files again when changed outside Vim
     set scrolloff=4                             " keep 4 lines off the edges of the screen when scrolling
     set backspace=indent,eol,start              " allow backspacing over everything in insert mode
