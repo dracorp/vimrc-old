@@ -150,6 +150,8 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
+Plug 'ekalinin/Dockerfile.vim'                  " [Vim syntax file & snippets for Docker's Dockerfile](https://github.com/ekalinin/Dockerfile.vim)
+
 " c++, c {{{3
 Plug 'jiangxincode/mpi.vim', {'for':['c','cpp','fortran']}  " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
 Plug 'vim-scripts/OmniCppComplete',      {'for': 'cpp'}                 " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
@@ -1625,6 +1627,18 @@ command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
 "}}}
+function! RemoveDiacritics(...) "{{{
+    if a:0 == 0
+        let s:locale='pl'
+    else
+        let s:locale=a:1
+    endif
+    if s:locale == 'pl'
+        %s/[ąĄćĆęĘłŁńŃóÓśŚźŹżŻ]/
+            \\={'ą':'a','Ą':'A','ć':'c','Ć':'C','ę':'e','Ę':'E','ł':'l','Ł':'L','ń':'n','Ń':'N','ó':'o','Ó':'O','ś':'s','Ś':'S','ź':'z','Ź':'Z','ż':'z','Ż':'Z'}
+            \[submatch(0)]/g
+    endif
+endfunction "}}}
 
 " build_go_files is a custom function that builds or compiles the test file.
 " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
@@ -1642,6 +1656,7 @@ if filereadable(vimrc_dir . "functions.vim")
 endif
 
 " Commands for functions {{{2
+command! -nargs=0 RemoveDiacritics call RemoveDiacratics()
 
 " Mapping for functions {{{2
 nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
