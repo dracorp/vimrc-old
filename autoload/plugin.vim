@@ -24,23 +24,23 @@ else
 endif
 
 function! plugin#isEnabled(directory, ...)
-    let a:verbose   = get(a:, 1, 0)
+    let l:verbose   = get(a:, 1, 0)
     let fullDir = expand(s:pluginIsEnabledDirectory . "/" . a:directory)
-    if s:pluginIsEnabledVerbose || a:verbose
+    if s:pluginIsEnabledVerbose || l:verbose
         echohl WarningMsg
         echo "Checking the directory " . fullDir . ":"
         echohl None
     endif
     let retval = isdirectory(fullDir)
     if !retval
-        if s:pluginIsEnabledVerbose || a:verbose
+        if s:pluginIsEnabledVerbose || l:verbose
             echohl WarningMsg
             echo "\t* directory does not exist"
             echohl None
         endif
         return retval
     endif
-    if s:pluginIsEnabledVerbose || a:verbose
+    if s:pluginIsEnabledVerbose || l:verbose
         echo "\t* directory exists"
     endif
     let dict = {}
@@ -49,12 +49,12 @@ function! plugin#isEnabled(directory, ...)
         let dict[path] = 1
     endfor
     if has_key(dict,fullDir)
-        if s:pluginIsEnabledVerbose || a:verbose
+        if s:pluginIsEnabledVerbose || l:verbose
             echo "\t* runtimepath contains directory"
         endif
         return 1
     endif
-    if s:pluginIsEnabledVerbose || a:verbose
+    if s:pluginIsEnabledVerbose || l:verbose
         echohl WarningMsg
         echo "\t* runtimepath does not contain directory"
         echohl None
