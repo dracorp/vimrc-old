@@ -89,7 +89,7 @@ if version >= 800 || has('nvim')
     Plug 'skywind3000/asyncrun.vim'             " [Run Async Shell Commands in Vim 8.0 / NeoVim and Output to Quickfix Window](https://github.com/skywind3000/asyncrun.vim)
 endif
 "Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
-Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
+"Plug 'vim-scripts/YankRing.vim'                 " [Maintains a history of previous yanks, changes and deletes](https://github.com/vim-scripts/YankRing.vim)
 Plug 'junegunn/vim-peekaboo'                    " [extends \" and @ in normal mode and <CTRL-R>](https://github.com/junegunn/vim-peekaboo)
 Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
 if has('patch-8.0.1364') || has('nvim')
@@ -134,7 +134,7 @@ endif
 " Behavior {{{2
 "Plug 'Raimondi/delimitMate'                     " [insert mode auto-completion for quotes, parens, brackets](https://github.com/Raimondi/delimitMate)
 Plug 'rstacruz/vim-closer'                      " [Closes brackets](https://github.com/rstacruz/vim-closer)
-Plug 'vim-scripts/restore_view.vim'             " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
+"Plug 'vim-scripts/restore_view.vim'             " [automatically restoring file's cursor position and folding](https://github.com/vim-scripts/restore_view.vim)
 Plug 'markonm/traces.vim'                       " [Range, pattern and substitute preview for Vim](https://github.com/markonm/traces.vim)
 "Plug 'gcmt/taboo.vim'                           " [Few utilities for pretty tabs](https://github.com/gcmt/taboo.vim)
 Plug 'vim-scripts/let-modeline.vim'             " [Extends the modeline feature to the assignment of variables](https://github.com/vim-scripts/let-modeline.vim)
@@ -277,10 +277,11 @@ Plug 'StanAngeloff/php.vim', {'for':'php'} " [Up-to-date PHP syntax file (5.3 - 
 Plug 'vim-scripts/bats.vim'                     " [Syntax highlighting for Bats - Bash Automated Testing System](https://github.com/vim-scripts/bats.vim)
 
 " Markdown {{{2
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
+"Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
 "Plug 'MikeCoder/markdown-preview.vim', {'for': 'markdown'}               " [Markdown Preview - brokes vim](https://github.com/vim-scripts/markdown-preview.vim) does not work
 Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}                " [Fold markdown documents by section](https://github.com/nelstrom/vim-markdown-folding)
 "Plug 'suan/vim-instant-markdown', {'for':'markdown'}                     " [Instant Markdown previews](https://github.com/suan/vim-instant-markdown)
+"Plug 'JamshedVesuna/vim-markdown-preview'       " [A light Vim plugin for previewing markdown files in a browser](https://github.com/JamshedVesuna/vim-markdown-preview)
 
 " Charles Campbell {{{2
 Plug 'vim-scripts/AnsiEsc.vim'                  " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/vim-scripts/AnsiEsc.vim)
@@ -300,7 +301,7 @@ Plug 'vim-scripts/cecutil'                      " [save/restore window position,
 Plug 'xolox/vim-shell'                          " [Improved integration between Vim and its environment](https://github.com/xolox/vim-shell)
 Plug 'xolox/vim-misc'                           " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
 Plug 'xolox/vim-reload'                         " [Automatic reloading of Vim scripts](https://github.com/xolox/vim-reload)
-Plug 'xolox/vim-session'                        " [Extended session management for Vim](https://github.com/xolox/vim-session)
+"Plug 'xolox/vim-session'                        " [Extended session management for Vim](https://github.com/xolox/vim-session)
 if g:PYTHON
     Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
 endif
@@ -370,7 +371,7 @@ Plug 'vim-scripts/supersearch'                  " [plugin is a source code brows
 Plug 'vim-scripts/Dokumentary'                  " [Improve what K does](https://github.com/vim-scripts/Dokumentary)
 Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
 "Plug 'AutoFold.vim'                            " [A script to automate folding based on markers and syntax](https://github.com/vim-scripts/AutoFold.vim)
-Plug 'Konfekt/FastFold'                         " [Speed up Vim by updating folds only when called-for](https://github.com/Konfekt/FastFold)
+"Plug 'Konfekt/FastFold'                         " [Speed up Vim by updating folds only when called-for](https://github.com/Konfekt/FastFold)
 Plug 'reedes/vim-pencil'                        " [Rethinking Vim as a tool for writing](https://github.com/reedes/vim-pencil)
 Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two directories](https://github.com/will133/vim-dirdiff)
 Plug 'vim-scripts/cream-ascii'                  " [Insert an ASCII character from a dialog box](https://github.com/vim-scripts/cream-ascii)
@@ -386,6 +387,9 @@ Plug 'mileszs/ack.vim'                          " [Vim plugin for the Perl modul
 if executable('rg')
     Plug 'jremmen/vim-ripgrep'                  " [Use RipGrep in Vim and display results in a quickfix list](https://github.com/jremmen/vim-ripgrep)
 endif
+Plug 'VincentCordobes/vim-translate'            " [A tiny translate-shell wrapper for Vim](https://github.com/VincentCordobes/vim-translate)
+Plug 'rizzatti/dash.vim'                        " [Search Dash.app from Vim](https://github.com/rizzatti/dash.vim)
+Plug 'Lenovsky/nuake'                           " [A Quake-style terminal panel](https://github.com/Lenovsky/nuake)
 
 " ctrl-a
 "Plug 'tpope/vim-speeddating'                    " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
@@ -405,7 +409,6 @@ Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by
 if !g:MSWIN
     Plug 'c9s/perlomni.vim',{'do':'make install'} " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
 endif
-"Plug 'Valloric/YouCompleteMe'                   " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 " Snippets for neocomplcache, neocomplete
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -439,6 +442,8 @@ execute 'Plug \"' . bundle_dir . '/file_templates\"'
 " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
 execute 'Plug \"' . bundle_dir . '/StlShowFunc\"'
 execute 'Plug \"' . bundle_dir . '/manpageview\"'
+" [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+execute 'Plug \"' . bundle_dir . 'YouCompleteMe\"'
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
@@ -1055,6 +1060,13 @@ if plugin#isEnabled('vim-jsbeautify')
     let g:jsx_ext_required = 0
 endif
 "}}}
+"vim-markdown-preview {{{2
+if plugin#isEnabled('vim-markdown-preview')
+    let vim_markdown_preview_browser='Firefox'
+"    let vim_markdown_preview_perl=1
+"    let vim_markdown_preview_pandoc=1
+endif
+"}}}
 " vim-session {{{2
 if plugin#isEnabled('vim-session')
     let g:session_autosave = 'yes'
@@ -1198,7 +1210,7 @@ set splitbelow                                  " command :sp put a new window b
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
-"set iskeyword+=-                                " which char make a word
+set iskeyword+=-                                " which char make a word
 " open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
 " open file under cursor for entry: VARIABLE=path
