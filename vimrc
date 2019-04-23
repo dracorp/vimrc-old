@@ -266,7 +266,7 @@ Plug 'vim-scripts/LogViewer'                    " [Comfortable examination of mu
 Plug 'vim-scripts/TWiki-Syntax'                 " [Syntaxfile for TWiki-Syntax](https://github.com/vim-scripts/TWiki-Syntax)
 Plug 'vim-scripts/whitespace-syntax-highlight'  " [whitespace syntax highlight](https://github.com/vim-scripts/whitespace-syntax-highlight/)
 "Plug 'bronson/vim-trailing-whitespace'          " [Highlights trailing whitespace in red and provides](https://github.com/bronson/vim-trailing-whitespace)
-Plug 'ntpeters/vim-better-whitespace'           " [Better whitespace highlighting](https://github.com/ntpeters/vim-better-whitespace)
+"Plug 'ntpeters/vim-better-whitespace'           " [Better whitespace highlighting](https://github.com/ntpeters/vim-better-whitespace)
 Plug 'vim-scripts/logstash.vim'                 " [logstash.vim highlights configuration files for logstash](https://github.com/vim-scripts/logstash.vim)
 Plug 'chrisbra/csv.vim',{'for':'csv'}           " [A Filetype plugin for csv files](https://github.com/chrisbra/csv.vim)
 Plug 'sheerun/vim-polyglot'                     " [A solid language pack for Vim](https://github.com/sheerun/vim-polyglot)
@@ -443,6 +443,10 @@ execute 'Plug \"' . bundle_dir . '/manpageview\"'
 call plug#end()
 delc PlugUpgrade
 "}}}2
+"{{{2 Language & Grammar
+Plug 'rhysd/vim-grammarous'                     " [A powerful grammar checker for Vim using LanguageTool](https://github.com/rhysd/vim-grammarous)
+"}}}2
+
 " }}}
 
 " Plugins configuration {{{
