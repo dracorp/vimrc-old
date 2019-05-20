@@ -312,7 +312,9 @@ Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two direct
 " [Table Mode for instant table creation](https://github.com/dhruvasagar/vim-table-mode)
 Plug 'dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
 Plug 'brooth/far.vim'                           " [Find And Replace](https://github.com/brooth/far.vim)
-Plug 'soywod/kronos.vim'                        " [A simple task and time manager for vim](https://github.com/soywod/kronos.vim)
+if has('python3')
+    Plug 'soywod/kronos.vim'                    " [A simple task and time manager for vim](https://github.com/soywod/kronos.vim)
+endif
 " 3rd party tools {{{2
 Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
 Plug 'rking/ag.vim'                             " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
