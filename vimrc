@@ -332,6 +332,10 @@ Plug 'vim-scripts/visual-increment'                         " [Use CTRL+A/X to c
 " Use neocomplete or neocomplcache or supertab
 if ( version > 800 )
     Plug 'Valloric/YouCompleteMe'               " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+    if g:PYTHON
+        " TAB conflict with other completion tools
+        Plug 'SirVer/ultisnips'                 " [The ultimate snippet solution for Vim](https://github.com/SirVer/ultisnips)
+    endif
 elseif (version > 703 && has('lua')) || ( version == 703 && has('patch-885') && has('lua'))
     Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
 elseif (version >= 703 && !has('lua'))
@@ -344,12 +348,8 @@ if !g:MSWIN
     Plug 'c9s/perlomni.vim',{'do':'make install'} " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
 endif
 " Snippets for neocomplcache, neocomplete
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-if g:PYTHON
-    " TAB conflict with other completion tools
-"    Plug 'SirVer/ultisnips'                     " [The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!](https://github.com/SirVer/ultisnips)
-endif
+Plug 'Shougo/neosnippet.vim'                    " [Shougo/neosnippet](https://github.com/Shougo/neosnippet.vim)
+Plug 'Shougo/neosnippet-snippets'               " [The standard snippets repository for neosnippet](https://github.com/Shougo/neosnippet-snippets)
 Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
 
 " UNIX only {{{2
@@ -663,6 +663,19 @@ if plugin#isEnabled('neocomplete.vim')
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 endif
 " }}}
+" neosnippet {{{2
+if plugin#isEnabled('neosnippet')
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+    " Enable snipMate compatibility feature.
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    
+    " Tell Neosnippet about the other snippets
+    let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+endif
+" }}}
 " nerdtree {{{2
 if plugin#isEnabled('nerdtree')
     map <F2> :NERDTreeToggle<CR>
@@ -905,11 +918,34 @@ endif
 " ultisnips {{{2
 if plugin#isEnabled('ultisnips')
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"    let g:UltiSnipsExpandTrigger="<tab>"
-"    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
+    function! g:UltiSnips_Complete()
+        call UltiSnips#ExpandSnippet()
+        if g:ulti_expand_res == 0
+            if pumvisible()
+                return "\"
+            else
+                call UltiSnips#JumpForwards()
+                if g:ulti_jump_forwards_res == 0
+                return "\"
+                endif
+            endif
+        endif
+        return ""
+    endfunction
+
+    au BufEnter * exec "inoremap  " . g:UltiSnipsExpandTrigger . " =g:UltiSnips_Complete()"
+
+    autocmd BufEnter,BufRead *.html,*.htm UltiSnipsAddFiletypes html.htmldjango
+    autocmd BufEnter,BufRead *.rst UltiSnipsAddFiletypes rst.rst
+    autocmd BufEnter,BufRead *.py UltiSnipsAddFiletypes python.python
+
+    au BufReadPost *.snippets set filetype=snippets
+    autocmd BufEnter,BufRead *.snippets UltiSnipsAddFiletypes snippets.snippets
 endif
 " }}}
 " undotree {{{2
@@ -1053,6 +1089,18 @@ if plugin#isEnabled('yaifa')
     let yaifa_max_lines = 512
 endif
 "}}}
+" YouCompleteMe {{{2
+if plugin#isEnabled('YouCompleteMe')
+    let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+    let g:ycm_use_ultisnips_completer = 1           " Default 1, just ensure
+    let g:ycm_seed_identifiers_with_syntax = 1      " Completion for programming language's keyword
+    let g:ycm_complete_in_comments = 1              " Completion in comments
+    let g:ycm_complete_in_strings = 1               " Completion in string
+    let g:snips_author = 'Piotr Rogoza'
+    let g:snips_email = 'piotr.r.public@gmail.com'
+    let g:snips_github = 'https://github.com/dracorp'
+endif
+" }}}
 "}}}
 
 " Editing behaviour {{{
