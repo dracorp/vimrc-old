@@ -297,7 +297,6 @@ if version >= 703
     Plug 'ap/vim-buftabline'                    " [Forget Vim tabs - now you can have buffer tabs](https://github.com/ap/vim-buftabline)
 endif
 "Plug 'vim-scripts/tskeleton'                    " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
-"    Plug 'vim-scripts/tlib'                     " [Some utility functions](https://github.com/vim-scripts/tlib)
 if g:UNIX && g:UNICODE
 "    Plug 'ryanoasis/vim-devicons'               " [adds font icons](https://github.com/ryanoasis/vim-devicons) breaks NerdTree
 endif
@@ -312,13 +311,17 @@ Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two direct
 " [Table Mode for instant table creation](https://github.com/dhruvasagar/vim-table-mode)
 Plug 'dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
 Plug 'brooth/far.vim'                           " [Find And Replace](https://github.com/brooth/far.vim)
-Plug 'soywod/kronos.vim'                        " [A simple task and time manager for vim](https://github.com/soywod/kronos.vim)
+if has('python3')
+    Plug 'soywod/kronos.vim'                    " [A simple task and time manager for vim](https://github.com/soywod/kronos.vim)
+endif
 " 3rd party tools {{{2
 Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
 Plug 'rking/ag.vim'                             " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
 Plug 'vim-scripts/ctrlsf.vim'                   " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
-if executable('rg')
-endif
+Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
+Plug 'VincentCordobes/vim-translate'            " [A tiny translate-shell wrapper for Vim](https://github.com/VincentCordobes/vim-translate)
+Plug 'rizzatti/dash.vim'                        " [Search Dash.app from Vim](https://github.com/rizzatti/dash.vim)
+Plug 'Lenovsky/nuake'                           " [A Quake-style terminal panel](https://github.com/Lenovsky/nuake)
 
 " ctrl-a
 "Plug 'tpope/vim-speeddating'                    " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
@@ -328,26 +331,37 @@ Plug 'vim-scripts/visual-increment'                         " [Use CTRL+A/X to c
 " Completion {{{2
 " Use neocomplete or neocomplcache or supertab
 if ( version > 800 )
-    Plug 'Valloric/YouCompleteMe'               " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
-    if g:PYTHON
-        " TAB conflict with other completion tools
-        Plug 'SirVer/ultisnips'                 " [The ultimate snippet solution for Vim](https://github.com/SirVer/ultisnips)
+    " Do not install via vim-plug, install it manually
+    " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+"    execute 'Plug \"' . bundle_dir . '/YouCompleteMe\"'
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
     endif
-elseif (version > 703 && has('lua')) || ( version == 703 && has('patch-885') && has('lua'))
-    Plug 'Shougo/neocomplete.vim'               " [Next generation completion framework after neocomplcache](https://github.com/Shougo/neocomplete.vim)
-elseif (version >= 703 && !has('lua'))
-    Plug 'Shougo/neocomplcache.vim'             " [Ultimate auto-completion system for Vim](https://github.com/Shougo/neocomplcache.vim)
 else
     Plug 'ervandew/supertab'                    " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
 endif
-Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
 if !g:MSWIN
+    " add to the env variable PATH ~/.vim/bin
     Plug 'c9s/perlomni.vim',{'do':'make install'} " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
+endif
+" }}}
+" Snippets {{{2
+if g:PYTHON
+    " TAB conflict with other completion tools
+"    Plug 'SirVer/ultisnips'                 " [The ultimate snippet solution for Vim](https://github.com/SirVer/ultisnips)
 endif
 " Snippets for neocomplcache, neocomplete
 Plug 'Shougo/neosnippet.vim'                    " [Shougo/neosnippet](https://github.com/Shougo/neosnippet.vim)
 Plug 'Shougo/neosnippet-snippets'               " [The standard snippets repository for neosnippet](https://github.com/Shougo/neosnippet-snippets)
 Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
+Plug 'garbas/vim-snipmate'                      " [snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features](https://github.com/garbas/vim-snipmate)
+    Plug 'vim-scripts/tlib'                     " [Some utility functions](https://github.com/vim-scripts/tlib)
+    Plug 'marcweber/vim-addon-mw-utils'         " [interpret a file by function and cache file automatically](https://github.com/marcweber/vim-addon-mw-utils)
+" }}}
 
 " UNIX only {{{2
 if g:UNIX
@@ -411,6 +425,23 @@ if plugin#isEnabled('delimitMate')
     let delimitMate_expand_cr = 1
 endif
 " }}}
+" deoplete {{{2
+if plugin#isEnabled('deoplete.vim')
+    let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#option({
+        \ 'auto_complete_delay': 200,
+        \ 'smart_case': v:true,
+        \ })
+    inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ deoplete#mappings#manual_complete()
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+endif
+"
 " doxygen-support {{{2
 if plugin#isEnabled('doxygen-support.vim')
     let g:Doxy_LocalTemplateFile = vimrc_dir . 'templates/doxygen-support/templates/Templates'
@@ -666,9 +697,23 @@ if plugin#isEnabled('neosnippet')
     xmap <C-k>     <Plug>(neosnippet_expand_target)
     " Enable snipMate compatibility feature.
     let g:neosnippet#enable_snipmate_compatibility = 1
-    
+
     " Tell Neosnippet about the other snippets
     let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+    " SuperTab like snippets behavior.
+    " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+    imap <expr><TAB>
+     \ pumvisible() ? "\<C-n>" :
+     \ neosnippet#expandable_or_jumpable() ?
+     \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    " For conceal markers.
+    if has('conceal')
+        set conceallevel=2 concealcursor=niv
+    endif
 endif
 " }}}
 " nerdtree {{{2
@@ -918,22 +963,6 @@ if plugin#isEnabled('ultisnips')
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
-    function! g:UltiSnips_Complete()
-        call UltiSnips#ExpandSnippet()
-        if g:ulti_expand_res == 0
-            if pumvisible()
-                return "\"
-            else
-                call UltiSnips#JumpForwards()
-                if g:ulti_jump_forwards_res == 0
-                return "\"
-                endif
-            endif
-        endif
-        return ""
-    endfunction
-
-    au BufEnter * exec "inoremap  " . g:UltiSnipsExpandTrigger . " =g:UltiSnips_Complete()"
 
     autocmd BufEnter,BufRead *.html,*.htm UltiSnipsAddFiletypes html.htmldjango
     autocmd BufEnter,BufRead *.rst UltiSnipsAddFiletypes rst.rst
@@ -1193,7 +1222,7 @@ set splitbelow                                  " command :sp put a new window b
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
 set tildeop                                     " Tylde(~) behaves like operator
-"set iskeyword+=-                                " which char make a word
+set iskeyword+=-                                " which char make a word
 " open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
 " open file under cursor for entry: VARIABLE=path
