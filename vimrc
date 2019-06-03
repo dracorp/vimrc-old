@@ -109,6 +109,13 @@ Plug 'AndrewRadev/splitjoin.vim'                " [A vim plugin that simplifies 
 
 " Behavior {{{2
 Plug 'rstacruz/vim-closer'                      " [Closes brackets](https://github.com/rstacruz/vim-closer)
+Plug 'terryma/vim-smooth-scroll'
+Plug 'Shougo/echodoc.vim'
+    Plug 'Shougo/context_filetype.vim'          " [Context filetype library](https://github.com/Shougo/context_filetype.vim)
+let g:echodoc_enable_at_startup = 1
+Plug 'chxuan/vim-edit'
+Plug 'haya14busa/incsearch.vim'
+Plug 'chxuan/vim-buffer'
 
 " Programming Languages {{{2
 " [A Vim plugin for Prettier](https://github.com/prettier/vim-prettier)
@@ -330,20 +337,21 @@ Plug 'vim-scripts/visual-increment'                         " [Use CTRL+A/X to c
 
 " Completion {{{2
 " Use neocomplete or neocomplcache or supertab
-if ( version > 800 )
+"if ( version > 800 )
     " Do not install via vim-plug, install it manually
     " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 "    execute 'Plug \"' . bundle_dir . '/YouCompleteMe\"'
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-else
+"    [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim)
+"    if has('nvim')
+"        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"    else
+"        Plug 'Shougo/deoplete.nvim'
+"        Plug 'roxma/nvim-yarp'
+"        Plug 'roxma/vim-hug-neovim-rpc'
+"    endif
+"else
     Plug 'ervandew/supertab'                    " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
-endif
+"endif
 if !g:MSWIN
     " add to the env variable PATH ~/.vim/bin
     Plug 'c9s/perlomni.vim',{'do':'make install'} " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
@@ -358,9 +366,9 @@ endif
 Plug 'Shougo/neosnippet.vim'                    " [Shougo/neosnippet](https://github.com/Shougo/neosnippet.vim)
 Plug 'Shougo/neosnippet-snippets'               " [The standard snippets repository for neosnippet](https://github.com/Shougo/neosnippet-snippets)
 Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
-Plug 'garbas/vim-snipmate'                      " [snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features](https://github.com/garbas/vim-snipmate)
-    Plug 'vim-scripts/tlib'                     " [Some utility functions](https://github.com/vim-scripts/tlib)
-    Plug 'marcweber/vim-addon-mw-utils'         " [interpret a file by function and cache file automatically](https://github.com/marcweber/vim-addon-mw-utils)
+"Plug 'garbas/vim-snipmate'                      " [snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features](https://github.com/garbas/vim-snipmate)
+"    Plug 'vim-scripts/tlib'                     " [Some utility functions](https://github.com/vim-scripts/tlib)
+"    Plug 'marcweber/vim-addon-mw-utils'         " [interpret a file by function and cache file automatically](https://github.com/marcweber/vim-addon-mw-utils)
 " }}}
 
 " UNIX only {{{2
@@ -428,8 +436,11 @@ if plugin#isEnabled('delimitMate')
 endif
 " }}}
 " deoplete {{{2
-if plugin#isEnabled('deoplete.vim')
+if plugin#isEnabled('deoplete.nvim')
+	" Use deoplete.
     let g:deoplete#enable_at_startup = 1
+	" Use smartcase.
+	call deoplete#custom#option('smart_case', v:true)
     call deoplete#custom#option({
         \ 'auto_complete_delay': 200,
         \ 'smart_case': v:true,
@@ -494,6 +505,13 @@ if plugin#isEnabled('gruvbox')
         let g:lightline = {}
     endif
     let g:lightline.colorscheme='gruvbox'
+endif
+" }}}
+" incsearch.vim {{{2
+if plugin#isEnabled('incsearch.vim')
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
 endif
 " }}}
 " latex-support {{{2
@@ -721,15 +739,39 @@ endif
 " nerdtree {{{2
 if plugin#isEnabled('nerdtree')
     map <F2> :NERDTreeToggle<CR>
-    map <Leader>n <plug>NERDTreeTabsToggle<CR>
+    nnoremap <silent> <leader>n :NERDTreeToggle<cr>
+    inoremap <silent> <leader>n <esc> :NERDTreeToggle<cr>
     set timeoutlen=1000
     let g:NERDTreeDirArrows=0
-    "let g:NERDTreeDirArrowExpandable='+'
-    "let g:NERDTreeDirArrowCollapsible='~'
     let NERDTreeShowHidden=1
     "let NERDTreeIgnore=['\.swp$',]
+    let g:NERDTreeFileExtensionHighlightFullName = 1
+    let g:NERDTreeExactMatchHighlightFullName = 1
+    let g:NERDTreePatternMatchHighlightFullName = 1
+    let g:NERDTreeHighlightFolders = 1         
+    let g:NERDTreeHighlightFoldersFullName = 1 
+    "let g:NERDTreeDirArrowExpandable='+'
+    "let g:NERDTreeDirArrowCollapsible='~'
+    let g:NERDTreeDirArrowExpandable='▷'
+    let g:NERDTreeDirArrowCollapsible='▼'
     " close when last
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+endif
+" }}}
+" nerdtree-git-plugin {{{2
+if plugin#isEnabled('nerdtree-git-plugin')
+    let g:NERDTreeIndicatorMapCustom = {
+        \ "Modified"  : "✹",
+        \ "Staged"    : "✚",
+        \ "Untracked" : "✭",
+        \ "Renamed"   : "➜",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "✖",
+        \ "Dirty"     : "✗",
+        \ "Clean"     : "✔︎",
+        \ 'Ignored'   : '☒',
+        \ "Unknown"   : "?"
+        \ }
 endif
 " }}}
 " onehalf {{{2
@@ -996,6 +1038,14 @@ if plugin#isEnabled('vim-airline')
     let g:airline#extensions#wordcount#enabled    = 1   "Show word count
 endif
 "}}}
+" vim-buffer {{{2
+if plugin#isEnabled('vim-buffer')
+    nnoremap <silent> <c-p> :PreviousBuffer<cr>
+    nnoremap <silent> <c-n> :NextBuffer<cr>
+    nnoremap <silent> <leader>d :CloseBuffer<cr>
+    nnoremap <silent> <leader>D :BufOnly<cr>
+endif
+" }}}
 " vim-buftabline {{{2
 if plugin#isEnabled('vim-buftabline')
     nnoremap <C-N> :bnext<CR>
@@ -1027,6 +1077,14 @@ if plugin#isEnabled('vim-easy-align')
     "xmap ga <Plug>(EasyAlign)
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
     "nmap ga <Plug>(EasyAlign)
+endif
+" }}}
+" vim-edit {{{2
+if plugin#isEnabled('vim-edit')
+    nnoremap Y :CopyText<cr>
+    nnoremap D :DeleteText<cr>
+    nnoremap C :ChangeText<cr>
+    nnoremap <leader>r :ReplaceTo<space>
 endif
 " }}}
 " vim-go {{{2
@@ -1070,7 +1128,7 @@ if plugin#isEnabled('vim-jsbeautify')
     let g:jsx_ext_required = 0
 endif
 "}}}
-"vim-markdown-preview {{{2
+" vim-markdown-preview {{{2
 if plugin#isEnabled('vim-markdown-preview')
     let vim_markdown_preview_browser='Firefox'
 "    let vim_markdown_preview_perl=1
@@ -1088,6 +1146,14 @@ endif
 " vim-shell {{{2
 if plugin#isEnabled('vim-shell')
     let g:shell_mappings_enabled=0
+endif
+" }}}
+" vim-smooth-scroll {{{2
+if plugin#isEnabled('vim-smooth-scroll')
+    noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+    noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+    noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+    noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 endif
 " }}}
 " vim-support {{{2
@@ -1125,6 +1191,18 @@ if plugin#isEnabled('YouCompleteMe')
     let g:snips_author = 'Piotr Rogoza'
     let g:snips_email = 'piotr.r.public@gmail.com'
     let g:snips_github = 'https://github.com/dracorp'
+
+    let g:ycm_confirm_extra_conf = 0 
+    let g:ycm_error_symbol = '✗'
+    let g:ycm_warning_symbol = '✹'
+    let g:ycm_seed_identifiers_with_syntax = 1 
+    let g:ycm_complete_in_comments = 1 
+    let g:ycm_complete_in_strings = 1 
+    let g:ycm_python_binary_path = 'python'
+    nnoremap <leader>u :YcmCompleter GoToDeclaration<cr>
+    nnoremap <leader>o :YcmCompleter GoToInclude<cr>
+    nnoremap <leader>ff :YcmCompleter FixIt<cr>
+    nmap <F5> :YcmDiags<cr>
 endif
 " }}}
 "}}}
@@ -1149,7 +1227,8 @@ set smarttab                                    " insert tabs on the start of a 
 set expandtab                                   " expand tabs by default (overloadable per file type later)
 set shiftround                                  " use multiple of shiftwidth when indenting with '<' and '>'
 
-set nonumber                                    " show line numbers
+set number                                      " show line numbers
+set cursorline
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
 set smartcase                                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
@@ -1267,7 +1346,7 @@ set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 
 set lazyredraw                  " don't update the display while executing macros
 
-set cmdheight=1                 " use a status bar that is 1 rows high
+set cmdheight=2                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
 " UTF-8: EF BB BF
@@ -1721,7 +1800,7 @@ command! -nargs=0 Trim :%s/\s\+$//
 nnoremap <leader>i :set list!<cr>
 
 " Toggle line numbers
-nnoremap <leader>n :setlocal number!<cr>
+"nnoremap <leader>n :setlocal number!<cr>
 
 " highlight line under cursor, horizontal cursor
 nnoremap <Leader>l :setlocal cursorline!<CR>
