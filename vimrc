@@ -235,7 +235,8 @@ Plug 'vim-scripts/jQuery', {'for': 'javascript'} " [Syntax file for jQuery](http
 Plug 'StanAngeloff/php.vim', {'for':'php'}      " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
 Plug 'vim-scripts/bats.vim'                     " [Syntax highlighting for Bats - Bash Automated Testing System](https://github.com/vim-scripts/bats.vim)
 Plug 'ekalinin/Dockerfile.vim'                  " [Vim syntax file & snippets for Docker's Dockerfile](https://github.com/ekalinin/Dockerfile.vim)
-
+Plug 'vim-scripts/ldif.vim'                     " [syntax higlighting for LDIF (LDAP serialization)](https://github.com/vim-scripts/ldif.vim)
+Plug 'vim-scripts/ldap_schema.vim--Hahn'        " [ldap schmema definition language](https://github.com/vim-scripts/ldap_schema.vim--Hahn)
 
 " Markdown {{{2
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
