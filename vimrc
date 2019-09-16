@@ -15,6 +15,10 @@ if &compatible
     set nocompatible
 endif
 
+filetype on
+filetype plugin on
+filetype plugin indent on
+
 " Some global settings for further using {{{
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
 let g:MSWIN64 = has('win64')
@@ -197,6 +201,9 @@ Plug 'elzr/vim-json'                            " [A better JSON](https://github
 
 " maven {{{3
 Plug 'mikelue/vim-maven-plugin'                 " [The Maven plugin for VIM](https://github.com/mikelue/vim-maven-plugin)
+
+" Rust
+Plug 'https://github.com/rust-lang/rust.vim'    " [Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.]
 
 " Git and other VCS {{{2
 if executable('git')
@@ -749,8 +756,8 @@ if plugin#isEnabled('nerdtree')
     let g:NERDTreeFileExtensionHighlightFullName = 1
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
-    let g:NERDTreeHighlightFolders = 1         
-    let g:NERDTreeHighlightFoldersFullName = 1 
+    let g:NERDTreeHighlightFolders = 1
+    let g:NERDTreeHighlightFoldersFullName = 1
     "let g:NERDTreeDirArrowExpandable='+'
     "let g:NERDTreeDirArrowCollapsible='~'
     let g:NERDTreeDirArrowExpandable='▷'
@@ -1193,12 +1200,12 @@ if plugin#isEnabled('YouCompleteMe')
     let g:snips_email = 'piotr.r.public@gmail.com'
     let g:snips_github = 'https://github.com/dracorp'
 
-    let g:ycm_confirm_extra_conf = 0 
+    let g:ycm_confirm_extra_conf = 0
     let g:ycm_error_symbol = '✗'
     let g:ycm_warning_symbol = '✹'
-    let g:ycm_seed_identifiers_with_syntax = 1 
-    let g:ycm_complete_in_comments = 1 
-    let g:ycm_complete_in_strings = 1 
+    let g:ycm_seed_identifiers_with_syntax = 1
+    let g:ycm_complete_in_comments = 1
+    let g:ycm_complete_in_strings = 1
     let g:ycm_python_binary_path = 'python'
     nnoremap <leader>u :YcmCompleter GoToDeclaration<cr>
     nnoremap <leader>o :YcmCompleter GoToInclude<cr>
@@ -1268,10 +1275,6 @@ endif
 " }}}
 
 " Various settings {{{
-filetype on
-filetype plugin on
-filetype plugin indent on
-
 set sessionoptions+=tabpages,globals
 
 if !plugin#isEnabled('vim-sensible')
@@ -1754,6 +1757,28 @@ function! RemoveDiacritics(...) "{{{
     endif
 endfunction "}}}
 
+function! ToggleFoldMethod() "{{{
+    if (&foldmethod == "indent")
+        setlocal foldmethod=manual
+        echo "Foldmethod: manual"
+    elseif (&foldmethod == "manual")
+        setlocal foldmethod=syntax
+        echo "Foldmethod: syntax"
+    elseif (&foldmethod == "syntax")
+        setlocal foldmethod=marker
+        echo "Foldmethod: marker"
+    elseif (&foldmethod == "marker")
+        setlocal foldmethod=expr
+        echo "Foldmethod: expr"
+    elseif (&foldmethod == "expr")
+        setlocal foldmethod=diff
+        echo "Foldmethod: diff"
+    else
+        setlocal foldmethod=indent
+        echo "Foldmethod: indent"
+    endif
+endfunction "}}}
+
 " build_go_files is a custom function that builds or compiles the test file.
 " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
 function! s:build_go_files()
@@ -1765,18 +1790,15 @@ elseif l:file =~# '^\f\+\.go$'
 endif
 endfunction
 
-if filereadable(vimrc_dir . "functions.vim")
-    execute ":source" vimrc_dir . "functions.vim"
-endif
-
 " Commands for functions {{{2
 command! -nargs=0 RemoveDiacritics call RemoveDiacratics()
 
 " Mapping for functions {{{2
-nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
-nnoremap <leader>f :call FoldColumnToggle()<cr>
-"noremap  <silent> <F8>         :call ChangeFileencoding()<CR>
-noremap     <silent>    <F1>    :call DisplayManpage()<CR>
+nnoremap <leader>q                  :call <SID>QuickfixToggle()<cr>
+nnoremap <leader>f                  :call FoldColumnToggle()<cr>
+"noremap  <silent> <F8>              :call ChangeFileencoding()<CR>
+noremap  <silent> <F1>              :call DisplayManpage()<CR>
+nnoremap <silent> <Leader><Space>   :call ToggleFoldMethod()<CR>
 " }}}2
 " }}}
 
@@ -1791,6 +1813,9 @@ command! -nargs=0 Trim :%s/\s\+$//
 " <silent>  a mapping will not be echoed on the command line
 " %         actual file, :he expand
 " <leader>  default \
+
+" add additional mapleader instead of setting of mapleader option
+nmap , \
 
 " TAB and Shift-TAB in normal mode cycle buffers
 "nmap <Tab> :bn<CR>
