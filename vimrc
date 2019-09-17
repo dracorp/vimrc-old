@@ -23,6 +23,7 @@ filetype plugin indent on
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
 let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
+let g:MACOS   = has('mac')
 let g:PYTHON  = has('python') || has('python3')
 let g:PYTHON3 = has('python3')
 let g:OS      = substitute(system('uname'), "\n", "", "")
@@ -48,7 +49,12 @@ endif
 " $HOME - user's home directory
 " $VIM  - vim's installation direcotry
 if g:UNIX
-    let  vimrc_dir = $HOME . '/.vim/'
+    if has('nvim')
+        " nvim uses ~/.config/nvim/init.vim instead of ~/.vim/vimrc or ~/.vimrc
+        let vimrc_dir = $HOME . '/.config/nvim/'
+    else
+        let vimrc_dir = $HOME . '/.vim/'
+    endif
 elseif g:MSWIN
     " change '\' to '/' to avoid interpretation as escape character
     if match( substitute( expand("<sfile>"), '\', '/', 'g' ),
@@ -68,20 +74,44 @@ autocmd!
 "}}}
 
 " Plugins managed by vim-plug {{{
-" define bundle directory for plugins and also default directory to check if
-" a plugin exists for function plugin#isEnabled
-" use g:bundle_dir or if you want overwrite default directory to check for
+" Define bundle directory for plugins and also default directory to check if
+" a plugin exists for function plugin#isEnabled.
+" Use g:bundle_dir or if you want overwrite default directory to check for
 " plugin use g:pluginIsEnabledDirectory
 let bundle_dir = vimrc_dir . 'bundle'
 "let g:pluginIsEnabledDirectory = expand("$HOME/.vim/bundle")
 "let g:pluginIsEnabledVerbose = 1
 
+" Based on vim-bootstrap.com
+let vimplug_exists=expand(vimrc_dir . '/autoload/plug.vim')
+
+" Used by VimBootstrapUpdate function from vim-bootstrap
+let g:vim_bootstrap_langs = "perl"
+if has('nvim')
+    let g:vim_bootstrap_editor = "nvim"
+else
+    let g:vim_bootstrap_editor = "vim"
+endif
+
+if !filereadable(vimplug_exists)
+  if !executable("curl")
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
+endif
+
+" Required:
 call plug#begin(bundle_dir)
 " manage vim-plug by itself
 Plug 'junegunn/vim-plug'                        " [Minimalist Vim Plugin Manager](https://github.com/junegunn/vim-plug)
 
 " For Vim {{{2
-Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
 if !g:MSWIN
     Plug 'editorconfig/editorconfig-vim'        " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
@@ -92,16 +122,30 @@ Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode]
 Plug 'christoomey/vim-system-copy'              " [Vim plugin for copying to the system clipboard with text-objects and motions](https://github.com/christoomey/vim-system-copy)
 Plug 'chrisbra/Recover.vim'                     " [A Plugin to show a diff, whenever recovering a buffer](https://github.com/chrisbra/Recover.vim)
 Plug 'vim-scripts/let-modeline.vim'             " [Extends the modeline feature to the assignment of variables](https://github.com/vim-scripts/let-modeline.vim)
+if g:MACOS
+    Plug '/usr/local/opt/fzf'
+    Plug 'https://github.com/junegunn/fzf.vim'
+elseif g:UNIX
+    if executable('fzf')
+        Plug 'junegunn/fzf.vim'
+    else
+        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+        Plug 'junegunn/fzf.vim'
+    endif
+endif
+Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 
 " UI {{{2
 Plug 'scrooloose/nerdtree'                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
 Plug 'tyok/nerdtree-ack'                        " [NERDtree + ack.vim](https://github.com/tyok/nerdtree-ack)
     Plug 'mileszs/ack.vim'                      " [Vim plugin for the Perl module / CLI script 'ack'](https://github.com/mileszs/ack.vim)
+Plug 'jistr/vim-nerdtree-tabs'
 if g:UNICODE
     Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
 endif
 Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
 Plug 'lilydjwg/colorizer'                       " [A Vim plugin to colorize all text in the form #rrggbb or #rgb](https://github.com/lilydjwg/colorizer)
+Plug 'https://github.com/Yggdroot/indentLine'
 
 " UI::statusline {{{2
 if g:UNICODE
@@ -378,7 +422,6 @@ Plug 'honza/vim-snippets'                       " [snippets files for various pr
 "    Plug 'vim-scripts/tlib'                     " [Some utility functions](https://github.com/vim-scripts/tlib)
 "    Plug 'marcweber/vim-addon-mw-utils'         " [interpret a file by function and cache file automatically](https://github.com/marcweber/vim-addon-mw-utils)
 " }}}
-
 " UNIX only {{{2
 if g:UNIX
     Plug 'dracorp/vim-pkgbuild', {'for': 'PKGBUILD'}
@@ -398,13 +441,15 @@ endif
 " Some offline plugins {{{2
 " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 execute 'Plug \"' . bundle_dir . '/file_templates\"'
-" [This colorscheme is a dark-background style](http://www.drchip.org/astronaut/vim/index.html#ASTRONAUT)
-"execute 'Plug \"' . bundle_dir . '/astronaut\"'
 " [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
 execute 'Plug \"' . bundle_dir . '/StlShowFunc\"'
 execute 'Plug \"' . bundle_dir . '/manpageview\"'
 " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
 execute 'Plug \"' . bundle_dir . 'YouCompleteMe\"'
+
+if filereadable(vimrc_dir . "vimrc.local")
+    execute ":source " . vimrc_dir . "vimrc.local"
+endif
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
@@ -499,6 +544,18 @@ if plugin#isEnabled('file_templates')
     let g:VIMFILESDIR = vimrc_dir
 endif
 " }}}
+" fzf {{{2
+if plugin#isEnabled('fzf.vim')
+    nnoremap <silent> <leader>e :FZF -m<CR>
+    "Recovery commands from history through FZF
+    nmap <leader>y :History:<CR>
+endif
+" }}}
+" fugitive {{{2
+if plugin#isEnabled('vim-fugitive')
+  set statusline+=%{fugitive#statusline()}
+endif
+" }}}
 " gitgutter {{{2
 if plugin#isEnabled('vim-gitgutter')
     let g:gitgutter_sign_removed_first_line = "^_"
@@ -507,7 +564,7 @@ endif
 " }}}
 " gruvbox {{{2
 if plugin#isEnabled('gruvbox')
-    colorscheme gruvbox
+    silent! colorscheme gruvbox
     set background=dark
     if !exists("g:lightline")
         let g:lightline = {}
@@ -520,6 +577,14 @@ if plugin#isEnabled('incsearch.vim')
     map /  <Plug>(incsearch-forward)
     map ?  <Plug>(incsearch-backward)
     map g/ <Plug>(incsearch-stay)
+endif
+" }}}
+" indentLine {{{2
+if plugin#isEnabled('indentLine')
+  let g:indentLine_enabled = 1
+  let g:indentLine_concealcursor = 0
+  let g:indentLine_char = '┆'
+  let g:indentLine_faster = 1
 endif
 " }}}
 " latex-support {{{2
@@ -746,13 +811,16 @@ endif
 " }}}
 " nerdtree {{{2
 if plugin#isEnabled('nerdtree')
-    map <F2> :NERDTreeToggle<CR>
-    nnoremap <silent> <leader>n :NERDTreeToggle<cr>
-    inoremap <silent> <leader>n <esc> :NERDTreeToggle<cr>
+    nnoremap <silent> <F2> :NERDTreeToggle<CR>
+    nnoremap <silent> <F3> :NERDTreeFind<CR>
     set timeoutlen=1000
+    let g:NERDTreeChDirMode=2
     let g:NERDTreeDirArrows=0
     let NERDTreeShowHidden=1
+    let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
     "let NERDTreeIgnore=['\.swp$',]
+    let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+    let g:NERDTreeShowBookmarks=1
     let g:NERDTreeFileExtensionHighlightFullName = 1
     let g:NERDTreeExactMatchHighlightFullName = 1
     let g:NERDTreePatternMatchHighlightFullName = 1
@@ -784,7 +852,7 @@ endif
 " }}}
 " onehalf {{{2
 if plugin#isEnabled('onehalf/vim')
-    colorscheme onehalfdark
+    silent! colorscheme onehalfdark
     let g:airline_theme='onehalfdark'
     if !g:lightline
         let g:lightline = {}
@@ -922,7 +990,7 @@ endif
 " }}}
 " tagbar {{{2
 if plugin#isEnabled('tagbar')
-    noremap <silent> <F12>       :TagbarToggle<CR>
+    noremap  <silent> <F12>       :TagbarToggle<CR>
     inoremap <silent> <F12>  <C-C>:TagbarToggle<CR>
     let g:tagbar_left             = 1
     let g:tagbar_sort             = 0
@@ -1011,8 +1079,8 @@ endif
 if plugin#isEnabled('ultisnips')
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
     let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
 
@@ -1036,11 +1104,14 @@ endif
 " }}}
 " vim-airline {{{2
 if plugin#isEnabled('vim-airline')
-    let g:airline_powerline_fonts = 1
-    let g:airline_theme           = 'luna'
-    let g:airline_section_c       = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+    let g:airline_powerline_fonts     = 1
+    let g:airline_theme               = 'luna'
+    let g:airline_section_c           = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+    let g:airline_skip_empty_sections = 1
     " vim-airline's extensions
     let g:airline#extensions#tabline#enabled      = 1
+    let g:airline#extensions#branch#enabled       = 1
+    let g:airline#extensions#tagbar#enabled       = 1
     let g:airline#extensions#tabline#left_sep     = ' '
     let g:airline#extensions#tabline#left_alt_sep = '|'
     let g:airline#extensions#wordcount#enabled    = 1   "Show word count
@@ -1149,6 +1220,7 @@ if plugin#isEnabled('vim-session')
     let g:session_autoload = 'no'
     let g:session_directory = vimrc_dir . 'sessions'
     let g:session_autosave_periodic = '5'
+    let g:session_command_aliases = 1
 endif
 " }}}
 " vim-shell {{{2
@@ -1297,19 +1369,14 @@ set autowrite                                   " write a modified buffer on eac
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
 set browsedir=current                           " which directory to use for the file browser
 set complete+=k                                 " scan the files given with the 'dictionary' option
-
-" export: print or to html
-set printoptions=left:8pc,right:3pc             " print options
+set printoptions=left:8pc,right:3pc             " print options or export to html
 let g:html_use_css=1
 let g:use_xhtml=1000
-
 set display+=lastline                           " show last line even it does not fit
 "set colorcolumn=+1
 set showbreak=+\                                " show wraped lines as
-
 set modeline                                    " search for additional vim commands in n-th first lines(see modelines)
 set ttyfast                                     " always use a fast terminal
-
 set splitbelow                                  " command :sp put a new window below the active
 set splitright                                  " command :vs put a new windows on right side of active
 set infercase
@@ -1347,9 +1414,7 @@ au FileType sh set foldmethod=syntax
 
 " Editor layout {{{
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
-
 set lazyredraw                  " don't update the display while executing macros
-
 set cmdheight=2                 " use a status bar that is 1 rows high
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
 " bomb (BOM)
@@ -1393,10 +1458,11 @@ set directory=.,~/tmp           " store swap files in one of these directories (
 set viminfo='20,\"80            " read/write a .viminfo file, don't store more
                                 " than 80 lines of registers
 set wildmenu                    " make tab completion for files/buffers act like bash
-"set wildmode=longest,list
-set wildmode=list:longest,full  " show a list when pressing tab and complete
-set wildignore=*.bak,*.o,*.e,*~,*.swp,*.bak,*.pyc,*.class,*.so,*.pyo,*.zip
+set wildmode=list:longest,list:full  " show a list when pressing tab and complete
+set wildignore=*.o,*.e,*~,*.swp,*.class,*.so,*.pyo,*.zip,*.obj,.git,*.rbc,*.pyc,__pycache__
 set title                       " change the terminal's title
+set titleold="Terminal"
+set titlestring=%F
 set noerrorbells                " don't beep
 set novisualbell
 set t_vb=
@@ -1541,24 +1607,22 @@ if has("gui_running")
     set guioptions+=t                           " include tearoff menu items
     set guioptions-=e                           " Add tab pages when indicated with 'showtabline'
     set guioptions-=T                           " exclude Toolbar
-    " m - menu
-    " T - toolbar
-    " t - tear menu
-    " e - tabs
-    " g - grey inactive menu's items
 
     "set noguipty                                   " Make external commands work through a pipe instead of a pseudo-tty
     "set columns=80 lines=30                        " don't inherit geometry from parent term
-    "set mousemodel=popup                           " right mouse button pops up a menu in the GUI
+    set mousemodel=popup                           " right mouse button pops up a menu in the GUI
 
     " toggle insert mode  'normal mode with the <RightMouse>-key
     "nnoremap  <RightMouse> <Insert>
     "inoremap  <RightMouse> <ESC>
+    if g:MACOS
+        set transparency=7
+    endif
 
     if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
     elseif g:UNIX
-        set guifont=Hack\ 11
+"        set guifont=Hack\ 11
         set guifont=Fira\ Code\ 11
         " from https://github.com/powerline/fonts.git
     endif
@@ -1756,7 +1820,6 @@ function! RemoveDiacritics(...) "{{{
             \[submatch(0)]/g
     endif
 endfunction "}}}
-
 function! ToggleFoldMethod() "{{{
     if (&foldmethod == "indent")
         setlocal foldmethod=manual
@@ -1817,13 +1880,13 @@ command! -nargs=0 Trim :%s/\s\+$//
 " add additional mapleader instead of setting of mapleader option
 nmap , \
 
-" TAB and Shift-TAB in normal mode cycle buffers
-"nmap <Tab> :bn<CR>
-"nmap <S-Tab> :bp<CR>
-
 " Leader {{{2
+
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
+" Split
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
 
 " Toggle line numbers
 "nnoremap <leader>n :setlocal number!<cr>
@@ -1841,7 +1904,7 @@ nnoremap <leader>; ;
 vnoremap <leader>s !sort -f<CR>gv
 nnoremap <leader>s vip!sort -f<CR><Esc>
 
-nnoremap <Leader>h :set hlsearch!<CR>
+nnoremap <Leader>H :set hlsearch!<CR>
 
 " Quote words under cursor
 nnoremap <leader>" viW<esc>a"<esc>gvo<esc>i"<esc>gvo<esc>3l
