@@ -239,6 +239,8 @@ Plug 'vim-scripts/xslt',    {'for': 'xslt'}     " [XSLT ftplugin](https://github
 " YAML {{{3
 "Plug 'chase/vim-ansible-yaml', {'for':['yaml','yml']}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
 Plug 'pearofducks/ansible-vim'                  " [A vim plugin for syntax highlighting Ansible's common filetypes](https://github.com/pearofducks/ansible-vim)
+Plug 'https://github.com/andrewstuart/vim-kubernetes'
+Plug 'https://github.com/stephpy/vim-yaml'      " Override vim syntax for yaml files
 
 " JSON {{{3
 Plug 'elzr/vim-json'                            " [A better JSON](https://github.com/elzr/vim-json)
@@ -337,6 +339,8 @@ Plug 'godlygeek/tabular'                        " [Vim script for text filtering
 Plug 'AndrewRadev/switch.vim'                   " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
 if version > 700
     Plug 'scrooloose/syntastic'                 " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+    Plug 'https://github.com/roktas/syntastic-more'
+    Plug 'https://github.com/myint/syntastic-extras'
 endif
 Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
 Plug 'majutsushi/tagbar'                        " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
@@ -982,6 +986,7 @@ if plugin#isEnabled('syntastic')
     " syntastic on/off
     noremap <silent> <F9> <Esc>:SyntasticToggleMode<cr>
     inoremap <silent> <F9> <C-o>:SyntasticToggleMode<cr>
+    let g:syntastic_yaml_checkers = ['yamllint']
 endif
 "}}}
 " taboo.vim {{{2
