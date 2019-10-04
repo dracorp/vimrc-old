@@ -342,7 +342,7 @@ if version > 700
     Plug 'https://github.com/roktas/syntastic-more'
     Plug 'https://github.com/myint/syntastic-extras'
 endif
-Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
+"Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
 Plug 'majutsushi/tagbar'                        " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
 Plug 'vim-scripts/Tabmerge'                     " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
 Plug 'vim-scripts/taglist.vim'                  " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
