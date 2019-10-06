@@ -83,7 +83,7 @@ let bundle_dir = vimrc_dir . 'bundle'
 "let g:pluginIsEnabledVerbose = 1
 
 " Based on vim-bootstrap.com
-let vimplug_exists=expand(vimrc_dir . '/autoload/plug.vim')
+let vim_plug_path=expand(vimrc_dir . '/autoload/plug.vim')
 
 " Used by VimBootstrapUpdate function from vim-bootstrap
 let g:vim_bootstrap_langs = "perl"
@@ -93,353 +93,353 @@ else
     let g:vim_bootstrap_editor = "vim"
 endif
 
-if !filereadable(vimplug_exists)
-  if !executable("curl")
-    echoerr "You have to install curl or first install vim-plug yourself!"
-    execute "q!"
-  endif
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  let g:not_finish_vimplug = "yes"
-
-  autocmd VimEnter * PlugInstall
+let vim_plug_just_installed = 0
+if !filereadable(vim_plug_path)
+    if !executable("curl")
+        echoerr "You have to install curl or first install vim-plug yourself!"
+        execute "q!"
+    endif
+    echo "Installing Vim-Plug..."
+    echo ""
+    silent exec "!\curl -fLo " . vim_plug_path . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    let vim_plug_just_installed = 1
+    autocmd VimEnter * PlugInstall
 endif
 
-" Required:
+" manually load vim-plug the first time
+if vim_plug_just_installed
+    :execute 'source '.fnameescape(vim_plug_path)
+endif
+" Obscure hacks done, you can now modify the rest of the .vimrc as you wish :)
+
+" Required: this needs to be here, so vim-plug knows we are declaring the plugins we want to use
 call plug#begin(bundle_dir)
 " manage vim-plug by itself
-Plug 'junegunn/vim-plug'                        " [Minimalist Vim Plugin Manager](https://github.com/junegunn/vim-plug)
+Plug 'https://github.com/junegunn/vim-plug'     " Minimalist Vim Plugin Manager
 
-" For Vim {{{2
-Plug 'scrooloose/nerdcommenter'                 " [Vim plugin for intensely orgasmic commenting](https://github.com/scrooloose/nerdcommenter)
-if !g:MSWIN
-    Plug 'editorconfig/editorconfig-vim'        " [EditorConfig plugin](https://github.com/editorconfig/editorconfig-vim)
+Plug 'https://github.com/tpope/vim-sensible'                       " Defaults everyone can agree on
+Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' "Override vim configs with custom configs files in each dir
+Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
+Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
+Plug 'https://github.com/tyok/nerdtree-ack'                        " NERDtree + ack.vim
+Plug 'https://github.com/jistr/vim-nerdtree-tabs'
+if g:UNICODE
+    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
-Plug 'vim-scripts/vimwiki'                      " [Personal Wiki for Vim](https://github.com/vim-scripts/vimwiki)
-"Plug 'Shougo/vimproc.vim'                       " [great asynchronous execution library](https://github.com/Shougo/vimproc.vim)
-Plug 'ConradIrwin/vim-bracketed-paste'          " [Handles bracketed-paste-mode](https://github.com/ConradIrwin/vim-bracketed-paste)
-Plug 'christoomey/vim-system-copy'              " [Vim plugin for copying to the system clipboard with text-objects and motions](https://github.com/christoomey/vim-system-copy)
-Plug 'chrisbra/Recover.vim'                     " [A Plugin to show a diff, whenever recovering a buffer](https://github.com/chrisbra/Recover.vim)
-Plug 'vim-scripts/let-modeline.vim'             " [Extends the modeline feature to the assignment of variables](https://github.com/vim-scripts/let-modeline.vim)
+if !g:MSWIN
+    Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
+endif
+Plug 'https://github.com/vim-scripts/vimwiki' " Personal Wiki for Vim
+Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'          " Handles bracketed-paste-mode
+Plug 'https://github.com/christoomey/vim-system-copy'              " Vim plugin for copying to the system clipboard with text-objects and motions
+Plug 'https://github.com/chrisbra/Recover.vim'                     " A Plugin to show a diff, whenever recovering a buffer
+Plug 'https://github.com/vim-scripts/let-modeline.vim'             " Extends the modeline feature to the assignment of variables
 if g:MACOS
     Plug '/usr/local/opt/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'
 elseif g:UNIX
     if executable('fzf')
-        Plug 'junegunn/fzf.vim'
+        Plug 'https://github.com/junegunn/fzf.vim'
     else
-        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-        Plug 'junegunn/fzf.vim'
+        Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+        Plug 'https://github.com/junegunn/fzf.vim'
     endif
 endif
-Plug 'tpope/vim-sensible'                       " [Defaults everyone can agree on](https://github.com/tpope/vim-sensible)
 
-" UI {{{2
-Plug 'scrooloose/nerdtree'                      " [A tree explorer plugin for vim](https://github.com/scrooloose/nerdtree)
-Plug 'tyok/nerdtree-ack'                        " [NERDtree + ack.vim](https://github.com/tyok/nerdtree-ack)
-    Plug 'mileszs/ack.vim'                      " [Vim plugin for the Perl module / CLI script 'ack'](https://github.com/mileszs/ack.vim)
-Plug 'jistr/vim-nerdtree-tabs'
-if g:UNICODE
-    Plug 'scrooloose/nerdtree-git-plugin'       " [A plugin of NERDTree showing git status](https://github.com/scrooloose/nerdtree-git-plugin)
-endif
-Plug 'mhinz/vim-startify'                       " [The fancy start screen](https://github.com/mhinz/vim-startify)
-Plug 'lilydjwg/colorizer'                       " [A Vim plugin to colorize all text in the form #rrggbb or #rgb](https://github.com/lilydjwg/colorizer)
-Plug 'https://github.com/Yggdroot/indentLine'
+Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
+Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rgb
+Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
 
-" UI::statusline {{{2
 if g:UNICODE
-    Plug 'liuchengxu/eleline.vim'                   " [A tiny elegant statusline for vim](https://github.com/liuchengxu/eleline.vim)
+    Plug 'https://github.com/liuchengxu/eleline.vim'      " A tiny elegant statusline for vim
 else
-    Plug 'itchyny/lightline.vim'                    " [A light and configurable statusline/tabline plugin for Vim](https://github.com/itchyny/lightline.vim)
+    Plug 'https://github.com/itchyny/lightline.vim'       " A light and configurable statusline/tabline plugin for Vim
 endif
-Plug 'AndrewRadev/splitjoin.vim'                " [A vim plugin that simplifies the transition between multiline and single-line code](https://github.com/AndrewRadev/splitjoin.vim)
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'       " A vim plugin that simplifies the transition between multiline and single-line code
 
-" Behavior {{{2
-Plug 'rstacruz/vim-closer'                      " [Closes brackets](https://github.com/rstacruz/vim-closer)
-Plug 'terryma/vim-smooth-scroll'
-Plug 'Shougo/echodoc.vim'
-    Plug 'Shougo/context_filetype.vim'          " [Context filetype library](https://github.com/Shougo/context_filetype.vim)
-let g:echodoc_enable_at_startup = 1
-Plug 'chxuan/vim-edit'
-Plug 'haya14busa/incsearch.vim'
-Plug 'chxuan/vim-buffer'
+Plug 'https://github.com/rstacruz/vim-closer'             " Closes brackets
+Plug 'https://github.com/terryma/vim-smooth-scroll'       " Make scrolling in Vim more pleasant
+Plug 'https://github.com/Shougo/context_filetype.vim' " Context filetype library
+Plug 'https://github.com/chxuan/vim-edit'       " A text edit plugin for vim
+Plug 'https://github.com/haya14busa/incsearch.vim' " Improved incremental searching
+Plug 'https://github.com/chxuan/vim-buffer'     " A buffer operate plugin
 
 " Programming Languages {{{2
-" [A Vim plugin for Prettier](https://github.com/prettier/vim-prettier)
+" A Vim plugin for Prettier
 " By default it will auto format javascript, typescript, less, scss, css, json, graphql and markdown files if they have/support the "@format" pragma annotation in the header of the file.
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'https://github.com/prettier/vim-prettier', { 'do': 'npm install' }
 
 " c++, c {{{3
-Plug 'jiangxincode/mpi.vim', {'for':['c','cpp']}        " [A Vim Plugin for MPI Syntax highlight, matching rules and mappings](https://github.com/jiangxincode/mpi.vim)
-Plug 'vim-scripts/OmniCppComplete',      {'for': 'cpp'} " [C/C++ omni-completion with ctags database](https://github.com/vim-scripts/OmniCppComplete)
-Plug 'vim-scripts/cpp_cppcheck.vim',     {'for': 'cpp'} " [Run Cppcheck on the current window](https://github.com/vim-scripts/cpp_cppcheck.vim)
-Plug 'octol/vim-cpp-enhanced-highlight'                 " [Additional Vim syntax highlighting for C++ (including C++11/14)](https://github.com/octol/vim-cpp-enhanced-highlight)
+Plug 'https://github.com/jiangxincode/mpi.vim'        " A Vim Plugin for MPI Syntax highlight, matching rules and mappings
+Plug 'https://github.com/vim-scripts/OmniCppComplete' " C/C++ omni-completion with ctags database
+Plug 'https://github.com/vim-scripts/cpp_cppcheck.vim' " Run Cppcheck on the current window
+Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'                 " Additional Vim syntax highlighting for C++ (including C++11/14)
 
 " CSS/LESS {{{3
-Plug 'ap/vim-css-color',            {'for': ['css','scss','sass','less']}
-Plug 'groenewege/vim-less',         {'for': ['less']}
-Plug 'vitalk/vim-lesscss',          {'for': ['less']}                          " [Update corresponding css files on the fly while edit less files](https://github.com/vitalk/vim-lesscss)
+Plug 'https://github.com/ap/vim-css-color'
+Plug 'https://github.com/groenewege/vim-less'
+Plug 'https://github.com/vitalk/vim-lesscss' " Update corresponding css files on the fly while edit less files
 
 " Go {{{3
 if version > 704 || (version == 704 && has('patch330'))
-    Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'https://github.com/fatih/vim-go'
 endif
-Plug 'nsf/gocode',   {'for': 'go'}
+Plug 'https://github.com/nsf/gocode'
 
 " HTML {{{3
-Plug 'gregsexton/MatchTag', {'for': ['html','xml']}
-Plug 'mattn/emmet-vim',     {'for': ['html','css','sass']}  " [provides support for expanding abbreviations similar to emmet](https://github.com/mattn/emmet-vim)
-Plug 'othree/html5.vim',    {'for': ['html']}
-Plug 'tpope/vim-haml',      {'for': ['haml','sass','scss']}
-Plug 'alvan/vim-closetag',  {'for': ['html','xml']}         " [Auto close (X)HTML tags](https://github.com/alvan/vim-closetag)
+Plug 'https://github.com/gregsexton/MatchTag'
+Plug 'https://github.com/mattn/emmet-vim' " provides support for expanding abbreviations similar to emmet
+Plug 'https://github.com/othree/html5.vim'
+Plug 'https://github.com/tpope/vim-haml'
+Plug 'https://github.com/alvan/vim-closetag' " Auto close (X)HTML tags
 
 " Java {{{3
-Plug 'vim-scripts/vim-javacomplete2', {'for':'java'}        " [Refreshed javacomplete plugin for vim](https://github.com/vim-scripts/vim-javacomplete2)
-Plug 'vim-scripts/VimClojure',        {'for':'clojure'}     " [A filetype, syntax and indent plugin for Clojure](https://github.com/vim-scripts/VimClojure)
+Plug 'https://github.com/vim-scripts/vim-javacomplete2' " Refreshed javacomplete plugin for vim
+Plug 'https://github.com/vim-scripts/VimClojure',        {'for':'clojure'}     " A filetype, syntax and indent plugin for Clojure
 
 " JavaScript {{{3
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'maksimr/vim-jsbeautify',  {'for': 'javascript'}
-Plug 'wizicer/vim-jison',       {'for': ['jison','yacc']}
-Plug 'mxw/vim-jsx',             {'for': ['javascript','jsx']}
-Plug 'Shutnik/jshint2.vim',     {'for': 'javascript'}         " [Lightweight, customizable and functional Vim plugin for JSHint integration](https://github.com/Shutnik/jshint2.vim)
+Plug 'https://github.com/pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'https://github.com/maksimr/vim-jsbeautify',  {'for': 'javascript'}
+Plug 'https://github.com/wizicer/vim-jison',       {'for': ['jison','yacc']}
+Plug 'https://github.com/mxw/vim-jsx',             {'for': ['javascript','jsx']}
+Plug 'https://github.com/Shutnik/jshint2.vim',     {'for': 'javascript'}         " Lightweight, customizable and functional Vim plugin for JSHint integration
 
 " Perl {{{3
-" [Support for Perl 5 and Perl 6 in Vim](https://github.com/vim-perl/vim-perl)
-Plug 'vim-perl/vim-perl',       {'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-Plug 'vim-scripts/perl_h2xs',   {'for': ['perl','pm','xs']} " [Automate creating perl modules via h2xs](https://github.com/vim-scripts/perl_h2xs)
-Plug 'nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " [Perl 6 support for vim-syntastic](https://github.com/nxadm/syntastic-perl6.git)
-Plug 'vim-scripts/Perldoc.vim', {'for': ['perl','pm','xs']} " [perldoc command from vim](https://github.com/vim-scripts/Perldoc.vim)
-"Plug 'vim-scripts/perlhelp.vim',            {'for': ['perl','pm','xs']} " [Interface to perldoc](https://github.com/vim-scripts/perlhelp.vim) " conflict vim perl-support <LocalLeader>pm
+" Support for Perl 5 and Perl 6 in Vim
+Plug 'https://github.com/vim-perl/vim-perl',       {'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plug 'https://github.com/vim-scripts/perl_h2xs',   {'for': ['perl','pm','xs']} " Automate creating perl modules via h2xs
+Plug 'https://github.com/nxadm/syntastic-perl6',   {'for': ['perl','pm','xs']} " Perl 6 support for vim-syntastic
+Plug 'https://github.com/vim-scripts/Perldoc.vim', {'for': ['perl','pm','xs']} " perldoc command from vim
+"Plug 'https://github.com/vim-scripts/perlhelp.vim',            {'for': ['perl','pm','xs']} " Interface to perldoc " conflict vim perl-support <LocalLeader>pm
 
 " PHP {{{3
-Plug 'shawncplus/phpcomplete.vim', {'for':'php'} " [Improved PHP omnicompletion](https://github.com/shawncplus/phpcomplete.vim)
-Plug 'rayburgemeestre/phpfolding.vim'           " [Automatic folding of PHP functions, classes,.. (also folds related PhpDoc)](https://github.com/rayburgemeestre/phpfolding.vim)
+Plug 'https://github.com/shawncplus/phpcomplete.vim', {'for':'php'} " Improved PHP omnicompletion
+Plug 'https://github.com/rayburgemeestre/phpfolding.vim'           " Automatic folding of PHP functions, classes,.. (also folds related PhpDoc)
 
 " Python {{{3
 if g:PYTHON
-    Plug 'davidhalter/jedi-vim'                 " [Using the jedi autocompletion library for VIM](https://github.com/davidhalter/jedi-vim)
-    Plug 'vim-scripts/betterga'                 " [betterga can get more information than ga (:ascii)](https://github.com/vim-scripts/betterga)
-    "Plug 'joonty/vdebug', {'for': 'python'}         " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
-    Plug 'klen/python-mode', {'for': 'python'}  " [Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box](https://github.com/klen/python-mode)
-    Plug 'vim-scripts/python_fold', {'for': 'python'}           " [Folding expression for python](https://github.com/vim-scripts/Python_fold)
-    "Plug 'nvie/vim-flake8', {'for': 'python'}       " [Flake8 plugin for Vim](https://github.com/nvie/vim-flake8)
-    Plug 'jmcantrell/vim-virtualenv'            " [Vim plugin for working with python virtualenvs](https://github.com/jmcantrell/vim-virtualenv)
+    Plug 'https://github.com/davidhalter/jedi-vim'                 " Using the jedi autocompletion library for VIM
+    Plug 'https://github.com/vim-scripts/betterga'                 " betterga can get more information than ga (:ascii)
+    "Plug 'https://github.com/joonty/vdebug', {'for': 'python'}         " [Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)(https://github.com/joonty/vdebug)
+    Plug 'https://github.com/klen/python-mode', {'for': 'python'}  " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
+    Plug 'https://github.com/vim-scripts/python_fold', {'for': 'python'}           " Folding expression for python
+    "Plug 'https://github.com/nvie/vim-flake8', {'for': 'python'}       " Flake8 plugin for Vim
+    Plug 'https://github.com/jmcantrell/vim-virtualenv'            " Vim plugin for working with python virtualenvs
 endif
 
 
 " XML, XSLT {{{3
-Plug 'vim-scripts/xml.vim', {'for': 'xml'}      " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
-Plug 'vim-scripts/xmledit', {'for': 'xml'}      " [A filetype plugin to help edit XML, HTML, and SGML documents](https://github.com/vim-scripts/xmledit)
-Plug 'vim-scripts/xslt',    {'for': 'xslt'}     " [XSLT ftplugin](https://github.com/vim-scripts/xslt)
+Plug 'https://github.com/vim-scripts/xml.vim', {'for': 'xml'}      " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
+Plug 'https://github.com/vim-scripts/xmledit', {'for': 'xml'}      " A filetype plugin to help edit XML, HTML, and SGML documents
+Plug 'https://github.com/vim-scripts/xslt',    {'for': 'xslt'}     " XSLT ftplugin
 
 " YAML {{{3
-"Plug 'chase/vim-ansible-yaml', {'for':['yaml','yml']}  " [Add additional support for Ansible](https://github.com/chase/vim-ansible-yaml)
-Plug 'pearofducks/ansible-vim'                  " [A vim plugin for syntax highlighting Ansible's common filetypes](https://github.com/pearofducks/ansible-vim)
+"Plug 'https://github.com/chase/vim-ansible-yaml', {'for':['yaml','yml']}  " Add additional support for Ansible
+Plug 'https://github.com/pearofducks/ansible-vim'                  " A vim plugin for syntax highlighting Ansible's common filetypes
 Plug 'https://github.com/andrewstuart/vim-kubernetes'
 Plug 'https://github.com/stephpy/vim-yaml'      " Override vim syntax for yaml files
 
 " JSON {{{3
-Plug 'elzr/vim-json'                            " [A better JSON](https://github.com/elzr/vim-json)
+Plug 'https://github.com/elzr/vim-json'                            " A better JSON
 
 " maven {{{3
-Plug 'mikelue/vim-maven-plugin'                 " [The Maven plugin for VIM](https://github.com/mikelue/vim-maven-plugin)
+Plug 'https://github.com/mikelue/vim-maven-plugin'                 " The Maven plugin for VIM
 
 " Rust
 Plug 'https://github.com/rust-lang/rust.vim'    " [Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.]
 
 " Git and other VCS {{{2
 if executable('git')
-    Plug 'int3/vim-extradite'
-    Plug 'tpope/vim-fugitive'                   " [Git wrapper of all time](https://github.com/tpope/vim-fugitive)
-    Plug 'junegunn/gv.vim'                      " [A git commit browser in Vim](https://github.com/junegunn/gv.vim)
-    Plug 'WolfgangMehner/git-support'           " [Git for Vim/gVim](https://github.com/WolfgangMehner/git-support)
-    Plug 'vim-scripts/git-flow-format'          " [formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file](https://github.com/vim-scripts/git-flow-format)
-    Plug 'vim-scripts/gitv'                     " [gitk for Vim](https://github.com/vim-scripts/gitv)
-    Plug 'idanarye/vim-merginal'                " [Fugitive extension to manage and merge Git branches](https://github.com/idanarye/vim-merginal)
-    Plug 'vim-scripts/vim-gitignore'            " [Another gitignore plugin for Vim](https://github.com/vim-scripts/vim-gitignore)
-    Plug 'sjl/splice.vim'                       " [managing three-way merges - conflict with vim-fugitive](https://github.com/sjl/splice.vim)
+    Plug 'https://github.com/int3/vim-extradite'
+    Plug 'https://github.com/tpope/vim-fugitive'                   " Git wrapper of all time
+    Plug 'https://github.com/junegunn/gv.vim'                      " A git commit browser in Vim
+    Plug 'https://github.com/WolfgangMehner/git-support'           " Git for Vim/gVim
+    Plug 'https://github.com/vim-scripts/git-flow-format'          " formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file
+    Plug 'https://github.com/vim-scripts/gitv'                     " gitk for Vim
+    Plug 'https://github.com/idanarye/vim-merginal'                " Fugitive extension to manage and merge Git branches
+    Plug 'https://github.com/vim-scripts/vim-gitignore'            " Another gitignore plugin for Vim
+    Plug 'https://github.com/sjl/splice.vim'                       " managing three-way merges - conflict with vim-fugitive
     if version >= 704
-        Plug 'airblade/vim-gitgutter'           " [shows a git diff in the 'gutter' (sign column)](https://github.com/airblade/vim-gitgutter)
+        Plug 'https://github.com/airblade/vim-gitgutter'           " shows a git diff in the 'gutter' (sign column)
     endif
-    Plug 'whiteinge/diffconflicts'              " [A better Vimdiff Git mergetool](https://github.com/whiteinge/diffconflicts)
-    Plug 'cohama/agit.vim'                      " [A powerful Git log viewer](https://github.com/cohama/agit.vim)
+    Plug 'https://github.com/whiteinge/diffconflicts'              " A better Vimdiff Git mergetool
+    Plug 'https://github.com/cohama/agit.vim'                      " A powerful Git log viewer
 endif
 
 " Themes {{{2
-Plug 'xolox/vim-colorscheme-switcher'           " [Color scheme switcher for Vim](https://github.com/xolox/vim-colorschemes-switch)
-Plug 'morhetz/gruvbox'                          " [Retro groove color scheme for Vim](https://github.com/morhetz/gruvbox)
+Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim
+Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
 
 " Syntax {{{2
-Plug 'vim-scripts/nginx.vim', {'for':'nginx'}   " [highlights configuration files for nginx, the high-performance web server](https://github.com/vim-scripts/nginx.vim)
-Plug 'vim-scripts/httplog'                      " [Highlight access log of Apache, nginx, etc](https://github.com/vim-scripts/httplog)
-Plug 'vim-scripts/LogViewer'                    " [Comfortable examination of multiple parallel logfiles](https://github.com/vim-scripts/LogViewer)
-Plug 'vim-scripts/TWiki-Syntax'                 " [Syntaxfile for TWiki-Syntax](https://github.com/vim-scripts/TWiki-Syntax)
-Plug 'vim-scripts/whitespace-syntax-highlight'  " [whitespace syntax highlight](https://github.com/vim-scripts/whitespace-syntax-highlight/)
-Plug 'vim-scripts/logstash.vim'                 " [logstash.vim highlights configuration files for logstash](https://github.com/vim-scripts/logstash.vim)
-Plug 'chrisbra/csv.vim',{'for':'csv'}           " [A Filetype plugin for csv files](https://github.com/chrisbra/csv.vim)
-Plug 'sheerun/vim-polyglot'                     " [A solid language pack for Vim](https://github.com/sheerun/vim-polyglot)
-Plug 'cakebaker/scss-syntax.vim', {'for': ['scss','sass']}
-Plug 'hail2u/vim-css3-syntax', {'for': ['css','scss']}
-Plug 'vim-scripts/jQuery', {'for': 'javascript'} " [Syntax file for jQuery](https://github.com/vim-scripts/jQuery)
-Plug 'StanAngeloff/php.vim', {'for':'php'}      " [Up-to-date PHP syntax file (5.3 - 7.1 support)](https://github.com/StanAngeloff/php.vim)
-Plug 'vim-scripts/bats.vim'                     " [Syntax highlighting for Bats - Bash Automated Testing System](https://github.com/vim-scripts/bats.vim)
-Plug 'ekalinin/Dockerfile.vim'                  " [Vim syntax file & snippets for Docker's Dockerfile](https://github.com/ekalinin/Dockerfile.vim)
-Plug 'vim-scripts/ldif.vim'                     " [syntax higlighting for LDIF (LDAP serialization)](https://github.com/vim-scripts/ldif.vim)
-Plug 'vim-scripts/ldap_schema.vim--Hahn'        " [ldap schmema definition language](https://github.com/vim-scripts/ldap_schema.vim--Hahn)
+Plug 'https://github.com/vim-scripts/nginx.vim', {'for':'nginx'}   " highlights configuration files for nginx, the high-performance web server
+Plug 'https://github.com/vim-scripts/httplog'                      " Highlight access log of Apache, nginx, etc
+Plug 'https://github.com/vim-scripts/LogViewer'                    " Comfortable examination of multiple parallel logfiles
+Plug 'https://github.com/vim-scripts/TWiki-Syntax'                 " Syntaxfile for TWiki-Syntax
+Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight'  " whitespace syntax highlight
+Plug 'https://github.com/vim-scripts/logstash.vim'                 " logstash.vim highlights configuration files for logstash
+Plug 'https://github.com/chrisbra/csv.vim',{'for':'csv'}           " A Filetype plugin for csv files
+Plug 'https://github.com/sheerun/vim-polyglot'                     " A solid language pack for Vim
+Plug 'https://github.com/cakebaker/scss-syntax.vim', {'for': ['scss','sass']}
+Plug 'https://github.com/hail2u/vim-css3-syntax', {'for': ['css','scss']}
+Plug 'https://github.com/vim-scripts/jQuery', {'for': 'javascript'} " Syntax file for jQuery
+Plug 'https://github.com/StanAngeloff/php.vim', {'for':'php'}      " Up-to-date PHP syntax file (5.3 - 7.1 support)
+Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax highlighting for Bats - Bash Automated Testing System
+Plug 'https://github.com/ekalinin/Dockerfile.vim'                  " Vim syntax file & snippets for Docker's Dockerfile
+Plug 'https://github.com/skanehira/docker-compose.vim' "Vim plugin wrapping docker-compose
+Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
+Plug 'https://github.com/vim-scripts/ldif.vim'                     " syntax higlighting for LDIF (LDAP serialization)
+Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn'        " ldap schmema definition language
 
 " Markdown {{{2
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}                      " [Markdown Vim Mode](https://github.com/plasticboy/vim-markdown/)
-Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}                " [Fold markdown documents by section](https://github.com/nelstrom/vim-markdown-folding)
-Plug 'suan/vim-instant-markdown', {'do': 'npm -g install instant-markdown-d'} " [Instant Markdown previews](https://github.com/suan/vim-instant-markdown)
+Plug 'https://github.com/plasticboy/vim-markdown', {'for': 'markdown'}                      " Markdown Vim Mode
+Plug 'https://github.com/nelstrom/vim-markdown-folding', {'for': 'markdown'}                " Fold markdown documents by section
+Plug 'https://github.com/suan/vim-instant-markdown', {'do': 'npm -g install instant-markdown-d'} " Instant Markdown previews
 
 " Charles Campbell {{{2
-Plug 'powerman/vim-plugin-AnsiEsc'              " [ansi escape sequences concealed, but highlighted as specified (conceal)](https://github.com/powerman/vim-plugin-AnsiEsc)
-Plug 'vim-scripts/DrawIt'                       " [Ascii drawing plugin: lines, ellipses, arrows, fills, and more!](https://github.com/vim-scripts/DrawIt)
-Plug 'vim-scripts/Decho'                        " [internal debugger](https://github.com/vim-scripts/decho)
-Plug 'vim-scripts/gdbmgr'                       " [interface to gdb](https://github.com/vim-scripts/gdbmgr)
-Plug 'vim-scripts/highlight.vim'                " [Highlight lines or patterns of interest in different colors](https://github.com/vim-scripts/highlight.vim)
-Plug 'vim-scripts/LargeFile'                    " [Edit large files quickly (keywords: large huge speed)](https://github.com/vim-scripts/largefile)
-Plug 'vim-scripts/SudoEdit.vim'                 " [Edit Files using sudo or su or any other tool](https://github.com/vim-scripts/SudoEdit.vim)
-Plug 'vim-scripts/vis'                          " [Extended Visual Mode Commands, Substitutes, and Searches](https://github.com/vim-scripts/vis)
-Plug 'vim-scripts/cecutil'                      " [save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps](https://github.com/vim-scripts/cecutil)
+Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'              " ansi escape sequences concealed, but highlighted as specified (conceal)
+Plug 'https://github.com/vim-scripts/DrawIt'                       " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+Plug 'https://github.com/vim-scripts/Decho'                        " internal debugger
+Plug 'https://github.com/vim-scripts/gdbmgr'                       " interface to gdb
+Plug 'https://github.com/vim-scripts/highlight.vim'                " Highlight lines or patterns of interest in different colors
+Plug 'https://github.com/vim-scripts/LargeFile'                    " Edit large files quickly (keywords: large huge speed)
+Plug 'https://github.com/vim-scripts/SudoEdit.vim'                 " Edit Files using sudo or su or any other tool
+Plug 'https://github.com/vim-scripts/vis'                          " Extended Visual Mode Commands, Substitutes, and Searches
+Plug 'https://github.com/vim-scripts/cecutil'                      " save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps
 
 " xolox {{{2
-Plug 'xolox/vim-shell'                          " [Improved integration between Vim and its environment](https://github.com/xolox/vim-shell)
-Plug 'xolox/vim-misc'                           " [Miscellaneous auto-load Vim scripts](https://github.com/xolox/vim-misc)
-Plug 'xolox/vim-reload'                         " [Automatic reloading of Vim scripts](https://github.com/xolox/vim-reload)
-"Plug 'xolox/vim-session'                        " [Extended session management for Vim](https://github.com/xolox/vim-session)
+Plug 'https://github.com/xolox/vim-shell'                          " Improved integration between Vim and its environment
+Plug 'https://github.com/xolox/vim-misc'                           " Miscellaneous auto-load Vim scripts
+Plug 'https://github.com/xolox/vim-reload'                         " Automatic reloading of Vim scripts
+"Plug 'https://github.com/xolox/vim-session'                        " Extended session management for Vim
 if g:PYTHON
-    Plug 'xolox/vim-tools'                      " [Python scripts to publish Vim plug-ins](https://github.com/xolox/vim-tools)
+    Plug 'https://github.com/xolox/vim-tools'                      " Python scripts to publish Vim plug-ins
 endif
-Plug 'xolox/vim-easytags'                       " [Automated tag file generation and syntax highlighting of tags](https://github.com/xolox/vim-easytags)
+Plug 'https://github.com/xolox/vim-easytags'                       " Automated tag file generation and syntax highlighting of tags
 
 " Fritz Mehner {{{2
-Plug 'vim-scripts/Vim-support',{'for': 'vim'}                   " [Vim Script IDE for Vim/gVim](https://github.com/vim-scripts/Vim-Support)
-Plug 'vim-scripts/awk-support.vim',{'for': 'awk'}               " [AWK-IDE for Vim/gVim](https://github.com/vim-scripts/awk-support.vim)
-Plug 'vim-scripts/bash-support.vim',{'for': 'sh'}               " [BASH IDE -- Write and run BASH-scripts using menus and hotkeys](https://github.com/vim-scripts/bash-support.vim)
-Plug 'vim-scripts/perl-support.vim',{'for':['perl','xs']}       " [Write and run Perl-scripts using menus and hotkeys](https://github.com/vim-scripts/perl-support.vim)
-Plug 'vim-scripts/c.vim', {'for':['c','cpp']}                   " [C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc](https://github.com/vim-scripts/c.vim)
-Plug 'vim-scripts/latex-support.vim',{'for':['tex','plaintex']} " [LaTeX-IDE for Vim/gVim](https://github.com/vim-scripts/latex-support.vim)
-Plug 'vim-scripts/doxygen-support.vim',{'for':'doxygen'}        " [Generate Doxygen comments from user defined templates](https://github.com/vim-scripts/doxygen-support.vim)
-Plug 'WolfgangMehner/Vim-Mapathon'                              " [My talk for Vimfest 2017 - An advanced introduction to maps](https://github.com/WolfgangMehner/vim-mapathon)
+Plug 'https://github.com/vim-scripts/Vim-support',{'for': 'vim'}                   " Vim Script IDE for Vim/gVim
+Plug 'https://github.com/vim-scripts/awk-support.vim',{'for': 'awk'}               " AWK-IDE for Vim/gVim
+Plug 'https://github.com/vim-scripts/bash-support.vim',{'for': 'sh'}               " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
+Plug 'https://github.com/vim-scripts/perl-support.vim',{'for':['perl','xs']}       " Write and run Perl-scripts using menus and hotkeys
+Plug 'https://github.com/vim-scripts/c.vim', {'for':['c','cpp']}                   " C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc
+Plug 'https://github.com/vim-scripts/latex-support.vim',{'for':['tex','plaintex']} " LaTeX-IDE for Vim/gVim
+Plug 'https://github.com/vim-scripts/doxygen-support.vim',{'for':'doxygen'}        " Generate Doxygen comments from user defined templates
+Plug 'https://github.com/WolfgangMehner/Vim-Mapathon'                              " My talk for Vimfest 2017 - An advanced introduction to maps
 
 " Others {{{2
-Plug 'vim-scripts/matchit.zip'                  " [extended % matching for HTML, LaTeX, and many other languages](https://github.com/vim-scripts/matchit.zip)
+Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
 if version >= 704
-    Plug 'vim-scripts/EnhancedDiff'             " [A Vim plugin for creating better diffs](https://github.com/vim-scripts/EnhancedDiff)
+    Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
 endif
-Plug 'vim-scripts/closetag.vim'                 " [Functions and mappings to close open HTML/XML tags](https://github.com/vim-scripts/closetag.vim)
-Plug 'tyru/open-browser.vim'                    " [Open URI with your favorite browser from your most favorite editor](https://github.com/tyru/open-browser.vim)
-Plug 'jlemetay/permut'                          " [swap columns of text separated by arbitrary characters](https://github.com/jlemetay/permut)
-Plug 'godlygeek/tabular'                        " [Vim script for text filtering and alignment](https://github.com/godlygeek/tabular)
-Plug 'AndrewRadev/switch.vim'                   " [switch segments of text with predefined replacements](https://github.com/AndrewRadev/switch.vim/)
+Plug 'https://github.com/vim-scripts/closetag.vim'                 " Functions and mappings to close open HTML/XML tags
+Plug 'https://github.com/tyru/open-browser.vim'                    " Open URI with your favorite browser from your most favorite editor
+Plug 'https://github.com/jlemetay/permut'                          " swap columns of text separated by arbitrary characters
+Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
+Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
 if version > 700
-    Plug 'scrooloose/syntastic'                 " [Syntax checking hacks for vim](https://github.com/scrooloose/syntastic)
+    Plug 'https://github.com/scrooloose/syntastic'                 " Syntax checking hacks for vim
     Plug 'https://github.com/roktas/syntastic-more'
     Plug 'https://github.com/myint/syntastic-extras'
 endif
-"Plug 'maralla/validator.vim'                    " [Check syntax on the fly asynchronously](https://github.com/maralla/validator.vim)
-Plug 'majutsushi/tagbar'                        " [Vim plugin that displays tags in a window, ordered by scope](https://github.com/majutsushi/tagbar)
-Plug 'vim-scripts/Tabmerge'                     " [Merge a tab's windows with the current tab](https://github.com/vim-scripts/Tabmerge)
-Plug 'vim-scripts/taglist.vim'                  " [Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)](https://github.com/vim-scripts/taglist.vim)
-Plug 'vim-scripts/Toggle'                       " [allows you to toggle bool (true/false) and other words with a shortcut](https://github.com/vim-scripts/Toggle)
+"Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
+Plug 'https://github.com/majutsushi/tagbar'                        " Vim plugin that displays tags in a window, ordered by scope
+Plug 'https://github.com/vim-scripts/Tabmerge'                     " Merge a tab's windows with the current tab
+Plug 'https://github.com/vim-scripts/taglist.vim'                  " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+Plug 'https://github.com/vim-scripts/Toggle'                       " allows you to toggle bool (true/false) and other words with a shortcut
 if version > 703 || (version == 703 && has('patch005'))
-"    Plug 'mbbill/undotree'                      " [The ultimate undo history visualizer for VIM](https://github.com/mbbill/undotree)
+"    Plug 'https://github.com/mbbill/undotree'                      " The ultimate undo history visualizer for VIM
 endif
 if version > 703 && g:PYTHON
-    Plug 'simnalamburt/vim-mundo'                   " [Vim undo tree visualizer](https://github.com/simnalamburt/vim-mundo)
+    Plug 'https://github.com/simnalamburt/vim-mundo'                   " Vim undo tree visualizer
 endif
-Plug 'tpope/vim-repeat'                         " [repeat.vim: enable repeating supported plugin maps with "."](https://github.com/tpope/vim-repeat)
-Plug 'tpope/vim-scriptease'                     " [A Vim plugin for Vim plugins](https://github.com/tpope/vim-scriptease)
-Plug 'tpope/vim-surround'                       " [quoting/parenthesizing made simple](https://github.com/tpope/vim-surround)
+Plug 'https://github.com/tpope/vim-repeat'                         " repeat.vim: enable repeating supported plugin maps with "."
+Plug 'https://github.com/tpope/vim-scriptease'                     " A Vim plugin for Vim plugins
+Plug 'https://github.com/tpope/vim-surround'                       " quoting/parenthesizing made simple
 if version >= 703
-    Plug 'ap/vim-buftabline'                    " [Forget Vim tabs - now you can have buffer tabs](https://github.com/ap/vim-buftabline)
+    Plug 'https://github.com/ap/vim-buftabline'                    " Forget Vim tabs - now you can have buffer tabs
 endif
-"Plug 'vim-scripts/tskeleton'                    " [File Templates and Code Skeletons/Snippets](http://vim.sourceforge.net/scripts/script.php?script_id=1160)
+"Plug 'https://github.com/vim-scripts/tskeleton'                    " File Templates and Code Skeletons/Snippets
 if g:UNIX && g:UNICODE
-"    Plug 'ryanoasis/vim-devicons'               " [adds font icons](https://github.com/ryanoasis/vim-devicons) breaks NerdTree
+"    Plug 'https://github.com/ryanoasis/vim-devicons'               " adds font icons breaks NerdTree
 endif
-Plug 'chip/vim-fat-finger'                      " [Simple vim plugin for common misspellings and typos](https://github.com/chip/vim-fat-finger)
-Plug 'sedm0784/vim-you-autocorrect'             " [Why should smartphones get all the fun?](https://github.com/sedm0784/vim-you-autocorrect)
-Plug 'zirrostig/vim-schlepp'                    " [easily moving text selections around](https://github.com/zirrostig/vim-schlepp)
-Plug 'jiangxincode/TagCollection'               " [Some tags used by the OmniCppComplete which can auto complete your code](https://github.com/jiangxincode/TagCollection)
-Plug 'nathanaelkane/vim-indent-guides'          " [displaying indent levels in code](https://github.com/nathanaelkane/vim-indent-guides)
-Plug 'terryma/vim-expand-region'                " [Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination](https://github.com/terryma/vim-expand-region)
-Plug 'Konfekt/FastFold'                         " [Speed up Vim by updating folds only when called-for](https://github.com/Konfekt/FastFold)
-Plug 'will133/vim-dirdiff'                      " [Vim plugin to diff two directories](https://github.com/will133/vim-dirdiff)
-" [Table Mode for instant table creation](https://github.com/dhruvasagar/vim-table-mode)
-Plug 'dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
-Plug 'brooth/far.vim'                           " [Find And Replace](https://github.com/brooth/far.vim)
+Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim plugin for common misspellings and typos
+Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
+Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
+Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
+Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
+Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
+Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
+Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin to diff two directories
+" Table Mode for instant table creation
+Plug 'https://github.com/dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
+Plug 'https://github.com/brooth/far.vim'                           " Find And Replace
 if has('python3')
-    Plug 'soywod/kronos.vim'                    " [A simple task and time manager for vim](https://github.com/soywod/kronos.vim)
+    Plug 'https://github.com/soywod/kronos.vim'                    " A simple task and time manager for vim
 endif
 " 3rd party tools {{{2
-Plug 'ggreer/the_silver_searcher'               " [A code-searching tool similar to ack, but faster](https://github.com/ggreer/the_silver_searcher)
-Plug 'rking/ag.vim'                             " [Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'](https://github.com/rking/ag.vim)
-Plug 'vim-scripts/ctrlsf.vim'                   " [an ack/ag powered global code search and view tool](https://github.com/vim-scripts/ctrlsf.vim)
-Plug 'Shougo/vimshell.vim'                      " [Powerful shell implemented by vim](https://github.com/Shougo/vimshell.vim)
-Plug 'VincentCordobes/vim-translate'            " [A tiny translate-shell wrapper for Vim](https://github.com/VincentCordobes/vim-translate)
-Plug 'rizzatti/dash.vim'                        " [Search Dash.app from Vim](https://github.com/rizzatti/dash.vim)
-Plug 'Lenovsky/nuake'                           " [A Quake-style terminal panel](https://github.com/Lenovsky/nuake)
+Plug 'https://github.com/ggreer/the_silver_searcher'               " A code-searching tool similar to ack, but faster
+Plug 'https://github.com/vim-scripts/ctrlsf.vim'                   " an ack/ag powered global code search and view tool
+Plug 'https://github.com/rking/ag.vim'                             " Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'
+Plug 'https://github.com/mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
+Plug 'https://github.com/Shougo/vimshell.vim'                      " Powerful shell implemented by vim
+Plug 'https://github.com/VincentCordobes/vim-translate'            " A tiny translate-shell wrapper for Vim
+Plug 'https://github.com/rizzatti/dash.vim'                        " Search Dash.app from Vim
+Plug 'https://github.com/Lenovsky/nuake'                           " A Quake-style terminal panel
 
 " ctrl-a
-"Plug 'tpope/vim-speeddating'                    " [use CTRL-A/CTRL-X to increment dates, times, and more](https://github.com/tpope/vim-speeddating)
-Plug 'vim-scripts/visual-increment'                         " [Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode](https://github.com/vim-scripts/visual-increment)
-"Plug 'vim-scripts/monday'                                   " [Lets you use ctrl-a and ctrl-x on names of months and weekdays](https://github.com/vim-scripts/monday)
+"Plug 'https://github.com/tpope/vim-speeddating'                    " use CTRL-A/CTRL-X to increment dates, times, and more
+Plug 'https://github.com/vim-scripts/visual-increment'                         " Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode
+"Plug 'https://github.com/vim-scripts/monday'                                   " Lets you use ctrl-a and ctrl-x on names of months and weekdays
 
 " Completion {{{2
 " Use neocomplete or neocomplcache or supertab
 "if ( version > 800 )
     " Do not install via vim-plug, install it manually
-    " [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
+    " A code-completion engine
 "    execute 'Plug \"' . bundle_dir . '/YouCompleteMe\"'
 "    [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim)
 "    if has('nvim')
-"        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"        Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "    else
-"        Plug 'Shougo/deoplete.nvim'
-"        Plug 'roxma/nvim-yarp'
-"        Plug 'roxma/vim-hug-neovim-rpc'
+"        Plug 'https://github.com/Shougo/deoplete.nvim'
+"        Plug 'https://github.com/roxma/nvim-yarp'
+"        Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
 "    endif
 "else
-    Plug 'ervandew/supertab'                    " [Perform all your vim insert mode completions with Tab](https://github.com/ervandew/supertab)
+    Plug 'https://github.com/ervandew/supertab'                    " Perform all your vim insert mode completions with Tab
 "endif
 if !g:MSWIN
     " add to the env variable PATH ~/.vim/bin
-    Plug 'c9s/perlomni.vim',{'do':'make install'} " [perl omnicompletion for vim (including base class function compleltions .. etc)](https://github.com/c9s/perlomni.vim)
+    Plug 'https://github.com/c9s/perlomni.vim',{'do':'make install'} " perl omnicompletion for vim (including base class function compleltions .. etc)
 endif
 " }}}
 " Snippets {{{2
 if g:PYTHON
     " TAB conflict with other completion tools
-"    Plug 'SirVer/ultisnips'                 " [The ultimate snippet solution for Vim](https://github.com/SirVer/ultisnips)
+"    Plug 'https://github.com/SirVer/ultisnips'                 " The ultimate snippet solution for Vim
 endif
 " Snippets for neocomplcache, neocomplete
-Plug 'Shougo/neosnippet.vim'                    " [Shougo/neosnippet](https://github.com/Shougo/neosnippet.vim)
-Plug 'Shougo/neosnippet-snippets'               " [The standard snippets repository for neosnippet](https://github.com/Shougo/neosnippet-snippets)
-Plug 'honza/vim-snippets'                       " [snippets files for various programming languages](https://github.com/honza/vim-snippets)
-"Plug 'garbas/vim-snipmate'                      " [snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features](https://github.com/garbas/vim-snipmate)
-"    Plug 'vim-scripts/tlib'                     " [Some utility functions](https://github.com/vim-scripts/tlib)
-"    Plug 'marcweber/vim-addon-mw-utils'         " [interpret a file by function and cache file automatically](https://github.com/marcweber/vim-addon-mw-utils)
+Plug 'https://github.com/Shougo/neosnippet.vim'                    " Shougo/neosnippet
+Plug 'https://github.com/Shougo/neosnippet-snippets'               " The standard snippets repository for neosnippet
+Plug 'https://github.com/honza/vim-snippets'                       " snippets files for various programming languages
+"Plug 'https://github.com/garbas/vim-snipmate'                      " snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features
+"    Plug 'https://github.com/vim-scripts/tlib'                     " Some utility functions
+"    Plug 'https://github.com/marcweber/vim-addon-mw-utils'         " interpret a file by function and cache file automatically
 " }}}
 " UNIX only {{{2
 if g:UNIX
-    Plug 'dracorp/vim-pkgbuild', {'for': 'PKGBUILD'}
+    Plug 'https://github.com/dracorp/vim-pkgbuild', {'for': 'PKGBUILD'}
 endif
 
 " MS Windows only {{{2
 if g:MSWIN
-    Plug 'vim-scripts/poshcomplete-vim'                       " [Omni Completion for PowerShell](https://github.com/vim-scripts/poshcomplete-vim)
-    Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin'       " [Default syntax coloring for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Syntax-File)
-    Plug 'vim-scripts/Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
-"    Plug 'mattn/webapi-vim'                       " [vim interface to Web API](https://github.com/mattn/webapi-vim)
+    Plug 'https://github.com/vim-scripts/poshcomplete-vim'                       " Omni Completion for PowerShell
+    Plug 'https://github.com/vim-scripts/Windows-PowerShell-Syntax-Plugin'       " Default syntax coloring for Windows PowerShell
+    Plug 'https://github.com/vim-scripts/Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
+"    Plug 'https://github.com/mattn/webapi-vim'                       " vim interface to Web API
 endif
 if g:MSWIN && !g:MSWIN64
-    Plug 'vim-scripts/maximize.dll'
+    Plug 'https://github.com/vim-scripts/maximize.dll'
 endif
 
 " Some offline plugins {{{2
@@ -459,7 +459,7 @@ call plug#end()
 delc PlugUpgrade
 "}}}
 " Language & Grammar {{{2
-Plug 'rhysd/vim-grammarous'                     " [A powerful grammar checker for Vim using LanguageTool](https://github.com/rhysd/vim-grammarous)
+Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful grammar checker for Vim using LanguageTool
 "}}}
 " }}}
 
