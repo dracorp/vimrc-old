@@ -9,6 +9,7 @@ doc/tags
 **/doc/tags
 .netrwhist
 passwords.vim
+.vault.vim
 vim_mru_files
 *.swp
 user.vim
@@ -17,3 +18,8 @@ bundle/*/
 !bundle/astronaut/
 !bundle/StlShowFunc
 !bundle/manpageview
+record/perlomni.vim
+ftplugin/perl/perlomni.vim
+autoload/perlomni/*.vim
+bin/grep-pattern.pl
+bin/grep-objvar.pl
