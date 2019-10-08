@@ -98,4 +98,8 @@ if filereadable($VIM_PATH . '/config/99-local.vim')
 	call s:source_file('config/99-local.vim')
 endif
 
+if filereadable(vimrc_dir . "vimrc.local")
+    execute ":source " . vimrc_dir . "vimrc.local"
+endif
+
 "set secure
