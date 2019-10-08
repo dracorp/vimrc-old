@@ -42,7 +42,7 @@ endif
 Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' "Override vim configs with custom configs files in each dir
 Plug 'https://github.com/vim-scripts/vimwiki' " Personal Wiki for Vim
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'          " Handles bracketed-paste-mode
-"Plug 'https://github.com/christoomey/vim-system-copy'              " Vim plugin for copying to the system clipboard with text-objects and motions
+Plug 'https://github.com/christoomey/vim-system-copy'              " Vim plugin for copying to the system clipboard with text-objects and motions
 "Plug 'https://github.com/chrisbra/Recover.vim'                     " A Plugin to show a diff, whenever recovering a buffer
 Plug 'https://github.com/vim-scripts/let-modeline.vim'             " Extends the modeline feature to the assignment of variables
 if g:MACOS
@@ -197,7 +197,9 @@ Plug 'https://github.com/StanAngeloff/php.vim'     " Up-to-date PHP syntax file 
 Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax highlighting for Bats - Bash Automated Testing System
 Plug 'https://github.com/ekalinin/Dockerfile.vim'                  " Vim syntax file & snippets for Docker's Dockerfile
 Plug 'https://github.com/skanehira/docker-compose.vim' "Vim plugin wrapping docker-compose
-Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
+if !has('nvim')
+    Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
+endif
 Plug 'https://github.com/vim-scripts/ldif.vim'                     " syntax higlighting for LDIF (LDAP serialization)
 Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn'        " ldap schmema definition language
 

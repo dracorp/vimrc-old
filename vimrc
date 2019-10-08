@@ -102,4 +102,4 @@ if filereadable(vimrc_dir . "vimrc.local")
     execute ":source " . vimrc_dir . "vimrc.local"
 endif
 
-"set secure
+set secure
