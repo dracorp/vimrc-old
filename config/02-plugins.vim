@@ -164,7 +164,7 @@ if executable('git')
     Plug 'https://github.com/int3/vim-extradite'
     Plug 'https://github.com/tpope/vim-fugitive'                   " Git wrapper of all time
     Plug 'https://github.com/junegunn/gv.vim'                      " A git commit browser in Vim
-    Plug 'https://github.com/WolfgangMehner/git-support'           " Git for Vim/gVim
+    "Plug 'https://github.com/WolfgangMehner/git-support'           " Git for Vim/gVim
     Plug 'https://github.com/vim-scripts/git-flow-format'          " formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file
     Plug 'https://github.com/vim-scripts/gitv'                     " gitk for Vim
     Plug 'https://github.com/idanarye/vim-merginal'                " Fugitive extension to manage and merge Git branches
@@ -439,6 +439,7 @@ if plugin#isEnabled('vim-easytags')
     let g:easytags_always_enabled = 0
     let g:easytags_on_cursorhold  = 1
     setglobal tags+=./tags;
+    let g:easytags_suppress_ctags_warning = 1
     " uncomment to see why so slow
     "set vbs=1 | call xolox#easytags#why_so_slow()
 endif
@@ -723,6 +724,23 @@ if plugin#isEnabled('neosnippet')
     if has('conceal')
         set conceallevel=2 concealcursor=niv
     endif
+endif
+" }}}
+
+" nerdcommenter {{{2
+if plugin#isEnabled('nerdcommenter')
+    " Add spaces after comment delimiters by default
+    let g:NERDSpaceDelims = 1
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'left'
+    " Set a language to use its alternate delimiters by default
+    let g:NERDAltDelims_java = 1
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines = 1
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace = 1
+    " Enable NERDCommenterToggle to check all selected lines is commented or not
+    let g:NERDToggleCheckAllLines = 1
 endif
 " }}}
 " nerdtree {{{2
