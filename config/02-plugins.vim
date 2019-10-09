@@ -302,6 +302,7 @@ Plug 'https://github.com/VincentCordobes/vim-translate'            " A tiny tran
 Plug 'https://github.com/rizzatti/dash.vim'                        " Search Dash.app from Vim
 Plug 'https://github.com/Lenovsky/nuake'                           " A Quake-style terminal panel
 Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
+Plug 'https://github.com/neoclide/coc.nvim' " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
 " ctrl-a
 "Plug 'https://github.com/tpope/vim-speeddating'                    " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'https://github.com/vim-scripts/visual-increment'                         " Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode
