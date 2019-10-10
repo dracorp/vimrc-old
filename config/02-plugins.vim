@@ -56,7 +56,8 @@ elseif g:UNIX
         Plug 'https://github.com/junegunn/fzf.vim'
     endif
 endif
-
+Plug 'https://github.com/ctrlpvim/ctrlp.vim' " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. http://ctrlpvim.github.com/ctrlp.vim
+Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
 Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
 Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rgb
 Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
@@ -203,9 +204,11 @@ endif
 Plug 'https://github.com/vim-scripts/ldif.vim'                     " syntax higlighting for LDIF (LDAP serialization)
 Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn'        " ldap schmema definition language
 
+Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
 " Markdown {{{2
-Plug 'https://github.com/plasticboy/vim-markdown'                      " Markdown Vim Mode
-Plug 'https://github.com/nelstrom/vim-markdown-folding'                " Fold markdown documents by section
+" The tabular plugin must come before vim-markdown
+Plug 'https://github.com/plasticboy/vim-markdown'                                                " Markdown Vim Mode
+Plug 'https://github.com/nelstrom/vim-markdown-folding'                                          " Fold markdown documents by section
 Plug 'https://github.com/suan/vim-instant-markdown', {'do': 'npm -g install instant-markdown-d'} " Instant Markdown previews
 
 " Charles Campbell {{{2
@@ -247,7 +250,6 @@ endif
 Plug 'https://github.com/vim-scripts/closetag.vim'                 " Functions and mappings to close open HTML/XML tags
 Plug 'https://github.com/tyru/open-browser.vim'                    " Open URI with your favorite browser from your most favorite editor
 Plug 'https://github.com/jlemetay/permut'                          " swap columns of text separated by arbitrary characters
-Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
 Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'                 " Syntax checking hacks for vim
@@ -386,10 +388,19 @@ if plugin#isEnabled('bash-support.vim')
 endif
 " }}}
 " ctrlp {{{2
-if plugin#isEnabled('ctrlp')
+if plugin#isEnabled('ctrlp.vim')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     set wildignore+=*.7z
+endif
+" ctrlp-funky {{{2
+if plugin#isEnabled('ctrlp-funky')
+    nnoremap <Leader>fu :CtrlPFunky<Cr>
+    " narrow the list down with a word under cursor
+    nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+    let g:ctrlp_funky_syntax_highlight = 1
+    " If you want to have this highlight feature
+    let g:ctrlp_funky_matchtype = 'path'
 endif
 " }}}
 " c-support {{{2

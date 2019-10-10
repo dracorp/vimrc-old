@@ -46,11 +46,6 @@ if has('vim_starting')
 	"let g:mapleader="\<Space>"
 	let g:maplocalleader=';'
 
-    " Since I never use the ; key anyway, this is a real optimization for almost
-    " all Vim commands, as I don't have to press the Shift key to form chords to
-    " enter ex mode.
-"    nnoremap ; :
-
 	" Vim only, Linux terminal settings
 	if ! has('nvim') && ! has('gui_running') && ! has('win32') && ! has('win64')
         if filereadable($VIM_PATH . '/config/00-terminal.vim')
