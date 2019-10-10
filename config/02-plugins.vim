@@ -376,7 +376,6 @@ Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful 
 call plug#end()
 delc PlugUpgrade
 "}}}
-" }}}
 
 " Plugins configuration {{{
 " bash-support {{{2
@@ -1232,6 +1231,11 @@ if plugin#isEnabled('vista.vim')
     " Ensure you have installed some decent font to show these pretty symbols,
     " then you can enable icon for the kind.
     let g:vista#renderer#enable_icon = 1
+    " To enable fzf's preview window set g:vista_fzf_preview.
+    " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+    " For example:
+    let g:vista_fzf_preview = ['right:50%']
+
 endif
 " }}}
 " yaifa {{{2
