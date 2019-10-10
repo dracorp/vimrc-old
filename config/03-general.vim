@@ -1,4 +1,6 @@
-if !plugin#isEnabled('vim-sensible') "{{{
+" General {{{
+
+if !plugin#isEnabled('vim-sensible') "{{{2
     set autoread                                " read open files again when changed outside Vim
     set scrolloff=4                             " keep 4 lines off the edges of the screen when scrolling
     set backspace=indent,eol,start              " allow backspacing over everything in insert mode
@@ -11,7 +13,6 @@ if !plugin#isEnabled('vim-sensible') "{{{
     set history=1000                            " remember more commands and search history
 endif "}}}
 
-" General {{{
 set virtualedit=block " Position cursor anywhere in visual block
 set mousehide         " Hide the mouse when typing text
 set mouse=v           " enable using the mouse if terminal emulator supports it (xterm does)
@@ -117,7 +118,7 @@ if has('folding')
     set foldcolumn=0                " add a fold column
     set foldmethod=marker           " detect triple-{ style fold markers
     set foldmarker={{{,}}}
-    set foldlevelstart=99           " start out with everything unfolded
+    " set foldlevelstart=99           " start out with everything unfolded
     set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo " which commands trigger auto-unfold
     " Mappings to easily toggle fold levels
     nnoremap z0 :set foldlevel=0<cr>
