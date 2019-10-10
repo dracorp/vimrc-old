@@ -70,7 +70,7 @@ nnoremap :g// :g//
 
 " paste mode, where you can paste mass data
 " that won't be autoindented
-"set pastetoggle=<S-F6>                         " deprecated: replaced by vim-bracketed-paste plugin
+set pastetoggle=<S-F6>                         " deprecated: replaced by vim-bracketed-paste plugin
 
 " open file under cursors in a new window (a vertical split)
 map <c-w>F :vertical wincmd f<CR>

@@ -207,8 +207,8 @@ Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn'        " ldap schmem
 Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
 " Markdown {{{2
 " The tabular plugin must come before vim-markdown
-Plug 'https://github.com/plasticboy/vim-markdown'                                                " Markdown Vim Mode
-Plug 'https://github.com/nelstrom/vim-markdown-folding'                                          " Fold markdown documents by section
+Plug 'https://github.com/plasticboy/vim-markdown'                      " Markdown Vim Mode
+Plug 'https://github.com/nelstrom/vim-markdown-folding'                " Fold markdown documents by section
 Plug 'https://github.com/suan/vim-instant-markdown', {'do': 'npm -g install instant-markdown-d'} " Instant Markdown previews
 
 " Charles Campbell {{{2
@@ -991,8 +991,8 @@ endif
 " }}}
 " tagList {{{2
 if plugin#isEnabled('taglist.vim')
-    noremap <silent> <F10>       :TlistToggle<CR>
-    inoremap <silent> <F10>  <C-C>:TlistToggle<CR>
+    noremap <silent> <S-F11>       :TlistToggle<CR>
+    inoremap <silent> <S-F11>  <C-C>:TlistToggle<CR>
     let tlist_perl_settings = 'perl;c:constants;f:formats;l:labels;p:packages;s:subroutines;d:subroutines;o:POD;k:comments'
     " fix your ~/.ctags https://gist.github.com/dracorp/5d7308b894c1c9f301bc9cb8d2f262db
     let tlist_sh_settings   = 'sh;f:functions;v:variables;c:constants'
@@ -1152,6 +1152,11 @@ if plugin#isEnabled('vim-jsbeautify')
     autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
     "react settings
     let g:jsx_ext_required = 0
+endif
+"}}}
+" vim-markdown{{{2
+if plugin#isEnabled('vim-markdown')
+    " let g:vim_markdown_folding_disabled = 1
 endif
 "}}}
 " vim-markdown-preview {{{2

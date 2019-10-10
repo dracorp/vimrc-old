@@ -28,8 +28,7 @@ like it. To do so, please do the following:
 
 ## vim-bootstrap
 
-Based on [vim-bootstrap](https://vim-bootstrap.com/) Vim does them thins
-automatically.
+Based on [vim-bootstrap](https://vim-bootstrap.com/) Vim does these things automatically.
 
 ## Mappings
 
@@ -37,21 +36,41 @@ automatically.
 
 Leader key is <kbd>\\</kbd>
 
-|     Key      | Mode | Action       |
-| :----------: | :--- | :----------- |
-| <kbd>;</kbd> | All  | Local Leader |
-|     `;`      | All  | Local Leader |
+|     Key      | Action                        | Mode   |
+| :----------: | :---------------------------- | :----- |
+| <kbd>;</kbd> | Local Leader                  | All    |
+|     `;`      | Local Leader                  | All    |
+|      z0      | Sets foldlevel 0              | Normal |
+|      z1      | Sets foldlevel 1              | Normal |
+|      z2      | Sets foldlevel 2              | Normal |
+|      z3      | Sets foldlevel 3              | Normal |
+|      z4      | Sets foldlevel 4              | Normal |
+|      z5      | Sets foldlevel 5              | Normal |
+|     `F1`     | Show the keyword under cursor |        |
+|    `S-F6`    | toggle paste mode             | All    |
 
-### vim-markdown
+### Plugins
+
+* vim-mardkown
 
 |  Key  | Action                                     |
 | :---: | :----------------------------------------- |
-|  zr   | reduces fold level throughout the buffer   |
-|  zR   | opens all folds                            |
-|  zm   | increases fold level throughout the buffer |
-|  zM   | folds everything all the way               |
-|  za   | open a fold your cursor is on              |
-|  zA   | open a fold your cursor is on recursively  |
-|  zc   | close a fold your cursor is on             |
-|  zC   | close a fold your cursor is on recursively |
+| `zr`  | reduces fold level throughout the buffer   |
+| `zR`  | opens all folds                            |
+| `zm`  | increases fold level throughout the buffer |
+| `zM`  | folds everything all the way               |
+| `za`  | open a fold your cursor is on              |
+| `zA`  | open a fold your cursor is on recursively  |
+| `zc`  | close a fold your cursor is on             |
+| `zC`  | close a fold your cursor is on recursively |
 
+|   Key   | Action                   |
+| :-----: | ------------------------ |
+|  `F2`   | NERDTreeToggle           |
+|  `F3`   | NERDTreeFind             |
+|  `F5`   | MundoToggle              |
+|  `F9`   | SyntasticToggleMode      |
+|  `F10`  | Refresh syntax highlight |
+| `S-F11` | TlistToggle              |
+|  `F12`  | TagbarToggle             |
+| `S-F12` | Vista                    |
