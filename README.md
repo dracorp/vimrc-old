@@ -25,3 +25,33 @@ like it. To do so, please do the following:
 * Check vimrc file and variable 'vimrc_dir'. I don't use path ~/vimfiles in runtimepath under Windows OS
 
 * Run :PlugInstall command to install plugins
+
+## vim-bootstrap
+
+Based on [vim-bootstrap](https://vim-bootstrap.com/) Vim does them thins
+automatically.
+
+## Mappings
+
+### General
+
+Leader key is <kbd>\\</kbd>
+
+|     Key      | Mode | Action       |
+| :----------: | :--- | :----------- |
+| <kbd>;</kbd> | All  | Local Leader |
+|     `;`      | All  | Local Leader |
+
+### vim-markdown
+
+|  Key  | Action                                     |
+| :---: | :----------------------------------------- |
+|  zr   | reduces fold level throughout the buffer   |
+|  zR   | opens all folds                            |
+|  zm   | increases fold level throughout the buffer |
+|  zM   | folds everything all the way               |
+|  za   | open a fold your cursor is on              |
+|  zA   | open a fold your cursor is on recursively  |
+|  zc   | close a fold your cursor is on             |
+|  zC   | close a fold your cursor is on recursively |
+
