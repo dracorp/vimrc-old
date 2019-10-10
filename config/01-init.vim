@@ -19,7 +19,6 @@ let g:loaded_zipPlugin = 1
 
 filetype plugin indent on
 
-" Some global settings for further using {{{
 let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win95')
 let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')

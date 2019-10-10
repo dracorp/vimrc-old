@@ -20,7 +20,9 @@ set showmode          " always show what mode we're currently editing in
 set wrap              " wrap lines
 set magic             " For regular expressions turn magic on
 set shortmess+=I      " hide the launch screen
+set shortmess+=c " don't give |ins-completion-menu| messages.
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
+set signcolumn=yes " always show signcolumns
 set number                                      " show line numbers
 set cursorline
 set showmatch                                   " set show matching parenthesis
@@ -133,6 +135,8 @@ endif
 " Editor layout {{{
 set lazyredraw                  " don't update the display while executing macros
 set cmdheight=2                 " use a status bar that is 2 rows high
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
 " bomb (BOM)
 " UTF-8: EF BB BF
 " UTF-16be: FE FF
@@ -152,10 +156,12 @@ set cmdheight=2                 " use a status bar that is 2 rows high
 " Vim behaviour {{{
 set spell spelllang=pl,en
 
-set hidden                      " hide buffers instead of closing them this
-                                " means that the current buffer can be put
-                                " to background without being written; and
-                                " that marks and undo history are preserved
+" if hidden is not set, TextEdit might fail.
+set hidden
+" hide buffers instead of closing them this
+" means that the current buffer can be put
+" to background without being written; and
+" that marks and undo history are preserved
 set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
@@ -167,7 +173,10 @@ if has('persistent_undo')
 endif
 let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
 
+" Some servers have issues with backup files, see
+" [#649](https://github.com/neoclide/coc.nvim/issues/649)
 set nobackup                    " do not keep backup files, it's 70's style cluttering
+set nowritebackup
 set noswapfile                  " do not write annoying intermediate swap files,
 set autochdir                   " automatically switch the working directory to that of the file being edited
 set directory=.,~/tmp           " store swap files in one of these directories (in case swapfile is ever turned on)
