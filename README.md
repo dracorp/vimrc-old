@@ -74,3 +74,6 @@ Leader key is <kbd>\\</kbd>
 | `S-F11` | TlistToggle              |
 |  `F12`  | TagbarToggle             |
 | `S-F12` | Vista                    |
+| `<Leader>fu` | CtrlPFunky |
+| `<Leader>fU` | CtrlPFunky on a word under cursor |
+
