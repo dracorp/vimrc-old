@@ -43,7 +43,7 @@ Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' "Override vim 
 Plug 'https://github.com/vim-scripts/vimwiki' " Personal Wiki for Vim
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'          " Handles bracketed-paste-mode
 Plug 'https://github.com/christoomey/vim-system-copy'              " Vim plugin for copying to the system clipboard with text-objects and motions
-"Plug 'https://github.com/chrisbra/Recover.vim'                     " A Plugin to show a diff, whenever recovering a buffer
+Plug 'https://github.com/chrisbra/Recover.vim'                     " A Plugin to show a diff, whenever recovering a buffer
 Plug 'https://github.com/vim-scripts/let-modeline.vim'             " Extends the modeline feature to the assignment of variables
 if g:MACOS
     Plug '/usr/local/opt/fzf'
@@ -61,6 +61,8 @@ Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function naviga
 Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
 Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rgb
 Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
+Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
+Plug 'https://github.com/xolox/vim-easytags'                       " Automated tag file generation and syntax highlighting of tags
 
 if g:UNICODE
     Plug 'https://github.com/liuchengxu/eleline.vim'      " A tiny elegant statusline for vim
@@ -82,17 +84,20 @@ Plug 'https://github.com/prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integration http://hashivim.github.io/vim-terraform
 
 " c++, c {{{3
-"Plug 'https://github.com/jiangxincode/mpi.vim'        " A Vim Plugin for MPI Syntax highlight, matching rules and mappings
-"Plug 'https://github.com/vim-scripts/OmniCppComplete' " C/C++ omni-completion with ctags database
-"Plug 'https://github.com/vim-scripts/cpp_cppcheck.vim' " Run Cppcheck on the current window
-"Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'                 " Additional Vim syntax highlighting for C++ (including C++11/14)
-"Plug 'https://github.com/JohnKaul/cpp-devel-vim' " Vim C++ development; This vim script (adopted from kde-devel-vim) is used for C++ development in Vim and offers a few very helpful functions.
+" Plug 'https://github.com/jiangxincode/mpi.vim'        " A Vim Plugin for MPI Syntax highlight, matching rules and mappings
+" Plug 'https://github.com/vim-scripts/OmniCppComplete' " C/C++ omni-completion with ctags database
+" Plug 'https://github.com/vim-scripts/cpp_cppcheck.vim' " Run Cppcheck on the current window
+" Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'                 " Additional Vim syntax highlighting for C++ (including C++11/14)
+" Plug 'https://github.com/JohnKaul/cpp-devel-vim' " Vim C++ development; This vim script (adopted from kde-devel-vim) is used for C++ development in Vim and offers a few very helpful functions.
+" Plug 'https://github.com/vim-scripts/c.vim'                   " C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc
 
 " CSS/LESS {{{3
 Plug 'https://github.com/ap/vim-css-color' " Preview colours in source code while editing
 "Plug 'https://github.com/groenewege/vim-less' " vim syntax for LESS (dynamic CSS)
 "Plug 'https://github.com/vitalk/vim-lesscss' " Update corresponding css files on the fly while edit less files
 "Plug 'https://github.com/tpope/vim-haml' " Vim runtime files for Haml, Sass, and SCSS
+" Plug 'https://github.com/cakebaker/scss-syntax.vim'
+" Plug 'https://github.com/hail2u/vim-css3-syntax'
 
 " Go {{{3
 if version > 704 || (version == 704 && has('patch330'))
@@ -102,9 +107,10 @@ Plug 'https://github.com/nsf/gocode' " An autocompletion daemon for the Go progr
 
 " HTML {{{3
 Plug 'https://github.com/gregsexton/MatchTag' " Vim's MatchParen for HTML tags
-Plug 'https://github.com/mattn/emmet-vim' " provides support for expanding abbreviations similar to emmet
-Plug 'https://github.com/othree/html5.vim' " HTML5 omnicomplete and syntax
+" Plug 'https://github.com/vim-scripts/closetag.vim'                 " Functions and mappings to close open HTML/XML tags
 Plug 'https://github.com/alvan/vim-closetag' " Auto close (X)HTML tags
+" Plug 'https://github.com/mattn/emmet-vim' " provides support for expanding abbreviations similar to emmet
+" Plug 'https://github.com/othree/html5.vim' " HTML5 omnicomplete and syntax
 
 " Java {{{3
 "Plug 'https://github.com/vim-scripts/vim-javacomplete2' " Refreshed javacomplete plugin for vim
@@ -120,14 +126,16 @@ Plug 'https://github.com/alvan/vim-closetag' " Auto close (X)HTML tags
 " Perl {{{3
 " Support for Perl 5 and Perl 6 in Vim
 Plug 'https://github.com/vim-perl/vim-perl' " Support for Perl 5 and Perl 6 in Vim http://groups.google.com/group/vim-perl
-Plug 'https://github.com/vim-scripts/perl_h2xs' " Automate creating perl modules via h2xs
-Plug 'https://github.com/nxadm/syntastic-perl6' " Perl 6 support for vim-syntastic
-Plug 'https://github.com/vim-scripts/Perldoc.vim' " perldoc command from vim
+" Plug 'https://github.com/vim-scripts/perl_h2xs' " Automate creating perl modules via h2xs
+" Plug 'https://github.com/nxadm/syntastic-perl6' " Perl 6 support for vim-syntastic
+" Plug 'https://github.com/vim-scripts/Perldoc.vim' " perldoc command from vim
 "Plug 'https://github.com/vim-scripts/perlhelp.vim' " Interface to perldoc | conflict vim perl-support <LocalLeader>pm
+Plug 'https://github.com/vim-scripts/perl-support.vim'       " Write and run Perl-scripts using menus and hotkeys
 
 " PHP {{{3
-Plug 'https://github.com/shawncplus/phpcomplete.vim' " Improved PHP omnicompletion
-Plug 'https://github.com/rayburgemeestre/phpfolding.vim'           " Automatic folding of PHP functions, classes,.. (also folds related PhpDoc)
+" Plug 'https://github.com/shawncplus/phpcomplete.vim' " Improved PHP omnicompletion
+" Plug 'https://github.com/rayburgemeestre/phpfolding.vim'           " Automatic folding of PHP functions, classes,.. (also folds related PhpDoc)
+" Plug 'https://github.com/StanAngeloff/php.vim'     " Up-to-date PHP syntax file (5.3 - 7.1 support)
 
 " Python {{{3
 if g:PYTHON
@@ -143,7 +151,7 @@ endif
 " XML, XSLT {{{3
 Plug 'https://github.com/vim-scripts/xml.vim' " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'https://github.com/vim-scripts/xmledit' " A filetype plugin to help edit XML, HTML, and SGML documents
-Plug 'https://github.com/vim-scripts/xslt' " XSLT ftplugin
+" Plug 'https://github.com/vim-scripts/xslt' " XSLT ftplugin
 
 " YAML {{{3
 "Plug 'https://github.com/chase/vim-ansible-yaml' " Add additional support for Ansible
@@ -186,25 +194,24 @@ Plug 'https://github.com/morhetz/gruvbox'                          " Retro groov
 Plug 'https://github.com/vim-scripts/nginx.vim'   " highlights configuration files for nginx, the high-performance web server
 Plug 'https://github.com/vim-scripts/httplog'                      " Highlight access log of Apache, nginx, etc
 Plug 'https://github.com/vim-scripts/LogViewer'                    " Comfortable examination of multiple parallel logfiles
-Plug 'https://github.com/vim-scripts/TWiki-Syntax'                 " Syntaxfile for TWiki-Syntax
+" Plug 'https://github.com/vim-scripts/TWiki-Syntax'                 " Syntaxfile for TWiki-Syntax
 Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight'  " whitespace syntax highlight
 Plug 'https://github.com/vim-scripts/logstash.vim'                 " logstash.vim highlights configuration files for logstash
 Plug 'https://github.com/chrisbra/csv.vim'        " A Filetype plugin for csv files
 Plug 'https://github.com/sheerun/vim-polyglot'                     " A solid language pack for Vim
-Plug 'https://github.com/cakebaker/scss-syntax.vim'
-Plug 'https://github.com/hail2u/vim-css3-syntax'
 Plug 'https://github.com/vim-scripts/jQuery' " Syntax file for jQuery
-Plug 'https://github.com/StanAngeloff/php.vim'     " Up-to-date PHP syntax file (5.3 - 7.1 support)
-Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax highlighting for Bats - Bash Automated Testing System
+
+" Docker
 Plug 'https://github.com/ekalinin/Dockerfile.vim'                  " Vim syntax file & snippets for Docker's Dockerfile
 Plug 'https://github.com/skanehira/docker-compose.vim' "Vim plugin wrapping docker-compose
 if !has('nvim')
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
+
+" Ldap/ldif
 Plug 'https://github.com/vim-scripts/ldif.vim'                     " syntax higlighting for LDIF (LDAP serialization)
 Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn'        " ldap schmema definition language
 
-Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
 " Markdown {{{2
 " The tabular plugin must come before vim-markdown
 Plug 'https://github.com/plasticboy/vim-markdown'                      " Markdown Vim Mode
@@ -214,12 +221,12 @@ Plug 'https://github.com/suan/vim-instant-markdown', {'do': 'npm -g install inst
 " Charles Campbell {{{2
 Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'              " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'                       " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
-Plug 'https://github.com/vim-scripts/Decho'                        " internal debugger
-Plug 'https://github.com/vim-scripts/gdbmgr'                       " interface to gdb
-Plug 'https://github.com/vim-scripts/highlight.vim'                " Highlight lines or patterns of interest in different colors
+" Plug 'https://github.com/vim-scripts/Decho'                        " internal debugger
+" Plug 'https://github.com/vim-scripts/gdbmgr'                       " interface to gdb
+" Plug 'https://github.com/vim-scripts/highlight.vim'                " Highlight lines or patterns of interest in different colors
 Plug 'https://github.com/vim-scripts/LargeFile'                    " Edit large files quickly (keywords: large huge speed)
 Plug 'https://github.com/vim-scripts/SudoEdit.vim'                 " Edit Files using sudo or su or any other tool
-Plug 'https://github.com/vim-scripts/vis'                          " Extended Visual Mode Commands, Substitutes, and Searches
+" Plug 'https://github.com/vim-scripts/vis'                          " Extended Visual Mode Commands, Substitutes, and Searches
 Plug 'https://github.com/vim-scripts/cecutil'                      " save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps
 
 " xolox {{{2
@@ -230,27 +237,29 @@ Plug 'https://github.com/xolox/vim-reload'                         " Automatic r
 if g:PYTHON
     Plug 'https://github.com/xolox/vim-tools'                      " Python scripts to publish Vim plug-ins
 endif
-Plug 'https://github.com/xolox/vim-easytags'                       " Automated tag file generation and syntax highlighting of tags
+
+" Shells/Bash
+Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
+Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax highlighting for Bats - Bash Automated Testing System
+
+" Awk
+
+Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE for Vim/gVim
 
 " Fritz Mehner {{{2
 Plug 'https://github.com/vim-scripts/Vim-support'                   " Vim Script IDE for Vim/gVim
-Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE for Vim/gVim
-Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
-Plug 'https://github.com/vim-scripts/perl-support.vim'       " Write and run Perl-scripts using menus and hotkeys
-Plug 'https://github.com/vim-scripts/c.vim'                   " C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc
 "Plug 'https://github.com/vim-scripts/latex-support.vim' " LaTeX-IDE for Vim/gVim
 "Plug 'https://github.com/vim-scripts/doxygen-support.vim'        " Generate Doxygen comments from user defined templates
-"Plug 'https://github.com/WolfgangMehner/Vim-Mapathon'                              " My talk for Vimfest 2017 - An advanced introduction to maps
 
 " Others {{{2
 Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
 if version >= 704
     Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
 endif
-Plug 'https://github.com/vim-scripts/closetag.vim'                 " Functions and mappings to close open HTML/XML tags
 Plug 'https://github.com/tyru/open-browser.vim'                    " Open URI with your favorite browser from your most favorite editor
 Plug 'https://github.com/jlemetay/permut'                          " swap columns of text separated by arbitrary characters
 Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
+" Syntastic check
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'                 " Syntax checking hacks for vim
     Plug 'https://github.com/roktas/syntastic-more'
@@ -275,7 +284,7 @@ if version >= 703
 endif
 "Plug 'https://github.com/vim-scripts/tskeleton'                    " File Templates and Code Skeletons/Snippets
 if g:UNIX && g:UNICODE
-"    Plug 'https://github.com/ryanoasis/vim-devicons'               " adds font icons breaks NerdTree
+   Plug 'https://github.com/ryanoasis/vim-devicons'               " adds font icons breaks NerdTree
 endif
 Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim plugin for common misspellings and typos
 Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
@@ -291,60 +300,29 @@ Plug 'https://github.com/brooth/far.vim'                           " Find And Re
 if has('python3')
     Plug 'https://github.com/soywod/kronos.vim'                    " A simple task and time manager for vim
 endif
+
+Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
+Plug 'https://github.com/neoclide/coc.nvim' " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
+
 " 3rd party tools {{{2
 if executable('python')
     Plug 'https://github.com/vim-scripts/betterga'                 " betterga can get more information than ga (:ascii)
 endif
-Plug 'https://github.com/ggreer/the_silver_searcher'               " A code-searching tool similar to ack, but faster
+if executable('ack')
+    Plug 'https://github.com/ggreer/the_silver_searcher'               " A code-searching tool similar to ack, but faster
+endif
 Plug 'https://github.com/vim-scripts/ctrlsf.vim'                   " an ack/ag powered global code search and view tool
-Plug 'https://github.com/rking/ag.vim'                             " Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'
+" Plug 'https://github.com/rking/ag.vim'                             " Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack' DEPRECATED
 Plug 'https://github.com/mileszs/ack.vim'                      " Vim plugin for the Perl module / CLI script 'ack'
-Plug 'https://github.com/Shougo/vimshell.vim'                      " Powerful shell implemented by vim
-Plug 'https://github.com/VincentCordobes/vim-translate'            " A tiny translate-shell wrapper for Vim
+" Plug 'https://github.com/Shougo/vimshell.vim'                      " Powerful shell implemented by vim
+Plug 'https://github.com/Shougo/deol.nvim' " Dark powered shell interface for NeoVim and Vim8
 Plug 'https://github.com/rizzatti/dash.vim'                        " Search Dash.app from Vim
 Plug 'https://github.com/Lenovsky/nuake'                           " A Quake-style terminal panel
-Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
-Plug 'https://github.com/neoclide/coc.nvim' " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
-" ctrl-a
+" for ctrl-a
 "Plug 'https://github.com/tpope/vim-speeddating'                    " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'https://github.com/vim-scripts/visual-increment'                         " Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode
 "Plug 'https://github.com/vim-scripts/monday'                                   " Lets you use ctrl-a and ctrl-x on names of months and weekdays
 
-" Completion {{{2
-" Use neocomplete or neocomplcache or supertab
-"if ( version > 800 )
-    " Do not install via vim-plug, install it manually
-    " A code-completion engine
-"    execute 'Plug \"' . bundle_dir . '/YouCompleteMe\"'
-"    [Dark powered asynchronous completion framework for neovim/Vim8](https://github.com/Shougo/deoplete.nvim)
-"    if has('nvim')
-"        Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"    else
-"        Plug 'https://github.com/Shougo/deoplete.nvim'
-"        Plug 'https://github.com/roxma/nvim-yarp'
-"        Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
-"    endif
-"else
-    " Plug 'https://github.com/ervandew/supertab'                    " Perform all your vim insert mode completions with Tab
-"endif
-if !g:MSWIN
-    " add to the env variable PATH ~/.vim/bin
-    Plug 'https://github.com/c9s/perlomni.vim',{'do':'make install'} " perl omnicompletion for vim (including base class function compleltions .. etc)
-endif
-" }}}
-" Snippets {{{2
-if g:PYTHON
-    " TAB conflict with other completion tools
-"    Plug 'https://github.com/SirVer/ultisnips'                 " The ultimate snippet solution for Vim
-endif
-" Snippets for neocomplcache, neocomplete
-" Plug 'https://github.com/Shougo/neosnippet.vim'                    " Shougo/neosnippet
-" Plug 'https://github.com/Shougo/neosnippet-snippets'               " The standard snippets repository for neosnippet
-" Plug 'https://github.com/honza/vim-snippets'                       " snippets files for various programming languages
-"Plug 'https://github.com/garbas/vim-snipmate'                      " snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features
-"    Plug 'https://github.com/vim-scripts/tlib'                     " Some utility functions
-"    Plug 'https://github.com/marcweber/vim-addon-mw-utils'         " interpret a file by function and cache file automatically
-" }}}
 " UNIX only {{{2
 if g:UNIX
     Plug 'https://github.com/dracorp/vim-pkgbuild'
@@ -355,7 +333,6 @@ if g:MSWIN
     Plug 'https://github.com/vim-scripts/poshcomplete-vim'                       " Omni Completion for PowerShell
     Plug 'https://github.com/vim-scripts/Windows-PowerShell-Syntax-Plugin'       " Default syntax coloring for Windows PowerShell
     Plug 'https://github.com/vim-scripts/Windows-PowerShell-Indent-File'         " [Simple indenting rules for Windows PowerShell](https://github.com/vim-scripts/Windows-PowerShell-Indent-File
-"    Plug 'https://github.com/mattn/webapi-vim'                       " vim interface to Web API
 endif
 if g:MSWIN && !g:MSWIN64
     Plug 'https://github.com/vim-scripts/maximize.dll'
@@ -364,13 +341,9 @@ endif
 " Some offline plugins {{{2
 " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 execute 'Plug \"' . bundle_dir . '/file_templates\"'
-" [shows current function name in status line](http://www.drchip.org/astronaut/vim/index.html#STLSHOWFUNC)
-execute 'Plug \"' . bundle_dir . '/StlShowFunc\"'
-" execute 'Plug \"' . bundle_dir . '/manpageview\"'
-" [A code-completion engine](https://github.com/Valloric/YouCompleteMe)
-execute 'Plug \"' . bundle_dir . 'YouCompleteMe\"'
 " Language & Grammar {{{2
 Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful grammar checker for Vim using LanguageTool
+Plug 'https://github.com/VincentCordobes/vim-translate'            " A tiny translate-shell wrapper for Vim
 "}}}
 " end of vim-plug's plugins management
 call plug#end()
@@ -425,25 +398,6 @@ if plugin#isEnabled('coc.nvim')
         return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 
-    " Use <c-space> to trigger completion.
-    inoremap <silent><expr> <c-space> coc#refresh()
-
-    " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-    " Coc only does snippet and additional edit on confirm.
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-    " Or use `complete_info` if your vim support it, like:
-    " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-    " Use `[g` and `]g` to navigate diagnostics
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-    " Remap keys for gotos
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-
     " Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -455,72 +409,8 @@ if plugin#isEnabled('coc.nvim')
     endif
     endfunction
 
-    " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-
-    " Remap for rename current word
-    nmap <leader>rn <Plug>(coc-rename)
-
-    " Remap for format selected region
-    xmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>f  <Plug>(coc-format-selected)
-
-    augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    augroup end
-
-    " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-    xmap <leader>a  <Plug>(coc-codeaction-selected)
-    nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-    " Remap for do codeAction of current line
-    nmap <leader>ac  <Plug>(coc-codeaction)
-    " Fix autofix problem of current line
-    nmap <leader>qf  <Plug>(coc-fix-current)
-
-    " Create mappings for function text object, requires document symbols feature of languageserver.
-    xmap if <Plug>(coc-funcobj-i)
-    xmap af <Plug>(coc-funcobj-a)
-    omap if <Plug>(coc-funcobj-i)
-    omap af <Plug>(coc-funcobj-a)
-
-    " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-    nmap <silent> <C-d> <Plug>(coc-range-select)
-    xmap <silent> <C-d> <Plug>(coc-range-select)
-
-    " Use `:Format` to format current buffer
-    command! -nargs=0 Format :call CocAction('format')
-
-    " Use `:Fold` to fold current buffer
-    command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-    " use `:OR` for organize import of current buffer
-    command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
     " Add status line support, for integration with other plugin, checkout `:h coc-status`
     set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-    " Using CocList
-    " Show all diagnostics
-    nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-    " Manage extensions
-    nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-    " Show commands
-    nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-    " Find symbol of current document
-    nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-    " Search workspace symbols
-    nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-    " Do default action for next item.
-    nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-    " Do default action for previous item.
-    nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-    " Resume latest coc list
-    nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 endif
 " }}}
 " delimitMate {{{2
@@ -615,17 +505,18 @@ endif
 " }}}
 " incsearch.vim {{{2
 if plugin#isEnabled('incsearch.vim')
-    map /  <Plug>(incsearch-forward)
-    map ?  <Plug>(incsearch-backward)
-    map g/ <Plug>(incsearch-stay)
+    nmap /  <Plug>(incsearch-forward)
+    nmap ?  <Plug>(incsearch-backward)
+    nmap g/ <Plug>(incsearch-stay)
 endif
 " }}}
 " indentLine {{{2
 if plugin#isEnabled('indentLine')
-  let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
-  let g:indentLine_faster = 1
+    let g:indentLine_enabled = 1
+    " let g:indentLine_concealcursor = 0
+    let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+    " let g:indentLine_char = '┆'
+    let g:indentLine_faster = 1
 endif
 " }}}
 " latex-support {{{2

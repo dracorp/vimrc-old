@@ -41,11 +41,6 @@ endfunction "}}}
 
 " Initialize startup settings
 if has('vim_starting')
-	" Use spacebar as leader and ; as secondary-leader
-	" Required before loading plugins!
-	"let g:mapleader="\<Space>"
-	let g:maplocalleader=';'
-
 	" Vim only, Linux terminal settings
 	if ! has('nvim') && ! has('gui_running') && ! has('win32') && ! has('win64')
         if filereadable($VIM_PATH . '/config/00-terminal.vim')
