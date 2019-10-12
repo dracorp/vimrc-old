@@ -36,18 +36,18 @@ Based on [vim-bootstrap](https://vim-bootstrap.com/) Vim does these things autom
 
 Leader key is <kbd>\\</kbd>
 
-|     Key      | Action                        | Mode   |
-| :----------: | :---------------------------- | :----- |
-| <kbd>;</kbd> | Local Leader                  | All    |
-|     `;`      | Local Leader                  | All    |
-|      z0      | Sets foldlevel 0              | Normal |
-|      z1      | Sets foldlevel 1              | Normal |
-|      z2      | Sets foldlevel 2              | Normal |
-|      z3      | Sets foldlevel 3              | Normal |
-|      z4      | Sets foldlevel 4              | Normal |
-|      z5      | Sets foldlevel 5              | Normal |
-|     `F1`     | Show the keyword under cursor |        |
-|    `S-F6`    | toggle paste mode             | All    |
+|  Key   | Action                        | Mode   |
+| :----: | :---------------------------- | :----- |
+|  `;`   | Local Leader                  | All    |
+|  `z0`  | Sets foldlevel 0              | Normal |
+|  `z1`  | Sets foldlevel 1              | Normal |
+|  `z2`  | Sets foldlevel 2              | Normal |
+|  `z3`  | Sets foldlevel 3              | Normal |
+|  `z4`  | Sets foldlevel 4              | Normal |
+|  `z5`  | Sets foldlevel 5              | Normal |
+|  `F1`  | Show the keyword under cursor |        |
+| `S-F6` | toggle paste mode             | All    |
+| `F10`  | Refresh syntax highlight      |
 
 ### Plugins
 
@@ -64,16 +64,25 @@ Leader key is <kbd>\\</kbd>
 | `zc`  | close a fold your cursor is on             |
 | `zC`  | close a fold your cursor is on recursively |
 
-|   Key   | Action                   |
-| :-----: | ------------------------ |
-|  `F2`   | NERDTreeToggle           |
-|  `F3`   | NERDTreeFind             |
-|  `F5`   | MundoToggle              |
-|  `F9`   | SyntasticToggleMode      |
-|  `F10`  | Refresh syntax highlight |
-| `S-F11` | TlistToggle              |
-|  `F12`  | TagbarToggle             |
-| `S-F12` | Vista                    |
-| `<Leader>fu` | CtrlPFunky |
-| `<Leader>fU` | CtrlPFunky on a word under cursor |
-
+|     Key      | Action                            | Plugin               |
+| :----------: | --------------------------------- | -------------------- |
+|     `F2`     | NERDTreeToggle                    | NERDTree             |
+|     `F3`     | NERDTreeFind                      | NERDTree             |
+|     `F5`     | MundoToggle                       | vim-mundo            |
+|     `F9`     | SyntasticToggleMode               | syntastic            |
+|   `S-F11`    | TlistToggle                       | taglist              |
+|    `F12`     | TagbarToggle                      | tagbar               |
+|   `S-F12`    | Vista                             | vista.vim            |
+| `<Leader>fu` | CtrlPFunky                        | ctrlp-funky          |
+| `<Leader>fU` | CtrlPFunky on a word under cursor | ctrlp-funky          |
+|    `Tab`     | Word completion                   | coc.nvim             |
+| `<Leader>e`  | FZF                               | fzf.vim              |
+| `<Leader>y`  | History                           | fzf.vim              |
+|     `/`      | incsearch-forward                 | incsearch.vim        |
+|     `?`      | incsearch-backward                | incsearch.vim        |
+|     `g/`     | incsearch-stay                    | incsearch.vim        |
+|     `gx`     | openbrowser                       | open-browser.vim     |
+|   `ctrl-N`   | bnext                             | vim-buftabline       |
+|   `ctrl-P`   | bprev                             | vim-buftabline       |
+| `<Leader>m`  | InstantMarkdownPreview            | vim-instant-markdown |
+|   `ctrl-T`   | Toggle                            | vim-toggle           |
