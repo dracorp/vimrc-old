@@ -32,8 +32,8 @@ if has("gui_running")
     if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
     elseif g:UNIX
-"        set guifont=Hack\ 11
-        set guifont=Fira\ Code\ 11
+        set guifont=Hack-Regular:h13
+"        set guifont=Fira\ Code\ 11
         " from https://github.com/powerline/fonts.git
     endif
 endif
