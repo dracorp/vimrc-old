@@ -302,7 +302,10 @@ if has('python3')
 endif
 
 Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
+if version == 704
 Plug 'https://github.com/neoclide/coc.nvim' " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
+endif
+Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 
 " 3rd party tools {{{2
 if executable('python')
