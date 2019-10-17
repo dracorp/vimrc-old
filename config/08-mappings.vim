@@ -28,7 +28,7 @@ noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
 " Toggle line numbers
-"nnoremap <leader>n :setlocal number!<cr>
+nnoremap <leader>n :setlocal number!<cr>
 
 " highlight line under cursor, horizontal cursor
 nnoremap <Leader>l :setlocal cursorline!<CR>
