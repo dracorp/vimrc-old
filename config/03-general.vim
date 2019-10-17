@@ -22,8 +22,8 @@ set magic             " For regular expressions turn magic on
 set shortmess+=I      " hide the launch screen
 set shortmess+=c " don't give |ins-completion-menu| messages.
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
-set signcolumn=yes " always show signcolumns
-set number                                      " show line numbers
+set signcolumn=auto " show signcolumns
+"set number                                      " show line numbers
 set cursorline
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching

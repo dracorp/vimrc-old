@@ -30,7 +30,8 @@ Plug 'https://github.com/junegunn/vim-plug'     " Minimalist Vim Plugin Manager
 " Rest of the plugins {{{2
 Plug 'https://github.com/tpope/vim-sensible'                       " Defaults everyone can agree on
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
-Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
+"Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
+Plug 'https://github.com/tpope/vim-commentary' " comment stuff out
 Plug 'https://github.com/tyok/nerdtree-ack'                        " NERDtree + ack.vim
 Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 if g:UNICODE
@@ -59,10 +60,12 @@ endif
 Plug 'https://github.com/ctrlpvim/ctrlp.vim' " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. http://ctrlpvim.github.com/ctrlp.vim
 Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
 Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
-Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rgb
-Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
+Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
 Plug 'https://github.com/godlygeek/tabular'                        " Vim script for text filtering and alignment
-Plug 'https://github.com/xolox/vim-easytags'                       " Automated tag file generation and syntax highlighting of tags
+"Plug 'https://github.com/xolox/vim-easytags'                       " Automated tag file generation and syntax highlighting of tags
+"Plug 'https://github.com/ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files bolt80.com/gutentags
+Plug 'https://github.com/LucHermitte/lh-vim-lib' " Library of Vim functions
+Plug 'https://github.com/LucHermitte/lh-tags' " ctags base updating, and browsing from vim
 
 if g:UNICODE
     Plug 'https://github.com/liuchengxu/eleline.vim'      " A tiny elegant statusline for vim
@@ -142,7 +145,7 @@ if g:PYTHON
     Plug 'https://github.com/davidhalter/jedi-vim'                 " Using the jedi autocompletion library for VIM
     "Plug 'https://github.com/joonty/vdebug'         " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.
     Plug 'https://github.com/klen/python-mode' " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
-    Plug 'https://github.com/vim-scripts/python_fold'          " Folding expression for python
+"    Plug 'https://github.com/vim-scripts/python_fold'          " Folding expression for python
     "Plug 'https://github.com/nvie/vim-flake8'       " Flake8 plugin for Vim
     Plug 'https://github.com/jmcantrell/vim-virtualenv'            " Vim plugin for working with python virtualenvs
 endif
@@ -292,7 +295,7 @@ Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily movi
 Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
 Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
 Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
-Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
+"Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
 Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin to diff two directories
 " Table Mode for instant table creation
 Plug 'https://github.com/dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
@@ -302,8 +305,8 @@ if has('python3')
 endif
 
 Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
-if version == 704
-Plug 'https://github.com/neoclide/coc.nvim' " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
+if version >= 704
+    Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
 endif
 Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 
@@ -388,32 +391,32 @@ endif
 " }}}
 " coc.nvim {{{2
 if plugin#isEnabled('coc.nvim')
+    let $NODE_TLS_REJECT_UNAUTHORIZED=0
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-    inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
+"    inoremap <silent><expr> <TAB>
+"        \ pumvisible() ? "\<C-n>" :
+"        \ <SID>check_back_space() ? "\<TAB>" :
+"        \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>
+    inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
     function! s:check_back_space() abort
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 
-    " Use K to show documentation in preview window
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-    function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-    endfunction
-
     " Add status line support, for integration with other plugin, checkout `:h coc-status`
     set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+    let g:coc_snippet_next = '<tab>'
+
+    " Use <c-space> to trigger completion.
+    inoremap <silent><expr> <c-space> coc#refresh()
 endif
 " }}}
 " delimitMate {{{2
@@ -444,6 +447,7 @@ endif
 " eleline {{{2
 if plugin#isEnabled('eleline.vim')
     let g:eleline_powerline_fonts = 1
+    " see https://github.com/neoclide/coc-git
 endif
 " }}}
 " emmet-vim {{{2
@@ -491,15 +495,6 @@ if plugin#isEnabled('incsearch.vim')
     nmap /  <Plug>(incsearch-forward)
     nmap ?  <Plug>(incsearch-backward)
     nmap g/ <Plug>(incsearch-stay)
-endif
-" }}}
-" indentLine {{{2
-if plugin#isEnabled('indentLine')
-    let g:indentLine_enabled = 1
-    " let g:indentLine_concealcursor = 0
-    let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-    " let g:indentLine_char = '┆'
-    let g:indentLine_faster = 1
 endif
 " }}}
 " latex-support {{{2
@@ -589,6 +584,8 @@ if plugin#isEnabled('nerdtree')
     "let g:NERDTreeDirArrowCollapsible='~'
     let g:NERDTreeDirArrowExpandable='▷'
     let g:NERDTreeDirArrowCollapsible='▼'
+    " default behaviour
+    let NERDTreeHijackNetrw=1
     " close when last
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 endif
@@ -931,7 +928,7 @@ endif
 "}}}2
 " vim-indent-guides {{{2
 if plugin#isEnabled('vim-indent-guides')
-    let g:indent_guides_enable_on_vim_startup = 0
+    let g:indent_guides_enable_on_vim_startup = 1
 endif
 " vim-instant-markdown {{{2
 if plugin#isEnabled('vim-instant-markdown')
