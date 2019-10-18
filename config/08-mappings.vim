@@ -1,7 +1,7 @@
 " Key mappings
 " !         make a switch from a key
-" <CR>      it's enter
-" <c-o>     allows in 'insert' mode insert a command
+" <CR>      Enter key
+" <C-o>     allows in 'insert' mode insert a command
 " <silent>  a mapping will not be echoed on the command line
 " %         actual file, :he expand
 " <leader>  default \
@@ -19,7 +19,7 @@ if has('folding')
     nnoremap z5 :set foldlevel=5<cr>
 endif
 
-" Leader {{{2
+" Leader {{{
 
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
@@ -37,7 +37,7 @@ nnoremap <Leader>L :setlocal cursorcolumn!<CR>
 nnoremap <leader>; ;
 
 " Quickly close the current window
-"nnoremap <leader>q :q<CR>
+nnoremap <leader>q :qa<CR>
 
 " Sort paragraphs
 vnoremap <leader>s !sort -f<CR>gv
@@ -103,8 +103,14 @@ nnoremap Q gqap
 map zp :setlocal spell!<CR>
 imap zP <ESC>:setlocal spell!<CR>i<right>
 
-" wklejanie
-vnoremap <C-Insert> "+y
+if g:MACOS
+    " Coping
+    vnoremap <C-Help> "+y
+    " Pasting
+    inoremap <S-Help> "+gP
+    " Cutting
+    vnoremap <C-S-Help> "+x
+endif
 
 " search for visually highlighted text
 "vmap // y/<C-R>"<CR>
@@ -155,3 +161,6 @@ nnoremap <c-s-TAB> :tabprev<cr>
 nnoremap H 0
 nnoremap L $
 
+" for normal and visual mode treat Space as PageDown
+nnoremap <space> <pagedown>
+vnoremap <space> <pagedown>
