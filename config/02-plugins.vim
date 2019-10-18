@@ -30,7 +30,7 @@ Plug 'https://github.com/junegunn/vim-plug'     " Minimalist Vim Plugin Manager
 " Rest of the plugins {{{2
 Plug 'https://github.com/tpope/vim-sensible'                       " Defaults everyone can agree on
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
-"Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
+Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
 Plug 'https://github.com/tpope/vim-commentary' " comment stuff out
 Plug 'https://github.com/tyok/nerdtree-ack'                        " NERDtree + ack.vim
 Plug 'https://github.com/jistr/vim-nerdtree-tabs'
