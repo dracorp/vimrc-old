@@ -929,6 +929,7 @@ endif
 " vim-indent-guides {{{2
 if plugin#isEnabled('vim-indent-guides')
     let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 endif
 " vim-instant-markdown {{{2
 if plugin#isEnabled('vim-instant-markdown')
