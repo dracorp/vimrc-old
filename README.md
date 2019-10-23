@@ -64,10 +64,30 @@ Leader key is <kbd>\\</kbd>
 | `zc`  | close a fold your cursor is on             |
 | `zC`  | close a fold your cursor is on recursively |
 
+* NERDCommenter
+
+|        Key         | Action                 |
+| :----------------: | :--------------------- |
+|    `<leader>cc`    | NERDCommenterComment   |
+|    `<leader>cn`    | NERDCommenterNested    |
+| `<leader>c<space>` | NERDCommenterToggle    |
+|    `<leader>cm`    | NERDCommenterMinimal   |
+|    `<leader>ci`    | NERDCommenterInvert    |
+|    `<leader>ci`    | NERDCommenterInvert    |
+|    `<leader>cs`    | NERDCommenterSexy      |
+|    `<leader>cy`    | NERDCommenterYank      |
+|    `<leader>c$`    | NERDCommenterToEOL     |
+|    `<leader>cA`    | NERDCommenterAppend    |
+|    `<leader>ca`    | NERDCommenterAltDelims |
+|    `<leader>cl`    | NERDCommenterAlignLeft |
+|    `<leader>cb`    | NERDCommenterAlignBoth |
+|    `<leader>cu`    | NERDCommenterUncomment |
+
+* rest of plugins
+
 |     Key      | Action                            | Plugin               |
 | :----------: | --------------------------------- | -------------------- |
 |     `F2`     | NERDTreeToggle                    | NERDTree             |
-|     `F3`     | NERDTreeFind                      | NERDTree             |
 |     `F5`     | MundoToggle                       | vim-mundo            |
 |     `F9`     | SyntasticToggleMode               | syntastic            |
 |   `S-F11`    | TlistToggle                       | taglist              |
