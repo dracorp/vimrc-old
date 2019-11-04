@@ -33,7 +33,6 @@ Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
 Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
 Plug 'https://github.com/tpope/vim-commentary' " comment stuff out
 Plug 'https://github.com/tyok/nerdtree-ack'                        " NERDtree + ack.vim
-Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 if g:UNICODE
     Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
@@ -572,7 +571,6 @@ if plugin#isEnabled('nerdtree')
     let g:NERDTreeDirArrows=0
     let NERDTreeShowHidden=1
     let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-    "let NERDTreeIgnore=['\.swp$',]
     let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
     let g:NERDTreeShowBookmarks=1
     let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -580,13 +578,17 @@ if plugin#isEnabled('nerdtree')
     let g:NERDTreePatternMatchHighlightFullName = 1
     let g:NERDTreeHighlightFolders = 1
     let g:NERDTreeHighlightFoldersFullName = 1
-    "let g:NERDTreeDirArrowExpandable='+'
-    "let g:NERDTreeDirArrowCollapsible='~'
-    let g:NERDTreeDirArrowExpandable='▷'
-    let g:NERDTreeDirArrowCollapsible='▼'
-    " default behaviour
-    let NERDTreeHijackNetrw=1
-    " close when last
+    if g:UNICODE
+        let g:NERDTreeDirArrowExpandable='▷'
+        let g:NERDTreeDirArrowCollapsible='▼'
+    else
+        let g:NERDTreeDirArrowExpandable='+'
+        let g:NERDTreeDirArrowCollapsible='~'
+    endif
+    " How can I open NERDTree automatically when vim starts up on opening a directory?
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+    " How can I close vim if the only window left open is a NERDTree?
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 endif
 " }}}
@@ -928,7 +930,7 @@ endif
 "}}}2
 " vim-indent-guides {{{2
 if plugin#isEnabled('vim-indent-guides')
-    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_enable_on_vim_startup = 0
 endif
 " vim-instant-markdown {{{2
 if plugin#isEnabled('vim-instant-markdown')
