@@ -27,12 +27,14 @@ call plug#begin(bundle_dir)
 " manage vim-plug by itself
 Plug 'https://github.com/junegunn/vim-plug'     " Minimalist Vim Plugin Manager
 
+" Basic plugins
+Plug 'https://github.com/tpope/vim-sensible'    " Defaults everyone can agree on
+
 " Rest of the plugins {{{2
-Plug 'https://github.com/tpope/vim-sensible'                       " Defaults everyone can agree on
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
 Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
-Plug 'https://github.com/tpope/vim-commentary' " comment stuff out
-Plug 'https://github.com/tyok/nerdtree-ack'                        " NERDtree + ack.vim
+Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
+Plug 'https://github.com/tyok/nerdtree-ack'     " NERDtree + ack.vim
 if g:UNICODE
     Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
@@ -40,10 +42,10 @@ if !g:MSWIN
     Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
 endif
 Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' "Override vim configs with custom configs files in each dir
-Plug 'https://github.com/vim-scripts/vimwiki' " Personal Wiki for Vim
+Plug 'https://github.com/vim-scripts/vimwiki'   " Personal Wiki for Vim
 Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'          " Handles bracketed-paste-mode
 Plug 'https://github.com/christoomey/vim-system-copy'              " Vim plugin for copying to the system clipboard with text-objects and motions
-Plug 'https://github.com/chrisbra/Recover.vim'                     " A Plugin to show a diff, whenever recovering a buffer
+Plug 'https://github.com/chrisbra/Recover.vim'  " A Plugin to show a diff, whenever recovering a buffer
 Plug 'https://github.com/vim-scripts/let-modeline.vim'             " Extends the modeline feature to the assignment of variables
 if g:MACOS
     Plug '/usr/local/opt/fzf'
@@ -565,7 +567,7 @@ endif
 " nerdtree {{{2
 if plugin#isEnabled('nerdtree')
     nnoremap <silent> <F2> :NERDTreeToggle<CR>
-    nnoremap <silent> <F3> :NERDTreeFind<CR>
+"    nnoremap <silent> <F3> :NERDTreeFind<CR>
     set timeoutlen=1000
     let g:NERDTreeChDirMode=2
     let g:NERDTreeDirArrows=0
@@ -931,6 +933,7 @@ endif
 " vim-indent-guides {{{2
 if plugin#isEnabled('vim-indent-guides')
     let g:indent_guides_enable_on_vim_startup = 0
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 endif
 " vim-instant-markdown {{{2
 if plugin#isEnabled('vim-instant-markdown')
