@@ -25,9 +25,6 @@ if has("gui_running")
     " toggle insert mode  'normal mode with the <RightMouse>-key
     "nnoremap  <RightMouse> <Insert>
     "inoremap  <RightMouse> <ESC>
-    if g:MACOS
-        set transparency=7
-    endif
 
     if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
