@@ -36,7 +36,7 @@ Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely or
 Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/tyok/nerdtree-ack'     " NERDtree + ack.vim
 if g:UNICODE
-    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
+"    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
 if !g:MSWIN
     Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
@@ -287,9 +287,6 @@ if version >= 703
     Plug 'https://github.com/ap/vim-buftabline'                    " Forget Vim tabs - now you can have buffer tabs
 endif
 "Plug 'https://github.com/vim-scripts/tskeleton'                    " File Templates and Code Skeletons/Snippets
-if g:UNIX && g:UNICODE
-   Plug 'https://github.com/ryanoasis/vim-devicons'               " adds font icons breaks NerdTree
-endif
 Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim plugin for common misspellings and typos
 Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
