@@ -201,7 +201,7 @@ Plug 'https://github.com/vim-scripts/LogViewer'                    " Comfortable
 " Plug 'https://github.com/vim-scripts/TWiki-Syntax'                 " Syntaxfile for TWiki-Syntax
 Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight'  " whitespace syntax highlight
 Plug 'https://github.com/vim-scripts/logstash.vim'                 " logstash.vim highlights configuration files for logstash
-Plug 'https://github.com/chrisbra/csv.vim'        " A Filetype plugin for csv files
+"Plug 'https://github.com/chrisbra/csv.vim'        " A Filetype plugin for csv files
 Plug 'https://github.com/sheerun/vim-polyglot'                     " A solid language pack for Vim
 Plug 'https://github.com/vim-scripts/jQuery' " Syntax file for jQuery
 
@@ -968,6 +968,11 @@ if plugin#isEnabled('vim-markdown-preview')
 "    let vim_markdown_preview_pandoc=1
 endif
 "}}}
+" vim-polyglot {{{2
+if plugin#isEnabled('vim-polyglot')
+    let g:polyglot_disabled = ['csv']
+endif
+" }}}
 " vim-session {{{2
 if plugin#isEnabled('vim-session')
     let g:session_autosave = 'yes'
