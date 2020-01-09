@@ -164,3 +164,4 @@ nnoremap L $
 " for normal and visual mode treat Space as PageDown
 nnoremap <space> <pagedown>
 vnoremap <space> <pagedown>
+

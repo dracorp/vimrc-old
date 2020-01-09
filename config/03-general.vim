@@ -24,6 +24,7 @@ set shortmess+=c " don't give |ins-completion-menu| messages.
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 set signcolumn=auto " show signcolumns
 "set number                                      " show line numbers
+"set relativenumber
 set cursorline
 set showmatch                                   " set show matching parenthesis
 set ignorecase                                  " ignore case when searching
