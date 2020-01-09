@@ -36,8 +36,9 @@ Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely or
 Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/tyok/nerdtree-ack'     " NERDtree + ack.vim
 if g:UNICODE
-"    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
+    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 if !g:MSWIN
     Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
 endif
@@ -67,7 +68,7 @@ Plug 'https://github.com/godlygeek/tabular'                        " Vim script 
 "Plug 'https://github.com/ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files bolt80.com/gutentags
 Plug 'https://github.com/LucHermitte/lh-vim-lib' " Library of Vim functions
 Plug 'https://github.com/LucHermitte/lh-tags' " ctags base updating, and browsing from vim
-
+Plug 'https://github.com/christoomey/vim-tmux-navigator'
 if g:UNICODE
     Plug 'https://github.com/liuchengxu/eleline.vim'      " A tiny elegant statusline for vim
 else
@@ -392,16 +393,14 @@ if plugin#isEnabled('coc.nvim')
     let $NODE_TLS_REJECT_UNAUTHORIZED=0
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-"    inoremap <silent><expr> <TAB>
-"        \ pumvisible() ? "\<C-n>" :
-"        \ <SID>check_back_space() ? "\<TAB>" :
-"        \ coc#refresh()
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>
+
     inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>
 
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -415,6 +414,21 @@ if plugin#isEnabled('coc.nvim')
 
     " Use <c-space> to trigger completion.
     inoremap <silent><expr> <c-space> coc#refresh()
+
+    " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+    " Coc only does snippet and additional edit on confirm.
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    " Or use `complete_info` if your vim support it, like:
+    " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+    command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+    let g:coc_global_extensions = [
+    \ 'coc-snippets',
+    \ 'coc-pairs',
+    \ 'coc-prettier',
+    \ 'coc-json',
+    \ ]
 endif
 " }}}
 " delimitMate {{{2
@@ -590,6 +604,8 @@ if plugin#isEnabled('nerdtree')
     " How can I close vim if the only window left open is a NERDTree?
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 endif
+    let g:NERDTreeGitStatusWithFlags = 1
+    let g:NERDTreeIgnore = ['^node_modules$']
 " }}}
 " nerdtree-git-plugin {{{2
 if plugin#isEnabled('nerdtree-git-plugin')
