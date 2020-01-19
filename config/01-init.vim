@@ -33,7 +33,7 @@ if has('multi_byte')
     if &termencoding == ''
         let &termencoding = &encoding
     endif
-    if $LC_ALL =~? 'utf-?8' || $LANG =~? '\vutf-?8'
+    if $LC_ALL =~? '\vutf-?8' || $LANG =~? '\vutf-?8'
         let g:UNICODE = 1
         scriptencoding utf-8
         set fileencoding=utf-8
