@@ -72,42 +72,204 @@ Plug 'https://github.com/xolox/vim-easytags'    " Automated tag file generation 
 "Plug 'https://github.com/LucHermitte/lh-vim-lib' " Library of Vim functions
 "Plug 'https://github.com/LucHermitte/lh-tags'    " ctags base updating, and browsing from vim
 if g:UNICODE
-    Plug 'https://github.com/liuchengxu/eleline.vim'      " A tiny elegant statusline for vim
+    Plug 'https://github.com/liuchengxu/eleline.vim' " A tiny elegant statusline for vim
 else
-    Plug 'https://github.com/itchyny/lightline.vim'       " A light and configurable statusline/tabline plugin for Vim
+    Plug 'https://github.com/itchyny/lightline.vim'  " A light and configurable statusline/tabline plugin for Vim
 endif
-Plug 'https://github.com/AndrewRadev/splitjoin.vim'       " A vim plugin that simplifies the transition between multiline and single-line code
-Plug 'https://github.com/rstacruz/vim-closer'             " Closes brackets
-Plug 'https://github.com/haya14busa/incsearch.vim' " Improved incremental searching
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
+Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
+Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
+Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
+Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
+Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo or su or any other tool
+Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
+Plug 'https://github.com/xolox/vim-misc'               " Miscellaneous auto-load Vim scripts
+Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 " Syntastic check
 if version > 700
-    Plug 'https://github.com/scrooloose/syntastic'                 " Syntax checking hacks for vim
-    Plug 'https://github.com/roktas/syntastic-more'
-    Plug 'https://github.com/myint/syntastic-extras'
+    Plug 'https://github.com/scrooloose/syntastic'   " Syntax checking hacks for vim
+    Plug 'https://github.com/roktas/syntastic-more'  " More checkers for Vim Syntastic plugin
+    Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
 endif
 Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
 
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
+" vim-polyglot supported language pack {{{ 3
+" * acpiasl (syntax)
+" * ansible (syntax, indent, ftplugin)
+" * apiblueprint (syntax)
+" * applescript (syntax, indent)
+" * arduino (syntax, indent)
+" * asciidoc (syntax)
+" * autohotkey (indent)
+" * blade (syntax, indent, ftplugin)
+" * c++11 (syntax)
+" * c/c++ (syntax)
+" * caddyfile (syntax, indent, ftplugin)
+" * carp (syntax)
+" * cjsx (syntax, ftplugin)
+" * clojure (syntax, indent, autoload, ftplugin)
+" * cmake (syntax, indent)
+" * coffee-script (syntax, compiler, indent, autoload, ftplugin)
+" * cql (syntax)
+" * cryptol (syntax, compiler, ftplugin)
+" * crystal (syntax, indent, autoload, ftplugin)
+" * csv (syntax, autoload, ftplugin)
+" * cucumber (syntax, indent, compiler, ftplugin)
+" * cue (syntax)
+" * dart (syntax, indent, autoload, ftplugin)
+" * dhall (syntax, ftplugin)
+" * dlang (syntax, indent)
+" * dockerfile (syntax, indent, ftplugin)
+" * elixir (syntax, indent, compiler, autoload, ftplugin)
+" * elm (syntax, indent, autoload, ftplugin)
+" * emberscript (syntax, indent, ftplugin)
+" * emblem (syntax, indent, ftplugin)
+" * erlang (syntax, indent)
+" * ferm (syntax)
+" * fish (syntax, indent, compiler, autoload, ftplugin)
+" * flatbuffers (syntax)
+" * fsharp (syntax, indent)
+" * git (syntax, indent, ftplugin)
+" * glsl (syntax, indent)
+" * gmpl (syntax)
+" * gnuplot (syntax)
+" * go (syntax, compiler, indent)
+" * gradle (compiler)
+" * graphql (syntax, indent, autoload, ftplugin, after)
+" * groovy-indent (indent)
+" * groovy (syntax)
+" * haml (syntax, indent, compiler, ftplugin)
+" * handlebars (syntax, indent, ftplugin)
+" * haproxy (syntax)
+" * haskell (syntax, indent, ftplugin)
+" * haxe (syntax)
+" * hcl (syntax, indent, ftplugin)
+" * helm (syntax)
+" * hive (syntax, ftplugin)
+" * html5 (syntax, indent, autoload, ftplugin)
+" * i3 (syntax, ftplugin)
+" * idris (syntax, indent, ftplugin)
+" * ion (syntax, ftplugin)
+" * jasmine (syntax)
+" * javascript (syntax, indent, compiler, ftplugin, extras)
+" * jenkins (syntax, indent)
+" * jinja (syntax, indent)
+" * json5 (syntax)
+" * json (syntax, indent, ftplugin)
+" * jst (syntax, indent)
+" * jsx (autoload, after)
+" * julia (syntax, indent, autoload, ftplugin)
+" * kotlin (syntax, indent, ftplugin)
+" * latex (syntax, indent, ftplugin)
+" * less (syntax, indent, ftplugin)
+" * lilypond (syntax, indent, compiler, ftplugin)
+" * livescript (syntax, indent, compiler, ftplugin)
+" * llvm (syntax, indent, ftplugin)
+" * log (syntax)
+" * lua (syntax, indent)
+" * mako (syntax, indent, ftplugin)
+" * markdown (syntax, indent, ftplugin)
+" * mathematica (syntax, ftplugin)
+" * mdx (syntax)
+" * meson (syntax, indent, ftplugin)
+" * moonscript (syntax, indent, ftplugin)
+" * nginx (syntax, indent, ftplugin)
+" * nim (syntax, compiler, indent)
+" * nix (syntax, indent, compiler, ftplugin)
+" * objc (ftplugin, syntax, indent)
+" * ocaml (syntax, indent, compiler, ftplugin)
+" * octave (syntax, indent)
+" * opencl (syntax, indent, ftplugin)
+" * perl (syntax, indent, ftplugin)
+" * pgsql (syntax, indent)
+" * php (syntax)
+" * plantuml (syntax, indent, ftplugin)
+" * pony (syntax, indent, autoload, ftplugin)
+" * powershell (syntax, indent, ftplugin)
+" * protobuf (syntax, indent)
+" * pug (syntax, indent, ftplugin)
+" * puppet (syntax, indent, autoload, ftplugin)
+" * purescript (syntax, indent, ftplugin)
+" * python-compiler (compiler, autoload)
+" * python-indent (indent)
+" * python (syntax)
+" * qmake (syntax)
+" * qml (syntax, indent, ftplugin)
+" * r-lang (syntax)
+" * racket (syntax, indent, ftplugin)
+" * ragel (syntax)
+" * raml (syntax, ftplugin)
+" * reason (syntax, indent)
+" * rspec (syntax)
+" * rst (syntax, indent, autoload, ftplugin)
+" * ruby (syntax, indent, compiler, autoload, ftplugin)
+" * rust (syntax, indent, compiler, autoload, ftplugin)
+" * sbt (syntax)
+" * scala (syntax, indent, compiler, ftplugin)
+" * scss (syntax, indent, ftplugin)
+" * slim (syntax, indent, ftplugin)
+" * slime (syntax, indent)
+" * smt2 (syntax, autoload, ftplugin)
+" * solidity (syntax, indent, ftplugin)
+" * stylus (syntax, indent, ftplugin)
+" * svelte (syntax, indent)
+" * svg-indent (indent)
+" * svg (syntax)
+" * swift (syntax, indent, ftplugin)
+" * sxhkd (syntax)
+" * systemd (syntax, ftplugin)
+" * terraform (syntax, indent, autoload, ftplugin)
+" * textile (syntax, ftplugin)
+" * thrift (syntax)
+" * tmux (syntax, ftplugin)
+" * tomdoc (syntax)
+" * toml (syntax, ftplugin)
+" * tptp (syntax)
+" * twig (syntax, indent, ftplugin)
+" * typescript (syntax, indent, compiler, ftplugin)
+" * v (syntax, indent, ftplugin)
+" * vala (syntax, indent, ftplugin)
+" * vbnet (syntax)
+" * vcl (syntax)
+" * vifm (syntax, autoload, ftplugin)
+" * vm (syntax, indent)
+" * vue (syntax, indent, ftplugin)
+" * xdc (syntax)
+" * xls (syntax)
+" * xml (syntax)
+" * yaml (syntax, ftplugin)
+" * yard (syntax)
+" * zephir (syntax)
+" * zig (syntax, autoload, ftplugin)
+"}}}
+" General: By default it will auto format javascript, typescript, less, scss, css, json, graphql and markdown files if they have/support the "@format" pragma annotation in the header of the file.
+if executable('npm')
+    Plug 'https://github.com/prettier/vim-prettier',{'do':'npm install'}
+endif
 Plug 'https://github.com/vim-scripts/httplog'                     " Highlight access log of Apache, nginx, etc
 Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight' " whitespace syntax highlight
 Plug 'https://github.com/vim-scripts/logstash.vim'                " logstash.vim highlights configuration files for logstash
 Plug 'https://github.com/vim-scripts/jQuery'                      " Syntax file for jQuery
 
-" Docker
-"Plug 'https://github.com/ekalinin/Dockerfile.vim'      " Vim syntax file & snippets for Docker's Dockerfile
-Plug 'https://github.com/skanehira/docker-compose.vim' " Vim plugin wrapping docker-compose
+" Docker {{{3
 if !has('nvim')
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 
-" Ldap/ldif
-Plug 'https://github.com/vim-scripts/ldif.vim'                     " syntax higlighting for LDIF (LDAP serialization)
-Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn'        " ldap schmema definition language
+" Ldap/ldif {{{3
+Plug 'https://github.com/vim-scripts/ldif.vim'              " syntax higlighting for LDIF (LDAP serialization)
+Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn' " ldap schmema definition language
 
-" Programming Languages {{{2
-" By default it will auto format javascript, typescript, less, scss, css, json, graphql and markdown files if they have/support the "@format" pragma annotation in the header of the file.
-Plug 'https://github.com/prettier/vim-prettier', { 'do': 'npm install' }
+" Markdown {{{3
+Plug 'https://github.com/plasticboy/vim-markdown'       " Markdown Vim Mode, @require tabular
+Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown documents by section
+if executable('npm')
+    Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews
+endif
+
 " terraform {{{3
 Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integration http://hashivim.github.io/vim-terraform
 
@@ -115,7 +277,7 @@ Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integrati
 " Plug 'https://github.com/vim-scripts/c.vim' " C/C++ IDE -- Write and run programs. Insert statements, idioms, comments etc
 
 " CSS/LESS {{{3
-Plug 'https://github.com/ap/vim-css-color' " Preview colours in source code while editing
+"Plug 'https://github.com/ap/vim-css-color' " Preview colours in source code while editing, @conflict vim-markdown
 
 " Go {{{3
 if version > 704 || (version == 704 && has('patch330'))
@@ -124,7 +286,7 @@ endif
 
 " HTML {{{3
 Plug 'https://github.com/gregsexton/MatchTag' " Vim's MatchParen for HTML tags
-Plug 'https://github.com/alvan/vim-closetag' " Auto close (X)HTML tags
+Plug 'https://github.com/alvan/vim-closetag'  " Auto close (X)HTML tags
 
 " Perl {{{3
 Plug 'https://github.com/vim-perl/vim-perl'            " Support for Perl 5 and Perl 6 in Vim http://groups.google.com/group/vim-perl
@@ -145,18 +307,17 @@ endif
 " XML, XSLT {{{3
 Plug 'https://github.com/vim-scripts/xml.vim' " [helps editing xml (and [x]html, sgml, xslt) files](https://github.com/vim-scripts/xml.vim)
 Plug 'https://github.com/vim-scripts/xmledit' " A filetype plugin to help edit XML, HTML, and SGML documents
-" Plug 'https://github.com/vim-scripts/xslt' " XSLT ftplugin
+Plug 'https://github.com/vim-scripts/xslt'    " XSLT ftplugin
 
 " YAML {{{3
-Plug 'https://github.com/pearofducks/ansible-vim'     " A vim plugin for syntax highlighting Ansible's common filetypes
 Plug 'https://github.com/andrewstuart/vim-kubernetes' " vim-kubernetes
 Plug 'https://github.com/stephpy/vim-yaml'            " Override vim syntax for yaml files
 
 " JSON {{{3
-Plug 'https://github.com/elzr/vim-json'                            " A better JSON
+Plug 'https://github.com/elzr/vim-json' " A better JSON
 
 " Rust
-Plug 'https://github.com/rust-lang/rust.vim'    " Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+Plug 'https://github.com/rust-lang/rust.vim' " Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
 
 " Git and other VCS {{{2
 if executable('git')
@@ -178,24 +339,6 @@ endif
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
 Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
-
-" Markdown {{{2
-" The tabular plugin must come before vim-markdown
-Plug 'https://github.com/plasticboy/vim-markdown'                      " Markdown Vim Mode
-Plug 'https://github.com/nelstrom/vim-markdown-folding'                " Fold markdown documents by section
-Plug 'https://github.com/suan/vim-instant-markdown', {'do': 'npm -g install instant-markdown-d'} " Instant Markdown previews
-
-" Charles Campbell {{{2
-Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'              " ansi escape sequences concealed, but highlighted as specified (conceal)
-Plug 'https://github.com/vim-scripts/DrawIt'                       " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
-Plug 'https://github.com/vim-scripts/LargeFile'                    " Edit large files quickly (keywords: large huge speed)
-Plug 'https://github.com/vim-scripts/SudoEdit.vim'                 " Edit Files using sudo or su or any other tool
-Plug 'https://github.com/vim-scripts/cecutil'                      " save/restore window position, mark position, selected user mapssave/restore window position, mark position, selected user maps
-
-" xolox {{{2
-"Plug 'https://github.com/xolox/vim-shell'                          " Improved integration between Vim and its environment
-Plug 'https://github.com/xolox/vim-misc'                           " Miscellaneous auto-load Vim scripts
-Plug 'https://github.com/xolox/vim-reload'                         " Automatic reloading of Vim scripts
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
@@ -757,7 +900,17 @@ if plugin#isEnabled('syntastic')
     " syntastic on/off
     noremap <silent> <F9> <Esc>:SyntasticToggleMode<cr>
     inoremap <silent> <F9> <C-o>:SyntasticToggleMode<cr>
+    " extras
     let g:syntastic_yaml_checkers = ['yamllint']
+    let g:syntastic_cfg_checkers = ['cfg']
+    let g:syntastic_dosini_checkers = ['dosini']
+    let g:syntastic_make_checkers = ['gnumake']
+    let g:syntastic_javascript_checkers = ['json_tool']
+    let g:syntastic_json_checkers = ['json_tool']
+    " Like Syntastic's pyflakes checker, but treats messages about unused
+    " variables/imports as warnings rather than errors.
+    let g:syntastic_python_checkers = ['pyflakes_with_warnings']
+    nnoremap ZZ :call syntastic_extras#quit_hook()<cr>
 endif
 "}}}
 " taboo.vim {{{2
