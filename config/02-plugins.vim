@@ -92,7 +92,7 @@ if version > 700
     Plug 'https://github.com/roktas/syntastic-more'  " More checkers for Vim Syntastic plugin
     Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
 endif
-Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
+"Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
 
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
@@ -463,12 +463,18 @@ if plugin#isEnabled('coc.nvim')
     let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-prettier',
-    \ 'coc-tsserver',
     \ 'coc-json',
+    \ 'coc-css',
     \ 'coc-python',
     \ 'coc-lists',
     \ 'coc-git',
     \ 'coc-yaml',
+    \ 'coc-yank',
+    \ 'coc-emmet',
+    \ 'coc-xml',
+    \ 'coc-spell-checker',
+    \ 'coc-cspell-dicts',
+    \ 'coc-calc',
     \ ]
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -496,9 +502,9 @@ if plugin#isEnabled('coc.nvim')
 
     " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
     " Coc only does snippet and additional edit on confirm.
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     " Or use `complete_info` if your vim support it, like:
-    " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
     command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -578,6 +584,14 @@ if plugin#isEnabled('coc.nvim')
     nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
     " Resume latest coc list
     nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+    " Extensions
+    vmap <leader>a <Plug>(coc-codeaction-selected)
+    nmap <leader>a <Plug>(coc-codeaction-selected)
+    " append result on current expression
+    nmap <Leader>ca <Plug>(coc-calc-result-append)
+    " replace result on current expression
+    nmap <Leader>cr <Plug>(coc-calc-result-replace)
 endif
 " }}}
 " delimitMate {{{2
