@@ -79,6 +79,7 @@ endif
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
+Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
 "Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
 Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
