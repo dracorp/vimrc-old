@@ -79,6 +79,7 @@ endif
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
+"Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
 Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
@@ -472,9 +473,8 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-yank',
     \ 'coc-emmet',
     \ 'coc-xml',
-    \ 'coc-spell-checker',
-    \ 'coc-cspell-dicts',
     \ 'coc-calc',
+    \ 'coc-pyright',
     \ ]
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -588,10 +588,28 @@ if plugin#isEnabled('coc.nvim')
     " Extensions
     vmap <leader>a <Plug>(coc-codeaction-selected)
     nmap <leader>a <Plug>(coc-codeaction-selected)
+
+    " coc-calc
     " append result on current expression
     nmap <Leader>ca <Plug>(coc-calc-result-append)
     " replace result on current expression
     nmap <Leader>cr <Plug>(coc-calc-result-replace)
+
+    " coc-snippets
+    " Use <C-l> for trigger snippet expand.
+    imap <C-l> <Plug>(coc-snippets-expand)
+
+    " Use <C-j> for select text for visual placeholder of snippet.
+    vmap <C-j> <Plug>(coc-snippets-select)
+
+    " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+    let g:coc_snippet_next = '<c-j>'
+
+    " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+    let g:coc_snippet_prev = '<c-k>'
+
+    " Use <C-j> for both expand and jump (make expand higher priority.)
+    imap <C-j> <Plug>(coc-snippets-expand-jump)
 endif
 " }}}
 " delimitMate {{{2
@@ -667,9 +685,18 @@ endif
 " }}}
 " incsearch.vim {{{2
 if plugin#isEnabled('incsearch.vim')
+    let g:incsearch#auto_nohlsearch = 1
     nmap /  <Plug>(incsearch-forward)
     nmap ?  <Plug>(incsearch-backward)
     nmap g/ <Plug>(incsearch-stay)
+    nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
+    map n  <Plug>(incsearch-nohl-n)
+    map N  <Plug>(incsearch-nohl-N)
+    map *  <Plug>(incsearch-nohl-*)
+    map #  <Plug>(incsearch-nohl-#)
+    map g* <Plug>(incsearch-nohl-g*)
+    map g# <Plug>(incsearch-nohl-g#)
 endif
 " }}}
 " latex-support {{{2
@@ -1055,6 +1082,19 @@ if plugin#isEnabled('vim-airline')
     let g:airline#extensions#wordcount#enabled    = 1   "Show word count
 endif
 "}}}
+" vim-asterisk {{{2
+if plugin#isEnabled('vim-asterisk')
+    let g:asterisk#keeppos = 1
+"    map *  <Plug>(asterisk-*)
+"    map #  <Plug>(asterisk-#)
+"    map g* <Plug>(asterisk-g*)
+"    map g# <Plug>(asterisk-g#)
+    map *  <Plug>(asterisk-z*)
+    map #  <Plug>(asterisk-z#)
+    map g* <Plug>(asterisk-gz*)
+    map g# <Plug>(asterisk-gz#)
+endif
+" }}}
 " vim-buffer {{{2
 if plugin#isEnabled('vim-buffer')
     nnoremap <silent> <c-p> :PreviousBuffer<cr>

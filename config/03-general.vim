@@ -148,7 +148,8 @@ set updatetime=300
 " }}}
 
 " Vim behaviour {{{
-set spell spelllang=pl,en
+"set spell spelllang=pl,en
+"set spellsuggest=best
 
 " if hidden is not set, TextEdit might fail.
 set hidden
