@@ -65,7 +65,7 @@ if g:UNIX
     Plug 'https://github.com/dracorp/vim-pkgbuild'
 endif
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'    " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. http://ctrlpvim.github.com/ctrlp.vim
-Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
+"Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
 Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
 Plug 'https://github.com/godlygeek/tabular'     " Vim script for text filtering and alignment
 Plug 'https://github.com/xolox/vim-easytags'    " Automated tag file generation and syntax highlighting of tags
@@ -79,7 +79,7 @@ endif
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
-Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
+"Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
 "Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
 Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
@@ -438,8 +438,12 @@ endif
 " }}}
 " ctrlp {{{2
 if plugin#isEnabled('ctrlp.vim')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    if executable('ag')
+        " Use Ag over Grep
+        set grepprg=ag\ --nogroup\ --nocolor
+        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    endif
     set wildignore+=*.7z
 endif
 " ctrlp-funky {{{2
@@ -693,12 +697,12 @@ if plugin#isEnabled('incsearch.vim')
     nmap g/ <Plug>(incsearch-stay)
     nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
-    map n  <Plug>(incsearch-nohl-n)
-    map N  <Plug>(incsearch-nohl-N)
-    map *  <Plug>(incsearch-nohl-*)
-    map #  <Plug>(incsearch-nohl-#)
-    map g* <Plug>(incsearch-nohl-g*)
-    map g# <Plug>(incsearch-nohl-g#)
+"    map n  <Plug>(incsearch-nohl-n)
+"    map N  <Plug>(incsearch-nohl-N)
+"    map *  <Plug>(incsearch-nohl-*)
+"    map #  <Plug>(incsearch-nohl-#)
+"    map g* <Plug>(incsearch-nohl-g*)
+"    map g# <Plug>(incsearch-nohl-g#)
 endif
 " }}}
 " latex-support {{{2
