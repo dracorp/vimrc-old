@@ -228,7 +228,7 @@ command! -nargs=0 RemoveDiacritics call RemoveDiacratics()
 
 " Mapping for functions {{{2
 nnoremap <leader>q                  :call <SID>QuickfixToggle()<cr>
-nnoremap <leader>f                  :call FoldColumnToggle()<cr>
+"nnoremap <leader>f                  :call FoldColumnToggle()<cr>
 "noremap  <silent> <F8>              :call ChangeFileencoding()<CR>
 noremap  <silent> <F1>              :call DisplayManpage()<CR>
 nnoremap <silent> <Leader><Space>   :call ToggleFoldMethod()<CR>
