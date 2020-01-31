@@ -51,10 +51,12 @@ nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 " }}}
 
 " change search mapping and don't jump
-" nnoremap * g#``
-" nnoremap # g*``
-" nnoremap g* #``
-" nnoremap g# *``
+nnoremap * g#``
+nnoremap # g*``
+nnoremap g* #``
+nnoremap g# *``
+" Turn off hlsearch
+"nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
