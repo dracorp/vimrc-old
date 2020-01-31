@@ -31,6 +31,7 @@ Plug 'https://github.com/junegunn/vim-plug'     " Minimalist Vim Plugin Manager
 Plug 'https://github.com/tpope/vim-sensible'    " Defaults everyone can agree on
 
 " Generally for Vim itself {{{2
+Plug 'https://github.com/dstein64/vim-startuptime' " A Vim plugin for profiling Vim's startup time
 Plug 'https://github.com/tpope/vim-scriptease'  " A Vim plugin for Vim plugins
 Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
 Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
@@ -78,7 +79,7 @@ else
 endif
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
-Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
+"Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
 "Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
 "Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
 Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
@@ -533,7 +534,7 @@ if plugin#isEnabled('coc.nvim')
     endfunction
 
     " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+"    autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Remap for rename current word
     nmap <F2> <Plug>(coc-rename)
@@ -616,6 +617,8 @@ if plugin#isEnabled('coc.nvim')
 
     " Use <C-j> for both expand and jump (make expand higher priority.)
     imap <C-j> <Plug>(coc-snippets-expand-jump)
+    " ~/.vim/coc-extension/repl.js
+    xmap <silent> <TAB> <Plug>(coc-repl-sendtext)
 endif
 " }}}
 " delimitMate {{{2
@@ -691,11 +694,10 @@ endif
 " }}}
 " incsearch.vim {{{2
 if plugin#isEnabled('incsearch.vim')
-    let g:incsearch#auto_nohlsearch = 1
+"    let g:incsearch#auto_nohlsearch = 1
     nmap /  <Plug>(incsearch-forward)
     nmap ?  <Plug>(incsearch-backward)
     nmap g/ <Plug>(incsearch-stay)
-    nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 "    map n  <Plug>(incsearch-nohl-n)
 "    map N  <Plug>(incsearch-nohl-N)
