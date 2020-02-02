@@ -96,6 +96,7 @@ if version > 700
     Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
 endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
+Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
 
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
@@ -343,6 +344,8 @@ endif
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
 Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
+Plug 'https://github.com/taigacute/gruvbox9'
+Plug 'https://github.com/bluz71/vim-nightfly-guicolors'
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
@@ -684,12 +687,26 @@ endif
 " }}}
 " gruvbox {{{2
 if plugin#isEnabled('gruvbox')
-    silent! colorscheme gruvbox
-    set background=dark
+"    silent! colorscheme gruvbox
+"    set background=dark
     if !exists("g:lightline")
         let g:lightline = {}
     endif
     let g:lightline.colorscheme='gruvbox'
+endif
+" }}}
+" gruvbox {{{2
+if plugin#isEnabled('gruvbox9')
+"    set background=dark
+    if !exists("g:lightline")
+        let g:lightline = {}
+    endif
+    let g:lightline.colorscheme='gruvbox9'
+    let g:gruvbox_filetype_hi_groups = 1
+    let g:gruvbox_italic = 1
+    let g:gruvbox_italicize_strings = 1
+    let g:gruvbox_plugin_hi_groups = 1
+    let g:gruvbox_transp_bg = 1
 endif
 " }}}
 " incsearch.vim {{{2
@@ -824,7 +841,7 @@ endif
 " }}}
 " onehalf {{{2
 if plugin#isEnabled('onehalf/vim')
-    silent! colorscheme onehalfdark
+"    silent! colorscheme onehalfdark
     let g:airline_theme='onehalfdark'
     if !g:lightline
         let g:lightline = {}
@@ -1211,6 +1228,11 @@ if plugin#isEnabled('vim-markdown-preview')
 "    let vim_markdown_preview_pandoc=1
 endif
 "}}}
+" vim-nightfly-guicolors {{{2
+if plugin#isEnabled('vim-nightfly-guicolors')
+"    colorscheme nightfly
+endif
+" }}}
 " vim-polyglot {{{2
 if plugin#isEnabled('vim-polyglot')
     let g:polyglot_disabled = ['csv']

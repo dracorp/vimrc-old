@@ -191,3 +191,11 @@ set showcmd                     " show (partial) command in the last line of the
                                 " this also shows visual selection info
 " }}}
 
+" Colors
+if has('termguicolors')
+    set tgc
+endif
+
+silent! colorscheme gruvbox9
+set background=dark
+
