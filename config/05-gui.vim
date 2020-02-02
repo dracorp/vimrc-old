@@ -29,11 +29,12 @@ if has("gui_running")
     if g:MSWIN
         set guifont=DejaVu_Sans_Mono:h10:cANSI
     elseif g:MACOS
-"        set guifont=Hack-Regular:h13
+        set guifont=Hack-Regular:h13
         set guifont=FiraCode-Regular:h13
     elseif g:UNIX
         set guifont=Hack\ 13
-        set guifont=Cascadia\ Code\ 11
+        set guifont=Cascadia\ Code\ 12
+        set guifont=Iosevka\ Semi-Bold\ 12
     endif
 endif
 " }}}
