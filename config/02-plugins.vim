@@ -335,7 +335,8 @@ if executable('git')
     Plug 'https://github.com/vim-scripts/vim-gitignore'   " Another gitignore plugin for Vim
     Plug 'https://github.com/sjl/splice.vim'              " managing three-way merges - conflict with vim-fugitive
     if version >= 704
-        Plug 'https://github.com/airblade/vim-gitgutter'  " shows a git diff in the 'gutter' (sign column)
+        " use coc-git instead of this
+"        Plug 'https://github.com/airblade/vim-gitgutter'  " shows a git diff in the 'gutter' (sign column)
     endif
     Plug 'https://github.com/whiteinge/diffconflicts'     " A better Vimdiff Git mergetool
     Plug 'https://github.com/cohama/agit.vim'             " A powerful Git log viewer
@@ -472,20 +473,26 @@ endif
 if plugin#isEnabled('coc.nvim')
     let $NODE_TLS_REJECT_UNAUTHORIZED=0
     let g:coc_global_extensions = [
-    \ 'coc-snippets',
-    \ 'coc-prettier',
-    \ 'coc-json',
+    \ 'coc-calc',
     \ 'coc-css',
-    \ 'coc-python',
-    \ 'coc-lists',
+    \ 'coc-emmet',
+    \ 'coc-emoji',
     \ 'coc-git',
+    \ 'coc-highlight',
+    \ 'coc-html',
+    \ 'coc-imselect',
+    \ 'coc-json',
+    \ 'coc-lists',
+    \ 'coc-post',
+    \ 'coc-prettier',
+    \ 'coc-pyright',
+    \ 'coc-python',
+    \ 'coc-snippets',
+    \ 'coc-xml',
     \ 'coc-yaml',
     \ 'coc-yank',
-    \ 'coc-emmet',
-    \ 'coc-xml',
-    \ 'coc-calc',
-    \ 'coc-pyright',
     \ ]
+
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 
@@ -532,12 +539,13 @@ if plugin#isEnabled('coc.nvim')
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
     else
+        B
         call CocAction('doHover')
     endif
     endfunction
 
     " Highlight symbol under cursor on CursorHold
-"    autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Remap for rename current word
     nmap <F2> <Plug>(coc-rename)
@@ -617,6 +625,9 @@ if plugin#isEnabled('coc.nvim')
 
     " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
     let g:coc_snippet_prev = '<c-k>'
+    let g:coc_snippet_prev = '<S-TAB>'
+    let g:coc_status_error_sign = '•'
+    let g:coc_status_warning_sign = '•'
 
     " Use <C-j> for both expand and jump (make expand higher priority.)
     imap <C-j> <Plug>(coc-snippets-expand-jump)
