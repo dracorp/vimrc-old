@@ -59,6 +59,7 @@ endif
 if filereadable($VIM_PATH . '/config/01-init.vim')
     call s:source_file('config/01-init.vim')
 endif
+
 if filereadable($VIM_PATH . '/config/02-plugins.vim')
     call s:source_file('config/02-plugins.vim')
 endif
@@ -67,18 +68,23 @@ endif
 if filereadable($VIM_PATH . '/config/03-general.vim')
     call s:source_file('config/03-general.vim')
 endif
+
 if filereadable($VIM_PATH . '/config/04-filetype.vim')
     call s:source_file('config/04-filetype.vim')
 endif
+
 if filereadable($VIM_PATH . '/config/05-gui.vim')
     call s:source_file('config/05-gui.vim')
 endif
+
 if filereadable($VIM_PATH . '/config/06-functions.vim')
     call s:source_file('config/06-functions.vim')
 endif
+
 if filereadable($VIM_PATH . '/config/07-commands.vim')
     call s:source_file('config/07-commands.vim')
 endif
+
 if filereadable($VIM_PATH . '/config/08-mappings.vim')
     call s:source_file('config/08-mappings.vim')
 endif

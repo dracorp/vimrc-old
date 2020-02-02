@@ -13,31 +13,32 @@ if !plugin#isEnabled('vim-sensible') "{{{2
     set history=1000                            " remember more commands and search history
 endif "}}}
 
-set virtualedit=block " Position cursor anywhere in visual block
-set mousehide         " Hide the mouse when typing text
-set mouse=v           " enable using the mouse if terminal emulator supports it (xterm does)
-set showmode          " always show what mode we're currently editing in
-set wrap              " wrap lines
-set magic             " For regular expressions turn magic on
-set shortmess+=I      " hide the launch screen
-set shortmess+=c " don't give |ins-completion-menu| messages.
-set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
-set signcolumn=auto " show signcolumns
-"set number                                      " show line numbers
-"set relativenumber
+set virtualedit=block        " Position cursor anywhere in visual block
+set mousehide                " Hide the mouse when typing text
+set mouse=v                  " enable using the mouse if terminal emulator supports it (xterm does)
+set showmode                 " always show what mode we're currently editing in
+set wrap                     " wrap lines
+set magic                    " For regular expressions turn magic on
+set shortmess+=I             " hide the launch screen
+set shortmess+=c             " don't give |ins-completion-menu| messages.
+set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
+set signcolumn=auto          " show signcolumns
+set number                   " show line numbers
+set relativenumber
 set cursorline
-set showmatch                                   " set show matching parenthesis
-set ignorecase                                  " ignore case when searching
-set smartcase                                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set showmatch                " jump to matching parenthesis/bracket
+set matchpairs+=<:>          " Add HTML brackets to pair matching
+set ignorecase               " ignore case when searching
+set smartcase                " ignore case if search pattern is all lowercase, case-sensitive otherwise
 if has('patch-7.3.541')
-    set formatoptions+=j       " Remove comment leader when joining lines
+    set formatoptions+=j     " Remove comment leader when joining lines
 endif
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
 " }}}
-"
+
 " Editing behaviour {{{
 behave xterm                                    " Set behaviour for mouse and selection, affect on selectmode mousemodel keymodel selection
-" indention & Tabs
+" indention & tabs
 set autoindent                                  " always set autoindenting on
 set smartindent                                 " smart autoindenting when starting a new line
 set copyindent                                  " copy the previous indentation on autoindenting
@@ -57,7 +58,7 @@ set nojoinspaces                                " do not insert 2 spaces after .
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
-set textwidth=79                                 " maximum width of text that is being inserted
+set textwidth=79                                " maximum width of text that is being inserted
 set wrapmargin=2                                " To wrap text based on a number of columns from the right side
 " autoformat: call using gq, see also |fo-table|
 set formatoptions+=1                            " long lines are not broken in insert mode
@@ -79,6 +80,20 @@ if has('clipboard')
         set clipboard=unnamed
     endif
 endif
+if has('mac')
+	let g:clipboard = {
+		\   'name': 'macOS-clipboard',
+		\   'copy': {
+		\      '+': 'pbcopy',
+		\      '*': 'pbcopy',
+		\    },
+		\   'paste': {
+		\      '+': 'pbpaste',
+		\      '*': 'pbpaste',
+		\   },
+		\   'cache_enabled': 0,
+		\ }
+endif
 " }}}
 
 " Various settings {{{
@@ -87,6 +102,7 @@ set sessionoptions+=tabpages,globals
 set linebreak
 set wrapscan                                    " searches wrap around the end of file
 set autowrite                                   " write a modified buffer on each :next , ...
+set confirm
 " backspace, space, <left>, <right>
 set whichwrap=b,s,<,>,[,],h,l                   " which keys move the cursor to previous/next line when the cursor is on the first/last character
 set browsedir=current                           " which directory to use for the file browser
@@ -101,8 +117,8 @@ set modeline                                    " search for additional vim comm
 set ttyfast                                     " always use a fast terminal
 set splitbelow                                  " command :sp put a new window below the active
 set splitright                                  " command :vs put a new windows on right side of active
-set equalalways         " Resize windows on split or close
-set infercase
+set equalalways                                 " Resize windows on split or close
+set infercase                                   " Adjust case in insert completion mode
 set tildeop                                     " Tylde(~) behaves like operator
 set iskeyword+=-                                " which char make a word
 " open file under cursor with env variable
@@ -117,11 +133,11 @@ endif
 
 " Folding rules {{{
 if has('folding')
-    set foldenable                  " enable folding
-    set foldcolumn=0                " add a fold column
-    set foldmethod=marker           " detect triple-{ style fold markers
+    set foldenable                              " enable folding
+    set foldcolumn=0                            " add a fold column
+    set foldmethod=marker                       " detect triple-{ style fold markers
     set foldmarker={{{,}}}
-    " set foldlevelstart=99           " start out with everything unfolded
+"    set foldlevelstart=99                      " start out with everything unfolded
     set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo " which commands trigger auto-unfold
 endif
 " }}}
@@ -179,7 +195,9 @@ set viminfo='20,\"80            " read/write a .viminfo file, don't store more
                                 " than 80 lines of registers
 set wildmenu                    " make tab completion for files/buffers act like bash
 set wildmode=list:longest,list:full  " show a list when pressing tab and complete
-set wildignore=*.o,*.e,*~,*.swp,*.class,*.so,*.pyo,*.zip,*.obj,.git,*.rbc,*.pyc,__pycache__
+set wildignore=*.o,*.e,*~,*.swp,*.class,*.so,*.pyo,*.zip,*.obj,*.git/*,*.rbc,*.pyc,__pycache__,*/.svn/*,*/.DS_Store,*/tmp/*
+set completefunc=emoji#complete
+set completeopt=longest,menu
 set title                       " change the terminal's title
 set titleold="Terminal"
 set titlestring=%F
