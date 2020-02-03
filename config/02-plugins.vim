@@ -97,6 +97,7 @@ if version > 700
 endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
 Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
+Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
@@ -345,7 +346,7 @@ endif
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
 Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
-Plug 'https://github.com/taigacute/gruvbox9'
+Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
 Plug 'https://github.com/bluz71/vim-nightfly-guicolors'
 
 " Shells/Bash
@@ -397,6 +398,7 @@ Plug 'https://github.com/brooth/far.vim'                           " Find And Re
 Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 if version >= 704
     Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
+    Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
 endif
 Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 
@@ -427,6 +429,8 @@ execute 'Plug \"' . bundle_dir . '/file_templates\"'
 " Language & Grammar {{{2
 Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful grammar checker for Vim using LanguageTool
 "}}}
+" Always load the vim-devicons as the very last one.
+Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
@@ -545,7 +549,7 @@ if plugin#isEnabled('coc.nvim')
     endfunction
 
     " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+"    autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Remap for rename current word
     nmap <F2> <Plug>(coc-rename)
@@ -696,28 +700,13 @@ if plugin#isEnabled('vim-gitgutter')
     let g:gitgutter_max_signs               = 2000
 endif
 " }}}
-" gruvbox {{{2
-if plugin#isEnabled('gruvbox')
-"    silent! colorscheme gruvbox
-"    set background=dark
-    if !exists("g:lightline")
-        let g:lightline = {}
-    endif
-    let g:lightline.colorscheme='gruvbox'
-endif
-" }}}
-" gruvbox {{{2
+" gruvbox9 {{{2
 if plugin#isEnabled('gruvbox9')
-"    set background=dark
-    if !exists("g:lightline")
-        let g:lightline = {}
-    endif
-    let g:lightline.colorscheme='gruvbox9'
     let g:gruvbox_filetype_hi_groups = 1
     let g:gruvbox_italic = 1
     let g:gruvbox_italicize_strings = 1
     let g:gruvbox_plugin_hi_groups = 1
-    let g:gruvbox_transp_bg = 1
+"    let g:gruvbox_transp_bg = 1
 endif
 " }}}
 " incsearch.vim {{{2
@@ -853,11 +842,6 @@ endif
 " onehalf {{{2
 if plugin#isEnabled('onehalf/vim')
 "    silent! colorscheme onehalfdark
-    let g:airline_theme='onehalfdark'
-    if !g:lightline
-        let g:lightline = {}
-    endif
-    let g:lightline.colorscheme='onehalfdark'
 endif
 " }}}
 " open-browser.vim {{{2
@@ -1106,7 +1090,6 @@ endif
 " vim-airline {{{2
 if plugin#isEnabled('vim-airline')
     let g:airline_powerline_fonts     = 1
-    let g:airline_theme               = 'luna'
     let g:airline_section_c           = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
     let g:airline_skip_empty_sections = 1
     " vim-airline's extensions
@@ -1139,6 +1122,23 @@ if plugin#isEnabled('vim-buffer')
     nnoremap <silent> <leader>D :BufOnly<cr>
 endif
 " }}}
+" vim-buffet {{{2
+if plugin#isEnabled('vim-buffet')
+    nmap <leader>1 <Plug>BuffetSwitch(1)
+    nmap <leader>2 <Plug>BuffetSwitch(2)
+    nmap <leader>3 <Plug>BuffetSwitch(3)
+    nmap <leader>4 <Plug>BuffetSwitch(4)
+    nmap <leader>5 <Plug>BuffetSwitch(5)
+    nmap <leader>6 <Plug>BuffetSwitch(6)
+    nmap <leader>7 <Plug>BuffetSwitch(7)
+    nmap <leader>8 <Plug>BuffetSwitch(8)
+    nmap <leader>9 <Plug>BuffetSwitch(9)
+    nmap <leader>0 <Plug>BuffetSwitch(10)
+    let g:buffet_powerline_separators = 1
+    let g:buffet_tab_icon = "\uf00a"
+    let g:buffet_left_trunc_icon = "\uf0a8"
+    let g:buffet_right_trunc_icon = "\uf0a9"
+endif
 " vim-buftabline {{{2
 if plugin#isEnabled('vim-buftabline')
     nnoremap <C-N> :bnext<CR>
@@ -1328,4 +1328,3 @@ if plugin#isEnabled('yaifa')
 endif
 "}}}
 "}}}1
-
