@@ -209,7 +209,7 @@ set showcmd                     " show (partial) command in the last line of the
                                 " this also shows visual selection info
 " }}}
 
-" Colors
+" Colors/theme {{{
 if has('termguicolors')
     set tgc
 endif
@@ -217,3 +217,15 @@ endif
 silent! colorscheme gruvbox9
 set background=dark
 
+if plugin#isEnabled('lightline.vim')
+    if !g:lightline
+        let g:lightline = {}
+    endif
+    let g:lightline.colorscheme='gruvbox9'
+"    let g:lightline.colorscheme='onehalfdark'
+endif
+if plugin#isEnabled('vim-airline')
+    let g:airline_theme = 'onehalfdark'
+"    let g:airline_theme = 'luna'
+endif
+"}}}
