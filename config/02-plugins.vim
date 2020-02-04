@@ -430,7 +430,9 @@ execute 'Plug \"' . bundle_dir . '/file_templates\"'
 Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful grammar checker for Vim using LanguageTool
 "}}}
 " Always load the vim-devicons as the very last one.
-Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+if !g:MACOS
+    Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+endif
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
