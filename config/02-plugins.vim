@@ -286,7 +286,7 @@ Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integrati
 "Plug 'https://github.com/ap/vim-css-color' " Preview colours in source code while editing, @conflict vim-markdown
 
 " Go {{{3
-if version > 704 || (version == 704 && has('patch330'))
+if version >= 801 && has('patch453')
     Plug 'https://github.com/fatih/vim-go' " Go development plugin for Vim https://www.patreon.com/bhcleek
 endif
 
