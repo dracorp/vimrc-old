@@ -6,6 +6,7 @@
 "   vim --startuptime start.log
 
 " Use Vim settings, rather then Vi settings. This must be first, because it changes other options as a side effect.
+" We set it explicitely to make our position clear!
 " Normally `:set nocp` is not needed, because it is done automatically
 " when .vimrc is found.
 if &compatible

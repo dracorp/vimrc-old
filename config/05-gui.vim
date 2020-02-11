@@ -1,5 +1,5 @@
 if &t_Co > 2 || has("gui_running")
-    syntax on
+    syntax on                                   " Enable syntax highlighting.
     set hlsearch
 endif
 

@@ -1,11 +1,25 @@
 " Disable vim distribution plugins
+" https://github.com/mhinz/vim-galore
+"| Plugin     | Disable it using..                  | Help |
+"|------------|-------------------------------------|------|
+"| 2html      | `let g:loaded_2html_plugin = 1`     | `:h 2html` |
+"| getscript  | `let g:loaded_getscriptPlugin = 1`  | `:h pi_getscript` |
+"| gzip       | `let g:loaded_gzip = 1`             | `:h pi_gzip` |
+"| logipat    | `let g:loaded_logipat = 1`          | `:h pi_logipat` |
+"| matchparen | `let g:loaded_matchparen = 1`       | `:h pi_paren` |
+"| netrw      | `let g:loaded_netrwPlugin = 1`      | `:h pi_netrw` |
+"| rrhelper   | `let g:loaded_rrhelper = 1`         | `:e $VIMRUNTIME/plugin/rrhelper.vim` |
+"| spellfile  | `let g:loaded_spellfile_plugin = 1` | `:h spellfile.vim` |
+"| tar        | `let g:loaded_tarPlugin = 1`        | `:h pi_tar` |
+"| vimball    | `let g:loaded_vimballPlugin = 1`    | `:h pi_vimball` |
+"| zip        | `let g:loaded_zipPlugin = 1`        | `:h pi_zip` |
 let g:loaded_getscript = 1
 let g:loaded_getscriptPlugin = 1
-let g:loaded_gzip = 1
+"let g:loaded_gzip = 1                          " some vim installation comes with compressed help files
 let g:loaded_logiPat = 1
 let g:loaded_matchit = 1
 let g:loaded_matchparen = 1
-let g:netrw_nogx = 1 " disable netrw's gx mapping.
+let g:netrw_nogx = 1                            " disable netrw's gx mapping.
 let g:loaded_rrhelper = 1  " ?
 let g:loaded_shada_plugin = 1  " ?
 let g:loaded_tar = 1

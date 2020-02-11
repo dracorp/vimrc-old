@@ -1,4 +1,14 @@
 " Key mappings
+
+"| Recursive | Non-recursive | Unmap    | Modes                            |
+"|-----------|--------------------------|----------------------------------|
+"| :map      | :noremap      | :unmap   | normal, visual, operator-pending |
+"| :nmap     | :nnoremap     | :nunmap  | normal                           |
+"| :xmap     | :xnoremap     | :xunmap  | visual                           |
+"| :cmap     | :cnoremap     | :cunmap  | command-line                     |
+"| :omap     | :onoremap     | :ounmap  | operator-pending                 |
+"| :imap     | :inoremap     | :iunmap  | insert                           |
+
 " !         make a switch from a key
 " <CR>      Enter key
 " <C-o>     allows in 'insert' mode insert a command
