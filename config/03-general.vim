@@ -17,6 +17,8 @@ set virtualedit=block        " Position cursor anywhere in visual block
 set mousehide                " Hide the mouse when typing text
 set mouse=v                  " enable using the mouse if terminal emulator supports it (xterm does)
 set showmode                 " always show what mode we're currently editing in
+set showcmd                  " show (partial) command in the last line of the screen
+                             " this also shows visual selection info
 set wrap                     " wrap lines
 set magic                    " For regular expressions turn magic on
 set shortmess+=I             " hide the launch screen
@@ -112,7 +114,7 @@ set complete+=k                                 " scan the files given with the 
 set printoptions=left:8pc,right:3pc             " print options or export to html
 let g:html_use_css=1
 let g:use_xhtml=1000
-set display+=lastline                           " show last line even it does not fit
+set display=lastline                           " show last line even it does not fit, we don't want uhex
 "set colorcolumn=+1
 set showbreak=+\                                " show wraped lines as
 set modeline                                    " search for additional vim commands in n-th first lines(see modelines)
@@ -180,15 +182,15 @@ set switchbuf=useopen           " reveal already opened files from the
                                 " buffers
 set undolevels=1000                             " use many muchos levels of undo
 if has('persistent_undo')
-    set undoreload=10000                        " maximum number lines to save for undo on a buffer reload
     set undofile                                " keep a persistent backup file
+    set undoreload=10000                        " maximum number lines to save for undo on a buffer reload
     let &undodir=vimrc_dir . '.undodir'
 endif
-let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
 
 " Some servers have issues with backup files, see
 " [#649](https://github.com/neoclide/coc.nvim/issues/649)
 set nobackup                    " do not keep backup files, it's 70's style cluttering
+let &backupdir=vimrc_dir . '.backupdir,~/tmp,/tmp'
 set nowritebackup
 set noswapfile                  " do not write annoying intermediate swap files,
 set autochdir                   " automatically switch the working directory to that of the file being edited
@@ -207,8 +209,6 @@ set noerrorbells                " don't beep
 set novisualbell
 set t_vb=
 set t_ti= t_te=                 " put terminal in 'termcap' mode
-set showcmd                     " show (partial) command in the last line of the screen
-                                " this also shows visual selection info
 " }}}
 
 " Colors/theme {{{
