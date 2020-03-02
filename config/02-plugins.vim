@@ -402,6 +402,7 @@ if version >= 704
     Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
 endif
 Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
+Plug 'https://github.com/pechorin/any-jump.nvim' " Jump to any definition and usages eye IDE madness without overhead (alpha)
 
 " 3rd party tools {{{2
 if executable('python')
