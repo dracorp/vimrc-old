@@ -98,6 +98,7 @@ endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
 Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
 Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
+Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
 
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
@@ -439,6 +440,14 @@ delc PlugUpgrade
 "}}}
 
 " Plugins configuration {{{
+" animate {{{2
+if plugin#isEnabled('animate.vim')
+    nnoremap <silent> <C-S-Up>    :call animate#window_delta_height(10)<CR>
+    nnoremap <silent> <C-S-Down>  :call animate#window_delta_height(-10)<CR>
+    nnoremap <silent> <C-S-Left>  :call animate#window_delta_width(10)<CR>
+    nnoremap <silent> <C-S-Right> :call animate#window_delta_width(-10)<CR>
+endif
+" }}}
 " bash-support {{{2
 if plugin#isEnabled('bash-support.vim')
     " let g:BASH_TemplateOverwrittenMsg = 'no'
