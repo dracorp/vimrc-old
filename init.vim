@@ -1,4 +1,1 @@
-if filereadable("vimrc")
-    source vimrc
-endif
-
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/vimrc'
