@@ -91,6 +91,10 @@
     // python
     "python.jediEnabled": false,
     // add your languageServer into this list
-    "languageserver": {}
+    "languageserver": {
+    },
+    "yaml.schemas": {
+        "kubernetes": "/*.yaml"
+    }
 }
 
