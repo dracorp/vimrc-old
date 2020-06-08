@@ -491,6 +491,7 @@ endif
 if plugin#isEnabled('coc.nvim')
     let $NODE_TLS_REJECT_UNAUTHORIZED=0
     let g:coc_global_extensions = [
+    \ 'coc-tsserver',
     \ 'coc-calc',
     \ 'coc-css',
     \ 'coc-emmet',
@@ -514,6 +515,9 @@ if plugin#isEnabled('coc.nvim')
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 
+    if has('vim')
+        set pumwidth=50
+    endif
     inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
