@@ -489,6 +489,7 @@ endif
 " }}}
 " coc.nvim {{{2
 if plugin#isEnabled('coc.nvim')
+"    let $NVIM_COC_LOG_LEVEL = 'info'
     let $NODE_TLS_REJECT_UNAUTHORIZED=0
     let g:coc_global_extensions = [
     \ 'coc-tsserver',
