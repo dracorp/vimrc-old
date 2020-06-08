@@ -5,6 +5,11 @@ endif
 
 if g:MSWIN64 && has("gui_running")
     au GUIEnter * simalt ~x
+else
+    " Maximize GVim on start
+    if has("gui_running")
+    set lines=999 columns=999
+    endif
 endif
 
 if has("gui_running")
