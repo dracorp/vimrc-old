@@ -511,6 +511,8 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-xml',
     \ 'coc-yaml',
     \ 'coc-yank',
+    \ 'coc-pairs',
+    \ 'coc-template',
     \ ]
 
     " Use tab for trigger completion with characters ahead and navigate.
