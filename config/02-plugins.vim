@@ -99,7 +99,9 @@ endif
 Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
 Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
-
+if has('python3') && has('timers')
+    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
+endif
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
 " vim-polyglot supported language pack {{{ 3
