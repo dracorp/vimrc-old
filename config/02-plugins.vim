@@ -40,7 +40,9 @@ Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely or
 if g:UNICODE && executable('git')
     Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
-Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
+if !g:MACOS
+    Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
+endif
 if !g:MSWIN
     Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
 endif
