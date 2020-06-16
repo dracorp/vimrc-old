@@ -37,8 +37,8 @@ let g:MSWIN   = has('win16')  || has('win32')   || has('win64')     || has('win9
 let g:MSWIN64 = has('win64')
 let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
 let g:MACOS   = has('mac')
-let g:PYTHON  = has('python') || has('python3')
 let g:PYTHON3 = has('python3')
+let g:PYTHON  = has('python') || has('python3')
 let g:OS      = substitute(system('uname'), "\n", "", "")
 
 " multi_byte/unicode/utf {{{
