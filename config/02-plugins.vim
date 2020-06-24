@@ -264,6 +264,9 @@ Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight' " whitespace s
 Plug 'https://github.com/vim-scripts/logstash.vim'                " logstash.vim highlights configuration files for logstash
 Plug 'https://github.com/vim-scripts/jQuery'                      " Syntax file for jQuery
 Plug 'https://github.com/xu-cheng/brew.vim'                       " 🍺 Vim Syntax for Homebrew formulae
+if !has('nvim')
+    Plug 'https://github.com/rhysd/vim-healthcheck' "
+endif
 
 " Docker {{{3
 if !has('nvim')
@@ -346,6 +349,7 @@ if executable('git')
     endif
     Plug 'https://github.com/whiteinge/diffconflicts'     " A better Vimdiff Git mergetool
     Plug 'https://github.com/cohama/agit.vim'             " A powerful Git log viewer
+    Plug 'https://github.com/rhysd/git-messenger.vim' " plugin to reveal the hidden message from Git under the cursor quickly
 endif
 
 " Themes {{{2
