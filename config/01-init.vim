@@ -39,6 +39,11 @@ let g:UNIX    = has('unix')   || has('macunix') || has('win32unix')
 let g:MACOS   = has('mac')
 let g:PYTHON3 = has('python3')
 let g:PYTHON  = has('python') || has('python3')
+" Note: for proper work with pythonX on MacOs with nvim install:
+" brew install python
+" brew install python3
+" pip2 install neovim --upgrade
+" pip3 install neovim --upgrade
 let g:OS      = substitute(system('uname'), "\n", "", "")
 
 " multi_byte/unicode/utf {{{

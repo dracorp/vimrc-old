@@ -231,3 +231,8 @@ if plugin#isEnabled('vim-airline')
 "    let g:airline_theme = 'luna'
 endif
 "}}}
+" Python
+if g:MACOS
+    let g:python2_host_prog = '/usr/local/bin/python2'
+    let g:python3_host_prog = '/usr/local/bin/python3'
+endif
