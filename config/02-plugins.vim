@@ -102,7 +102,7 @@ Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
 Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
 if has('python3') && has('timers')
-    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
+"    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
 endif
 " Syntax and programing languages {{{2
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
@@ -349,14 +349,13 @@ if executable('git')
     endif
     Plug 'https://github.com/whiteinge/diffconflicts'     " A better Vimdiff Git mergetool
     Plug 'https://github.com/cohama/agit.vim'             " A powerful Git log viewer
-    Plug 'https://github.com/rhysd/git-messenger.vim' " plugin to reveal the hidden message from Git under the cursor quickly
+"    Plug 'https://github.com/rhysd/git-messenger.vim' " plugin to reveal the hidden message from Git under the cursor quickly
 endif
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
-Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
+"Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
 Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
-Plug 'https://github.com/bluz71/vim-nightfly-guicolors'
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
