@@ -92,6 +92,17 @@
     "python.jediEnabled": false,
     // add your languageServer into this list
     "languageserver": {
+        "groovy": {
+            "command": "java",
+            "args" : ["-jar", "$HOME/Projects/Projects-3rd/groovy-language-server/build/libs/groovy-language-server-all.jar"],
+            "filetypes": ["groovy"]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        }
     },
     "yaml.schemas": {
         "kubernetes": "/*.yaml"
