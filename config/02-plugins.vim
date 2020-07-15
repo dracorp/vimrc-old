@@ -505,6 +505,7 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-emmet',
     \ 'coc-emoji',
     \ 'coc-git',
+    \ 'coc-go',
     \ 'coc-highlight',
     \ 'coc-html',
     \ 'coc-imselect',
