@@ -378,7 +378,9 @@ Plug 'https://github.com/tyru/open-browser.vim'                    " Open URI wi
 Plug 'https://github.com/jlemetay/permut'                          " swap columns of text separated by arbitrary characters
 Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
 Plug 'https://github.com/majutsushi/tagbar'                        " Vim plugin that displays tags in a window, ordered by scope
-Plug 'https://github.com/vim-scripts/taglist.vim'                  " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+if executable('ctags')
+    Plug 'https://github.com/vim-scripts/taglist.vim'                  " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+endif
 Plug 'https://github.com/vim-scripts/Toggle'                       " allows you to toggle bool (true/false) and other words with a shortcut
 Plug 'https://github.com/tpope/vim-repeat'             " enable repeating supported plugin maps with                                      " . "
 Plug 'https://github.com/tpope/vim-speeddating'        " use CTRL-A/CTRL-X to increment dates, times, and more
