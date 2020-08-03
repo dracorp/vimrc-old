@@ -71,7 +71,9 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'    " Active fork of kien/ctrlp.vimâ
 "Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
 Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
 Plug 'https://github.com/godlygeek/tabular'     " Vim script for text filtering and alignment
-Plug 'https://github.com/xolox/vim-easytags'    " Automated tag file generation and syntax highlighting of tags
+if executable('ctags')
+    Plug 'https://github.com/xolox/vim-easytags'    " Automated tag file generation and syntax highlighting of tags
+endif
 "Plug 'https://github.com/LucHermitte/lh-vim-lib' " Library of Vim functions
 "Plug 'https://github.com/LucHermitte/lh-tags'    " ctags base updating, and browsing from vim
 if g:UNICODE
@@ -269,7 +271,7 @@ if !has('nvim')
 endif
 Plug 'https://github.com/vim-scripts/groovy.vim' " syntax file for the groovy programming language
 " Docker {{{3
-if !has('nvim')
+if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 
@@ -403,7 +405,9 @@ Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin 
 "Plug 'https://github.com/dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
 Plug 'https://github.com/brooth/far.vim'                           " Find And Replace
 
-Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
+if version > 704 || version == 704 && has('patch1154')
+    Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
+endif
 if version >= 704
     Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
     Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
