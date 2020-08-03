@@ -211,7 +211,33 @@ function! ToggleFoldMethod() "{{{
         echo "Foldmethod: indent"
     endif
 endfunction "}}}
+" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
+function! ToggleSignColumn() "{{{
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=auto
+        let b:signcolumn_on=1
+    endif
+endfunction
+"}}}
+function! ToggleNumberColumn() "{{{
+    if !exists("b:numbercolumn_on") || b:numbercolumn_on
+        set nonumber
+        set norelativenumber
+        let b:numbercolumn_on=0
+    else
+        set number
+        set relativenumber
+        let b:numbercolumn_on=1
+    endif
+endfunction
+" Toggle line numbers
+"nnoremap <leader>n :setlocal number!<cr>
+nnoremap <Leader>n :call ToggleNumberColumn()<CR>
 
+"}}}
 " build_go_files is a custom function that builds or compiles the test file.
 " It calls :GoBuild if its a Go file, or :GoTestCompile if it's a test file
 function! s:build_go_files()
@@ -232,4 +258,7 @@ nnoremap <leader>q                  :call <SID>QuickfixToggle()<cr>
 "noremap  <silent> <F8>              :call ChangeFileencoding()<CR>
 noremap  <silent> <F1>              :call DisplayManpage()<CR>
 nnoremap <silent> <Leader><Space>   :call ToggleFoldMethod()<CR>
+if has('signs') && version >= 800
+    nnoremap <Leader>2 :call ToggleSignColumn()<CR>
+endif
 " }}}2

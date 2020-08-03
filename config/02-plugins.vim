@@ -88,7 +88,7 @@ Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences c
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
 Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo or su or any other tool
-Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
+"Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
 Plug 'https://github.com/xolox/vim-misc'               " Miscellaneous auto-load Vim scripts
 Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 " Syntastic check
@@ -267,7 +267,7 @@ Plug 'https://github.com/xu-cheng/brew.vim'                       " 🍺 Vim Syn
 if !has('nvim')
     Plug 'https://github.com/rhysd/vim-healthcheck' "
 endif
-
+Plug 'https://github.com/vim-scripts/groovy.vim' " syntax file for the groovy programming language
 " Docker {{{3
 if !has('nvim')
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
@@ -278,7 +278,7 @@ Plug 'https://github.com/vim-scripts/ldif.vim'              " syntax higlighting
 Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn' " ldap schmema definition language
 
 " Markdown {{{3
-Plug 'https://github.com/plasticboy/vim-markdown'       " Markdown Vim Mode, @require tabular
+"Plug 'https://github.com/plasticboy/vim-markdown'       " Markdown Vim Mode, @require tabular
 Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown documents by section
 if executable('npm')
     Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews

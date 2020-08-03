@@ -24,7 +24,7 @@ set magic                    " For regular expressions turn magic on
 set shortmess+=I             " hide the launch screen
 set shortmess+=c             " don't give |ins-completion-menu| messages.
 set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
-if has('signs')
+if has('signs') && version >= 800
     set signcolumn=auto          " show signcolumns
 endif
 set number                   " show line numbers
