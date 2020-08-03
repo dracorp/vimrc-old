@@ -94,7 +94,7 @@ Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of 
 " Syntastic check
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'   " Syntax checking hacks for vim
-    Plug 'https://github.com/roktas/syntastic-more'  " More checkers for Vim Syntastic plugin
+"    Plug 'https://github.com/roktas/syntastic-more'  " More checkers for Vim Syntastic plugin - 404 not found
     Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
 endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
