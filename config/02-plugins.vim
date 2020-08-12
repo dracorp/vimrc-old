@@ -267,13 +267,20 @@ Plug 'https://github.com/vim-scripts/logstash.vim'                " logstash.vim
 Plug 'https://github.com/vim-scripts/jQuery'                      " Syntax file for jQuery
 Plug 'https://github.com/xu-cheng/brew.vim'                       " 🍺 Vim Syntax for Homebrew formulae
 if !has('nvim')
-    Plug 'https://github.com/rhysd/vim-healthcheck' "
+    Plug 'https://github.com/rhysd/vim-healthcheck' " Polyfill of Neovim's health-check for Vim
 endif
 Plug 'https://github.com/vim-scripts/groovy.vim' " syntax file for the groovy programming language
 " Docker {{{3
 if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
+Plug 'https://github.com/dhruvasagar/vim-table-mode' " VIM Table Mode for instant table creation
+Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+
+" DB {{{
+Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
+Plug 'https://github.com/kristijanhusak/vim-dadbod-ui' " Simple UI for vim-dadbod
+" }}}
 
 " Ldap/ldif {{{3
 Plug 'https://github.com/vim-scripts/ldif.vim'              " syntax higlighting for LDIF (LDAP serialization)
@@ -525,9 +532,9 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-xml',
     \ 'coc-yaml',
     \ 'coc-yank',
-    \ 'coc-pairs',
     \ 'coc-template',
     \ ]
+"    \ 'coc-pairs',
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -1314,6 +1321,24 @@ if plugin#isEnabled('vim-support')
     let g:Vim_CreateMapsForHelp = 'yes'
 endif
 "}}}
+" vim-table-mode {{{2
+if plugin#isEnabled('vim-table-mode')
+
+    function! s:isAtStartOfLine(mapping)
+      let text_before_cursor = getline('.')[0 : col('.')-1]
+      let mapping_pattern = '\V' . escape(a:mapping, '\')
+      let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+      return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+    endfunction
+
+    inoreabbrev <expr> <bar><bar>
+              \ <SID>isAtStartOfLine('\|\|') ?
+              \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+    inoreabbrev <expr> __
+              \ <SID>isAtStartOfLine('__') ?
+              \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+endif
+" }}}
 " vim-terraform {{{2
 if plugin#isEnabled('vim-terraform')
     let g:terraform_align=1
