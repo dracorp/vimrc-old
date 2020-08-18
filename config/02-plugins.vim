@@ -34,11 +34,11 @@ Plug 'https://github.com/tpope/vim-sensible'    " Defaults everyone can agree on
 Plug 'https://github.com/dstein64/vim-startuptime' " A Vim plugin for profiling Vim's startup time
 Plug 'https://github.com/tpope/vim-scriptease'  " A Vim plugin for Vim plugins
 Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
-Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
+"Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
 Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
 if g:UNICODE && executable('git')
-    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
+"    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
 if !g:MACOS
     Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
@@ -55,10 +55,10 @@ Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the 
 if g:MACOS
     Plug 'https://github.com/rizzatti/dash.vim'            " Search Dash.app from Vim
     Plug '/usr/local/opt/fzf'
-    Plug 'https://github.com/junegunn/fzf.vim'
+    Plug 'https://github.com/junegunn/fzf.vim'  " fzf ❤️ vim
 elseif g:UNIX
     if executable('fzf')
-        Plug 'https://github.com/junegunn/fzf.vim'
+        Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
     else
         Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         Plug 'https://github.com/junegunn/fzf.vim'
@@ -91,6 +91,7 @@ Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: l
 Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
 Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo or su or any other tool
 "Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
+Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor position when you (re)open vim
 Plug 'https://github.com/xolox/vim-misc'               " Miscellaneous auto-load Vim scripts
 Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 " Syntastic check
@@ -100,7 +101,7 @@ if version > 700
     Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
 endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
-Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
+" Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
 Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
 if has('python3') && has('timers')
@@ -275,7 +276,7 @@ if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 Plug 'https://github.com/dhruvasagar/vim-table-mode' " VIM Table Mode for instant table creation
-Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+" Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
 
 " DB {{{
 Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
@@ -374,7 +375,7 @@ Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax high
 Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE for Vim/gVim
 
 " Fritz Mehner {{{2
-Plug 'https://github.com/vim-scripts/Vim-support'                   " Vim Script IDE for Vim/gVim
+Plug 'https://github.com/WolfgangMehner/Vim-support'                   " Vim Script IDE for Vim/gVim
 
 " Others {{{2
 Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
@@ -820,6 +821,8 @@ endif
 if plugin#isEnabled('nerdcommenter')
     " Add spaces after comment delimiters by default
     let g:NERDSpaceDelims = 1
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs = 1
     " Align line-wise comment delimiters flush left instead of following code indentation
     let g:NERDDefaultAlign = 'left'
     " Set a language to use its alternate delimiters by default
@@ -1388,3 +1391,4 @@ if plugin#isEnabled('yaifa')
 endif
 "}}}
 "}}}1
+
