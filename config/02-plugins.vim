@@ -276,7 +276,7 @@ if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 Plug 'https://github.com/dhruvasagar/vim-table-mode' " VIM Table Mode for instant table creation
-" Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
 
 " DB {{{
 Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
