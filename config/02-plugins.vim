@@ -275,8 +275,7 @@ Plug 'https://github.com/vim-scripts/groovy.vim' " syntax file for the groovy pr
 if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
-Plug 'https://github.com/dhruvasagar/vim-table-mode' " VIM Table Mode for instant table creation
-Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+"Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
 
 " DB {{{
 Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
@@ -314,7 +313,7 @@ Plug 'https://github.com/alvan/vim-closetag'  " Auto close (X)HTML tags
 
 " Perl {{{3
 Plug 'https://github.com/vim-perl/vim-perl'            " Support for Perl 5 and Perl 6 in Vim http://groups.google.com/group/vim-perl
-Plug 'https://github.com/vim-scripts/perl-support.vim' " Write and run Perl-scripts using menus and hotkeys
+Plug 'https://github.com/vim-scripts/perl-support.vim', {'for': 'perl'} " Write and run Perl-scripts using menus and hotkeys
 Plug 'https://github.com/nxadm/syntastic-perl6'        " Perl 6 support for vim-syntastic
 
 " Python {{{3
@@ -375,7 +374,7 @@ Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax high
 Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE for Vim/gVim
 
 " Fritz Mehner {{{2
-Plug 'https://github.com/WolfgangMehner/Vim-support'                   " Vim Script IDE for Vim/gVim
+Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
 
 " Others {{{2
 Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
@@ -412,7 +411,7 @@ Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin 
 "Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
 Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin to diff two directories
 " Table Mode for instant table creation
-"Plug 'https://github.com/dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
+Plug 'https://github.com/dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
 Plug 'https://github.com/brooth/far.vim'                           " Find And Replace
 
 if version > 704 || version == 704 && has('patch1154')
