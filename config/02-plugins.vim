@@ -276,6 +276,7 @@ if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 "Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+Plug 'https://github.com/junegunn/goyo.vim' " 🌷 Distraction-free writing in Vim
 
 " DB {{{
 Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
@@ -292,6 +293,7 @@ Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown document
 if executable('npm')
     Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews
 endif
+Plug 'https://github.com/mzlogin/vim-markdown-toc' " A vim 7.4+ plugin to generate table of contents for Markdown files.
 
 " terraform {{{3
 Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integration http://hashivim.github.io/vim-terraform
@@ -740,6 +742,13 @@ endif
 if plugin#isEnabled('vim-gitgutter')
     let g:gitgutter_sign_removed_first_line = "^_"
     let g:gitgutter_max_signs               = 2000
+endif
+" }}}
+" goyo {{{2
+if plugin#isEnabled('gruvbox9')
+    let g:goyo_width='90%'
+    let g:goyo_height='90%'
+    let g:goyo_linenr=1
 endif
 " }}}
 " gruvbox9 {{{2

@@ -1,5 +1,21 @@
 # vimrc
 
+<!-- vim-markdown-toc GFM -->
+
+    * [Installing this vimrc manually](#installing-this-vimrc-manually)
+    * [vim-bootstrap](#vim-bootstrap)
+    * [Mappings](#mappings)
+        * [General](#general)
+        * [Plugins](#plugins)
+* [vim-galore](#vim-galore)
+    * [Mappings](#mappings-1)
+    * [Registers](#registers)
+    * [Ranges](#ranges)
+    * [Marks](#marks)
+    * [Completion](#completion)
+
+<!-- vim-markdown-toc -->
+
 My vim configuration
 
 ## Installing this vimrc manually
@@ -52,16 +68,16 @@ Leader key is <kbd>\\</kbd>
 
 -   vim-mardkown
 
-|  Key  | Action                                     |
-| :---: | :----------------------------------------- |
-| `zr`  | reduces fold level throughout the buffer   |
-| `zR`  | opens all folds                            |
-| `zm`  | increases fold level throughout the buffer |
-| `zM`  | folds everything all the way               |
-| `za`  | open a fold your cursor is on              |
-| `zA`  | open a fold your cursor is on recursively  |
-| `zc`  | close a fold your cursor is on             |
-| `zC`  | close a fold your cursor is on recursively |
+| Key  | Action                                     |
+| :--: | :----------------------------------------- |
+| `zr` | reduces fold level throughout the buffer   |
+| `zR` | opens all folds                            |
+| `zm` | increases fold level throughout the buffer |
+| `zM` | folds everything all the way               |
+| `za` | open a fold your cursor is on              |
+| `zA` | open a fold your cursor is on recursively  |
+| `zc` | close a fold your cursor is on             |
+| `zC` | close a fold your cursor is on recursively |
 
 -   NERDCommenter
 
@@ -117,6 +133,7 @@ if (v:version > 704 || v:version == 704 && has('patch42')) && has('profile')
   " do stuff
 endif
 ```
+
 ## Mappings
 
 | Recursive | Non-recursive | Unmap     | Modes                            |
@@ -143,6 +160,7 @@ endif
 | Drop                | `~`                    | vim        | [x]       | From last drag'n'drop.                                                                                                                                                                                                              |
 | Black hole          | `_`                    | vim        | [ ]       | If you don't want any other registers implicitly affected. E.g. `"_dd` deletes the current line without affecting registers `"`, `1`, `+`, `*`.                                                                                     |
 | Last search pattern | `/`                    | vim        | [ ]       | Last pattern used with `/`, `?`, `:global`, etc.                                                                                                                                                                                    |
+
 ```vim
 :let @/ = 'register'
 ```
@@ -176,20 +194,20 @@ endif
 
 Other motions include:
 
-| Motion           | Jump to..                                                     |
-| ---------------- | ------------------------------------------------------------- |
-| `'[`, `` `[ ``   | First line or character of previously changed or yanked text. |
-| `']`, `` `] ``   | Last line or character of previously changed or yanked text.  |
-| `'<`, `` `< ``   | Beginning line or character of last visual selection.         |
-| `'>`, `` `> ``   | Ending line or character of last visual selection.            |
-| `''`, ``` `` ``` | Position before the latest jump.                              |
-| `'"`, `` `" ``   | Position when last exiting the current buffer.                |
-| `'^`, `` `^ ``   | Position where last insertion stopped.                        |
-| `'.`, `` `. ``   | Position where last change was made.                          |
-| `'(`, `` `( ``   | Start of current sentence.                                    |
-| `')`, `` `) ``   | End of current sentence.                                      |
-| `'{`, `` `{ ``   | Start of current paragraph.                                   |
-| `'}`, `` `} ``   | End of current paragraph.                                     |
+| Motion         | Jump to..                                                     |
+| -------------- | ------------------------------------------------------------- |
+| `'[`, `` `[ `` | First line or character of previously changed or yanked text. |
+| `']`, `` `] `` | Last line or character of previously changed or yanked text.  |
+| `'<`, `` `< `` | Beginning line or character of last visual selection.         |
+| `'>`, `` `> `` | Ending line or character of last visual selection.            |
+| `''`, ` `` `   | Position before the latest jump.                              |
+| `'"`, `` `" `` | Position when last exiting the current buffer.                |
+| `'^`, `` `^ `` | Position where last insertion stopped.                        |
+| `'.`, `` `. `` | Position where last change was made.                          |
+| `'(`, `` `( `` | Start of current sentence.                                    |
+| `')`, `` `) `` | End of current sentence.                                      |
+| `'{`, `` `{ `` | Start of current paragraph.                                   |
+| `'}`, `` `} `` | End of current paragraph.                                     |
 
 ## Completion
 
@@ -207,4 +225,3 @@ Other motions include:
 | `<c-x><c-u>` | user defined (as specified in `'completefunc'`) | `:h i^x^u` |
 | `<c-x><c-o>` | omni completion (as specified in `'omnifunc'`)  | `:h i^x^o` |
 | `<c-x>s`     | spelling suggestions                            | `:h i^Xs`  |
-
