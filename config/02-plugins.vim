@@ -410,6 +410,7 @@ Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should 
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
 Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
 "Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
+Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
 Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
 "Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
 Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin to diff two directories
