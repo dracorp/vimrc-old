@@ -294,6 +294,7 @@ if executable('npm')
     Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews
 endif
 Plug 'https://github.com/mzlogin/vim-markdown-toc' " A vim 7.4+ plugin to generate table of contents for Markdown files.
+Plug 'https://github.com/junegunn/vim-peekaboo' " 👀 " / @ / CTRL-R
 
 " terraform {{{3
 Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integration http://hashivim.github.io/vim-terraform
