@@ -36,7 +36,7 @@ Plug 'https://github.com/tpope/vim-scriptease'  " A Vim plugin for Vim plugins
 Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
 Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
-"Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
+Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
 if g:UNICODE && executable('git')
 "    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
@@ -266,7 +266,7 @@ if executable('npm')
     Plug 'https://github.com/prettier/vim-prettier',{'do':'npm install'}
 endif
 Plug 'https://github.com/vim-scripts/httplog'                     " Highlight access log of Apache, nginx, etc
-Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight' " whitespace syntax highlight
+"Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight' " whitespace syntax highlight
 Plug 'https://github.com/vim-scripts/logstash.vim'                " logstash.vim highlights configuration files for logstash
 "Plug 'https://github.com/vim-scripts/jQuery'                      " Syntax file for jQuery
 Plug 'https://github.com/xu-cheng/brew.vim'                       " 🍺 Vim Syntax for Homebrew formulae
@@ -385,7 +385,6 @@ Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax high
 Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE for Vim/gVim
 
 " Others {{{2
-Plug 'https://github.com/machakann/vim-highlightedyank' " Make the yanked region apparent!
 Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
 if version >= 704
 "    Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
@@ -426,7 +425,7 @@ Plug 'https://github.com/brooth/far.vim'                           " Find And Re
 "Plug 'https://github.com/liuchengxu/vim-which-key' " tulip Vim plugin that shows keybindings in popup
 
 if version > 704 || version == 704 && has('patch1154')
-    Plug 'https://github.com/liuchengxu/vista.vim' 					   " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
+    Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 endif
 " Track the engine.
 "Plug 'https://github.com/SirVer/ultisnips'      " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
@@ -546,9 +545,9 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-xml',
     \ 'coc-yaml',
     \ 'coc-template',
+    \ 'coc-yank',
     \ ]
 "    \ 'coc-pairs',
-    \ 'coc-yank',
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -1213,6 +1212,7 @@ endif
 " vim-commentary {{{2
 if plugin#isEnabled('vim-commentary')
     autocmd FileType apache setlocal commentstring=#\ %s
+    autocmd FileType dosini setlocal commentstring=#\ %s
 endif
 " }}}
 " vim-colors-solarized {{{2

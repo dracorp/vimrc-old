@@ -6,12 +6,16 @@ if !plugin#isEnabled('vim-sensible') "{{{2
     set backspace=indent,eol,start              " allow backspacing over everything in insert mode
     set incsearch                               " show search matches as you type
     set listchars=tab:>-,eol:$,trail:-,nbsp:%
+    " listchars=tab:> ,trail:-,extends:>,precedes:<,nbsp:+
     set complete-=i                             " do not scan current and included files, on slow machines
 "    set nrformats=                              " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
     set laststatus=2                            " tell VIM to always put a status line in, even if there is only one window
     set ruler                                   " show the cursor position all the time
     set history=1000                            " remember more commands and search history
 endif "}}}
+" display end of lines, TAB, spaces on the end of line, before and after wrap row
+" eol, tab, trail, extends, precedes, strings to use in 'list' mode
+set list                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 set virtualedit=block        " Position cursor anywhere in visual block
 set mousehide                " Hide the mouse when typing text
@@ -57,10 +61,6 @@ set shiftround                                  " use multiple of shiftwidth whe
 set virtualedit=                                " allow the cursor to go in to 'invalid' places
 "set gdefault                                    " search/replace 'globally' (on a line) by default
 set nojoinspaces                                " do not insert 2 spaces after .?! when join lines <J>
-
-" display end of lines, TAB, spaces on the end of line, before and after wrap row
-" eol, tab, trail, extends, precedes, strings to use in 'list' mode
-set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 set textwidth=79                                " maximum width of text that is being inserted
 set wrapmargin=2                                " To wrap text based on a number of columns from the right side
