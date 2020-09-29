@@ -282,6 +282,7 @@ endif
 Plug 'https://github.com/junegunn/goyo.vim' " 🌷 Distraction-free writing in Vim
 Plug 'https://github.com/junegunn/vim-peekaboo' " 👀 " / @ / CTRL-R
 Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
+Plug 'https://github.com/wfxr/minimap.vim'    " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust. 
 
 " DB {{{
 "Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
