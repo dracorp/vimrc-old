@@ -50,11 +50,8 @@ Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim
 Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wiki for Vim
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
-"Plug 'https://github.com/chrisbra/Recover.vim'                    " A Plugin to show a diff, whenever recovering a buffer
 Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
-Plug 'https://github.com/liuchengxu/vim-clap'   " clap Modern performant generic finder and dispatcher for Vim and NeoVim
 if g:MACOS
-"    Plug 'https://github.com/rizzatti/dash.vim'            " Search Dash.app from Vim
     Plug '/usr/local/opt/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'  " fzf ❤️ vim
 elseif g:UNIX
@@ -66,7 +63,7 @@ elseif g:UNIX
     endif
 endif
 if g:UNIX
-    Plug 'https://github.com/dracorp/vim-pkgbuild'
+    Plug 'https://github.com/dracorp/vim-pkgbuild' " easy work with ArchLinux PKGBUILD
 endif
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim'    " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. http://ctrlpvim.github.com/ctrlp.vim
 "Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
@@ -281,8 +278,9 @@ endif
 "Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
 Plug 'https://github.com/junegunn/goyo.vim' " 🌷 Distraction-free writing in Vim
 Plug 'https://github.com/junegunn/vim-peekaboo' " 👀 " / @ / CTRL-R
-Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
+"Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
 Plug 'https://github.com/wfxr/minimap.vim'    " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust. 
+Plug 'https://github.com/liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " clap Modern performant generic finder and dispatcher for Vim and NeoVim
 
 " DB {{{
 "Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
@@ -349,7 +347,7 @@ Plug 'https://github.com/stephpy/vim-yaml'            " Override vim syntax for 
 Plug 'https://github.com/elzr/vim-json' " A better JSON
 
 " Rust
-Plug 'https://github.com/rust-lang/rust.vim' " Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+"Plug 'https://github.com/rust-lang/rust.vim' " Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
 
 " Git and other VCS {{{2
 if executable('git')
@@ -375,7 +373,6 @@ endif
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
-"Plug 'https://github.com/morhetz/gruvbox'                          " Retro groove color scheme for Vim
 Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
 
 " Shells/Bash
@@ -415,8 +412,8 @@ Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim 
 Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
 Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
-"Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
-Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
+Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
+"Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
 Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
 "Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
 Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin to diff two directories
@@ -757,7 +754,7 @@ if plugin#isEnabled('vim-gitgutter')
 endif
 " }}}
 " goyo {{{2
-if plugin#isEnabled('gruvbox9')
+if plugin#isEnabled('goyo.vim')
     let g:goyo_width='90%'
     let g:goyo_height='90%'
     let g:goyo_linenr=1
