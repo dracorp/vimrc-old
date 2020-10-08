@@ -100,7 +100,7 @@ if version > 700
 endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
 " Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
-"Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
+Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 "Plug 'https://github.com/camspiers/animate.vim' " A Vim Window Animation Library
 if has('python3') && has('timers')
 "    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
@@ -405,7 +405,7 @@ elseif version > 703 || (version == 703 && has('patch005'))
     Plug 'https://github.com/mbbill/undotree'                      " The ultimate undo history visualizer for VIM
 endif
 if version >= 703
-    Plug 'https://github.com/ap/vim-buftabline'                    " Forget Vim tabs - now you can have buffer tabs
+    " Plug 'https://github.com/ap/vim-buftabline'                    " Forget Vim tabs - now you can have buffer tabs
 endif
 "Plug 'https://github.com/vim-scripts/tskeleton'                    " File Templates and Code Skeletons/Snippets
 Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim plugin for common misspellings and typos
@@ -1371,6 +1371,14 @@ if plugin#isEnabled('vim-toggle')
     imap <C-T>:call Toggle()<CR>
     nmap <C-T>:call Toggle()<CR>
     vmap <C-T> <ESC>:call Toggle()<CR>
+endif
+"}}}
+" vimwiki {{{2
+if plugin#isEnabled('vimwiki')
+    let g:vimwiki_list = [
+                \ {},
+                \ {'path': '~/Documents/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'}
+                \]
 endif
 "}}}
 " xml_completion {{{2
