@@ -25,9 +25,6 @@ endfunction
 
 "set foldexpr=GetPerlFold()
 
-set number
-"set foldmethod = marker
-"set foldmarker = {,}
 "let perl_fold = 1                              " it slows vim while editing a Perl script
 "let perl_fold_blocks = 1                       " it also
 let perl_include_pod = 1                        " include pod.vim syntax file with perl.vim"
