@@ -263,7 +263,7 @@ if executable('npm')
     Plug 'https://github.com/prettier/vim-prettier',{'do':'npm install'}
 endif
 Plug 'https://github.com/vim-scripts/httplog'                     " Highlight access log of Apache, nginx, etc
-"Plug 'https://github.com/vim-scripts/whitespace-syntax-highlight' " whitespace syntax highlight
+Plug 'https://github.com/vim-scripts/better-whitespace' " A better whitespace highlighter
 Plug 'https://github.com/vim-scripts/logstash.vim'                " logstash.vim highlights configuration files for logstash
 "Plug 'https://github.com/vim-scripts/jQuery'                      " Syntax file for jQuery
 Plug 'https://github.com/xu-cheng/brew.vim'                       " 🍺 Vim Syntax for Homebrew formulae

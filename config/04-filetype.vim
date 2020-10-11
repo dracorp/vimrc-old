@@ -7,17 +7,6 @@ if has("au")
         au BufEnter * :lchdir %:p:h
     augroup END "}}}
 
-    augroup jump_last_position "{{{
-        au!
-        " When editing a file, always jump to the last known cursor position.
-        " Don't do it when the position is invalid or when inside an event handler
-        " (happens when dropping a file on gvim).
-        au BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$") |
-            \   exe "normal! g`\"" |
-            \ endif
-    augroup END "}}}
-
     augroup vim_files "{{{
         au!
         " Bind <F1> to show the keyword under cursor
@@ -50,6 +39,7 @@ if has("au")
     augroup xml_files "{{{
         au!
         au FileType xml setlocal foldmethod=syntax
+        au FileType xml let g:xml_syntax_folding=1
     augroup END "}}}
 
     augroup go "{{{
@@ -83,8 +73,8 @@ if has("au")
 
     augroup pkgbuild "{{{
         au!
-        au BufRead,BufNewFile PKGBUILD set ft=sh syntax=PKGBUILD
-        au BufRead,BufNewFile *.PKGBUILD set ft=sh syntax=PKGBUILD
+        au BufRead,BufNewFile PKGBUILD setlocal ft=sh syntax=PKGBUILD
+        au BufRead,BufNewFile *.PKGBUILD setlocal ft=sh syntax=PKGBUILD
         au BufRead,BufNewFile PKGBUILD SyntasticCheck off
     augroup END "}}}
 
@@ -92,12 +82,18 @@ if has("au")
         au!
         au FileType sh let g:sh_fold_enabled=5
         au FileType sh let g:is_bash=1
-        au FileType sh set foldmethod=syntax
+        au FileType sh setlocal foldmethod=syntax
     augroup END "}}}
 
     augroup json "{{{
         au!
         au FileType json setlocal foldmethod=syntax
+    augroup END "}}}
+
+    augroup groovy "{{{
+        au!
+        au FileType groovy setlocal foldmethod=marker
+        au FileType groovy setlocal foldmarker=[,]
     augroup END "}}}
 
     augroup filetypedetect "{{{
@@ -125,8 +121,8 @@ if has("au")
         au BufRead *access.log*                        setfiletype httplog
         au BufRead *error.log*                         setfiletype httplog
         au BufRead *.vmb                               setfiletype vim
-        au BufRead,BufNewFile /etc/php/*               set syntax=dosini
-        au BufNewFile,BufRead ~/.conky/* if expand('%:e') == '' | set syntax=conkyrc | endif
+        au BufRead,BufNewFile /etc/php/*               setlocal syntax=dosini
+        au BufNewFile,BufRead ~/.conky/* if expand('%:e') == '' | setlocal syntax=conkyrc | endif
     augroup END "}}}
 
 endif
