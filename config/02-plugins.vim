@@ -1,6 +1,4 @@
-" Plugins managed by vim-plug {{{
-
-" Intialize vim-plug, if missing, download it. Based on vim-bootstrap.com {{{2
+" Intialize vim-plug, if missing, download it. Based on vim-bootstrap.com {{{
 let vim_plug_path=expand(vimrc_dir . '/autoload/plug.vim')
 
 let vim_plug_just_installed = 0
@@ -20,12 +18,12 @@ endif
 if vim_plug_just_installed
     :execute 'source '.fnameescape(vim_plug_path)
 endif
-" Obscure hacks done, you can now modify the rest of the .vimrc as you wish :) }}}
+"}}}
 
-" Required: this needs to be here, so vim-plug knows we are declaring the plugins we want to use
+" vim-plug plugins and their configuration {{{
 call plug#begin(bundle_dir)
 " manage vim-plug by itself
-Plug 'https://github.com/junegunn/vim-plug'     " Minimalist Vim Plugin Manager
+Plug 'https://github.com/junegunn/vim-plug'     " 🌺 Minimalist Vim Plugin Manager
 
 " Basic plugins
 Plug 'https://github.com/tpope/vim-sensible'    " Defaults everyone can agree on
@@ -1415,5 +1413,5 @@ if plugin#isEnabled('yaifa')
     let yaifa_max_lines = 512
 endif
 "}}}
-"}}}1
+"}}}
 
