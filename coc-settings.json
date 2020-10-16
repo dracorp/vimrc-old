@@ -31,15 +31,16 @@
         "file": "\uf723",
         "folder": "\uf114",
         "snippet": "\ue60b",
-        "typeParameter": "\uf728", "default": "\uf29c"
+        "typeParameter": "\uf728",
+        "default": "\uf29c"
     },
-    //diagnostic
+    // diagnostic
     "diagnostic.signOffset": 9999999,
 	"diagnostic.errorSign": "●",
 	"diagnostic.warningSign": "●",
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": true,
-    //git
+    // git
     "git.enableGutters": true,
     "git.branchCharacter":"\uf408",
     "git.addGBlameToBufferVar": true,
@@ -55,26 +56,26 @@
     "git.removedSign.text":"▏",
     "git.topRemovedSign.text": "▔",
     "git.changeRemovedSign.text": "▋",
-    //Snippet
+    // Snippet
     "coc.preferences.snippetStatusText": "Ⓢ ",
-    //CocList
+    // CocList
     "list.source.files.defaultOptions": ["--auto-preview"],
     "list.source.outline.defaultOptions": ["--auto-preview"],
-    //prettier
+    // prettier
     "coc.preferences.formatOnSaveFiletypes": ["css","markdown"],
     "prettier.statusItemText": "ⓟ ",
     "prettier.eslintIntegration": true,
     "prettier.tslintIntegration": true,
     "prettier.stylelintIntegration": true,
-    //emmet
+    // emmet
     "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"},
-    //imselect
+    // imselect
     "imselect.enableStatusItem": false,
-    //multiple curssors
+    // multiple curssors
     "cursors.nextKey": "<C-n>",
     "cursors.previousKey": "<C-p>",
     "cursors.cancelKey": "<esc>",
-    //sessions
+    // sessions
     "session.directory": "~/.cache/vim/session",
     // coc-explorer
     "explorer.icon.expanded": "▾",
@@ -102,6 +103,7 @@
     },
     "yaml.schemas": {
         "kubernetes": "/*.yaml"
-    }
+    },
+    "diagnostic.displayByAle": true
 }
 

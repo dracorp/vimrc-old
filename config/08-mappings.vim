@@ -44,7 +44,7 @@ nnoremap <Leader>L :setlocal cursorcolumn!<CR>
 nnoremap <leader>; ;
 
 " Quickly close the current window
-nnoremap <leader>q :qa<CR>
+" nnoremap <leader>q :qa<CR>
 
 " Sort paragraphs
 vnoremap <leader>s !sort -f<CR>gv
