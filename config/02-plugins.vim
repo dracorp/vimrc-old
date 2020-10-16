@@ -330,7 +330,7 @@ Plug 'https://github.com/WolfgangMehner/perl-support' " Edit Perl scripts in Vim
 " Python {{{3
 if g:PYTHON
     Plug 'https://github.com/davidhalter/jedi-vim'      " Using the jedi autocompletion library for VIM
-    Plug 'https://github.com/klen/python-mode'          " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
+    Plug 'https://github.com/klen/python-mode', { 'branch': 'develop' }          " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
     Plug 'https://github.com/jmcantrell/vim-virtualenv' " Vim plugin for working with python virtualenvs
 "    Plug 'https://github.com/vim-scripts/python_fold'  " Folding expression for python
 "    Plug 'https://github.com/nvie/vim-flake8'          " Flake8 plugin for Vim
@@ -360,7 +360,7 @@ if executable('git')
     Plug 'https://github.com/junegunn/gv.vim'             " A git commit browser in Vim
     Plug 'https://github.com/vim-scripts/git-flow-format' " formats a Git Flow branch name in order to shorten the prefixes, some errors due saving a file
 "    Plug 'https://github.com/vim-scripts/gitv'            " gitk for Vim
-    Plug 'https://github.com/idanarye/vim-merginal'       " Fugitive extension to manage and merge Git branches
+    Plug 'https://github.com/idanarye/vim-merginal',{'branch':'develop'}       " Fugitive extension to manage and merge Git branches
     Plug 'https://github.com/vim-scripts/vim-gitignore'   " Another gitignore plugin for Vim
     Plug 'https://github.com/sjl/splice.vim'              " managing three-way merges - conflict with vim-fugitive
     if version >= 704
