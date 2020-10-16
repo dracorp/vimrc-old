@@ -92,9 +92,11 @@ Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor posi
 "Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 " Syntastic check
 if version > 700
-    Plug 'https://github.com/scrooloose/syntastic'   " Syntax checking hacks for vim
+    Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
     Plug 'https://github.com/dallarosa/syntastic-more'  " More checkers for Vim Syntastic plugin
     Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
+    let g:ale_disable_lsp = 1
+    Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 endif
 "Plug 'https://github.com/maralla/validator.vim'                    " Check syntax on the fly asynchronously
 " Plug 'https://github.com/osyo-manga/vim-over'   "  :substitute preview
@@ -430,7 +432,6 @@ if version >= 704
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
 endif
-Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 if has('nvim') || version >= 802
 "    Plug 'https://github.com/pechorin/any-jump.nvim' " Jump to any definition and usages eye IDE madness without overhead (alpha)
 endif
@@ -472,6 +473,15 @@ delc PlugUpgrade
 "}}}
 
 " Plugins configuration {{{
+" ale {{{2
+if plugin#isEnabled('ale')
+    " use the quickfix list instead of the loclist
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+    " let g:ale_open_list = 1
+    let g:ale_set_highlights = 0
+endif
+" }}}
 " animate {{{2
 if plugin#isEnabled('animate.vim')
     nnoremap <silent> <C-S-Up>    :call animate#window_delta_height(10)<CR>
@@ -542,6 +552,7 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-yaml',
     \ 'coc-template',
     \ 'coc-yank',
+    \ 'coc-sh',
     \ ]
 "    \ 'coc-pairs',
 
@@ -1003,11 +1014,13 @@ if plugin#isEnabled('syntastic')
     "let g:syntastic_perl_perlcritic_thres          = 1
     "let g:syntastic_enable_perl_checker            = 1
     " see :he syntastic_mode_map
-    let g:syntastic_mode_map = {
-        \ 'mode': 'passive',
-        \ 'passive_filetypes': ['python'],
-        \ 'active_filetypes': [],
-        \}
+    " let g:syntastic_mode_map = {
+    "     \ 'mode': 'passive',
+    "     \ 'passive_filetypes': ['python'],
+    "     \ 'active_filetypes': [],
+    "     \}
+    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+    nnoremap <C-w>E :SyntasticCheck<CR>
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_ignore_files     = [ 'PKGBUILD' ]
     " Recomended settings
