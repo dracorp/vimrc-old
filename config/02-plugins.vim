@@ -95,6 +95,9 @@ if version > 700
     Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
     Plug 'https://github.com/dallarosa/syntastic-more'  " More checkers for Vim Syntastic plugin
     Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
+endif
+if ( version >= 800 && has('timers') && has('job') && has('channel') ) || has('nvim')
+    " ALE requires NeoVim >= 0.2.0 or Vim 8 with +timers +job +channel
     let g:ale_disable_lsp = 1
     Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 endif
@@ -106,8 +109,9 @@ if has('python3') && has('timers')
 "    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
 endif
 " Syntax and programing languages {{{2
+
 " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
-let g:polyglot_disabled = ['csv']
+let g:polyglot_disabled = ['csv', 'jenkins']
 Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
 " vim-polyglot supported language pack {{{ 3
 " * acpiasl (syntax)
@@ -258,6 +262,8 @@ Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid lang
 " * zephir (syntax)
 " * zig (syntax, autoload, ftplugin)
 "}}}
+Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax' " Jenkinsfile DSL vim syntax
+
 " General: By default it will auto format javascript, typescript, less, scss, css, json, graphql and markdown files if they have/support the "@format" pragma annotation in the header of the file.
 if executable('npm')
     Plug 'https://github.com/prettier/vim-prettier',{'do':'npm install'}
@@ -276,6 +282,7 @@ if !has('nvim') && version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 "Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
+" Plug 'https://github.com/vim-scripts/ShowPairs'
 Plug 'https://github.com/junegunn/goyo.vim' " 🌷 Distraction-free writing in Vim
 Plug 'https://github.com/junegunn/vim-peekaboo' " 👀 " / @ / CTRL-R
 "Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
@@ -387,7 +394,8 @@ Plug 'https://github.com/vim-scripts/bats.vim'                     " Syntax high
 Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE for Vim/gVim
 
 " Others {{{2
-Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
+" Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
+Plug 'https://github.com/andymass/vim-matchup' " vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen replacement 
 if version >= 704
 "    Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
 endif
@@ -417,7 +425,7 @@ Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should 
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
 Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
 Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
-"Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
+Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
 Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
 "Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
 Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin to diff two directories
@@ -795,6 +803,25 @@ if plugin#isEnabled('incsearch.vim')
 "    map #  <Plug>(incsearch-nohl-#)
 "    map g* <Plug>(incsearch-nohl-g*)
 "    map g# <Plug>(incsearch-nohl-g#)
+endif
+" }}}
+" indentLine {{{2
+if plugin#isEnabled('indentLine')
+    let g:indentLine_enabled = 0
+    let g:indentLine_setColors = 0
+    " Vim
+    let g:indentLine_color_term = 239
+
+    " GVim
+    let g:indentLine_color_gui = '#A4E57E'
+
+    " none X terminal
+    let g:indentLine_color_tty_light = 7 " (default: 4)
+    let g:indentLine_color_dark = 1 " (default: 2)
+
+    " Background (Vim, GVim)
+    let g:indentLine_bgcolor_term = 202
+    let g:indentLine_bgcolor_gui = '#FF5F00'
 endif
 " }}}
 " latex-support {{{2
