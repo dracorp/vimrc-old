@@ -381,6 +381,7 @@ if executable('git')
         Plug 'https://github.com/tveskag/nvim-blame-line' " A small plugin that uses neovims virtual text to print git blame info at the end of the current line
     endif
 endif
+Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against conflicts in Vim. 
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
