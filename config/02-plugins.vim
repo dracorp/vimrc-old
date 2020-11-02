@@ -287,7 +287,7 @@ Plug 'https://github.com/junegunn/goyo.vim' " 🌷 Distraction-free writing in V
 Plug 'https://github.com/junegunn/vim-peekaboo' " 👀 " / @ / CTRL-R
 "Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
 if version >= 800
-    Plug 'https://github.com/wfxr/minimap.vim'    " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust. 
+    Plug 'https://github.com/wfxr/minimap.vim'    " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 endif
 if has('patch-8.1.2114') || has('nvim-0.4.2')
     Plug 'https://github.com/liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " clap Modern performant generic finder and dispatcher for Vim and NeoVim
@@ -386,6 +386,7 @@ Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against co
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
 Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
+Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
@@ -396,7 +397,7 @@ Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE fo
 
 " Others {{{2
 " Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
-Plug 'https://github.com/andymass/vim-matchup' " vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen replacement 
+Plug 'https://github.com/andymass/vim-matchup' " vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen replacement
 if version >= 704
 "    Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
 endif

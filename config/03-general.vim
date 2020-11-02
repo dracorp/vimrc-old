@@ -216,7 +216,8 @@ if has('termguicolors')
     set tgc
 endif
 
-silent! colorscheme gruvbox9
+" silent! colorscheme gruvbox9
+silent! colorscheme gruvbox-material
 set background=dark
 
 if plugin#isEnabled('lightline.vim')
