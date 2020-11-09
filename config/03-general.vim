@@ -15,7 +15,7 @@ if !plugin#isEnabled('vim-sensible') "{{{2
 endif "}}}
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
-set list                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
+set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
 
 set virtualedit=block        " Position cursor anywhere in visual block
 set mousehide                " Hide the mouse when typing text
@@ -216,8 +216,8 @@ if has('termguicolors')
     set tgc
 endif
 
-" silent! colorscheme gruvbox9
-silent! colorscheme gruvbox-material
+ silent! colorscheme gruvbox9_hard
+"silent! colorscheme gruvbox-material
 set background=dark
 
 if plugin#isEnabled('lightline.vim')
