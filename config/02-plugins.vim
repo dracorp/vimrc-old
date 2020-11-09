@@ -336,12 +336,13 @@ Plug 'https://github.com/WolfgangMehner/perl-support' " Edit Perl scripts in Vim
 
 " Python {{{3
 if g:PYTHON
-    Plug 'https://github.com/davidhalter/jedi-vim'      " Using the jedi autocompletion library for VIM
-    Plug 'https://github.com/klen/python-mode', { 'branch': 'develop' }          " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
-    Plug 'https://github.com/jmcantrell/vim-virtualenv' " Vim plugin for working with python virtualenvs
-"    Plug 'https://github.com/vim-scripts/python_fold'  " Folding expression for python
-"    Plug 'https://github.com/nvie/vim-flake8'          " Flake8 plugin for Vim
-"    Plug 'https://github.com/joonty/vdebug'            " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.
+    Plug 'https://github.com/davidhalter/jedi-vim'                      " Using the jedi autocompletion library for VIM
+    Plug 'https://github.com/klen/python-mode', { 'branch': 'develop' } " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
+    Plug 'https://github.com/jmcantrell/vim-virtualenv'                 " Vim plugin for working with python virtualenvs
+    " Plug 'https://github.com/vim-scripts/python_fold'                 " Folding expression for python
+    Plug 'https://github.com/vim-scripts/SimpylFold'                    " No-BS Python code folding
+    " Plug 'https://github.com/nvie/vim-flake8'                         " Flake8 plugin for Vim
+    " Plug 'https://github.com/joonty/vdebug'                           " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.
 endif
 
 
@@ -381,7 +382,7 @@ if executable('git')
         Plug 'https://github.com/tveskag/nvim-blame-line' " A small plugin that uses neovims virtual text to print git blame info at the end of the current line
     endif
 endif
-Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against conflicts in Vim. 
+Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against conflicts in Vim.
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
