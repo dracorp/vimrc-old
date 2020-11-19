@@ -49,16 +49,11 @@ Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wik
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
 Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
-if g:MACOS
-    Plug '/usr/local/opt/fzf'
-    Plug 'https://github.com/junegunn/fzf.vim'  " fzf ❤️ vim
-elseif g:UNIX
-    if executable('fzf')
-        Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
-    else
-        Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-        Plug 'https://github.com/junegunn/fzf.vim'
-    endif
+if executable('fzf')
+    Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
+else
+    Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'https://github.com/junegunn/fzf.vim'
 endif
 if g:UNIX
     Plug 'https://github.com/dracorp/vim-pkgbuild' " easy work with ArchLinux PKGBUILD
@@ -108,6 +103,14 @@ Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 if has('python3') && has('timers')
 "    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
 endif
+Plug 'https://github.com/pearofducks/ansible-vim' " A vim plugin for syntax highlighting Ansible's common filetypes
+Plug 'https://github.com/phenomenes/ansible-snippets' " Ansible Vim snippets
+Plug 'https://github.com/MicahElliott/Rocannon' " Vim for Ansible playbooks: omni-completion, abbreviations, syntax, folding, K-docs, and colorscheme
+if version >= 802
+    Plug 'https://github.com/skywind3000/vim-quickui' " The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! 😎
+endif
+Plug 'https://github.com/Chiel92/vim-autoformat' " Provide easy code formatting in Vim by integrating existing code formatters.
+
 " Syntax and programing languages {{{2
 
 " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
@@ -304,7 +307,7 @@ Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn' " ldap schmema defin
 
 " Markdown {{{3
 Plug 'https://github.com/plasticboy/vim-markdown'       " Markdown Vim Mode, @require tabular
-Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown documents by section
+"Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown documents by section
 if executable('npm')
 "    Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews
 endif
@@ -428,6 +431,7 @@ Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should 
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
 Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
 Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
+let g:indentLine_enabled = 0
 Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
 Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
 "Plug 'https://github.com/Konfekt/FastFold'                         " Speed up Vim by updating folds only when called-for
@@ -441,7 +445,7 @@ if version > 704 || version == 704 && has('patch1154')
     Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 endif
 " Track the engine.
-"Plug 'https://github.com/SirVer/ultisnips'      " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
+Plug 'https://github.com/SirVer/ultisnips'      " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
 if version >= 704
     Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
     " Snippets are separated from the engine. Add this if you want them:
@@ -546,13 +550,11 @@ if plugin#isEnabled('coc.nvim')
 "    let $NVIM_COC_LOG_LEVEL = 'info'
     let $NODE_TLS_REJECT_UNAUTHORIZED=0
     let g:coc_global_extensions = [
-    \ 'coc-tsserver',
     \ 'coc-calc',
     \ 'coc-css',
     \ 'coc-emmet',
     \ 'coc-emoji',
     \ 'coc-git',
-    \ 'coc-go',
     \ 'coc-highlight',
     \ 'coc-html',
     \ 'coc-imselect',
@@ -562,6 +564,7 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-prettier',
     \ 'coc-pyright',
     \ 'coc-python',
+    \ 'coc-ultisnips',
     \ 'coc-snippets',
     \ 'coc-xml',
     \ 'coc-yaml',
@@ -569,7 +572,10 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-yank',
     \ 'coc-sh',
     \ ]
-"    \ 'coc-pairs',
+    " \ 'coc-go',
+    " \ 'coc-tsserver',
+    " \ 'coc-pairs',
+    " \ 'coc-explorer',
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -810,7 +816,6 @@ endif
 " }}}
 " indentLine {{{2
 if plugin#isEnabled('indentLine')
-    let g:indentLine_enabled = 0
     let g:indentLine_setColors = 0
     " Vim
     let g:indentLine_color_term = 239
@@ -1424,6 +1429,7 @@ if plugin#isEnabled('vimwiki')
                 \ {},
                 \ {'path': '~/Documents/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'}
                 \]
+    let g:vimwiki_global_ext=0
 endif
 "}}}
 " xml_completion {{{2
