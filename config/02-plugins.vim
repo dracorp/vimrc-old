@@ -51,9 +51,6 @@ Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wik
 Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
 if executable('fzf')
     Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
-else
-    Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'https://github.com/junegunn/fzf.vim'
 endif
 if g:UNIX
     Plug 'https://github.com/dracorp/vim-pkgbuild' " easy work with ArchLinux PKGBUILD
@@ -113,9 +110,10 @@ Plug 'https://github.com/Chiel92/vim-autoformat' " Provide easy code formatting 
 
 " Syntax and programing languages {{{2
 
-" vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
-let g:polyglot_disabled = ['csv', 'jenkins']
-Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
+if version >= 800
+    " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
+    let g:polyglot_disabled = ['csv', 'jenkins']
+    Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
 " vim-polyglot supported language pack {{{ 3
 " * acpiasl (syntax)
 " * ansible (syntax, indent, ftplugin)
@@ -265,6 +263,7 @@ Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid lang
 " * zephir (syntax)
 " * zig (syntax, autoload, ftplugin)
 "}}}
+endif
 Plug 'https://github.com/martinda/Jenkinsfile-vim-syntax' " Jenkinsfile DSL vim syntax
 
 " General: By default it will auto format javascript, typescript, less, scss, css, json, graphql and markdown files if they have/support the "@format" pragma annotation in the header of the file.
