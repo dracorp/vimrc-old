@@ -1,5 +1,4 @@
 {
-    "java.home": "/usr/bin/java",
     "suggest.triggerAfterInsertEnter": false,
     "suggest.timeout": 500,
     "suggest.noselect": false,
