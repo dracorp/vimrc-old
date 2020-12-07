@@ -82,6 +82,7 @@ Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo o
 "Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
 Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor position when you (re)open vim
 "Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
+
 " Syntastic check
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
@@ -443,8 +444,6 @@ Plug 'https://github.com/brooth/far.vim'                           " Find And Re
 if version > 704 || version == 704 && has('patch1154')
     Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 endif
-" Track the engine.
-Plug 'https://github.com/SirVer/ultisnips'      " UltiSnips - The ultimate snippet solution for Vim. Send pull requests to SirVer/ultisnips!
 if version >= 704
     Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
     " Snippets are separated from the engine. Add this if you want them:
