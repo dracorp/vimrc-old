@@ -218,6 +218,7 @@ endif
 
  silent! colorscheme gruvbox9_hard
 "silent! colorscheme gruvbox-material
+
 set background=dark
 
 if plugin#isEnabled('lightline.vim')
