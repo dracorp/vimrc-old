@@ -261,6 +261,14 @@ function! s:align() "{{{
 endfunction
 "}}}
 
+" Show syntax color highlighting groups for word under cursor
+nmap <c-s-a> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+    return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
 " Commands for functions {{{2
 command! -nargs=0 RemoveDiacritics call RemoveDiacratics()
 
