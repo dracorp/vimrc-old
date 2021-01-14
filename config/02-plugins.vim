@@ -65,11 +65,11 @@ if executable('ctags')
 endif
 "Plug 'https://github.com/LucHermitte/lh-vim-lib' " Library of Vim functions
 "Plug 'https://github.com/LucHermitte/lh-tags'    " ctags base updating, and browsing from vim
-if g:UNICODE
-    Plug 'https://github.com/liuchengxu/eleline.vim' " A tiny elegant statusline for vim
-else
+" if g:UNICODE
+    " Plug 'https://github.com/liuchengxu/eleline.vim' " A tiny elegant statusline for vim
+" else
     Plug 'https://github.com/itchyny/lightline.vim'  " A light and configurable statusline/tabline plugin for Vim
-endif
+" endif
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
@@ -392,6 +392,7 @@ Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against co
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
 Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
 Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
+Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
@@ -844,8 +845,9 @@ endif
 " lightline {{{2
 if plugin#isEnabled('lightline.vim')
     if !exists("g:lightline")
-        g:lightline = {}
+        let g:lightline = {}
     endif
+    let g:lightline.colorscheme = 'gruvbox9'
     let g:lightline.component_function = {
                 \ 'filename': 'LightlineFilename',
                 \ }
@@ -1021,6 +1023,10 @@ endif
 if plugin#isEnabled('restore_view.vim')
     set viewoptions=cursor,folds,slash,unix
     let g:skipview_files = ['*\.vim']
+endif
+" }}}
+" spaceduck {{{2
+if plugin#isEnabled('spaceduck')
 endif
 " }}}
 " startify {{{2
@@ -1425,7 +1431,7 @@ endif
 " vimwiki {{{2
 if plugin#isEnabled('vimwiki')
     let g:vimwiki_list = [
-                \ {},
+                \ {'path': '~/vimwiki', 'ext': 'wiki'},
                 \ {'path': '~/Documents/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'}
                 \]
     let g:vimwiki_global_ext=0

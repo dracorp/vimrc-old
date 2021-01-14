@@ -216,22 +216,12 @@ if has('termguicolors')
     set tgc
 endif
 
- silent! colorscheme gruvbox9_hard
-"silent! colorscheme gruvbox-material
+silent! colorscheme gruvbox9_hard
+" silent! colorscheme gruvbox-material
+" colorscheme spaceduck
 
 set background=dark
 
-if plugin#isEnabled('lightline.vim')
-    if !g:lightline
-        let g:lightline = {}
-    endif
-    let g:lightline.colorscheme='gruvbox9'
-"    let g:lightline.colorscheme='onehalfdark'
-endif
-if plugin#isEnabled('vim-airline')
-    let g:airline_theme = 'onehalfdark'
-"    let g:airline_theme = 'luna'
-endif
 "}}}
 " Python
 if g:MACOS
