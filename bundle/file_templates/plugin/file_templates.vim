@@ -1,5 +1,5 @@
 " Search for a tag of the form:
-" 
+"
 " With possible keys inside including the name (for simple things)
 " or special keys like $BASENAME$ or $YEAR$.  Also allow the pattern
 " to end with ';R' to use a replacement mode to maintain the field width
@@ -13,10 +13,10 @@ let s:searchSpecial = '$^*[]\:'
 
 let s:AskTagDefault = {}
 
-command! -complete=customlist,ListAvailableTemplates -nargs=? 
+command! -complete=customlist,ListAvailableTemplates -nargs=?
 			\ LoadFileTemplate call LoadFileTemplate("<args>")
 
-command! -complete=customlist,ListAvailableTemplates -nargs=? 
+command! -complete=customlist,ListAvailableTemplates -nargs=?
 			\ AddTemplate call AddTemplate("<args>")
 
 function! ListAvailableTemplates(A,L,P)
@@ -226,5 +226,5 @@ function! JumpToNextPlaceholder()
 	call setreg('/', old_query)
 endfunction
 
-nnoremap <C-J> :call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>
-inoremap <C-J> <ESC>:call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>
+" nnoremap <C-J> :call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>
+" inoremap <C-J> <ESC>:call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>

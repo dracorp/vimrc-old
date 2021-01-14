@@ -82,6 +82,7 @@ Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo o
 "Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
 Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor position when you (re)open vim
 "Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
+Plug 'https://github.com/matze/vim-move' "Plugin to move lines and selections up and down
 
 " Syntastic check
 if version > 700
@@ -1357,6 +1358,11 @@ if plugin#isEnabled('vim-markdown-preview')
 "    let vim_markdown_preview_pandoc=1
 endif
 "}}}
+" vim-move {{{2
+if plugin#isEnabled('vim-move')
+    let g:move_key_modifier = 'C'
+endif
+" }}}
 " vim-nightfly-guicolors {{{2
 if plugin#isEnabled('vim-nightfly-guicolors')
 "    colorscheme nightfly
