@@ -84,6 +84,8 @@ Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor posi
 "Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 Plug 'https://github.com/matze/vim-move' "Plugin to move lines and selections up and down
 Plug 'https://github.com/kshenoy/vim-signature' " Plugin to toggle, display and navigate marks
+Plug 'https://github.com/dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
+
 " Syntastic check
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
