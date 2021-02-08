@@ -83,7 +83,7 @@ Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo o
 Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor position when you (re)open vim
 "Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 Plug 'https://github.com/matze/vim-move' "Plugin to move lines and selections up and down
-
+Plug 'https://github.com/kshenoy/vim-signature' " Plugin to toggle, display and navigate marks
 " Syntastic check
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
@@ -109,7 +109,7 @@ if version >= 802
     Plug 'https://github.com/skywind3000/vim-quickui' " The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! 😎
 endif
 Plug 'https://github.com/Chiel92/vim-autoformat' " Provide easy code formatting in Vim by integrating existing code formatters.
-Plug 'https://github.com/Raimondi/delimitMate' " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
+" Plug 'https://github.com/Raimondi/delimitMate' " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 
 " Syntax and programing languages {{{2
 
@@ -309,6 +309,7 @@ Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn' " ldap schmema defin
 
 " Markdown {{{3
 Plug 'https://github.com/plasticboy/vim-markdown'       " Markdown Vim Mode, @require tabular
+" Plug 'https://github.com/gabrielelana/vim-markdown' " Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!
 "Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown documents by section
 if executable('npm')
 "    Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews
@@ -394,6 +395,7 @@ Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color schem
 Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
 Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
 Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
+Plug 'https://github.com/ajmwagar/vim-deus' " 🌙 A better color scheme for the late night coder
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
@@ -746,6 +748,11 @@ if plugin#isEnabled('vim-easytags')
     let g:easytags_suppress_ctags_warning = 1
     " uncomment to see why so slow
     "set vbs=1 | call xolox#easytags#why_so_slow()
+endif
+" }}}
+" editorconfig-vim {{{2
+if plugin#isEnabled('editorconfig-vim')
+    au FileType gitcommit let b:EditorConfig_disable = 1
 endif
 " }}}
 " eleline {{{2
@@ -1349,6 +1356,10 @@ endif
 " vim-markdown{{{2
 if plugin#isEnabled('vim-markdown')
     let g:vim_markdown_folding_disabled = 1
+    " gabrielelana/vim-markdown
+    let g:markdown_enable_folding = 0
+    let g:markdown_enable_insert_mode_leader_mappings = 1
+    let g:markdown_enable_conceal = 1
 endif
 "}}}
 " vim-markdown-preview {{{2
