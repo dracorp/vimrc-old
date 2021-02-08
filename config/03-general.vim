@@ -31,7 +31,7 @@ set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 if has('signs') && version >= 800
     set signcolumn=auto          " show signcolumns
 endif
-set number                   " show line numbers
+set nonumber                   " show line numbers
 set relativenumber
 set cursorline
 set showmatch                " jump to matching parenthesis/bracket
@@ -216,9 +216,10 @@ if has('termguicolors')
     set tgc
 endif
 
-silent! colorscheme gruvbox9_hard
+colorscheme gruvbox9_hard
 " silent! colorscheme gruvbox-material
 " colorscheme spaceduck
+" colorscheme deus
 
 set background=dark
 
