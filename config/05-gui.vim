@@ -40,6 +40,7 @@ if has("gui_running")
         set guifont=Hack\ 13
         set guifont=Cascadia\ Code\ 12
         set guifont=Iosevka\ Semi-Bold\ 12
+        set guifont=JetBrains\ Mono\ 12
     endif
 endif
 " }}}
