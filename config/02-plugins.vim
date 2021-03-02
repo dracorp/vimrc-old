@@ -46,6 +46,7 @@ if !g:MSWIN
 endif
 Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
 Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wiki for Vim
+Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
 Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
@@ -414,12 +415,12 @@ if version >= 704
 endif
 Plug 'https://github.com/tyru/open-browser.vim'                    " Open URI with your favorite browser from your most favorite editor
 Plug 'https://github.com/jlemetay/permut'                          " swap columns of text separated by arbitrary characters
-"Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
+Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
 Plug 'https://github.com/majutsushi/tagbar'                        " Vim plugin that displays tags in a window, ordered by scope
 if executable('ctags')
     Plug 'https://github.com/vim-scripts/taglist.vim'                  " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
 endif
-Plug 'https://github.com/vim-scripts/Toggle'                       " allows you to toggle bool (true/false) and other words with a shortcut
+" Plug 'https://github.com/vim-scripts/Toggle'                       " allows you to toggle bool (true/false) and other words with a shortcut
 Plug 'https://github.com/tpope/vim-repeat'             " enable repeating supported plugin maps with                                      " . "
 Plug 'https://github.com/tpope/vim-speeddating'        " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'https://github.com/vim-scripts/visual-increment' " Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode
@@ -1441,10 +1442,10 @@ if plugin#isEnabled('vim-terraform')
 endif
 " }}}
 " vim-toggle {{{2
-if plugin#isEnabled('vim-toggle')
-    imap <C-T>:call Toggle()<CR>
-    nmap <C-T>:call Toggle()<CR>
-    vmap <C-T> <ESC>:call Toggle()<CR>
+if plugin#isEnabled('Toggle')
+    imap <c-t>:call Toggle()<CR>
+    nmap <c-t>:call Toggle()<CR>
+    vmap <c-t> <ESC>:call Toggle()<CR>
 endif
 "}}}
 " vimwiki {{{2

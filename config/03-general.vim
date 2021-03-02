@@ -23,7 +23,7 @@ set mouse=v                  " enable using the mouse if terminal emulator suppo
 set showmode                 " always show what mode we're currently editing in
 set showcmd                  " show (partial) command in the last line of the screen
                              " this also shows visual selection info
-set wrap                     " wrap lines
+set nowrap                     " wrap lines
 set magic                    " For regular expressions turn magic on
 set shortmess+=I             " hide the launch screen
 set shortmess+=c             " don't give |ins-completion-menu| messages.
@@ -31,7 +31,7 @@ set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 if has('signs') && version >= 800
     set signcolumn=auto          " show signcolumns
 endif
-set nonumber                   " show line numbers
+set number                   " show line numbers
 set relativenumber
 set cursorline
 set showmatch                " jump to matching parenthesis/bracket
