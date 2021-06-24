@@ -49,7 +49,7 @@ Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wik
 Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
-Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
+" Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
 if executable('fzf')
     Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
 endif
@@ -86,7 +86,9 @@ Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor posi
 Plug 'https://github.com/matze/vim-move' "Plugin to move lines and selections up and down
 Plug 'https://github.com/kshenoy/vim-signature' " Plugin to toggle, display and navigate marks
 Plug 'https://github.com/dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets
-Plug 'https://github.com/puremourning/vimspector' " A multi-language debugging system for Vim
+if has('python3')
+    Plug 'https://github.com/puremourning/vimspector' " A multi-language debugging system for Vim
+endif
 " Syntastic check
 if version > 700
     Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
@@ -300,6 +302,7 @@ endif
 if has('patch-8.1.2114') || has('nvim-0.4.2')
     Plug 'https://github.com/liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " clap Modern performant generic finder and dispatcher for Vim and NeoVim
 endif
+Plug 'https://github.com/kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " DB {{{
 "Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
@@ -452,10 +455,12 @@ Plug 'https://github.com/brooth/far.vim'                           " Find And Re
 if version > 704 || version == 704 && has('patch1154')
     Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 endif
-if version >= 704
+if version >= 800
     Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
+else
+    Plug 'https://github.com/ervandew/supertab'
 endif
 if has('nvim') || version >= 802
 "    Plug 'https://github.com/pechorin/any-jump.nvim' " Jump to any definition and usages eye IDE madness without overhead (alpha)

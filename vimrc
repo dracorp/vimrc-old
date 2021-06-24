@@ -21,7 +21,8 @@ let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 function! s:source_file(path, ...) "{{{
 	" Source user configuration files with set/global sensitivity
 	let use_global = get(a:000, 0, ! has('vim_starting'))
-	let abspath = resolve($VIM_PATH . '/' . a:path)
+	" let abspath = resolve($VIM_PATH . '/' . a:path)
+	let abspath = resolve(a:path)
 	if ! use_global
 		execute 'source' fnameescape(abspath)
 		return
@@ -45,7 +46,7 @@ if has('vim_starting')
 	" Vim only, Linux terminal settings
 	if ! has('nvim') && ! has('gui_running') && ! has('win32') && ! has('win64')
         if filereadable($VIM_PATH . '/config/00-terminal.vim')
-            call s:source_file('config/00-terminal.vim')
+            call s:source_file($VIM_PATH . '/config/00-terminal.vim')
         endif
 	endif
 endif
@@ -53,46 +54,46 @@ endif
 " Load user scripts with confidential information
 " or pre-settings like g:elite_mode
 if filereadable($VIM_PATH . '/.vault.vim')
-	call s:source_file('.vault.vim')
+	call s:source_file($VIM_PATH . '.vault.vim')
 endif
 
 " Initialize plugin-manager and load main config files
 if filereadable($VIM_PATH . '/config/01-init.vim')
-    call s:source_file('config/01-init.vim')
+    call s:source_file($VIM_PATH . '/config/01-init.vim')
 endif
 
 if filereadable($VIM_PATH . '/config/02-plugins.vim')
-    call s:source_file('config/02-plugins.vim')
+    call s:source_file($VIM_PATH . '/config/02-plugins.vim')
 endif
 
 " Initialize all my configurations
 if filereadable($VIM_PATH . '/config/03-general.vim')
-    call s:source_file('config/03-general.vim')
+    call s:source_file($VIM_PATH . '/config/03-general.vim')
 endif
 
 if filereadable($VIM_PATH . '/config/04-filetype.vim')
-    call s:source_file('config/04-filetype.vim')
+    call s:source_file($VIM_PATH . '/config/04-filetype.vim')
 endif
 
 if filereadable($VIM_PATH . '/config/05-gui.vim')
-    call s:source_file('config/05-gui.vim')
+    call s:source_file($VIM_PATH . '/config/05-gui.vim')
 endif
 
 if filereadable($VIM_PATH . '/config/06-functions.vim')
-    call s:source_file('config/06-functions.vim')
+    call s:source_file($VIM_PATH . '/config/06-functions.vim')
 endif
 
 if filereadable($VIM_PATH . '/config/07-commands.vim')
-    call s:source_file('config/07-commands.vim')
+    call s:source_file($VIM_PATH . '/config/07-commands.vim')
 endif
 
 if filereadable($VIM_PATH . '/config/08-mappings.vim')
-    call s:source_file('config/08-mappings.vim')
+    call s:source_file($VIM_PATH . '/config/08-mappings.vim')
 endif
 
 " Load user custom local settings
-if filereadable($VIM_PATH . '/config/99-local.vim')
-    call s:source_file('config/99-local.vim')
+if filereadable($HOME . '/.config/vim/local.vim')
+    call s:source_file($HOME . '/.config/vim/local.vim')
 endif
 
 set secure
