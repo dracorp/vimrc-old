@@ -125,6 +125,7 @@ set equalalways                                 " Resize windows on split or clo
 set infercase                                   " Adjust case in insert completion mode
 set tildeop                                     " Tylde(~) behaves like operator
 set iskeyword+=-                                " which char make a word
+set iskeyword-=$
 " open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
 " open file under cursor for entry: VARIABLE=path
