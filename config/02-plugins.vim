@@ -302,7 +302,9 @@ endif
 if has('patch-8.1.2114') || has('nvim-0.4.2')
     Plug 'https://github.com/liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " clap Modern performant generic finder and dispatcher for Vim and NeoVim
 endif
-Plug 'https://github.com/kkoomen/vim-doge', { 'do': { -> doge#install() } }
+if has('lambda')
+    Plug 'https://github.com/kkoomen/vim-doge', { 'do': { -> doge#install() } }
+endif
 
 " DB {{{
 "Plug 'https://github.com/kristijanhusak/vim-dadbod' " Modern database interface for Vim
