@@ -54,7 +54,7 @@ endif
 " Load user scripts with confidential information
 " or pre-settings like g:elite_mode
 if filereadable($VIM_PATH . '/.vault.vim')
-	call s:source_file($VIM_PATH . '.vault.vim')
+	call s:source_file($VIM_PATH . '/.vault.vim')
 endif
 
 " Initialize plugin-manager and load main config files
