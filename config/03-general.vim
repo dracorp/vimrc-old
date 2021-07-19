@@ -217,10 +217,9 @@ if has('termguicolors')
     set tgc
 endif
 
-colorscheme gruvbox9_hard
+" colorscheme gruvbox9_hard
 " silent! colorscheme gruvbox-material
-" colorscheme spaceduck
-" colorscheme deus
+colorscheme gruvbox
 
 set background=dark
 

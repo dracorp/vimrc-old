@@ -115,6 +115,7 @@ if version >= 802
 endif
 Plug 'https://github.com/Chiel92/vim-autoformat' " Provide easy code formatting in Vim by integrating existing code formatters.
 " Plug 'https://github.com/Raimondi/delimitMate' " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
+Plug 'https://github.com/chrisbra/unicode.vim' " A Vim plugin that provides a completion function for Unicode glyphs
 
 " Syntax and programing languages {{{2
 
@@ -300,7 +301,7 @@ if version >= 800
     Plug 'https://github.com/wfxr/minimap.vim'    " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 endif
 if has('patch-8.1.2114') || has('nvim-0.4.2')
-    Plug 'https://github.com/liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " clap Modern performant generic finder and dispatcher for Vim and NeoVim
+    " Plug 'https://github.com/liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " clap Modern performant generic finder and dispatcher for Vim and NeoVim; hude size!
 endif
 if has('lambda')
     Plug 'https://github.com/kkoomen/vim-doge', { 'do': { -> doge#install() } }
@@ -351,7 +352,7 @@ Plug 'https://github.com/WolfgangMehner/perl-support' " Edit Perl scripts in Vim
 " Python {{{3
 if g:PYTHON
     Plug 'https://github.com/davidhalter/jedi-vim'                      " Using the jedi autocompletion library for VIM
-    Plug 'https://github.com/klen/python-mode', { 'branch': 'develop' } " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
+    " Plug 'https://github.com/klen/python-mode', { 'branch': 'develop' } " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
     Plug 'https://github.com/jmcantrell/vim-virtualenv'                 " Vim plugin for working with python virtualenvs
     " Plug 'https://github.com/vim-scripts/python_fold'                 " Folding expression for python
     Plug 'https://github.com/vim-scripts/SimpylFold'                    " No-BS Python code folding
@@ -400,8 +401,9 @@ Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against co
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
-Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
-Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
+" Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
+" Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
+Plug 'https://github.com/morhetz/gruvbox' "  Retro groove color scheme for Vim
 Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
 Plug 'https://github.com/ajmwagar/vim-deus' " 🌙 A better color scheme for the late night coder
 
@@ -480,7 +482,7 @@ endif
 "Plug 'https://github.com/dyng/ctrlsf.vim'       " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
 
 " Language & Grammar {{{2
-Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful grammar checker for Vim using LanguageTool
+" Plug 'https://github.com/rhysd/vim-grammarous'                     " A powerful grammar checker for Vim using LanguageTool; huge size!
 
 " MS Windows only {{{2
 if g:MSWIN
