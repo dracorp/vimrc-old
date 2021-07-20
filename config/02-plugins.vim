@@ -586,6 +586,7 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-template',
     \ 'coc-yank',
     \ 'coc-sh',
+    \ 'coc-markdownlint',
     \ ]
     " \ 'coc-go',
     " \ 'coc-tsserver',
