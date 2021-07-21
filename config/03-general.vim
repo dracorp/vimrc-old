@@ -217,11 +217,12 @@ if has('termguicolors')
     set tgc
 endif
 
-" colorscheme gruvbox9_hard
+set background=dark
+let g:gruvbox_italic=0
+let g:gruvbox_contrast_dark='hard'
 " silent! colorscheme gruvbox-material
 colorscheme gruvbox
 
-set background=dark
 
 "}}}
 " Python
