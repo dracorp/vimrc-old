@@ -49,7 +49,7 @@ Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wik
 Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
-" Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables
+" Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables, broken!
 if executable('fzf')
     Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
 endif
@@ -401,7 +401,6 @@ Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against co
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
-" Plug 'https://github.com/taigacute/gruvbox9'             " gruvbox9 colorscheme for neovim/vim
 " Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
 Plug 'https://github.com/morhetz/gruvbox' "  Retro groove color scheme for Vim
 Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
@@ -583,7 +582,6 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-snippets',
     \ 'coc-xml',
     \ 'coc-yaml',
-    \ 'coc-template',
     \ 'coc-yank',
     \ 'coc-sh',
     \ 'coc-markdownlint',
@@ -592,6 +590,7 @@ if plugin#isEnabled('coc.nvim')
     " \ 'coc-tsserver',
     " \ 'coc-pairs',
     " \ 'coc-explorer',
+    " \ 'coc-template',
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -811,13 +810,8 @@ if plugin#isEnabled('goyo.vim')
     let g:goyo_linenr=1
 endif
 " }}}
-" gruvbox9 {{{2
-if plugin#isEnabled('gruvbox9')
-    let g:gruvbox_filetype_hi_groups = 1
-    let g:gruvbox_italic = 1
-    let g:gruvbox_italicize_strings = 1
-    let g:gruvbox_plugin_hi_groups = 1
-"    let g:gruvbox_transp_bg = 1
+" gruvbox {{{2
+if plugin#isEnabled('gruvbox')
 endif
 " }}}
 " incsearch.vim {{{2
@@ -868,7 +862,7 @@ if plugin#isEnabled('lightline.vim')
     if !exists("g:lightline")
         let g:lightline = {}
     endif
-    let g:lightline.colorscheme = 'gruvbox9'
+    let g:lightline.colorscheme = 'gruvbox'
     let g:lightline.component_function = {
                 \ 'filename': 'LightlineFilename',
                 \ }
