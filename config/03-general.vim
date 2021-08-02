@@ -220,7 +220,9 @@ endif
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
+set termguicolors
 " silent! colorscheme gruvbox-material
+" let g:gruvbox_material_palette='material'
 colorscheme gruvbox
 
 

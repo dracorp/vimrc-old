@@ -1,5 +1,5 @@
-" Intialize vim-plug, if missing, download it. Based on vim-bootstrap.com {{{
 let vim_plug_path=expand(vimrc_dir . '/autoload/plug.vim')
+" Intialize vim-plug, if missing, download it. Based on vim-bootstrap.com {{{
 
 let vim_plug_just_installed = 0
 if !filereadable(vim_plug_path)
@@ -401,10 +401,11 @@ Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against co
 
 " Themes {{{2
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
-" Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
+Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
 Plug 'https://github.com/morhetz/gruvbox' "  Retro groove color scheme for Vim
 Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
 Plug 'https://github.com/ajmwagar/vim-deus' " 🌙 A better color scheme for the late night coder
+Plug 'https://github.com/bluz71/vim-nightfly-guicolors'
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
