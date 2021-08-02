@@ -572,7 +572,6 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-git',
     \ 'coc-highlight',
     \ 'coc-html',
-    \ 'coc-imselect',
     \ 'coc-json',
     \ 'coc-lists',
     \ 'coc-post',
@@ -592,6 +591,7 @@ if plugin#isEnabled('coc.nvim')
     " \ 'coc-pairs',
     " \ 'coc-explorer',
     " \ 'coc-template',
+    " \ 'coc-imselect',
 
     " Use tab for trigger completion with characters ahead and navigate.
     " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -1457,7 +1457,8 @@ endif
 if plugin#isEnabled('vimwiki')
     let g:vimwiki_list = [
                 \ {'path': '~/vimwiki', 'ext': 'wiki'},
-                \ {'path': '~/Documents/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'}
+                \ {'path': '~/Projects/Projects-other/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'},
+                \ {'path': '~/Projects/Projects-other/awesome-macos-command-line/', 'syntax': 'markdown', 'ext': '.md'},
                 \]
     let g:vimwiki_global_ext=0
 endif
