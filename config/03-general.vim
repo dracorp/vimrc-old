@@ -213,14 +213,9 @@ set t_ti= t_te=                 " put terminal in 'termcap' mode
 " }}}
 
 " Colors/theme {{{
-if has('termguicolors')
-    set tgc
-endif
-
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
-set termguicolors
 " silent! colorscheme gruvbox-material
 " let g:gruvbox_material_palette='material'
 colorscheme gruvbox

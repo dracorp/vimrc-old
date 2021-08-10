@@ -367,7 +367,7 @@ Plug 'https://github.com/vim-scripts/xmledit' " A filetype plugin to help edit X
 Plug 'https://github.com/vim-scripts/xslt'    " XSLT ftplugin
 
 " YAML {{{3
-Plug 'https://github.com/andrewstuart/vim-kubernetes' " vim-kubernetes
+" Plug 'https://github.com/andrewstuart/vim-kubernetes' " vim-kubernetes
 Plug 'https://github.com/stephpy/vim-yaml'            " Override vim syntax for yaml files
 
 " JSON {{{3
