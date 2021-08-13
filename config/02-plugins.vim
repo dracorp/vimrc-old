@@ -58,7 +58,8 @@ if g:UNIX
 endif
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim'    " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. http://ctrlpvim.github.com/ctrlp.vim
 "Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
-Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
+" Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
+Plug 'https://github.com/chrisbra/Colorizer' "  color hex codes and color names
 Plug 'https://github.com/godlygeek/tabular'     " Vim script for text filtering and alignment
 Plug 'https://github.com/xolox/vim-misc'               " Miscellaneous auto-load Vim scripts
 if executable('ctags')
@@ -113,7 +114,9 @@ Plug 'https://github.com/MicahElliott/Rocannon' " Vim for Ansible playbooks: omn
 if version >= 802
     Plug 'https://github.com/skywind3000/vim-quickui' " The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! 😎
 endif
-Plug 'https://github.com/Chiel92/vim-autoformat' " Provide easy code formatting in Vim by integrating existing code formatters.
+if has('python3') || has('python2')
+    Plug 'https://github.com/Chiel92/vim-autoformat' " Provide easy code formatting in Vim by integrating existing code formatters.
+endif
 " Plug 'https://github.com/Raimondi/delimitMate' " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'https://github.com/chrisbra/unicode.vim' " A Vim plugin that provides a completion function for Unicode glyphs
 
@@ -405,7 +408,6 @@ Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palet
 Plug 'https://github.com/morhetz/gruvbox' "  Retro groove color scheme for Vim
 Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
 Plug 'https://github.com/ajmwagar/vim-deus' " 🌙 A better color scheme for the late night coder
-Plug 'https://github.com/bluz71/vim-nightfly-guicolors'
 
 " Shells/Bash
 Plug 'https://github.com/vim-scripts/bash-support.vim'              " BASH IDE -- Write and run BASH-scripts using menus and hotkeys
