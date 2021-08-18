@@ -46,7 +46,7 @@ if !g:MSWIN
 endif
 Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
 Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wiki for Vim
-Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
+" Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
 " Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables, broken!
