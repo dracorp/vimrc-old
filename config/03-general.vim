@@ -5,7 +5,6 @@ if !plugin#isEnabled('vim-sensible') "{{{2
     set scrolloff=4                             " keep 4 lines off the edges of the screen when scrolling
     set backspace=indent,eol,start              " allow backspacing over everything in insert mode
     set incsearch                               " show search matches as you type
-    set listchars=tab:>-,eol:$,trail:-,nbsp:%
     " listchars=tab:> ,trail:-,extends:>,precedes:<,nbsp:+
     set complete-=i                             " do not scan current and included files, on slow machines
 "    set nrformats=                              " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
@@ -13,6 +12,7 @@ if !plugin#isEnabled('vim-sensible') "{{{2
     set ruler                                   " show the cursor position all the time
     set history=1000                            " remember more commands and search history
 endif "}}}
+set listchars=tab:>-,eol:$,trail:-,nbsp:%
 " display end of lines, TAB, spaces on the end of line, before and after wrap row
 " eol, tab, trail, extends, precedes, strings to use in 'list' mode
 set nolist                                      " don't show invisible characters by default, but it is enabled for some file types (see later)
