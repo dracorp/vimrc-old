@@ -323,6 +323,7 @@ Plug 'https://github.com/vim-scripts/ldap_schema.vim--Hahn' " ldap schmema defin
 Plug 'https://github.com/plasticboy/vim-markdown'       " Markdown Vim Mode, @require tabular
 " Plug 'https://github.com/gabrielelana/vim-markdown' " Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!
 "Plug 'https://github.com/nelstrom/vim-markdown-folding' " Fold markdown documents by section
+Plug 'https://github.com/JamshedVesuna/vim-markdown-preview' " A light Vim plugin for previewing markdown files in a browser - without leaving Vim.
 if executable('npm')
 "    Plug 'https://github.com/suan/vim-instant-markdown',{'do':'npm -g install instant-markdown-d'} " Instant Markdown previews
 endif
