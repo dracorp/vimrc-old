@@ -500,10 +500,8 @@ endif
 " Some offline plugins {{{2
 " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 execute 'Plug \"' . bundle_dir . '/file_templates\"'
-" Always load the vim-devicons as the very last one.
-if !g:MACOS
-    Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
-endif
+" Always load the vim-devicons as the very last one. Use a nerd font
+Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
