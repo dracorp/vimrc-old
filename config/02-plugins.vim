@@ -58,8 +58,8 @@ if g:UNIX
 endif
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim'    " Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. http://ctrlpvim.github.com/ctrlp.vim
 "Plug 'https://github.com/tacahiroy/ctrlp-funky' " A super simple function navigator for ctrlp.vim
-" Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
-Plug 'https://github.com/chrisbra/Colorizer' "  color hex codes and color names
+Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all text in the form #rrggbb or #rg
+" Plug 'https://github.com/chrisbra/Colorizer' "  color hex codes and color names
 Plug 'https://github.com/godlygeek/tabular'     " Vim script for text filtering and alignment
 Plug 'https://github.com/xolox/vim-misc'               " Miscellaneous auto-load Vim scripts
 if executable('ctags')
@@ -407,7 +407,6 @@ Plug 'https://github.com/rhysd/conflict-marker.vim' " Weapon to fight against co
 Plug 'https://github.com/xolox/vim-colorscheme-switcher'           " Color scheme switcher for Vim, @require vim-misc
 Plug 'https://github.com/sainnhe/gruvbox-material' " Gruvbox with Material Palette
 Plug 'https://github.com/morhetz/gruvbox' "  Retro groove color scheme for Vim
-Plug 'https://github.com/pineapplegiant/spaceduck', { 'branch': 'main' } " 🚀 🦆 An intergalactic space theme for Vim, Terminal, and more!
 Plug 'https://github.com/ajmwagar/vim-deus' " 🌙 A better color scheme for the late night coder
 
 " Shells/Bash
@@ -448,7 +447,7 @@ Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim 
 Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
 Plug 'https://github.com/jiangxincode/TagCollection'               " Some tags used by the OmniCppComplete which can auto complete your code
-Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
+" Plug 'https://github.com/nathanaelkane/vim-indent-guides'          " displaying indent levels in code
 let g:indentLine_enabled = 0
 Plug 'https://github.com/Yggdroot/indentLine'   " A vim plugin to display the indention levels with thin vertical lines
 Plug 'https://github.com/terryma/vim-expand-region'                " Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination
@@ -864,7 +863,7 @@ if plugin#isEnabled('lightline.vim')
     if !exists("g:lightline")
         let g:lightline = {}
     endif
-    let g:lightline.colorscheme = 'gruvbox'
+    let g:lightline.colorscheme = 'gruvbox_material'
     let g:lightline.component_function = {
                 \ 'filename': 'LightlineFilename',
                 \ }
@@ -1462,6 +1461,21 @@ if plugin#isEnabled('vimwiki')
                 \ {'path': '~/Projects/Projects-other/awesome-macos-command-line/', 'syntax': 'markdown', 'ext': '.md'},
                 \]
     let g:vimwiki_global_ext=0
+    nmap <Leader>wf <Plug>VimwikiFollowLink
+    nmap <Leader>we <Plug>VimwikiSplitLink
+    nmap <Leader>wq <Plug>VimwikiVSplitLink
+    function! VimwikiFindIncompleteTasks()
+    lvimgrep /- \[ \]/ %:p
+    lopen
+    endfunction
+
+    function! VimwikiFindAllIncompleteTasks()
+    VimwikiSearch /- \[ \]/
+    lopen
+    endfunction
+
+    nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+    nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
 endif
 "}}}
 " xml_completion {{{2

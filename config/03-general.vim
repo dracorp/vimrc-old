@@ -134,6 +134,7 @@ set isfname-==
 if !empty($BASH_IT)
     set path+=$BASH_IT
 endif
+set diffopt+=iwhite,closeoff
 " }}}
 
 " Folding rules {{{
@@ -216,9 +217,13 @@ set t_ti= t_te=                 " put terminal in 'termcap' mode
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
-" silent! colorscheme gruvbox-material
-" let g:gruvbox_material_palette='material'
-colorscheme gruvbox
+" silent! colorscheme gruvbox
+
+let g:gruvbox_material_palette='material'
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_enable_italic = 0
+let g:gruvbox_material_disable_italic_comment = 1
+silent! colorscheme gruvbox-material
 
 
 
