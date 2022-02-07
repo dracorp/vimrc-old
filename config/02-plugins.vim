@@ -1377,6 +1377,16 @@ if plugin#isEnabled('vim-markdown-preview')
 "    let vim_markdown_preview_pandoc=1
 endif
 "}}}
+" vim-markdown-toc {{{2
+if plugin#isEnabled('vim-markdown-toc')
+    " let g:vmt_dont_insert_fence = 1
+    " let g:vmt_fence_text = 'TOC'
+    " let g:vmt_fence_closing_text = '/TOC
+    let g:vmt_auto_update_on_save = 1
+    let g:vmt_list_item_char = '-'
+    let g:vmt_include_headings_before = 1
+endif
+"}}}
 " vim-move {{{2
 if plugin#isEnabled('vim-move')
     let g:move_key_modifier = 'C'

@@ -134,7 +134,12 @@ set isfname-==
 if !empty($BASH_IT)
     set path+=$BASH_IT
 endif
-set diffopt+=iwhite,closeoff
+set diffopt+=iwhite     " ignore white spaces
+set diffopt+=context:3  " context for diff
+if version > 810
+    set diffopt+=closeoff
+    set diffopt+=internal,indent-heuristic,algorithm:histogram
+endif
 " }}}
 
 " Folding rules {{{
