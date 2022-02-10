@@ -80,7 +80,11 @@ Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
 "Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
-Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo or su or any other tool
+if !g:MACOS
+    Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo or su or any other tool
+else
+    Plug 'https://github.com/lambdalisue/suda.vim' " 🥪 An alternative sudo.vim for Vim and Neovim, limited support sudo in Windows
+endif
 "Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
 Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor position when you (re)open vim
 "Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
