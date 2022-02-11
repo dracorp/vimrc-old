@@ -124,6 +124,11 @@ endif
 " Plug 'https://github.com/Raimondi/delimitMate' " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'https://github.com/chrisbra/unicode.vim' " A Vim plugin that provides a completion function for Unicode glyphs
 
+" coot
+Plug 'https://github.com/coot/EnchantedVim' " Persistent Very Magic Patterns in Vim Commands
+Plug 'https://github.com/coot/System' " Vim plugin which gives a nice interface with the os programs
+Plug 'https://github.com/coot/CRDispatcher' " A utility Vim plugin used by some of my Vim plugins
+
 " Syntax and programing languages {{{2
 
 if version >= 800
@@ -784,6 +789,19 @@ if plugin#isEnabled('emmet-vim')
     autocmd FileType html,css EmmetInstall
 endif
 "}}}
+" EnchantedVim {{{2
+if plugin#isEnabled('EnchantedVim')
+    let g:VeryMagicSubstitute = 1  " (default is 0)
+    let g:VeryMagicGlobal = 1  " (default is 0)
+    let g:VeryMagicVimGrep = 1  " (default is 0)
+    let g:VeryMagicSearchArg = 1  " (default is 0, :edit +/{pattern}))
+    let g:VeryMagicFunction = 1  " (default is 0, :fun /{pattern})
+    let g:VeryMagicHelpgrep = 1  " (default is 0)
+    let g:VeryMagicRange = 1  " (default is 0, search patterns in command ranges)
+    let g:VeryMagicEscapeBackslashesInSearchArg = 1  " (default is 0, :edit +/{pattern}))
+    let g:SortEditArgs = 1  " (default is 0, see below)
+endif
+" }}}
 " file_templates {{{2
 if plugin#isEnabled('file_templates')
     let g:file_template_default = "def.PKGBUILD"
