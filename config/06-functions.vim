@@ -276,7 +276,7 @@ command! -nargs=0 RemoveDiacritics call RemoveDiacratics()
 nnoremap <leader>q                  :call <SID>QuickfixToggle()<cr>
 "nnoremap <leader>f                  :call FoldColumnToggle()<cr>
 "noremap  <silent> <F8>              :call ChangeFileencoding()<CR>
-noremap  <silent> <F1>              :call DisplayManpage()<CR>
+" noremap  <silent> <F1>              :call DisplayManpage()<CR>
 nnoremap <silent> <Leader><Space>   :call ToggleFoldMethod()<CR>
 if has('signs') && version >= 800
     nnoremap <Leader>S :call ToggleSignColumn()<CR>

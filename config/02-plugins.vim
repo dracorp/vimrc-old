@@ -123,6 +123,9 @@ if has('python3') || has('python2')
 endif
 " Plug 'https://github.com/Raimondi/delimitMate' " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'https://github.com/chrisbra/unicode.vim' " A Vim plugin that provides a completion function for Unicode glyphs
+Plug 'https://github.com/vim-scripts/viewdoc' " Flexible viewer for any documentation (help/man/perldoc/etc.)
+" plug 'https://github.com/vim-scripts/sessionman.vim' " Vim session manager
+Plug 'https://github.com/xolox/vim-session' " Extended session management for Vim (:mksession on steroids)
 
 " coot
 Plug 'https://github.com/coot/EnchantedVim' " Persistent Very Magic Patterns in Vim Commands
@@ -1242,7 +1245,16 @@ if plugin#isEnabled('vbookmark')
     let g:vbookmark_bookmarkSaveFile = $HOME . '/.vimbookmark'
 endif
 " }}}
-" vim-airline {{{2
+" viewdoc {{{2
+if plugin#isEnabled('viewdoc')
+    " let g:no_viewdoc_maps=1
+    let g:viewdoc_open='new'
+    " let g:viewdoc_open="topleft new"
+    let g:viewdoc_openempty=0
+    let g:viewdoc_copy_to_search_reg=1
+endif
+"}}}
+
 if plugin#isEnabled('vim-airline')
     let g:airline_powerline_fonts     = 1
     let g:airline_section_c           = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
@@ -1426,7 +1438,7 @@ endif
 " vim-session {{{2
 if plugin#isEnabled('vim-session')
     let g:session_autosave = 'yes'
-    let g:session_autoload = 'no'
+    let g:session_autoload = 'yes'
     let g:session_directory = vimrc_dir . 'sessions'
     let g:session_autosave_periodic = '5'
     let g:session_command_aliases = 1
