@@ -80,14 +80,14 @@ inoremap <silent> <F10> <C-o>:syntax sync fromstart<CR>
 " nnoremap / /\v
 " vnoremap / /\v
 " substitute
-" cnoremap %s/ %smagic/
-" cnoremap %s# %smagic#
+cnoremap %s/ %smagic/
+cnoremap %s# %smagic#
 " substitute in visual mode
-" cnoremap \>s/ \>smagic/
-" cnoremap \>s# \>smagic#
+cnoremap \>s/ \>smagic/
+cnoremap \>s# \>smagic#
 " global
-" nnoremap :g/ :g/\v
-" nnoremap :g// :g//
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
 
 " paste mode, where you can paste mass data
 " that won't be autoindented

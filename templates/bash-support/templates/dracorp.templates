@@ -6,13 +6,13 @@
 #!/usr/bin/env bash
 #===============================================================================
 # NAME
-#       |FILENAME| - short_description
+#       |FILENAME| - short description
 #
 # SYNOPSIS
 #       |FILENAME| options
 #
 # DESCRIPTION
-#       Long_description
+#       Long description
 #
 # OPTIONS
 #
@@ -32,12 +32,6 @@
 #
 # DATE
 #       $Date$
-#
-# REVISION
-#       $Revision$
-#
-# ID
-#       $Id$
 #
 #===============================================================================
 

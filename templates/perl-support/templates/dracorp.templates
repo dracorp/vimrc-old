@@ -64,15 +64,15 @@ __END__
 
 =head1 NAME
 
-|FILENAME| - short_description
+|FILENAME| - short description
 
 =head1 SYNOPSIS
 
-|FILENAME| - short_usage
+|FILENAME| - short usage
 
 =head1 DESCRIPTION
 
-long_description
+long description
 
 =head1 OPTIONS
 

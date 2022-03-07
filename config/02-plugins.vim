@@ -36,15 +36,18 @@ Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
 Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
 if g:UNICODE && executable('git')
-"    Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
+   " Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
 endif
 if !g:MACOS
     Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 endif
+Plug 'https://github.com/PhilRunninger/nerdtree-buffer-ops' " A plugin for highlighting and closing open buffers while in the NERDTree
+
 if !g:MSWIN
     Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
 endif
 Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
+
 Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wiki for Vim
 " Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
@@ -434,6 +437,7 @@ Plug 'https://github.com/andymass/vim-matchup' " vim match-up: even better % ðŸ‘
 if version >= 704
 "    Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
 endif
+Plug 'https://github.com/chrisbra/vim-diff-enhanced' " Better Diff options for Vim
 Plug 'https://github.com/tyru/open-browser.vim'                    " Open URI with your favorite browser from your most favorite editor
 Plug 'https://github.com/jlemetay/permut'                          " swap columns of text separated by arbitrary characters
 Plug 'https://github.com/AndrewRadev/switch.vim'                   " switch segments of text with predefined replacements
@@ -512,7 +516,7 @@ endif
 " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
 execute 'Plug \"' . bundle_dir . '/file_templates\"'
 " Always load the vim-devicons as the very last one. Use a nerd font
-Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
+" Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
@@ -540,7 +544,12 @@ endif
 if plugin#isEnabled('bash-support.vim')
     " let g:BASH_TemplateOverwrittenMsg = 'no'
     if g:UNIX
-        let g:BASH_LocalTemplateFile = vimrc_dir . 'templates/bash-support/templates/Templates'
+        let g:BASH_LocalTemplateFile    = vimrc_dir . 'templates/bash-support/templates/Templates'
+        if g:MACOS
+            let g:BASH_Executable       = '/usr/local/bin/bash'
+        else
+            let g:BASH_Executable       = '/usr/bin/bash'
+        endif
     endif
 endif
 " }}}
@@ -794,6 +803,7 @@ endif
 "}}}
 " EnchantedVim {{{2
 if plugin#isEnabled('EnchantedVim')
+    let g:VeryMagic = 0
     let g:VeryMagicSubstitute = 1  " (default is 0)
     let g:VeryMagicGlobal = 1  " (default is 0)
     let g:VeryMagicVimGrep = 1  " (default is 0)
@@ -1337,6 +1347,13 @@ if plugin#isEnabled('vim-cpp-enhanced-highlight')
     let g:cpp_no_function_highlight = 1
 endif
 "}}}
+" vim-diff-enhanced {{{2
+if plugin#isEnabled('vim-diff-enhanced')
+    if !has("patch-8.1.0360") && &diff
+        let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+    endif
+endif
+" }}}
 " vim-easy-align {{{2
 if plugin#isEnabled('vim-easy-align')
     " Start interactive EasyAlign in visual mode (e.g. vipga)

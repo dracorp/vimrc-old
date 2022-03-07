@@ -124,7 +124,7 @@ set splitright                                  " command :vs put a new windows 
 set equalalways                                 " Resize windows on split or close
 set infercase                                   " Adjust case in insert completion mode
 set tildeop                                     " Tylde(~) behaves like operator
-set iskeyword+=-,/,+,=                          " which char make a word
+set iskeyword+=-,/                          " which char make a word
 set iskeyword-=$
 " open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
@@ -135,10 +135,10 @@ if !empty($BASH_IT)
     set path+=$BASH_IT
 endif
 set diffopt+=iwhite     " ignore white spaces
+set diffopt+=indent-heuristic
 set diffopt+=context:3  " context for diff
-if version > 810
-    set diffopt+=closeoff
-    set diffopt+=internal,indent-heuristic,algorithm:histogram
+if has("patch-8.1.0360")
+    set diffopt+=algorithm:patience
 endif
 " }}}
 
