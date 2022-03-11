@@ -1,5 +1,5 @@
-let vim_plug_path=expand(vimrc_dir . '/autoload/plug.vim')
 " Intialize vim-plug, if missing, download it. Based on vim-bootstrap.com {{{
+let vim_plug_path=expand(vimrc_dir . '/autoload/plug.vim')
 
 let vim_plug_just_installed = 0
 if !filereadable(vim_plug_path)
@@ -46,8 +46,8 @@ Plug 'https://github.com/PhilRunninger/nerdtree-buffer-ops' " A plugin for highl
 if !g:MSWIN
     Plug 'https://github.com/editorconfig/editorconfig-vim' " EditorConfig plugin
 endif
-Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
 
+" Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
 Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wiki for Vim
 " Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
@@ -78,7 +78,7 @@ endif
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
-Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
+" Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
 "Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
 "Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
