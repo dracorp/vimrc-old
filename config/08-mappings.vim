@@ -58,10 +58,16 @@ nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 " }}}
 
 " change search mapping and don't jump
-nnoremap * g#``
-nnoremap # g*``
-nnoremap g* #``
-nnoremap g# *``
+" nnoremap * g#``
+" nnoremap # g*``
+" nnoremap g* #``
+" nnoremap g# *``
+
+nnoremap * g*``
+nnoremap # g#``
+nnoremap g* *``
+nnoremap g# #``
+
 " Turn off hlsearch
 "nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 

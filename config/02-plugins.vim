@@ -48,7 +48,7 @@ if !g:MSWIN
 endif
 
 " Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
-Plug 'https://github.com/vim-scripts/vimwiki'                     " Personal Wiki for Vim
+Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }                      " Personal Wiki for Vim
 " Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
@@ -139,7 +139,7 @@ Plug 'https://github.com/coot/CRDispatcher' " A utility Vim plugin used by some 
 
 if version >= 800
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
-    let g:polyglot_disabled = ['csv', 'jenkins']
+    let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
     Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
 " vim-polyglot supported language pack {{{ 3
 " * acpiasl (syntax)
@@ -473,6 +473,7 @@ Plug 'https://github.com/will133/vim-dirdiff'                      " Vim plugin 
 Plug 'https://github.com/dhruvasagar/vim-table-mode',{'on':'TableModeEnable'} " map conflict with bash-support
 Plug 'https://github.com/brooth/far.vim'                           " Find And Replace
 "Plug 'https://github.com/liuchengxu/vim-which-key' " tulip Vim plugin that shows keybindings in popup
+Plug 'https://bitbucket.org/sw-samuraj/vim-gradle'
 
 if version > 704 || version == 704 && has('patch1154')
     Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
@@ -1190,14 +1191,107 @@ if plugin#isEnabled('tagbar')
         \ 'v:variables'
         \ ]
         \}
-    let g:tagbar_type_markdown = {
-        \ 'ctagstype' : 'markdown',
-        \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
-        \ ]
-        \ }
+	let g:tagbar_type_markdown = {
+        \ 'ctagstype'	: 'markdown',
+        \ 'kinds'		: [
+            \ 'c:chapter:0:1',
+            \ 's:section:0:1',
+            \ 'S:subsection:0:1',
+            \ 't:subsubsection:0:1',
+            \ 'T:l4subsection:0:1',
+            \ 'u:l5subsection:0:1',
+        \ ],
+        \ 'sro'			: '""',
+        \ 'kind2scope'	: {
+            \ 'c' : 'chapter',
+            \ 's' : 'section',
+            \ 'S' : 'subsection',
+            \ 't' : 'subsubsection',
+            \ 'T' : 'l4subsection',
+        \ },
+        \ 'scope2kind'	: {
+            \ 'chapter' : 'c',
+            \ 'section' : 's',
+            \ 'subsection' : 'S',
+            \ 'subsubsection' : 't',
+            \ 'l4subsection' : 'T',
+        \ },
+    \ }
+	let g:tagbar_type_css = {
+		\ 'ctagstype' : 'Css',
+			\ 'kinds'     : [
+				\ 'c:classes',
+				\ 's:selectors',
+				\ 'i:identities'
+			\ ]
+		\ }
+	let g:tagbar_type_go = {
+		\ 'ctagstype': 'go',
+		\ 'kinds' : [
+			\'p:package',
+			\'f:function',
+			\'v:variables',
+			\'t:type',
+			\'c:const'
+		\]
+	\}
+	let g:tagbar_type_groovy = {
+		\ 'ctagstype' : 'groovy',
+		\ 'kinds'     : [
+			\ 'p:package:1',
+			\ 'c:classes',
+			\ 'i:interfaces',
+			\ 't:traits',
+			\ 'e:enums',
+			\ 'm:methods',
+			\ 'f:fields:1'
+		\ ]
+	\ }
+	let g:tagbar_type_json = {
+		\ 'ctagstype' : 'json',
+		\ 'kinds' : [
+		\ 'o:objects',
+		\ 'a:arrays',
+		\ 'n:numbers',
+		\ 's:strings',
+		\ 'b:booleans',
+		\ 'z:nulls'
+		\ ],
+	\ 'sro' : '.',
+		\ 'scope2kind': {
+		\ 'object': 'o',
+		\ 'array': 'a',
+		\ 'number': 'n',
+		\ 'string': 's',
+		\ 'boolean': 'b',
+		\ 'null': 'z'
+		\ },
+		\ 'kind2scope': {
+		\ 'o': 'object',
+		\ 'a': 'array',
+		\ 'n': 'number',
+		\ 's': 'string',
+		\ 'b': 'boolean',
+		\ 'z': 'null'
+		\ },
+		\ 'sort' : 0
+	\ }
+	let g:tagbar_type_perl = {
+		\ 'ctagstype' : 'perl',
+		\ 'kinds'     : [
+			\ 'p:package:0:0',
+			\ 'w:roles:0:0',
+			\ 'e:extends:0:0',
+			\ 'u:uses:0:0',
+			\ 'r:requires:0:0',
+			\ 'o:ours:0:0',
+			\ 'a:properties:0:0',
+			\ 'b:aliases:0:0',
+			\ 'h:helpers:0:0',
+			\ 's:subroutines:0:0',
+			\ 'd:POD:1:0'
+		\ ]
+	\ }
 endif
 " }}}
 " tagList {{{2
@@ -1419,11 +1513,13 @@ if plugin#isEnabled('vim-markdown')
     let g:markdown_enable_folding = 0
     let g:markdown_enable_insert_mode_leader_mappings = 1
     let g:markdown_enable_conceal = 1
+    let g:vim_markdown_follow_anchor = 1
 endif
 "}}}
 " vim-markdown-preview {{{2
 if plugin#isEnabled('vim-markdown-preview')
     let vim_markdown_preview_browser='Firefox'
+    let vim_markdown_preview_github=1
 "    let vim_markdown_preview_perl=1
 "    let vim_markdown_preview_pandoc=1
 endif
@@ -1524,6 +1620,7 @@ if plugin#isEnabled('vimwiki')
     let g:vimwiki_global_ext=0
     nmap <Leader>wf <Plug>VimwikiFollowLink
     nmap <Leader>we <Plug>VimwikiSplitLink
+    nnoremap <silent> <leader>uu :call vimwiki#base#linkify()<cr>
     nmap <Leader>wq <Plug>VimwikiVSplitLink
     function! VimwikiFindIncompleteTasks()
     lvimgrep /- \[ \]/ %:p
