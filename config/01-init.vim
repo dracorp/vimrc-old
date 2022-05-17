@@ -96,3 +96,9 @@ let bundle_dir = vimrc_dir . 'bundle'
 "let g:pluginIsEnabledVerbose = 1
 " Remove existing autocommands to avoid duplicates
 autocmd!
+" }}}
+
+runtime! ftplugin/man.vim
+let g:ft_man_folding_enable = 1
+let g:ft_man_open_mode = 'vert'
+let g:ft_man_no_sect_fallback = 1
