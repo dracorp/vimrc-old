@@ -2,17 +2,19 @@
 
 <!-- vim-markdown-toc GFM -->
 
-    * [Installing this vimrc manually](#installing-this-vimrc-manually)
-    * [vim-bootstrap](#vim-bootstrap)
-    * [Mappings](#mappings)
-        * [General](#general)
-        * [Plugins](#plugins)
-* [vim-galore](#vim-galore)
-    * [Mappings](#mappings-1)
-    * [Registers](#registers)
-    * [Ranges](#ranges)
-    * [Marks](#marks)
-    * [Completion](#completion)
+- [vimrc](#vimrc)
+    - [Installing this vimrc manually](#installing-this-vimrc-manually)
+    - [vim-bootstrap](#vim-bootstrap)
+    - [Mappings](#mappings)
+        - [General](#general)
+        - [Plugins](#plugins)
+- [vim-galore](#vim-galore)
+    - [Mappings](#mappings-1)
+    - [Registers](#registers)
+    - [Ranges](#ranges)
+    - [Marks](#marks)
+    - [Completion](#completion)
+    - [Local changes](#local-changes)
 
 <!-- vim-markdown-toc -->
 
@@ -225,3 +227,25 @@ Other motions include:
 | `<c-x><c-u>` | user defined (as specified in `'completefunc'`) | `:h i^x^u` |
 | `<c-x><c-o>` | omni completion (as specified in `'omnifunc'`)  | `:h i^x^o` |
 | `<c-x>s`     | spelling suggestions                            | `:h i^Xs`  |
+
+## Local changes
+
+Sample of ~/.config/vim/local.vim
+
+```vim
+if plugin#isEnabled('bash-support.vim')
+    let g:BASH_LocalTemplateFile           = expand("$HOME/.config/vim/templates/bash-support/templates/Templates")
+endif
+if plugin#isEnabled('c.vim')
+    let g:C_LocalTemplateFile              = expand("$HOME/.config/vim/templates/c-support/templates/Templates")
+endif
+if plugin#isEnabled('doxygen-support.vim')
+    let g:Doxy_LocalTemplateFile           = expand("$HOME/.config/vim/templates/doxygen-support/templates/doxygen.templates")
+endif
+if plugin#isEnabled('perl-support.vim')
+    let g:Perl_LocalTemplateFile           = expand("$HOME/.config/vim/templates/perl-support/templates/Templates")
+endif
+if plugin#isEnabled('vim-support')
+    let g:Vim_LocalTemplateFile            = expand("$HOME/.config/vim/templates/vim-support/templates/Templates")
+endif
+```

@@ -459,6 +459,8 @@ if version >= 703
     " Plug 'https://github.com/ap/vim-buftabline'                    " Forget Vim tabs - now you can have buffer tabs
 endif
 "Plug 'https://github.com/vim-scripts/tskeleton'                    " File Templates and Code Skeletons/Snippets
+Plug 'http://github.com/tomtom/tskeleton_vim' " File Templates and Code Skeletons/Snippets for VIM
+Plug 'https://github.com/tomtom/tlib_vim' " Some utility functions for VIM
 Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim plugin for common misspellings and typos
 Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
 Plug 'https://github.com/zirrostig/vim-schlepp'                    " easily moving text selections around
@@ -515,14 +517,15 @@ endif
 
 " Some offline plugins {{{2
 " [A file templates](https://sites.google.com/site/abudden/contents/Vim-Scripts/file-templates)
-execute 'Plug \"' . bundle_dir . '/file_templates\"'
+" execute 'Plug \"' . bundle_dir . '/file_templates\"'
+Plug 'https://github.com/drbeco/vimtemplates' " The VI Improved templates
 " Always load the vim-devicons as the very last one. Use a nerd font
 " Plug 'https://github.com/ryanoasis/vim-devicons'         " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 " end of vim-plug's plugins management
 call plug#end()
 delc PlugUpgrade
 "}}}
-
+"}}}
 " Plugins configuration {{{
 " ale {{{2
 if plugin#isEnabled('ale')
@@ -818,8 +821,11 @@ endif
 " }}}
 " file_templates {{{2
 if plugin#isEnabled('file_templates')
-    let g:file_template_default = "def.PKGBUILD"
     let g:VIMFILESDIR = vimrc_dir
+    if !exists("g:file_template_default")
+        let g:file_template_default = {}
+    endif
+    let g:file_template_default.PKGBUILD = "default"
 endif
 " }}}
 " fzf {{{2
@@ -1358,7 +1364,7 @@ if plugin#isEnabled('viewdoc')
     let g:viewdoc_copy_to_search_reg=1
 endif
 "}}}
-
+" vim-airline {{{2
 if plugin#isEnabled('vim-airline')
     let g:airline_powerline_fonts     = 1
     let g:airline_section_c           = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
@@ -1610,6 +1616,21 @@ if plugin#isEnabled('Toggle')
     vmap <c-t> <ESC>:call Toggle()<CR>
 endif
 "}}}
+" vimtemplates {{{2
+
+if plugin#isEnabled('vimtemplates')
+    let g:vimtemplates_dir = vimrc_dir
+    if !exists("g:file_template_default")
+        let g:file_template_default = {}
+    endif
+    let g:file_template_default.PKGBUILD = "default"
+
+    let g:author="Piotr Rogoza"
+    " let g:email="nice@email.have.me"
+    " let g:webpage='www.myextraordinary.example.com'
+    " let g:phone="+55 (11) 1234-5678"
+    let g:DoxygenToolkit_authorName=g:author
+endif
 " vimwiki {{{2
 if plugin#isEnabled('vimwiki')
     let g:vimwiki_list = [

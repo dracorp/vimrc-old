@@ -1,0 +1,1 @@
+../bundle/vimtemplates/templates/vim6_c_allegro_window.c

@@ -9,7 +9,7 @@
 let s:TagMatch = '<+\(.\{-1,}\)\(;R\)\?+\+>'
 let s:VarTagMatch = '<+\(\$[A-Z]\+\$\)\(;R\)\?+\+>'
 let s:AskTagMatch = '#[A-Z_]\{-1,}#'
-let s:searchSpecial = '$^*[]\:'
+let s:searchSpecial = '$^*[]/\:'
 
 let s:AskTagDefault = {}
 
@@ -55,7 +55,8 @@ function! LoadFileTemplate(name)
 	endif
 
 	if len(s:bufferFileName) > 0
-		execute "silent! 0r ".g:VIMFILESDIR."templates/".tolower(template_name).".".expand('%:e')
+		" execute "silent! 0r ".g:VIMFILESDIR."templates/".tolower(template_name).".".expand('%:e')
+		execute "0r ".g:VIMFILESDIR."templates/".tolower(template_name).".".expand('%:e')
 		syn match vimTemplateMarker "<+.++>" containedin=ALL
 		call ExpandTemplateNames()
 		call AskForOtherNames()
@@ -160,6 +161,9 @@ function! ExpandTemplateNames()
 				\     '$LBASENAME$':  tolower(expand('%:t:r')),
 				\     '$YEAR$':       strftime("%Y"),
 				\     '$DATE$':       strftime('%d/%m/%Y'),
+				\     '$DATETIME$':   strftime('%d/%m/%Y %H.%M.%S'),
+				\     '$MCPREFIX$':   expand('%:t:r'),
+				\     '$UCPREFIX$':   toupper(expand('%:t:r')),
 				\ }
 
 	let [lnum, cnum] = searchpos(s:VarTagMatch)
@@ -226,5 +230,5 @@ function! JumpToNextPlaceholder()
 	call setreg('/', old_query)
 endfunction
 
-" nnoremap <C-J> :call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>
-" inoremap <C-J> <ESC>:call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>
+nnoremap <C-J> :call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>
+inoremap <C-J> <ESC>:call JumpToNextPlaceholder()<CR>:TemplateJumpCmd<CR>

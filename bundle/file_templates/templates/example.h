@@ -10,12 +10,12 @@
  *
  */
 
-#ifndef _<+$UBASENAME$+>_H
-#define _<+$UBASENAME$+>_H
+#ifndef <+$UBASENAME$+>_H
+#define <+$UBASENAME$+>_H
 
 #include "Global.h"
 
 void <+$BASENAME$+>_Init(void);
 void <+$BASENAME$+>_Update(void);
 
-#endif /* NOT def _<+$UBASENAME$+>_H */
+#endif /* NOT def <+$UBASENAME$+>_H */

@@ -1,0 +1,1 @@
+../bundle/vimtemplates/templates/vim1_web.py
