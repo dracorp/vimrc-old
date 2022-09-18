@@ -599,7 +599,6 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lists',
-    \ 'coc-post',
     \ 'coc-prettier',
     \ 'coc-pyright',
     \ 'coc-python',
@@ -608,9 +607,9 @@ if plugin#isEnabled('coc.nvim')
     \ 'coc-xml',
     \ 'coc-yaml',
     \ 'coc-yank',
-    \ 'coc-sh',
     \ 'coc-markdownlint',
     \ ]
+    " \ 'coc-sh',
     " \ 'coc-go',
     " \ 'coc-tsserver',
     " \ 'coc-pairs',
@@ -1641,8 +1640,10 @@ if plugin#isEnabled('vimwiki')
     let g:vimwiki_global_ext=0
     nmap <Leader>wf <Plug>VimwikiFollowLink
     nmap <Leader>we <Plug>VimwikiSplitLink
+    nmap <Leader>vs :vs \| :VimwikiIndex<CR>
     nnoremap <silent> <leader>uu :call vimwiki#base#linkify()<cr>
     nmap <Leader>wq <Plug>VimwikiVSplitLink
+
     function! VimwikiFindIncompleteTasks()
     lvimgrep /- \[ \]/ %:p
     lopen
@@ -1653,8 +1654,8 @@ if plugin#isEnabled('vimwiki')
     lopen
     endfunction
 
-    nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
     nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
+    nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
 endif
 "}}}
 " xml_completion {{{2
