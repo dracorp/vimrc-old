@@ -548,7 +548,9 @@ endif
 if plugin#isEnabled('bash-support.vim')
     " let g:BASH_TemplateOverwrittenMsg = 'no'
     if g:UNIX
-        let g:BASH_LocalTemplateFile    = vimrc_dir . 'templates/bash-support/templates/Templates'
+        " see ~/.config/vim/local.vim
+        " let g:BASH_LocalTemplateFile    = vimrc_dir . 'templates/bash-support/templates/Templates'
+        " let g:BASH_GuiSnippetBrowser = 'commandline'
         if g:MACOS
             let g:BASH_Executable       = '/usr/local/bin/bash'
         else
@@ -1524,9 +1526,15 @@ endif
 " vim-markdown-preview {{{2
 if plugin#isEnabled('vim-markdown-preview')
     let vim_markdown_preview_browser='Firefox'
-    let vim_markdown_preview_github=1
-"    let vim_markdown_preview_perl=1
-"    let vim_markdown_preview_pandoc=1
+    if executable("grip")
+        let vim_markdown_preview_github=1
+    endif
+    " if executable("markdown")
+    "     let vim_markdown_preview_perl=1
+    " endif
+    " if executable("pandoc")
+    "    let vim_markdown_preview_pandoc=1
+    " endif
 endif
 "}}}
 " vim-markdown-toc {{{2
