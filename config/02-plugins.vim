@@ -35,9 +35,6 @@ Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
 Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
 Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
-if g:UNICODE && executable('git')
-   " Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
-endif
 if !g:MACOS
     Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 endif
@@ -396,6 +393,9 @@ Plug 'https://github.com/elzr/vim-json' " A better JSON
 "Plug 'https://github.com/rust-lang/rust.vim' " Plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
 
 " Git and other VCS {{{2
+if g:UNICODE && executable('git')
+   " Plug 'https://github.com/scrooloose/nerdtree-git-plugin'       " A plugin of NERDTree showing git status
+endif
 if executable('git')
     Plug 'https://github.com/tpope/vim-fugitive'          " Git wrapper of all time
     Plug 'https://github.com/int3/vim-extradite' " A git commit browser for vim. Extends fugitive.vim.

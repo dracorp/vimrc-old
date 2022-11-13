@@ -7,7 +7,7 @@ _author="<+#AUTHOR_NAME#+>"
 _perlmod="<+$BASENAME$+>"
 pkgdesc="<+$BASENAME$+> - <+#DESCRIPTION#+>"
 arch=('any')
-url="http://search.cpan.org/dist/<+$BASENAME$+>/"
+url="https://metacpan.org/dist/<+$BASENAME$+>/"
 license=('GPL' 'PerlArtistic')
 depends=(perl)
 checkdepends=()
@@ -19,7 +19,7 @@ backup=()
 install=
 noextract=()
 options=(!emptydirs)
-source=("https://search.cpan.org/CPAN/authors/id/$_author/$_perlmod-$pkgver.tar.gz")
+source=("https://cpan.metacpan.org/authors/id/$_author/$_perlmod-$pkgver.tar.gz")
 sha256sums=()
 unset PERL5LIB PERL_MM_OPT PERL_MB_OPT PERL_LOCAL_LIB_ROOT
 export PERL_MM_USE_DEFAULT=1 PERL_AUTOINSTALL=--skipdeps MODULEBUILDRC=/dev/null
