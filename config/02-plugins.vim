@@ -907,16 +907,34 @@ if plugin#isEnabled('lightline.vim')
         let g:lightline = {}
     endif
     let g:lightline.colorscheme = 'gruvbox_material'
-    let g:lightline.component_function = {
-                \ 'filename': 'LightlineFilename',
-                \ }
+    let g:lightline.component_function = {}
+    let g:lightline.component_function.filename = 'LightlineFilename'
+    let g:lightline.component_function.mode = 'LightlineMode'
+    let g:lightline.component_function.gitbranch = 'FugitiveHead'
+    let g:lightline.component_function.bomb = 'LightlineBomb'
+
+
     let g:lightline.active = {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'readonly', 'filename' ] ],
+        \             [ 'gitbranch', 'readonly', 'filename' ] ],
         \   'right': [ [ 'lineinfo' ],
         \              [ 'percent' ],
-        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \              [ 'fileformat', 'fileencoding', 'filetype', 'bomb' ] ]
         \ }
+
+    function! LightlineBomb()
+        return &bomb ? "BOM" : ""
+    endfunction
+
+    function! LightlineMode()
+        return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
+            \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
+            \ &filetype ==# 'unite' ? 'Unite' :
+            \ &filetype ==# 'vimfiler' ? 'VimFiler' :
+            \ &filetype ==# 'vimshell' ? 'VimShell' :
+            \ lightline#mode()
+    endfunction
+
     function! LightlineFilename()
         let filename = &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
                 \ &filetype ==# 'unite' ? unite#get_status_string() :

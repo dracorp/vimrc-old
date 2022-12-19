@@ -23,7 +23,7 @@ set mouse=v                  " enable using the mouse if terminal emulator suppo
 set showmode                 " always show what mode we're currently editing in
 set showcmd                  " show (partial) command in the last line of the screen
                              " this also shows visual selection info
-set nowrap                     " wrap lines
+set wrap                     " wrap lines
 set magic                    " For regular expressions turn magic on
 set shortmess+=I             " hide the launch screen
 set shortmess+=c             " don't give |ins-completion-menu| messages.
@@ -42,6 +42,7 @@ if has('patch-7.3.541')
     set formatoptions+=j     " Remove comment leader when joining lines
 endif
 set fileencodings=ucs-bom,utf-8,default,cp1250,iso8859-2,iso8859-15,iso8859-1,ucs-bom,utf-16le
+
 " }}}
 
 " Editing behaviour {{{
@@ -126,6 +127,7 @@ set infercase                                   " Adjust case in insert completi
 set tildeop                                     " Tylde(~) behaves like operator
 " set iskeyword+=-,/                          " which char make a word
 set iskeyword-=$
+set iskeyword+=-
 " open file under cursor with env variable
 set isfname+={,}                                " where the file name starts and ends
 " open file under cursor for entry: VARIABLE=path
