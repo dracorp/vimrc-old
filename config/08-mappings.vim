@@ -182,3 +182,10 @@ nnoremap L $
 nnoremap <space> <pagedown>
 vnoremap <space> <pagedown>
 
+map <ESC>[H <Home>
+map <ESC>[F <End>
+imap <ESC>[H <C-O><Home>
+imap <ESC>[F <C-O><End>
+cmap <ESC>[H <Home>
+cmap <ESC>[F <End>
+

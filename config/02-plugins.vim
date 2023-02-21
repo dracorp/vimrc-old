@@ -49,7 +49,7 @@ Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }                  
 " Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
-" Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables, broken!
+Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables, broken!
 if executable('fzf')
     Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
 endif
@@ -976,6 +976,9 @@ if plugin#isEnabled('nerdcommenter')
     let g:NERDTrimTrailingWhitespace = 1
     " Enable NERDCommenterToggle to check all selected lines is commented or not
     let g:NERDToggleCheckAllLines = 1
+    let g:NERDCustomDelimiters = {
+        \ 'brewfile': { 'left': '#','right': '' }
+    \ }
 endif
 " }}}
 " nerdtree {{{2
@@ -1662,6 +1665,7 @@ if plugin#isEnabled('vimwiki')
                 \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},
                 \ {'path': '~/Projects/Projects-other/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '~/Projects/Projects-other/awesome-macos-command-line/', 'syntax': 'markdown', 'ext': '.md'},
+                \ {'path': '~/Projects/Projects-other/markdown-here.wiki', 'syntax': 'markdown', 'ext': '.md'}
                 \]
     let g:vimwiki_global_ext=0
     nmap <Leader>wf <Plug>VimwikiFollowLink
