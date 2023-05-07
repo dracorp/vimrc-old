@@ -35,6 +35,7 @@ Plug 'https://github.com/mhinz/vim-startify'    " The fancy start screen
 Plug 'https://github.com/tpope/vim-commentary'  " comment stuff out
 Plug 'https://github.com/scrooloose/nerdtree'   " A tree explorer plugin for vim
 Plug 'https://github.com/scrooloose/nerdcommenter' " Vim plugin for intensely orgasmic commenting
+Plug 'https://github.com/tpope/vim-abolish' " Work with several variants of a word at once
 if !g:MACOS
     Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
 endif
@@ -51,6 +52,7 @@ Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }                  
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
 Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables, broken!
 if executable('fzf')
+    Plug 'https://github.com/junegunn/fzf'
     Plug 'https://github.com/junegunn/fzf.vim' " fzf ❤️ vim
 endif
 if g:UNIX
@@ -96,10 +98,12 @@ if has('python3')
 endif
 " Syntastic check
 if version > 700
-    Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
-    Plug 'https://github.com/dallarosa/syntastic-more'  " More checkers for Vim Syntastic plugin
-    Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
+    " Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
+    " Plug 'https://github.com/dallarosa/syntastic-more'  " More checkers for Vim Syntastic plugin
+    " Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
+    "Plug 'https://github.com/nxadm/syntastic-perl6'        " Perl 6 support for vim-syntastic
 endif
+Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 if ( version >= 800 && has('timers') && has('job') && has('channel') ) || has('nvim')
     " ALE requires NeoVim >= 0.2.0 or Vim 8 with +timers +job +channel
     let g:ale_disable_lsp = 1
@@ -114,6 +118,7 @@ if has('python3') && has('timers')
 endif
 Plug 'https://github.com/pearofducks/ansible-vim' " A vim plugin for syntax highlighting Ansible's common filetypes
 Plug 'https://github.com/phenomenes/ansible-snippets' " Ansible Vim snippets
+Plug 'https://github.com/SirVer/ultisnips' " The ultimate snippet solution for Vim
 Plug 'https://github.com/MicahElliott/Rocannon' " Vim for Ansible playbooks: omni-completion, abbreviations, syntax, folding, K-docs, and colorscheme
 if version >= 802
     Plug 'https://github.com/skywind3000/vim-quickui' " The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! 😎
@@ -126,8 +131,9 @@ Plug 'https://github.com/chrisbra/unicode.vim' " A Vim plugin that provides a co
 Plug 'https://github.com/vim-scripts/viewdoc' " Flexible viewer for any documentation (help/man/perldoc/etc.)
 " plug 'https://github.com/vim-scripts/sessionman.vim' " Vim session manager
 Plug 'https://github.com/xolox/vim-session' " Extended session management for Vim (:mksession on steroids)
-
-" coot
+Plug 'https://github.com/yegappan/mru' " Most Recently Used (MRU) Vim Plugin
+Plug 'https://github.com/vim-scripts/FavMenu.vim' " A new menu, like IE's Favourites, or Netscape's Bookmark
+Plug 'https://github.com/vim-scripts/FavEx' " Favorite file and directory explorer
 Plug 'https://github.com/coot/EnchantedVim' " Persistent Very Magic Patterns in Vim Commands
 Plug 'https://github.com/coot/System' " Vim plugin which gives a nice interface with the os programs
 Plug 'https://github.com/coot/CRDispatcher' " A utility Vim plugin used by some of my Vim plugins
@@ -362,7 +368,6 @@ Plug 'https://github.com/alvan/vim-closetag'  " Auto close (X)HTML tags
 " Perl {{{3
 "Plug 'https://github.com/vim-perl/vim-perl'            " Support for Perl 5 and Perl 6 in Vim http://groups.google.com/group/vim-perl
 "Plug 'https://github.com/vim-scripts/perl-support.vim', {'for': 'perl'} " Write and run Perl-scripts using menus and hotkeys
-"Plug 'https://github.com/nxadm/syntastic-perl6'        " Perl 6 support for vim-syntastic
 Plug 'https://github.com/WolfgangMehner/perl-support' " Edit Perl scripts in Vim/gVim. Insert code snippets, run, check, and profile the code and look up help.
 
 " Python {{{3
