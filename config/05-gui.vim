@@ -37,6 +37,7 @@ if has("gui_running")
         set guifont=Hack-Regular:h13
         set guifont=FiraCode-Regular:h13
         set guifont=agaveNerdFontComplete-r:h15
+        set guifont=AgaveNF-Regular:h15
     elseif g:UNIX
         set guifont=Hack\ 13
         set guifont=Cascadia\ Code\ 12

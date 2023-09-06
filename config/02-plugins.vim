@@ -79,7 +79,7 @@ Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
 " Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
 "Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
-"Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
+Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
 Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
 if !g:MACOS
@@ -116,10 +116,10 @@ Plug 'https://github.com/bagrat/vim-buffet'     " IDE-like Vim tabline
 if has('python3') && has('timers')
 "    Plug 'https://github.com/AlphaMycelium/pathfinder.vim' " Vim plugin which gives suggestions to improve your movements
 endif
-Plug 'https://github.com/pearofducks/ansible-vim' " A vim plugin for syntax highlighting Ansible's common filetypes
+" Plug 'https://github.com/pearofducks/ansible-vim' " A vim plugin for syntax highlighting Ansible's common filetypes
 Plug 'https://github.com/phenomenes/ansible-snippets' " Ansible Vim snippets
 Plug 'https://github.com/SirVer/ultisnips' " The ultimate snippet solution for Vim
-Plug 'https://github.com/MicahElliott/Rocannon' " Vim for Ansible playbooks: omni-completion, abbreviations, syntax, folding, K-docs, and colorscheme
+" Plug 'https://github.com/MicahElliott/Rocannon' " Vim for Ansible playbooks: omni-completion, abbreviations, syntax, folding, K-docs, and colorscheme
 if version >= 802
     Plug 'https://github.com/skywind3000/vim-quickui' " The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! 😎
 endif

@@ -136,12 +136,15 @@ set isfname-==
 if !empty($BASH_IT)
     set path+=$BASH_IT
 endif
+if !empty($HOMEBREW_PREFIX)
+    set path+=$HOMEBREW_PREFIX
+endif
 " diffopt=internal,filler,closeoff,iwhite
 set diffopt+=iwhite     " ignore white spaces
-set diffopt+=context:3  " context for diff
+" set diffopt+=context:3  " context for diff
 if has("patch-8.1.0360")
-    set diffopt+=indent-heuristic
-    set diffopt+=internal,algorithm:patience
+    " set diffopt+=indent-heuristic
+    " set diffopt+=internal,algorithm:patience
 endif
 " }}}
 
