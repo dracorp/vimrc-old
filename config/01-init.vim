@@ -13,23 +13,23 @@
 "| tar        | `let g:loaded_tarPlugin = 1`        | `:h pi_tar` |
 "| vimball    | `let g:loaded_vimballPlugin = 1`    | `:h pi_vimball` |
 "| zip        | `let g:loaded_zipPlugin = 1`        | `:h pi_zip` |
-let g:loaded_getscript = 1
-let g:loaded_getscriptPlugin = 1
-"let g:loaded_gzip = 1                          " some vim installation comes with compressed help files
-let g:loaded_logiPat = 1
-let g:loaded_matchit = 1
-let g:loaded_matchparen = 1
-let g:netrw_nogx = 1                            " disable netrw's gx mapping.
-let g:loaded_rrhelper = 1  " ?
-let g:loaded_shada_plugin = 1  " ?
-let g:loaded_tar = 1
-let g:loaded_tarPlugin = 1
+let g:loaded_getscript         = 1
+let g:loaded_getscriptPlugin   = 1
+"let g:loaded_gzip             = 1                          " some vim installation comes with compressed help files
+let g:loaded_logiPat           = 1
+let g:loaded_matchit           = 1
+let g:loaded_matchparen        = 1
+let g:netrw_nogx               = 1                            " disable netrw's gx mapping.
+let g:loaded_rrhelper          = 1
+let g:loaded_shada_plugin      = 1
+let g:loaded_tar               = 1
+let g:loaded_tarPlugin         = 1
 let g:loaded_tutor_mode_plugin = 1
-let g:loaded_2html_plugin = 1
-let g:loaded_vimball = 1
-let g:loaded_vimballPlugin = 1
-let g:loaded_zip = 1
-let g:loaded_zipPlugin = 1
+let g:loaded_2html_plugin      = 1
+let g:loaded_vimball           = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_zip               = 1
+let g:loaded_zipPlugin         = 1
 
 filetype plugin indent on
 
@@ -99,6 +99,6 @@ autocmd!
 " }}}
 
 runtime! ftplugin/man.vim
-let g:ft_man_folding_enable = 1
-let g:ft_man_open_mode = 'vert'
+let g:ft_man_folding_enable   = 1
+let g:ft_man_open_mode        = 'vert'
 let g:ft_man_no_sect_fallback = 1

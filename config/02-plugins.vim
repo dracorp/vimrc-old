@@ -47,7 +47,6 @@ endif
 
 " Plug 'https://github.com/arielrossanigo/dir-configs-override.vim' " Override vim configs with custom configs files in each dir
 Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }                      " Personal Wiki for Vim
-" Plug 'https://github.com/michal-h21/vim-zettel' " VimWiki addon for managing notes according to Zettelkasten method
 "Plug 'https://github.com/ConradIrwin/vim-bracketed-paste'         " Handles bracketed-paste-mode
 "Plug 'https://github.com/christoomey/vim-system-copy'             " Vim plugin for copying to the system clipboard with text-objects and motions
 Plug 'https://github.com/vim-scripts/let-modeline.vim'            " Extends the modeline feature to the assignment of variables, broken!
@@ -64,24 +63,16 @@ Plug 'https://github.com/lilydjwg/colorizer'    " A Vim plugin to colorize all t
 " Plug 'https://github.com/chrisbra/Colorizer' "  color hex codes and color names
 Plug 'https://github.com/godlygeek/tabular'     " Vim script for text filtering and alignment
 Plug 'https://github.com/xolox/vim-misc'               " Miscellaneous auto-load Vim scripts
+"Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 if executable('ctags')
     Plug 'https://github.com/xolox/vim-easytags'    " Automated tag file generation and syntax highlighting of tags
 endif
-"Plug 'https://github.com/LucHermitte/lh-vim-lib' " Library of Vim functions
-"Plug 'https://github.com/LucHermitte/lh-tags'    " ctags base updating, and browsing from vim
-" if g:UNICODE
-    " Plug 'https://github.com/liuchengxu/eleline.vim' " A tiny elegant statusline for vim
-" else
-    Plug 'https://github.com/itchyny/lightline.vim'  " A light and configurable statusline/tabline plugin for Vim
-" endif
+Plug 'https://github.com/itchyny/lightline.vim'  " A light and configurable statusline/tabline plugin for Vim
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'    " A vim plugin that simplifies the transition between multiline and single-line code
 Plug 'https://github.com/rstacruz/vim-closer'          " Closes brackets
 Plug 'https://github.com/haya14busa/incsearch.vim'     " Improved incremental searching
-" Plug 'https://github.com/easymotion/vim-easymotion'    " Vim motions on speed!
-"Plug 'https://github.com/haya14busa/vim-asterisk'      " asterisk.vim provides improved * motions
-"Plug 'https://github.com/powerman/vim-plugin-AnsiEsc'  " ansi escape sequences concealed, but highlighted as specified (conceal)
 Plug 'https://github.com/vim-scripts/DrawIt'           " Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
-Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
+" Plug 'https://github.com/vim-scripts/LargeFile'        " Edit large files quickly (keywords: large huge speed)
 if !g:MACOS
     Plug 'https://github.com/vim-scripts/SudoEdit.vim'     " Edit Files using sudo or su or any other tool
 else
@@ -89,7 +80,6 @@ else
 endif
 "Plug 'https://github.com/vim-scripts/restore_view.vim' " A plugin for automatically restoring file's cursor position and folding
 Plug 'https://github.com/pbrisbin/vim-restore-cursor' " Restore your cursor position when you (re)open vim
-"Plug 'https://github.com/xolox/vim-reload'             " Automatic reloading of Vim scripts
 Plug 'https://github.com/matze/vim-move' "Plugin to move lines and selections up and down
 Plug 'https://github.com/kshenoy/vim-signature' " Plugin to toggle, display and navigate marks
 Plug 'https://github.com/dbeniamine/cheat.sh-vim' " A vim plugin to access cheat.sh sheets

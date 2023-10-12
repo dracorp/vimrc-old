@@ -1,4 +1,3 @@
-"
 " To start vim without loading any .vimrc or plugins, use:
 "   vim -u NONE
 "
