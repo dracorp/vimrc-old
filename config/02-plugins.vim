@@ -412,7 +412,7 @@ if executable('git')
     Plug 'https://github.com/sjl/splice.vim'              " managing three-way merges - conflict with vim-fugitive
     if version >= 704
         " use coc-git instead of this
-"        Plug 'https://github.com/airblade/vim-gitgutter'  " shows a git diff in the 'gutter' (sign column)
+        Plug 'https://github.com/airblade/vim-gitgutter', {'branch':'main'}  " shows a git diff in the 'gutter' (sign column)
     endif
     Plug 'https://github.com/whiteinge/diffconflicts'     " A better Vimdiff Git mergetool
     Plug 'https://github.com/cohama/agit.vim'             " A powerful Git log viewer
@@ -486,12 +486,11 @@ if version > 704 || version == 704 && has('patch1154')
     Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 endif
 if version >= 801
-    Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
+    " Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
-else
-    Plug 'https://github.com/ervandew/supertab'
 endif
+Plug 'https://github.com/ervandew/supertab'
 if has('nvim') || version >= 802
 "    Plug 'https://github.com/pechorin/any-jump.nvim' " Jump to any definition and usages eye IDE madness without overhead (alpha)
 endif
@@ -1667,7 +1666,7 @@ endif
 " vimwiki {{{2
 if plugin#isEnabled('vimwiki')
     let g:vimwiki_list = [
-                \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},
+                \ {'path': '~/Documents/vimwiki', 'ext': '.md'},
                 \ {'path': '~/Projects/Projects-other/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '~/Projects/Projects-other/awesome-macos-command-line/', 'syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '~/Projects/Projects-other/markdown-here.wiki', 'syntax': 'markdown', 'ext': '.md'}
