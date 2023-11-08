@@ -1666,7 +1666,7 @@ endif
 " vimwiki {{{2
 if plugin#isEnabled('vimwiki')
     let g:vimwiki_list = [
-                \ {'path': '~/Documents/vimwiki', 'ext': '.md'},
+                \ {'path': '~/Documents/vimwiki', 'ext': '.wiki'},
                 \ {'path': '~/Projects/Projects-other/shellcheck.wiki/', 'syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '~/Projects/Projects-other/awesome-macos-command-line/', 'syntax': 'markdown', 'ext': '.md'},
                 \ {'path': '~/Projects/Projects-other/markdown-here.wiki', 'syntax': 'markdown', 'ext': '.md'}
