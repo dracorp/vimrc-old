@@ -10,7 +10,7 @@
 
 	RewriteEngine On
 	RewriteOptions Inherit
-	
+
 	SSLCertificateFile /etc/ssl/wildcard.domain.tld.cert.pem
 	SSLCertificateKeyFile /etc/ssl/private/domain.tld.pem
 	SSLCACertificateFile /etc/ssl/ca.cert.pem
@@ -18,10 +18,10 @@
 	ErrorLog /var/log/apache2/<+$BASENAME$+>/error.log
 	CustomLog /var/log/apache2/<+$BASENAME$+>/access.log combined
 	<Directory <+#DocumentRoot#+>>
-		Options Indexes -FollowSymLinks MultiViews 
-		AllowOverride all 
-		Order allow,deny 
-		allow from all 
+		Options Indexes -FollowSymLinks MultiViews
+		AllowOverride all
+		Order allow,deny
+		allow from all
 	</Directory>
 </VirtualHost>
 </IfModule>

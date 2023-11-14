@@ -1,18 +1,21 @@
-if &t_Co > 2 || has("gui_running")
+if &t_Co > 2 || has('gui_running')
     syntax on                                   " Enable syntax highlighting.
     set hlsearch
 endif
 
-if g:MSWIN64 && has("gui_running")
-    au GUIEnter * simalt ~x
+if g:MSWIN64 && has('gui_running')
+    augroup GUI
+        au!
+        au GUIEnter * simalt ~x
+    augroup END
 else
     " Maximize GVim on start
-    if has("gui_running")
+    if has('gui_running')
     set lines=999 columns=999
     endif
 endif
 
-if has("gui_running")
+if has('gui_running')
     set mousehide                               " Hide the mouse when typing text
     set mouse=a                                 " normal(n) + visual(v) + insert(i) + comman line(c)
                                                 " help(h) - all previous when editing help files
@@ -46,4 +49,3 @@ if has("gui_running")
     endif
 endif
 " }}}
-

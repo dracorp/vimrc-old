@@ -2,4 +2,3 @@
 #  Check number of command line arguments
 #-----------------------------------------------------------------------
 [ $# -lt 1 ] && { echo -e "\n\tUsage:  ${0##/*/} File\n"; exit 1; }
-

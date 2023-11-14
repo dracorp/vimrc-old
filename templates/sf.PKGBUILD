@@ -33,4 +33,3 @@ package(){
 
   make DESTDIR="$pkgdir/" install
 }
-

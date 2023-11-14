@@ -12,19 +12,19 @@
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  |?FUNCTION_NAME|
 #   DESCRIPTION:  <CURSOR>
-#    PARAMETERS:  
-#       RETURNS:  
+#    PARAMETERS:
+#       RETURNS:
 #-------------------------------------------------------------------------------
 == Comments.file header == start, map:ch ==
-#!/bin/bash - 
+#!/bin/bash -
 #===============================================================================
 #
 #          FILE: |FILENAME|
-# 
-#         USAGE: ./|FILENAME| 
-# 
-#   DESCRIPTION: 
-# 
+#
+#         USAGE: ./|FILENAME|
+#
+#   DESCRIPTION:
+#
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
 #          BUGS: ---

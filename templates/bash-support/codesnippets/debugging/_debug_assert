@@ -12,5 +12,4 @@ function _assert ()
 		exit 99
 	fi
 	return 0
-}    
-
+}

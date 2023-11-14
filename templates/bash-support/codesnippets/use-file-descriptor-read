@@ -12,4 +12,3 @@ while read line <&3 ; do
 done
 
 exec  3<&-                                      # close file descriptor
-

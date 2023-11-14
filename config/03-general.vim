@@ -28,7 +28,7 @@ set magic                    " For regular expressions turn magic on
 set shortmess+=I             " hide the launch screen
 set shortmess+=c             " don't give |ins-completion-menu| messages.
 set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
-if has('signs') && version >= 800
+if has('signs') && v:version >= 800
     set signcolumn=auto          " show signcolumns
 endif
 set number                   " show line numbers
@@ -142,7 +142,7 @@ endif
 " diffopt=internal,filler,closeoff,iwhite
 set diffopt+=iwhite     " ignore white spaces
 " set diffopt+=context:3  " context for diff
-if has("patch-8.1.0360")
+if has('patch-8.1.0360')
     " set diffopt+=indent-heuristic
     " set diffopt+=internal,algorithm:patience
 endif

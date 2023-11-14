@@ -9,9 +9,9 @@ function usage ()
 {
 	cat <<- EOT
 
-  Usage :  ${0##/*/} [options] [--] 
+  Usage :  ${0##/*/} [options] [--]
 
-  Options: 
+  Options:
   -h|help       Display this message
   -v|version    Display script version
 
@@ -36,4 +36,3 @@ do
   esac    # --- end of case ---
 done
 shift $(($OPTIND-1))
-

@@ -62,4 +62,3 @@ _msg() { #{{{
        tput sgr0 # Reset formatting
     fi
 } # end of msg }}}
-

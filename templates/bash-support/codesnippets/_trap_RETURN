@@ -14,4 +14,3 @@ function _trap_RETURN ()
 trap '_trap_RETURN $LINENO' RETURN              # trap RETURN
 
 #trap - RETURN                                   # reset the RETURN trap
-

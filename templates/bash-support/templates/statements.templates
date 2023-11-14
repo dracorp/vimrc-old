@@ -77,4 +77,3 @@ ${#<CURSOR><SPLIT>[@]}
 == Statements.array indices== insert, map:sai, shortcut:i  ==
 ${!<CURSOR><SPLIT>[@]}
 == ENDTEMPLATE ==
-

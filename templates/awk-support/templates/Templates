@@ -33,4 +33,3 @@ IncludeFile( 'idioms.templates' )
 IncludeFile( 'functions.templates' )
 IncludeFile( 'specvar.templates' )
 IncludeFile( 'regex.templates' )
-

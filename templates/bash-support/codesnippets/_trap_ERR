@@ -12,4 +12,3 @@ function _trap_ERROR ()
 trap '_trap_ERROR $LINENO' ERR                  # trap ERR
 
 #trap - ERR                                      # reset the ERR trap
-

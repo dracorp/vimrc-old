@@ -50,4 +50,3 @@ $curbuf->Set( <CURSOR><+LINE_NUMBER+>, <+SCALAR_OR_ARRAY+> )
 == Perl.curwin Cursor set == insert, sc:c  ==
 $curwin->Cursor( $row, $col );
 == ENDTEMPLATE ==
-

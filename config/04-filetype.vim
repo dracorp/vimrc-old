@@ -1,5 +1,5 @@
 " Filetype specific handling
-if has("au")
+if has('au')
 
     augroup change_dir "{{{
         au!
@@ -126,4 +126,3 @@ if has("au")
     augroup END "}}}
 
 endif
-

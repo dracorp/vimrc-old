@@ -53,11 +53,11 @@
 	|?FUNCTION_NAME| (  ) ~
 
 Parameters:
-	xx - 
+	xx -
 Options:
-	"xx", xx - 
+	"xx", xx -
 Returns:
-	xx - 
+	xx -
 
 == Documentation.example == below, noindent, map:de, sc:e ==
 Example:

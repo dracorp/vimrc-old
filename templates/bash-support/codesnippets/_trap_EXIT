@@ -11,4 +11,3 @@ function _trap_EXIT ()
 trap '_trap_EXIT $LINENO' EXIT                  # trap EXIT
 
 #trap - EXIT                                     # reset the EXIT trap
-

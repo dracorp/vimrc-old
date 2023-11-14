@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " Functions
 "
 " Exclamation mark(!) means that function replace previous
@@ -8,7 +9,7 @@ function! s:QuickfixToggle() "{{{
     if g:quickfix_is_open
         cclose
         let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
+        execute g:quickfix_return_to_window . 'wincmd w'
     else
         let g:quickfix_return_to_window = winnr()
         copen
@@ -30,7 +31,7 @@ endfunction
 " }}}
 function! CheckReadonly() "{{{
 " Do not allow on any modifications read only files
-    if version >= 600
+    if v:version >= 600
         if &readonly
             setlocal nomodifiable
         endif
@@ -53,13 +54,13 @@ endf
 "}}}
 function! DisplayManpage() "{{{
 " Display man page for the file. The functions uses manpageview plugin.
-    let filename = expand("%")
-    let short_filename = expand("%:r")
+    let filename = expand('%')
+    let short_filename = expand('%:r')
     let filetype = &filetype
     call manpageview#ManPageView(0,0,filename)
-    if v:errmsg == "no manpage exists"
+    if v:errmsg ==? 'no manpage exists'
         call manpageview#ManPageView(0,0,short_filename)
-        if v:errmsg == "no manpage exists"
+        if v:errmsg ==? 'no manpage exists'
             call manpageview#ManPageView(0,0,filetype)
         endif
     endif
@@ -67,9 +68,9 @@ endf
 "}}}
 function! CopyAll() "{{{
     " mark whole
-    exec 'normal ggVG'
+    exec 'normal! ggVG'
     " copy whole
-    exec 'normal "+y'
+    exec 'normal! "+y'
 endf
 "}}}
 function! MyFoldText() "{{{
@@ -81,7 +82,7 @@ function! MyFoldText() "{{{
         while linenum < v:foldend
           let line = getline( linenum )
           let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
-          if comment_content != ''
+          if comment_content !=# ''
             break
           endif
           let linenum = linenum + 1
@@ -90,17 +91,17 @@ function! MyFoldText() "{{{
     else
         let sub = line
         let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
-        if startbrace == '{'
+        if startbrace ==# '{'
           let line = getline(v:foldend)
           let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
-          if endbrace == '}'
+          if endbrace ==# '}'
             let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
           endif
         endif
     endif
     let n = v:foldend - v:foldstart + 1
-    let info = " " . n . " lines"
-    let sub = sub . "                                                                                                                  "
+    let info = ' ' . n . ' lines'
+    let sub = sub . '                                                                                                                  '
     let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
     let fold_w = getwinvar( 0, '&foldcolumn' )
     let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
@@ -126,31 +127,31 @@ command! -complete=option -nargs=+ SetAll call s:set_all(<f-args>)
 "}}}
 function! DoFormatXML() range "{{{
     " Save the file type
-    let l:origft = &ft
+    let l:origft = &filetype
 
     " Clean the file type
-    set ft=
+    set filetype=
 
     " Add fake initial tag (so we can process multiple top-level elements)
-    exe ":let l:beforeFirstLine=" . a:firstline . "-1"
+    exe ':let l:beforeFirstLine=' . a:firstline . '-1'
     if l:beforeFirstLine < 0
         let l:beforeFirstLine=0
     endif
     exe a:lastline . "put ='</PrettyXML>'"
     exe l:beforeFirstLine . "put ='<PrettyXML>'"
-    exe ":let l:newLastLine=" . a:lastline . "+2"
+    exe ':let l:newLastLine=' . a:lastline . '+2'
     if l:newLastLine > line('$')
         let l:newLastLine=line('$')
     endif
 
     " Remove XML header
-    exe ":" . a:firstline . "," . a:lastline . "s/<\?xml\\_.*\?>\\_s*//e"
+    exe ':' . a:firstline . ',' . a:lastline . 's/<\?xml\\_.*\?>\\_s*//e'
 
     " Recalculate last line of the edited code
     let l:newLastLine=search('</PrettyXML>')
 
     " Execute external formatter
-    exe ":silent " . a:firstline . "," . l:newLastLine . "!xmllint --noblanks --format --recover -"
+    exe ':silent ' . a:firstline . ',' . l:newLastLine . '!xmllint --noblanks --format --recover -'
 
     " Recalculate first and last lines of the edited code
     let l:newFirstLine=search('<PrettyXML>')
@@ -161,59 +162,61 @@ function! DoFormatXML() range "{{{
     let l:innerLastLine=l:newLastLine-1
 
     " Remove extra unnecessary indentation
-    exe ":silent " . l:innerFirstLine . "," . l:innerLastLine "s/^  //e"
+    exe ':silent ' . l:innerFirstLine . ',' . l:innerLastLine 's/^  //e'
 
     " Remove fake tag
-    exe l:newLastLine . "d"
-    exe l:newFirstLine . "d"
+    exe l:newLastLine . 'd'
+    exe l:newFirstLine . 'd'
 
     " Put the cursor at the first line of the edited code
-    exe ":" . l:newFirstLine
+    exe ':' . l:newFirstLine
 
     " Restore the file type
-    exe "set ft=" . l:origft
+    exe 'set ft=' . l:origft
 endfunction
 command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 
 nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
 "}}}
-function! RemoveDiacritics(...) "{{{
+function! RemoveDiacritics(...)
     if a:0 == 0
         let s:locale='pl'
     else
         let s:locale=a:1
     endif
-    if s:locale == 'pl'
+    if s:locale ==? 'pl'
         %s/[ąĄćĆęĘłŁńŃóÓśŚźŹżŻ]/
-            \\={'ą':'a','Ą':'A','ć':'c','Ć':'C','ę':'e','Ę':'E','ł':'l','Ł':'L','ń':'n','Ń':'N','ó':'o','Ó':'O','ś':'s','Ś':'S','ź':'z','Ź':'Z','ż':'z','Ż':'Z'}
-            \[submatch(0)]/g
+                    \\={'ą':'a','Ą':'A','ć':'c','Ć':'C','ę':'e','Ę':'E',
+                    \'ł':'l','Ł':'L','ń':'n','Ń':'N','ó':'o','Ó':'O',
+                    \'ś':'s','Ś':'S','ź':'z','Ź':'Z','ż':'z','Ż':'Z'}
+                    \[submatch(0)]/g
     endif
-endfunction "}}}
+endfunction
 function! ToggleFoldMethod() "{{{
-    if (&foldmethod == "indent")
+    if (&foldmethod ==# 'indent')
         setlocal foldmethod=manual
-        echo "Foldmethod: manual"
-    elseif (&foldmethod == "manual")
+        echo 'Foldmethod: manual'
+    elseif (&foldmethod ==# 'manual')
         setlocal foldmethod=syntax
-        echo "Foldmethod: syntax"
-    elseif (&foldmethod == "syntax")
+        echo 'Foldmethod: syntax'
+    elseif (&foldmethod ==# 'syntax')
         setlocal foldmethod=marker
-        echo "Foldmethod: marker"
-    elseif (&foldmethod == "marker")
+        echo 'Foldmethod: marker'
+    elseif (&foldmethod ==# 'marker')
         setlocal foldmethod=expr
-        echo "Foldmethod: expr"
-    elseif (&foldmethod == "expr")
+        echo 'Foldmethod: expr'
+    elseif (&foldmethod ==# 'expr')
         setlocal foldmethod=diff
-        echo "Foldmethod: diff"
+        echo 'Foldmethod: diff'
     else
         setlocal foldmethod=indent
-        echo "Foldmethod: indent"
+        echo 'Foldmethod: indent'
     endif
 endfunction "}}}
 " Toggle signcolumn. Works only on vim>=8.0 or NeoVim
 function! ToggleSignColumn() "{{{
-    if !exists("b:signcolumn_on") || b:signcolumn_on
+    if !exists('b:signcolumn_on') || b:signcolumn_on
         set signcolumn=no
         let b:signcolumn_on=0
     else
@@ -223,7 +226,7 @@ function! ToggleSignColumn() "{{{
 endfunction
 "}}}
 function! ToggleNumberColumn() "{{{
-    if !exists("b:numbercolumn_on") || b:numbercolumn_on
+    if !exists('b:numbercolumn_on') || b:numbercolumn_on
         set nonumber
         set norelativenumber
         let b:numbercolumn_on=0
@@ -264,7 +267,7 @@ endfunction
 " Show syntax color highlighting groups for word under cursor
 nmap <c-s-a> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
-    if !exists("*synstack")
+    if !exists('*synstack')
     return
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
@@ -278,7 +281,7 @@ nnoremap <leader>f                  :call FoldColumnToggle()<cr>
 "noremap  <silent> <F8>              :call ChangeFileencoding()<CR>
 " noremap  <silent> <F1>              :call DisplayManpage()<CR>
 nnoremap <silent> <Leader><Space>   :call ToggleFoldMethod()<CR>
-if has('signs') && version >= 800
+if has('signs') && v:version >= 800
     nnoremap <Leader>S :call ToggleSignColumn()<CR>
 endif
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a

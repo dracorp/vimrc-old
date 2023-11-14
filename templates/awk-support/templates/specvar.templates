@@ -1,18 +1,18 @@
 
 == LIST: autoset == list ==
-  'ARGC', 
-  'ARGV', 
-  'ARGIND', 
-  'ENVIRON', 
-  'ERRNO', 
-  'FILENAME', 
-  'FNR', 
-  'NF', 
-  'NR', 
-  'PROCINFO', 
-  'RLENGTH', 
-  'RSTART', 
-  'RT', 
+  'ARGC',
+  'ARGV',
+  'ARGIND',
+  'ENVIRON',
+  'ERRNO',
+  'FILENAME',
+  'FNR',
+  'NF',
+  'NR',
+  'PROCINFO',
+  'RLENGTH',
+  'RSTART',
+  'RT',
 == ENDLIST ==
 
 == Special Variables.auto-set == expandmenu, insert, sc:a, map:va ==
@@ -21,22 +21,21 @@
 == ENDTEMPLATE ==
 
 == LIST: modifiable == list ==
-  'BINMODE', 
-  'CONVFMT', 
-  'FIELDWIDTHS', 
-  'FS', 
-  'IGNORECASE', 
-  'LINT', 
-  'OFMT', 
-  'OFS', 
-  'ORS', 
-  'RS', 
-  'SUBSEP', 
-  'TEXTDOMAIN', 
+  'BINMODE',
+  'CONVFMT',
+  'FIELDWIDTHS',
+  'FS',
+  'IGNORECASE',
+  'LINT',
+  'OFMT',
+  'OFS',
+  'ORS',
+  'RS',
+  'SUBSEP',
+  'TEXTDOMAIN',
 == ENDLIST ==
 
 == Special Variables.user modifiable == expandmenu, insert, sc:m, map:vm ==
 |PickList( 'modifiable', 'modifiable' )|
 |PICK|
 == ENDTEMPLATE ==
-

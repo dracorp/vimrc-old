@@ -44,19 +44,19 @@ let g:PYTHON  = has('python') || has('python3')
 " brew install python3
 " pip2 install neovim --upgrade
 " pip3 install neovim --upgrade
-let g:OS      = substitute(system('uname'), "\n", "", "")
+let g:OS      = substitute(system('uname'), '\n', '', '')
 
 " multi_byte/unicode/utf {{{
 if has('multi_byte')
     let g:UNICODE = 0
-    if &termencoding == ''
+    if &termencoding ==? ''
         let &termencoding = &encoding
     endif
     if $LC_ALL =~? '\vutf-?8' || $LANG =~? '\vutf-?8'
         let g:UNICODE = 1
+        set encoding=utf-8
         scriptencoding utf-8
         set fileencoding=utf-8
-        set encoding=utf-8
     endif
 endif
 "}}}
@@ -74,8 +74,8 @@ if g:UNIX
     endif
 elseif g:MSWIN
     " change '\' to '/' to avoid interpretation as escape character
-    if match( substitute( expand("<sfile>"), '\', '/', 'g' ),
-        \   substitute( expand("$HOME"),   '\', '/', 'g' ) ) == 0
+    if match( substitute( expand('<sfile>'), '\', '/', 'g' ),
+        \   substitute( expand('$HOME'),   '\', '/', 'g' ) ) == 0
         " configuration held in user's home directory
         let vimrc_dir = $HOME . '\vimfiles\'
     else

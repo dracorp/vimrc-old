@@ -73,4 +73,3 @@
 == Functions.isarray == insert, map:fa, sc:a ==
 isarray( <CURSOR><SPLIT> )
 == ENDTEMPLATE ==
-

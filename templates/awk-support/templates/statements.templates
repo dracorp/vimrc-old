@@ -42,20 +42,20 @@ while ( <CURSOR> ) {
 <SPLIT>}
 == Statements.switch == map:ss, shortcut:s  ==
 switch ( <CURSOR> ) {
-	case <-LABEL->:	
+	case <-LABEL->:
 		<SPLIT>break
 
-	case <-LABEL->:	
+	case <-LABEL->:
 		break
 
-	case <-LABEL->:	
+	case <-LABEL->:
 		break
 
-	default:	
+	default:
 		break
 }		# -----  end switch  -----
 == Statements.case == map:sc, shortcut:c  ==
-case <CURSOR>:	
+case <CURSOR>:
 break
 
 == Statements.BEGIN == map:sb, shortcut:b  ==

@@ -27,12 +27,12 @@
 	'non-whitespace'           : '\S',
 	'word char.'               : '\w',
 	'non-word char.'           : '\W',
-	'begin of a word'          : '\<', 
-	'end of a word'            : '\>', 
-	'word boundary'            : '\y', 
-	'not word boundary'        : '\B', 
-	'beginning of buffer'      : '\`', 
-	'end of buffer'            : "'", 
+	'begin of a word'          : '\<',
+	'end of a word'            : '\>',
+	'word boundary'            : '\y',
+	'not word boundary'        : '\B',
+	'beginning of buffer'      : '\`',
+	'end of buffer'            : "'",
 == ENDLIST ==
 
 == Regex.Regexp Operators == expandmenu, insert, sc:o, map:xro ==
@@ -53,4 +53,3 @@
 == Regex.word == insert, map:xw, sc:w ==
 \<<CURSOR>\>
 == ENDTEMPLATE ==
-

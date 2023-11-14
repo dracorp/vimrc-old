@@ -23,4 +23,3 @@ function! |?FUNCTION_NAME| (<CURSOR>)
 	return
 endfunction    " ----------  end of function |FUNCTION_NAME|  ----------
 == ENDTEMPLATE ==
-

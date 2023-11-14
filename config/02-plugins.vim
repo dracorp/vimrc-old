@@ -1,17 +1,21 @@
+scriptencoding utf-8
 " Intialize vim-plug, if missing, download it. Based on vim-bootstrap.com {{{
 let vim_plug_path=expand(vimrc_dir . '/autoload/plug.vim')
 
 let vim_plug_just_installed = 0
 if !filereadable(vim_plug_path)
-    if !executable("curl")
-        echoerr "You have to install curl or first install vim-plug yourself!"
-        execute "q!"
+    if !executable('curl')
+        echoerr 'You have to install curl or first install vim-plug yourself!'
+        execute 'q!'
     endif
-    echo "Installing Vim-Plug..."
-    echo ""
-    silent exec "!\curl -fLo " . vim_plug_path . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    echo 'Installing Vim-Plug...'
+    echo ''
+    silent exec '!\curl -fLo ' . vim_plug_path . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     let vim_plug_just_installed = 1
-    autocmd VimEnter * PlugInstall
+    augroup PlugInstall
+        au!
+        autocmd VimEnter * PlugInstall
+    augroup END
 endif
 
 " manually load vim-plug the first time
@@ -97,14 +101,14 @@ if has('python3')
     Plug 'https://github.com/puremourning/vimspector' " A multi-language debugging system for Vim
 endif
 " Syntastic check
-if version > 700
+if v:version > 700
     " Plug 'https://github.com/scrooloose/syntastic'  " Syntax checking hacks for vim
     " Plug 'https://github.com/dallarosa/syntastic-more'  " More checkers for Vim Syntastic plugin
     " Plug 'https://github.com/myint/syntastic-extras' " Additional Syntastic syntax checkers and features (for Vim)
     "Plug 'https://github.com/nxadm/syntastic-perl6'        " Perl 6 support for vim-syntastic
 endif
 Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
-if ( version >= 800 && has('timers') && has('job') && has('channel') ) || has('nvim')
+if ( v:version >= 800 && has('timers') && has('job') && has('channel') ) || has('nvim')
     " ALE requires NeoVim >= 0.2.0 or Vim 8 with +timers +job +channel
     let g:ale_disable_lsp = 1
     Plug 'https://github.com/dense-analysis/ale' " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
@@ -120,7 +124,7 @@ endif
 Plug 'https://github.com/phenomenes/ansible-snippets' " Ansible Vim snippets
 Plug 'https://github.com/SirVer/ultisnips' " The ultimate snippet solution for Vim
 " Plug 'https://github.com/MicahElliott/Rocannon' " Vim for Ansible playbooks: omni-completion, abbreviations, syntax, folding, K-docs, and colorscheme
-if version >= 802
+if v:version >= 802
     Plug 'https://github.com/skywind3000/vim-quickui' " The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! 😎
 endif
 if has('python3') || has('python2')
@@ -140,7 +144,7 @@ Plug 'https://github.com/coot/CRDispatcher' " A utility Vim plugin used by some 
 
 " Syntax and programing languages {{{2
 
-if version >= 800
+if v:version >= 800
     " vim-polyglot: g:polyglot_disabled should be defined before loading vim-polyglot
     let g:polyglot_disabled = ['csv', 'jenkins', 'yaml']
     Plug 'https://github.com/sheerun/vim-polyglot'                    " A solid language pack for Vim
@@ -310,7 +314,7 @@ if !has('nvim')
 endif
 Plug 'https://github.com/vim-scripts/groovy.vim' " syntax file for the groovy programming language
 " Docker {{{3
-if !has('nvim') && version >= 801.1799
+if !has('nvim') && v:version >= 801.1799
     Plug 'https://github.com/skanehira/docker.vim'  " Manage docker containers and images in Vim
 endif
 "Plug 'https://github.com/jiangmiao/auto-pairs' " Vim plugin, insert or delete brackets, parens, quotes in pair
@@ -318,7 +322,7 @@ endif
 Plug 'https://github.com/junegunn/goyo.vim' " 🌷 Distraction-free writing in Vim
 Plug 'https://github.com/junegunn/vim-peekaboo' " 👀 " / @ / CTRL-R
 "Plug 'https://github.com/WolfgangMehner/Vim-support', {'for': 'vim'}                   " Vim Script IDE for Vim/gVim
-if version >= 800
+if v:version >= 800
     Plug 'https://github.com/wfxr/minimap.vim'    " 📡 Blazing fast minimap for vim, powered by code-minimap written in Rust.
 endif
 if has('patch-8.1.2114') || has('nvim-0.4.2')
@@ -357,7 +361,7 @@ Plug 'https://github.com/hashivim/vim-terraform' " basic vim/terraform integrati
 "Plug 'https://github.com/ap/vim-css-color' " Preview colours in source code while editing, @conflict vim-markdown
 
 " Go {{{3
-if version > 801 || version == 801 && has('patch453')
+if v:version > 801 || v:version == 801 && has('patch453')
 "    Plug 'https://github.com/fatih/vim-go' " Go development plugin for Vim https://www.patreon.com/bhcleek
 endif
 
@@ -410,7 +414,7 @@ if executable('git')
     Plug 'https://github.com/idanarye/vim-merginal',{'branch':'develop'}       " Fugitive extension to manage and merge Git branches
     Plug 'https://github.com/vim-scripts/vim-gitignore'   " Another gitignore plugin for Vim
     Plug 'https://github.com/sjl/splice.vim'              " managing three-way merges - conflict with vim-fugitive
-    if version >= 704
+    if v:version >= 704
         " use coc-git instead of this
         Plug 'https://github.com/airblade/vim-gitgutter', {'branch':'main'}  " shows a git diff in the 'gutter' (sign column)
     endif
@@ -439,7 +443,7 @@ Plug 'https://github.com/vim-scripts/awk-support.vim'               " AWK-IDE fo
 " Others {{{2
 " Plug 'https://github.com/vim-scripts/matchit.zip'                  " extended % matching for HTML, LaTeX, and many other languages
 Plug 'https://github.com/andymass/vim-matchup' " vim match-up: even better % 👊 navigate and highlight matching words 👊 modern matchit and matchparen replacement
-if version >= 704
+if v:version >= 704
 "    Plug 'https://github.com/vim-scripts/EnhancedDiff'             " A Vim plugin for creating better diffs
 endif
 Plug 'https://github.com/chrisbra/vim-diff-enhanced' " Better Diff options for Vim
@@ -455,16 +459,16 @@ Plug 'https://github.com/tpope/vim-repeat'             " enable repeating suppor
 Plug 'https://github.com/tpope/vim-speeddating'        " use CTRL-A/CTRL-X to increment dates, times, and more
 Plug 'https://github.com/vim-scripts/visual-increment' " Use CTRL+A/X to create increasing sequence of numbers or letters via visual mode
 Plug 'https://github.com/tpope/vim-surround'           " quoting/parenthesizing made simple
-if version > 703 && g:PYTHON
+if v:version > 703 && g:PYTHON
     Plug 'https://github.com/simnalamburt/vim-mundo'                   " Vim undo tree visualizer
-elseif version > 703 || (version == 703 && has('patch005'))
+elseif v:version > 703 || (v:version == 703 && has('patch005'))
     Plug 'https://github.com/mbbill/undotree'                      " The ultimate undo history visualizer for VIM
 endif
-if version >= 703
+if v:version >= 703
     " Plug 'https://github.com/ap/vim-buftabline'                    " Forget Vim tabs - now you can have buffer tabs
 endif
 "Plug 'https://github.com/vim-scripts/tskeleton'                    " File Templates and Code Skeletons/Snippets
-Plug 'http://github.com/tomtom/tskeleton_vim' " File Templates and Code Skeletons/Snippets for VIM
+" Plug 'http://github.com/tomtom/tskeleton_vim' " File Templates and Code Skeletons/Snippets for VIM
 Plug 'https://github.com/tomtom/tlib_vim' " Some utility functions for VIM
 Plug 'https://github.com/chip/vim-fat-finger'                      " Simple vim plugin for common misspellings and typos
 Plug 'https://github.com/sedm0784/vim-you-autocorrect'             " Why should smartphones get all the fun?
@@ -482,16 +486,16 @@ Plug 'https://github.com/brooth/far.vim'                           " Find And Re
 "Plug 'https://github.com/liuchengxu/vim-which-key' " tulip Vim plugin that shows keybindings in popup
 Plug 'https://bitbucket.org/sw-samuraj/vim-gradle'
 
-if version > 704 || version == 704 && has('patch1154')
+if v:version > 704 || v:version == 704 && has('patch1154')
     Plug 'https://github.com/liuchengxu/vista.vim'                     " Viewer & Finder for LSP symbols and tags http://liuchengxu.org/vista.vim
 endif
-if version >= 801
+if v:version >= 801
     " Plug 'https://github.com/neoclide/coc.nvim',{'branch': 'release'} " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://salt.bountysource.com/teams/coc-nvim
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'https://github.com/honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
 endif
 Plug 'https://github.com/ervandew/supertab'
-if has('nvim') || version >= 802
+if has('nvim') || v:version >= 802
 "    Plug 'https://github.com/pechorin/any-jump.nvim' " Jump to any definition and usages eye IDE madness without overhead (alpha)
 endif
 
@@ -795,7 +799,10 @@ endif
 " }}}
 " editorconfig-vim {{{2
 if plugin#isEnabled('editorconfig-vim')
-    au FileType gitcommit let b:EditorConfig_disable = 1
+    augroup gitcommit
+        au!
+        au FileType gitcommit let b:EditorConfig_disable = 1
+    augroup END
 endif
 " }}}
 " eleline {{{2
@@ -807,7 +814,10 @@ endif
 " emmet-vim {{{2
 if plugin#isEnabled('emmet-vim')
     let g:user__install_global = 0
-    autocmd FileType html,css EmmetInstall
+    augroup Emmet
+        au!
+        autocmd FileType html,css EmmetInstall
+    augroup END
 endif
 "}}}
 " EnchantedVim {{{2
@@ -827,10 +837,10 @@ endif
 " file_templates {{{2
 if plugin#isEnabled('file_templates')
     let g:VIMFILESDIR = vimrc_dir
-    if !exists("g:file_template_default")
+    if !exists('g:file_template_default')
         let g:file_template_default = {}
     endif
-    let g:file_template_default.PKGBUILD = "default"
+    let g:file_template_default.PKGBUILD = 'default'
 endif
 " }}}
 " fzf {{{2
@@ -847,7 +857,7 @@ endif
 " }}}
 " gitgutter {{{2
 if plugin#isEnabled('vim-gitgutter')
-    let g:gitgutter_sign_removed_first_line = "^_"
+    let g:gitgutter_sign_removed_first_line = '^_'
     let g:gitgutter_max_signs               = 2000
 endif
 " }}}
@@ -901,13 +911,13 @@ if plugin#isEnabled('latex-support')
     let tlist_make_settings  = 'make;m:makros;t:targets'
     let tlist_tex_settings   = 'latex;s:Contents;g:Graphics;i:Listings;l:\label;r:\ref;p:\pageref;b:\bibitem'
     if g:UNIX
-        let s:LATEX_pdf_viewer         = "evince"
+        let s:LATEX_pdf_viewer = 'evince'
     endif
 endif
 " }}}
 " lightline {{{2
 if plugin#isEnabled('lightline.vim')
-    if !exists("g:lightline")
+    if !exists('g:lightline')
         let g:lightline = {}
     endif
     let g:lightline.colorscheme = 'gruvbox_material'
@@ -927,7 +937,7 @@ if plugin#isEnabled('lightline.vim')
         \ }
 
     function! LightlineBomb()
-        return &bomb ? "BOM" : ""
+        return &bomb ? 'BOM' : ''
     endfunction
 
     function! LightlineMode()
@@ -989,7 +999,7 @@ endif
 if plugin#isEnabled('nerdtree')
     nnoremap <silent> <F3> :NERDTreeToggle<CR>
 "    nnoremap <silent> <F3> :NERDTreeFind<CR>
-    let g:NERDTreeWinPos = "right"
+    let g:NERDTreeWinPos = 'right'
     set timeoutlen=1000
     let g:NERDTreeChDirMode=2
     let g:NERDTreeDirArrows=0
@@ -1010,10 +1020,13 @@ if plugin#isEnabled('nerdtree')
         let g:NERDTreeDirArrowCollapsible='~'
     endif
     " How can I open NERDTree automatically when vim starts up on opening a directory?
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-    " How can I close vim if the only window left open is a NERDTree?
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    augroup NERDTree
+        au!
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+        " How can I close vim if the only window left open is a NERDTree?
+        autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
+    augroup END
 endif
     let g:NERDTreeGitStatusWithFlags = 1
     let g:NERDTreeIgnore = ['^node_modules$']
@@ -1021,16 +1034,16 @@ endif
 " nerdtree-git-plugin {{{2
 if plugin#isEnabled('nerdtree-git-plugin')
     let g:NERDTreeIndicatorMapCustom = {
-        \ "Modified"  : "✹",
-        \ "Staged"    : "✚",
-        \ "Untracked" : "✭",
-        \ "Renamed"   : "➜",
-        \ "Unmerged"  : "═",
-        \ "Deleted"   : "✖",
-        \ "Dirty"     : "✗",
-        \ "Clean"     : "✔︎",
+        \ 'Modified'  : '✹',
+        \ 'Staged'    : '✚',
+        \ 'Untracked' : '✭',
+        \ 'Renamed'   : '➜',
+        \ 'Unmerged'  : '═',
+        \ 'Deleted'   : '✖',
+        \ 'Dirty'     : '✗',
+        \ 'Clean'     : '✔︎',
         \ 'Ignored'   : '☒',
-        \ "Unknown"   : "?"
+        \ 'Unknown'   : '?'
         \ }
 endif
 " }}}
@@ -1362,18 +1375,21 @@ endif
 " ultisnips {{{2
 if plugin#isEnabled('ultisnips')
     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+    let g:UltiSnipsExpandTrigger='<tab>'
+    let g:UltiSnipsJumpForwardTrigger='<tab>'
+    let g:UltiSnipsJumpBackwardTrigger='<c-b>'
     " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsEditSplit='vertical'
 
-    autocmd BufEnter,BufRead *.html,*.htm UltiSnipsAddFiletypes html.htmldjango
-    autocmd BufEnter,BufRead *.rst UltiSnipsAddFiletypes rst.rst
-    autocmd BufEnter,BufRead *.py UltiSnipsAddFiletypes python.python
+    augroup ultisnips
+        au!
+        autocmd BufEnter,BufRead *.html,*.htm UltiSnipsAddFiletypes html.htmldjango
+        autocmd BufEnter,BufRead *.rst UltiSnipsAddFiletypes rst.rst
+        autocmd BufEnter,BufRead *.py UltiSnipsAddFiletypes python.python
 
-    au BufReadPost *.snippets set filetype=snippets
-    autocmd BufEnter,BufRead *.snippets UltiSnipsAddFiletypes snippets.snippets
+        au BufReadPost *.snippets set filetype=snippets
+        autocmd BufEnter,BufRead *.snippets UltiSnipsAddFiletypes snippets.snippets
+    augroup END
 endif
 " }}}
 " vbookmark {{{2
@@ -1450,8 +1466,11 @@ endif
 " }}}
 " vim-commentary {{{2
 if plugin#isEnabled('vim-commentary')
-    autocmd FileType apache setlocal commentstring=#\ %s
-    autocmd FileType dosini setlocal commentstring=#\ %s
+    augroup vim-commentary
+        au!
+        autocmd FileType apache setlocal commentstring=#\ %s
+        autocmd FileType dosini setlocal commentstring=#\ %s
+    augroup END
 endif
 " }}}
 " vim-colors-solarized {{{2
@@ -1475,7 +1494,7 @@ endif
 "}}}
 " vim-diff-enhanced {{{2
 if plugin#isEnabled('vim-diff-enhanced')
-    if !has("patch-8.1.0360") && &diff
+    if !has('patch-8.1.0360') && &diff
         let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
     endif
 endif
@@ -1498,9 +1517,9 @@ endif
 " }}}
 " vim-go {{{2
 if plugin#isEnabled('vim-go')
-    let g:go_fmt_command = "goimports"
+    let g:go_fmt_command = 'goimports'
     let g:go_autodetect_gopath = 1
-    let g:go_list_type = "quickfix"
+    let g:go_list_type = 'quickfix'
     let g:go_highlight_types = 1
     let g:go_highlight_fields = 1
     let g:go_highlight_functions = 1
@@ -1519,21 +1538,30 @@ if plugin#isEnabled('vim-instant-markdown')
     let g:instant_markdown_mathjax = 1
     let g:instant_markdown_allow_unsafe_content = 1
     let g:instant_markdown_autostart = 0        " :InstantMarkdownPreview
-    autocmd FileType markdown noremap <leader>m :InstantMarkdownPreview<cr>
+    augroup vim-instant-markdown
+        au!
+        autocmd FileType markdown noremap <leader>m :InstantMarkdownPreview<cr>
+    augroup END
 endif
 " vim-javacomplete2 {{{2
 if plugin#isEnabled('vim-javacomplete2')
-    autocmd FileType java set omnifunc=javacomplete#Complete
-    autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
+    augroup vim-javacomplete2
+        au!
+        autocmd FileType java set omnifunc=javacomplete#Complete
+        autocmd FileType java nnoremap <F4> call javacomplete#AddImport()<cr>
+    augroup END
 endif
 " }}}
 " vim-jsbeautify {{{2
 if plugin#isEnabled('vim-jsbeautify')
-    autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-    " for html
-    autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-    " for css or scss
-    autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
+    augroup vim-jsbeautify
+        au!
+        autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+        " for html
+        autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+        " for css or scss
+        autocmd FileType css,scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
+    augroup END
     "react settings
     let g:jsx_ext_required = 0
 endif
@@ -1551,13 +1579,13 @@ endif
 " vim-markdown-preview {{{2
 if plugin#isEnabled('vim-markdown-preview')
     let vim_markdown_preview_browser='Firefox'
-    if executable("grip")
+    if executable('grip')
         let vim_markdown_preview_github=1
     endif
-    " if executable("markdown")
+    " if executable('markdown')
     "     let vim_markdown_preview_perl=1
     " endif
-    " if executable("pandoc")
+    " if executable('pandoc')
     "    let vim_markdown_preview_pandoc=1
     " endif
 endif
@@ -1652,12 +1680,12 @@ endif
 
 if plugin#isEnabled('vimtemplates')
     let g:vimtemplates_dir = vimrc_dir
-    if !exists("g:file_template_default")
+    if !exists('g:file_template_default')
         let g:file_template_default = {}
     endif
-    let g:file_template_default.PKGBUILD = "default"
+    let g:file_template_default.PKGBUILD = 'default'
 
-    let g:author="Piotr Rogoza"
+    let g:author='Piotr Rogoza'
     " let g:email="nice@email.have.me"
     " let g:webpage='www.myextraordinary.example.com'
     " let g:phone="+55 (11) 1234-5678"
@@ -1694,7 +1722,7 @@ endif
 "}}}
 " xml_completion {{{2
 if plugin#isEnabled('xml_completion')
-    let g:xmlSubelements = "yes"
+    let g:xmlSubelements = 'yes'
 endif
 " }}}
 " vista {{{2
@@ -1710,7 +1738,10 @@ if plugin#isEnabled('vista.vim')
     " By default vista.vim never run if you don't call it explicitly.
     " If you want to show the nearest function in your statusline
     " automatically, you can add the following line to your vimrc
-    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+    augroup vista
+        au!
+        autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+    augroup END
     " Ensure you have installed some decent font to show these pretty symbols,
     " then you can enable icon for the kind.
     let g:vista#renderer#enable_icon = 1
@@ -1727,4 +1758,3 @@ if plugin#isEnabled('yaifa')
 endif
 "}}}
 "}}}
-

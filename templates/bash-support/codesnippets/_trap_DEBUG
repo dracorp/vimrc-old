@@ -18,4 +18,3 @@ function _trap_DEBUG ()
 trap '_trap_DEBUG $LINENO <-variable names->' DEBUG        # trap DEBUG
 
 #trap - DEBUG                                    # reset the DEBUG trap
-

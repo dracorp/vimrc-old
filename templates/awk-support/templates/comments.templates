@@ -15,16 +15,16 @@
 #    PARAMETERS:  -|PARAMETERS:EMPTY|
 #    PARAMETERS:  |PARAMETERS:FIRST| - {+DESCRIPTION+}
 #                 |PARAMETERS:ENTRY| - {+DESCRIPTION+}
-#       RETURNS:  
+#       RETURNS:
 #===============================================================================
 == Comments.file description == start, map:ch ==
 #!/usr/bin/awk -f
 #===============================================================================
 #
 #          File:  |FILENAME|
-# 
+#
 #   Description:  <CURSOR>
-# 
+#
 #   VIM Version:  7.0+
 #        Author:  |AUTHOR| (|AUTHORREF|), |EMAIL|
 #  Organization:  |ORGANIZATION|
@@ -72,4 +72,3 @@
 |PickList( 'macro', 'comments_macros' )|
 |PICK|
 == ENDTEMPLATE ==
-

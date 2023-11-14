@@ -12,10 +12,10 @@
 	ErrorLog /var/log/apache2/<+$BASENAME$+>/error.log
 	CustomLog /var/log/apache2/<+$BASENAME$+>/access.log combined
 	<Directory <+#DocumentRoot#+>>
-		Options Indexes -FollowSymLinks MultiViews 
-		AllowOverride all 
-		Order allow,deny 
-		allow from all 
+		Options Indexes -FollowSymLinks MultiViews
+		AllowOverride all
+		Order allow,deny
+		allow from all
 	</Directory>
 </VirtualHost>
 
